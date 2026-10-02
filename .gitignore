@@ -83,3 +83,11 @@ phone/fim_backups/
 phone/layer07_state.json
 phone/layer13_state.json
 phone/layer19_state.json
+phone/layer_response_state.json
+phone/layer_scoring_state.json
+phone/layer_reports_state.json
+phone/layer_multichannel_state.json
+phone/playbooks.jsonl
+phone/alerts_queue.jsonl
+phone/reports/
+phone/killswitch_ready.flag
