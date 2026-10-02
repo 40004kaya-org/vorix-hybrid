@@ -44,3 +44,5 @@ phone/backup_verifier_state.json
 # Cache files
 phone/*.cache
 phone/levels_*.txt
+phone/layer10_state.json
+phone/layer29_30_state.json
