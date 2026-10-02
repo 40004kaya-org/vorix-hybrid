@@ -1,0 +1,390 @@
+{
+  "ts": "2026-10-02T23:51:01.181958Z",
+  "layers": [
+    {
+      "id": "L01",
+      "file": "layer01_selfdefense",
+      "running": true,
+      "pid": "18511",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L02",
+      "file": "layer02_threat_intel",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L03",
+      "file": "layer03_behavioral",
+      "running": true,
+      "pid": "18513",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L04",
+      "file": "layer04_auto_block",
+      "running": true,
+      "pid": "18515",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L05",
+      "file": "layer05_data_quarantine",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L06",
+      "file": "layer06_geoip_block",
+      "running": true,
+      "pid": "18517",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L07",
+      "file": "layer07_network_behavior",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L08",
+      "file": "layer08_network_monitor",
+      "running": true,
+      "pid": "18519",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L09",
+      "file": "layer09_rate_limiter",
+      "running": true,
+      "pid": "18521",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L10",
+      "file": "layer10_red_alert",
+      "running": true,
+      "pid": "18523",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L11",
+      "file": "layer11_dns_sinkhole",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L12",
+      "file": "layer12_reverse_dns",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L13",
+      "file": "layer13_ua_filter",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L15",
+      "file": "layer15_fingerprint",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L16",
+      "file": "layer16_killswitch",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L17",
+      "file": "layer17_watchdog",
+      "running": true,
+      "pid": "18525",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L18",
+      "file": "layer18_backup_verifier",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L19",
+      "file": "layer19_password_leak",
+      "running": true,
+      "pid": "18527",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L21",
+      "file": "layer21_ml_anomaly",
+      "running": true,
+      "pid": "18529",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L22",
+      "file": "layer22_header_analysis",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L23",
+      "file": "layer23_cookie_anomaly",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L24",
+      "file": "layer24_session_hijack",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L25",
+      "file": "layer25_ssl_monitor",
+      "running": true,
+      "pid": "18531",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L26",
+      "file": "layer26_hsts",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L29",
+      "file": "layer29_30_identity",
+      "running": true,
+      "pid": "18533",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L31",
+      "file": "layer31_log_encryption",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L-FIM",
+      "file": "layer_fim",
+      "running": true,
+      "pid": "18536",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L-Root",
+      "file": "layer_rootkit",
+      "running": true,
+      "pid": "18538",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L-MC",
+      "file": "layer_multichannel",
+      "running": true,
+      "pid": "18540",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L-LF",
+      "file": "layer_livefeed",
+      "running": true,
+      "pid": "18509",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L-MITRE",
+      "file": "layer_mitre",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L-Resp",
+      "file": "layer_response",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L-Scor",
+      "file": "layer_scoring",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L-Rep",
+      "file": "layer_reports",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L-Fore",
+      "file": "layer_forensics",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L-Hash",
+      "file": "layer_hashchain",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L-Mock",
+      "file": "layer_mocker",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L-Voice",
+      "file": "layer_voice",
+      "running": false,
+      "pid": null,
+      "mode": "on-demand",
+      "color": "yellow",
+      "label": "آماده"
+    },
+    {
+      "id": "L-Bot",
+      "file": "vorix_bot",
+      "running": true,
+      "pid": "18507",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L-Sync",
+      "file": "sync_loop",
+      "running": false,
+      "pid": null,
+      "mode": "watch",
+      "color": "red",
+      "label": "قطع"
+    },
+    {
+      "id": "L-Keep",
+      "file": "keepalive",
+      "running": true,
+      "pid": "18503",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L-Agent",
+      "file": "agent",
+      "running": true,
+      "pid": "18571",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    }
+  ],
+  "stats": {
+    "green": 19,
+    "yellow": 22,
+    "orange": 0,
+    "red": 1,
+    "total": 42
+  }
+}
