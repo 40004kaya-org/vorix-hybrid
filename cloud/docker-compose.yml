@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: vorix-postgres
+    environment:
+      POSTGRES_DB: vorix
+      POSTGRES_USER: vorix
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks: [vorix-net]
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vorix"]
+      interval: 10s
+
+  redis:
+    image: redis:7-alpine
+    container_name: vorix-redis
+    command: redis-server --appendonly yes
+    volumes:
+      - ./data/redis:/data
+    networks: [vorix-net]
+    restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+
+  vorix-api:
+    build: ./api
+    container_name: vorix-api
+    environment:
+      DB_HOST: postgres
+      DB_PASS: ${DB_PASS}
+      REDIS_HOST: redis
+      API_KEY: ${API_KEY}
+    ports:
+      - "8443:8443"
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    networks: [vorix-net]
+    restart: always
+
+networks:
+  vorix-net:
+    driver: bridge
