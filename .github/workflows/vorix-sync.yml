@@ -1,0 +1,67 @@
+name: VORIX Sync
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # هر 5 دقیقه
+  workflow_dispatch:        # دستی
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Process events
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT: ${{ secrets.TG_CHAT }}
+        run: |
+          python - << 'PYSCRIPT'
+          import os, json, glob, time
+          from datetime import datetime
+
+          base = "phone"
+          events = []
+          for f in ["hash_chain.jsonl", "playbooks.jsonl", "layer10_events.jsonl"]:
+              p = os.path.join(base, f)
+              if os.path.exists(p):
+                  with open(p) as fh:
+                      for line in fh.readlines()[-100:]:
+                          try: events.append(json.loads(line))
+                          except: pass
+
+          print(f"Total events: {len(events)}")
+
+          # Build stats
+          stats = {
+              "total": len(events),
+              "critical": sum(1 for e in events if str(e.get("severity","")).upper()=="CRITICAL"),
+              "last_update": datetime.utcnow().isoformat() + "Z",
+          }
+          print(json.dumps(stats, indent=2))
+
+          # Save stats for Pages
+          os.makedirs("docs", exist_ok=True)
+          with open("docs/stats.json", "w") as f:
+              json.dump(stats, f, indent=2)
+
+          # Write recent events
+          with open("docs/events.json", "w") as f:
+              json.dump(events[-50:], f, indent=2)
+          PYSCRIPT
+
+      - name: Commit stats
+        run: |
+          git config user.name "VORIX Bot"
+          git config user.email "bot@vorixshoop.ir"
+          git add docs/
+          git diff --staged --quiet || git commit -m "auto: sync $(date -u +%H:%M)"
+          git push || true
