@@ -1,5 +1,6 @@
 {
-  "total": 0,
-  "critical": 0,
-  "last_update": "2026-10-02T00:00:00Z"
+  "total": 10,
+  "critical": 2,
+  "blocked": 18,
+  "last_update": "2026-10-02T13:39:41.785596Z"
 }
