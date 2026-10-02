@@ -84,7 +84,7 @@ start_all() {
 
         # لایه‌های watch دار: watch, status فقط
         case "$fname" in
-            layer02_threat_intel.py|layer04_auto_block.py|layer05_data_quarantine.py|layer06_geoip_block.py|layer09_rate_limiter.py|layer10_red_alert.py|layer18_backup_verifier.py|layer03_behavioral.py)
+            layer04_auto_block.py|layer05_data_quarantine.py|layer06_geoip_block.py|layer09_rate_limiter.py|layer10_red_alert.py|layer18_backup_verifier.py|layer03_behavioral.py)
                 if pgrep -f "$fname" > /dev/null; then
                     echo -e "   ${Y}⏸${N}  $label (running)"
                 else
