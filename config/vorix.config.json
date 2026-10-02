@@ -1,0 +1,32 @@
+{
+  "mode": "phone-only",
+  "version": "1.0",
+  "endpoints": {
+    "dashboard": "https://stellar-kitsune-90ca8e.netlify.app",
+    "api": null,
+    "bot_webhook": null,
+    "sensor": "http://phone.local:8000"
+  },
+  "storage": {
+    "local": "~/vorix-hybrid/phone",
+    "remote": null,
+    "github_repo": "git@github.com:40004kaya-org/vorix-hybrid.git"
+  },
+  "server": {
+    "host": null,
+    "port": 22,
+    "user": "root",
+    "ssh_key": "~/.ssh/vorix_server",
+    "domain": "vorixshoop.ir"
+  },
+  "phone": {
+    "sensor_id": "phone-kaya-01",
+    "sync_interval": 300
+  },
+  "features": {
+    "cloud_backup": false,
+    "cloud_layers": false,
+    "real_time": false,
+    "kibana": false
+  }
+}

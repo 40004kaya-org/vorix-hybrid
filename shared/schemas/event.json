@@ -1,0 +1,15 @@
+{
+  "title": "VORIX Event",
+  "type": "object",
+  "required": ["ts", "severity", "event_type", "source"],
+  "properties": {
+    "ts": {"type": "string"},
+    "severity": {"enum": ["INFO", "WARN", "ERROR", "CRITICAL"]},
+    "event_type": {"type": "string"},
+    "source": {"type": "string"},
+    "message": {"type": "string"},
+    "src_ip": {"type": "string"},
+    "layer": {"type": "string"},
+    "hash": {"type": "string"}
+  }
+}
