@@ -62,3 +62,7 @@ phone/.log_encryption_key
 phone/encrypted_logs/
 phone/layer12_state.json
 phone/layer15_state.json
+phone/layer22_state.json
+phone/layer23_state.json
+phone/layer24_state.json
+phone/layer26_state.json
