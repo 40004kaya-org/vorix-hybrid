@@ -3,209 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VORIX Security Dashboard</title>
-<style>
-  :root {
-    --bg: #0a0e1a;
-    --panel: #131825;
-    --border: #1f2937;
-    --green: #10b981;
-    --red: #ef4444;
-    --yellow: #f59e0b;
-    --text: #e5e7eb;
-    --muted: #6b7280;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    padding: 16px;
-    min-height: 100vh;
-  }
-  .container { max-width: 900px; margin: 0 auto; }
-  header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px;
-    background: var(--panel);
-    border-radius: 12px;
-    margin-bottom: 16px;
-    border: 1px solid var(--border);
-  }
-  header h1 { margin: 0; font-size: 20px; }
-  header .dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 12px var(--green);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%,100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .stat-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-  }
-  .stat-card .value {
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--green);
-    margin: 8px 0;
-  }
-  .stat-card .label { color: var(--muted); font-size: 13px; }
-  .panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-  }
-  .panel h2 {
-    margin: 0 0 12px;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .event {
-    padding: 10px 12px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    background: rgba(255,255,255,0.03);
-    border-right: 3px solid var(--muted);
-    font-size: 14px;
-  }
-  .event.CRITICAL { border-color: var(--red); }
-  .event.WARN { border-color: var(--yellow); }
-  .event.INFO { border-color: var(--green); }
-  .event .ts { color: var(--muted); font-size: 12px; }
-  .event .msg { margin-top: 4px; }
-  .footer {
-    text-align: center;
-    padding: 16px;
-    color: var(--muted);
-    font-size: 12px;
-  }
-  .footer a { color: var(--green); text-decoration: none; }
-</style>
+<title>VORIX Security — Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-brand" href="#">
+    <span class="nav-dot"></span>
+    <span>🛡️ VORIX</span>
+  </a>
+  <div class="nav-menu">
+    <a class="nav-link active" data-page="dashboard">📊 داشبورد</a>
+    <a class="nav-link" data-page="events">📜 رویدادها</a>
+    <a class="nav-link" data-page="layers">🛡️ لایه‌ها</a>
+    <a class="nav-link" data-page="settings">⚙️ تنظیمات</a>
+  </div>
+  <span class="nav-time" id="clock">—</span>
+</nav>
+
 <div class="container">
 
-<header>
-  <div class="dot"></div>
-  <h1>🛡️ VORIX Security</h1>
-  <div style="flex:1"></div>
-  <span id="clock" style="color: var(--muted); font-size: 13px;"></span>
-</header>
+  <!-- ═══ DASHBOARD ═══ -->
+  <div data-page-content="dashboard">
+    
+    <div class="stats-grid">
+      <div class="stat-card green">
+        <div class="stat-label">کل رویدادها</div>
+        <div class="stat-value" id="stat-total">—</div>
+        <div class="stat-sub" id="last-update">—</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">کریتیکال</div>
+        <div class="stat-value" id="stat-critical">—</div>
+      </div>
+      <div class="stat-card yellow">
+        <div class="stat-label">IP بلاک‌شده</div>
+        <div class="stat-value" id="stat-blocked">—</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-label">وضعیت</div>
+        <div class="stat-value" id="stat-status">—</div>
+      </div>
+    </div>
 
-<div class="stats-grid">
-  <div class="stat-card">
-    <div class="label">کل رویدادها</div>
-    <div class="value" id="total">—</div>
+    <div class="charts-grid">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">📈 رویدادها در ۷ روز اخیر</div>
+        </div>
+        <div class="chart-container">
+          <canvas id="events-chart"></canvas>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">🎯 انواع حملات</div>
+        </div>
+        <div class="chart-container">
+          <canvas id="types-chart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">📜 آخرین رویدادها</div>
+        <div class="panel-actions">
+          <button class="filter-btn" onclick="navigate('events')">مشاهده همه →</button>
+        </div>
+      </div>
+      <div id="events-list">
+        <div class="empty">در حال بارگذاری...</div>
+      </div>
+    </div>
+
   </div>
-  <div class="stat-card">
-    <div class="label">کریتیکال</div>
-    <div class="value" id="critical" style="color: var(--red);">—</div>
+
+  <!-- ═══ EVENTS ═══ -->
+  <div data-page-content="events" class="hidden">
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">📜 همه رویدادها</div>
+        <div class="panel-actions">
+          <span class="text-muted" id="events-count">—</span>
+        </div>
+      </div>
+      
+      <div class="filters">
+        <input type="text" class="search-box" id="search-input" placeholder="🔍 جستجو در رویدادها...">
+        <button class="filter-btn active" data-severity="ALL">همه</button>
+        <button class="filter-btn" data-severity="CRITICAL">🔴 کریتیکال</button>
+        <button class="filter-btn" data-severity="WARN">🟡 هشدار</button>
+        <button class="filter-btn" data-severity="INFO">🟢 اطلاع</button>
+      </div>
+      
+      <div id="all-events-list">
+        <div class="empty">در حال بارگذاری...</div>
+      </div>
+    </div>
   </div>
-  <div class="stat-card">
-    <div class="label">IP بلاک‌شده</div>
-    <div class="value" id="blocked" style="color: var(--yellow);">—</div>
+
+  <!-- ═══ LAYERS ═══ -->
+  <div data-page-content="layers" class="hidden">
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">🛡️ لایه‌های فعال</div>
+        <div class="panel-actions">
+          <span class="badge INFO">۱۵ / ۲۴</span>
+        </div>
+      </div>
+      <div class="layers-grid" id="layers-grid">
+        <div class="empty">در حال بارگذاری...</div>
+      </div>
+    </div>
   </div>
-  <div class="stat-card">
-    <div class="label">وضعیت</div>
-    <div class="value" style="color: var(--green); font-size: 18px;">فعال</div>
+
+  <!-- ═══ SETTINGS ═══ -->
+  <div data-page-content="settings" class="hidden">
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">⚙️ اطلاعات سیستم</div>
+      </div>
+      <div style="font-size:14px;line-height:2">
+        <div><span class="text-muted">نسخه:</span> v1.0</div>
+        <div><span class="text-muted">ربات تلگرام:</span> @vorix_security_bot</div>
+        <div><span class="text-muted">GitHub:</span> github.com/40004kaya-org/vorix-hybrid</div>
+        <div><span class="text-muted">Sync:</span> هر ۵ دقیقه</div>
+        <div><span class="text-muted">LiveFeed:</span> &lt; 0.2s</div>
+        <div><span class="text-muted">لایه‌ها:</span> ۴۴ ساخته، ۱۵ فعال</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="event-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="panel-title">جزئیات رویداد</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div id="modal-body">در حال بارگذاری...</div>
   </div>
 </div>
 
-<div class="panel">
-  <h2>📜 آخرین رویدادها</h2>
-  <div id="events">در حال بارگذاری...</div>
-</div>
-
-<div class="panel">
-  <h2>📊 وضعیت لایه‌ها</h2>
-  <div id="layers">در حال بارگذاری...</div>
-</div>
-
-<div class="footer">
-  VORIX Security · <a href="https://github.com/40004kaya-org/vorix-hybrid">GitHub</a> ·
-  <span id="last-update">—</span>
-</div>
-
-</div>
-
-<script>
-function fmtTime(ts) {
-  try {
-    const d = new Date(ts);
-    return d.toLocaleString('fa-IR');
-  } catch(e) { return ts; }
-}
-
-async function load() {
-  try {
-    const stats = await fetch('stats.json?v='+Date.now()).then(r=>r.json());
-    document.getElementById('total').textContent = stats.total || 0;
-    document.getElementById('critical').textContent = stats.critical || 0;
-    document.getElementById('blocked').textContent = stats.blocked || 0;
-    document.getElementById('last-update').textContent = 'آخرین بروزرسانی: ' + fmtTime(stats.last_update);
-  } catch(e) { console.log('stats err', e); }
-
-  try {
-    const events = await fetch('events.json?v='+Date.now()).then(r=>r.json());
-    const el = document.getElementById('events');
-    if (!events.length) { el.innerHTML = '<div class="event">رویدادی ثبت نشده</div>'; return; }
-    el.innerHTML = events.slice().reverse().slice(0,20).map(e => {
-      const sev = String(e.severity || e.event_type || e.attack || 'INFO').toUpperCase();
-      const cls = sev.includes('CRIT') ? 'CRITICAL' : sev.includes('WARN') ? 'WARN' : 'INFO';
-      const ts = e.ts || e.timestamp || '';
-      let msg = '';
-      if (e.message) msg = e.message;
-      else if (e.event) msg = e.event;
-      else if (e.event_type) msg = e.event_type;
-      else if (e.attack) msg = e.attack + (e.ip ? ' از ' + e.ip : '');
-      else msg = JSON.stringify(e).slice(0, 100);
-      return `<div class="event ${cls}">
-        <div class="ts">${fmtTime(ts)}</div>
-        <div class="msg">${msg}</div>
-      </div>`;
-    }).join('');
-  } catch(e) { console.log('events err', e); }
-
-  const layers = [
-    "L01 Anti-Kill", "L03 Behavioral", "L04 Auto-Block",
-    "L06 GeoIP", "L08 Net Monitor", "L09 Rate Limit",
-    "L10 Red Alert", "L17 Watchdog", "L19 Password Leak",
-    "L21 ML Anomaly", "L25 SSL Monitor", "L29-30 Identity",
-    "L-FIM", "L-Rootkit", "L-Multichannel"
-  ];
-  document.getElementById('layers').innerHTML = layers.map(l =>
-    `<div class="event INFO">✅ ${l}</div>`
-  ).join('');
-}
-
-function tick() {
-  document.getElementById('clock').textContent = new Date().toLocaleString('fa-IR');
-}
-
-tick();
-load();
-setInterval(load, 30000);
-setInterval(tick, 1000);
-</script>
+<script src="app.js"></script>
 </body>
 </html>
