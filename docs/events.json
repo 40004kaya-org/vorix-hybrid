@@ -57,6 +57,12 @@
     "message": "تست sync زنده"
   },
   {
+    "ts": "2026-10-03T00:26:50",
+    "severity": "WARNING",
+    "event_type": "TEST_SYNC",
+    "message": "تست sync زنده"
+  },
+  {
     "ts": "2026-10-02T12:42:53.444262",
     "attack": "SQL_INJECTION",
     "ip": "1.2.3.4",
