@@ -66,3 +66,8 @@ phone/layer22_state.json
 phone/layer23_state.json
 phone/layer24_state.json
 phone/layer26_state.json
+phone/layer01_state.json
+phone/layer_rootkit_state.json
+phone/fim_baseline.json
+phone/fim_state.json
+phone/fim_backups/
