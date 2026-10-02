@@ -1,0 +1,203 @@
+
+/* ═══════════════════════════════════════════
+   LIGHT WITH TRACE LINE (Circuit style)
+   ═══════════════════════════════════════════ */
+
+.light-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 8px 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.light-node:hover {
+  transform: translateY(-4px);
+}
+
+/* چراغ */
+.node-bulb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+.node-bulb::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: inherit;
+  filter: blur(8px);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.node-bulb::after {
+  content: '';
+  position: absolute;
+  top: 22%;
+  left: 28%;
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  filter: blur(1.5px);
+}
+
+/* رنگ‌ها */
+.node-bulb.green {
+  background: radial-gradient(circle at 35% 30%, #6ee7b7, #10b981);
+  box-shadow: 0 0 12px #10b981, 0 0 24px rgba(16,185,129,0.5);
+  animation: pulse-green 2.5s ease-in-out infinite;
+}
+
+.node-bulb.yellow {
+  background: radial-gradient(circle at 35% 30%, #fde68a, #f59e0b);
+  box-shadow: 0 0 10px #f59e0b, 0 0 20px rgba(245,158,11,0.4);
+  animation: pulse-yellow 3s ease-in-out infinite;
+}
+
+.node-bulb.orange {
+  background: radial-gradient(circle at 35% 30%, #fdba74, #f97316);
+  box-shadow: 0 0 14px #f97316, 0 0 28px rgba(249,115,22,0.6);
+  animation: pulse-orange 1.5s ease-in-out infinite;
+}
+
+.node-bulb.red {
+  background: radial-gradient(circle at 35% 30%, #fca5a5, #ef4444);
+  box-shadow: 0 0 16px #ef4444, 0 0 32px rgba(239,68,68,0.7);
+  animation: pulse-red 0.7s ease-in-out infinite;
+}
+
+.node-bulb.dark {
+  background: radial-gradient(circle at 35% 30%, #4b5563, #1f2937);
+  opacity: 0.5;
+}
+
+/* خط اتصال */
+.node-trace {
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(180deg, 
+    rgba(255,255,255,0.25) 0%, 
+    rgba(255,255,255,0.05) 100%);
+  position: relative;
+  z-index: 1;
+}
+
+/* نقطه روی خط */
+.node-trace::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.5;
+  animation: trace-flow 2s linear infinite;
+}
+
+@keyframes trace-flow {
+  0% { top: 0%; opacity: 0.5; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* رنگ خط بر اساس وضعیت */
+.light-node.green .node-trace {
+  background: linear-gradient(180deg, #10b981 0%, rgba(16,185,129,0.1) 100%);
+}
+.light-node.yellow .node-trace {
+  background: linear-gradient(180deg, #f59e0b 0%, rgba(245,158,11,0.1) 100%);
+}
+.light-node.orange .node-trace {
+  background: linear-gradient(180deg, #f97316 0%, rgba(249,115,22,0.1) 100%);
+}
+.light-node.red .node-trace {
+  background: linear-gradient(180deg, #ef4444 0%, rgba(239,68,68,0.1) 100%);
+  animation: red-pulse-trace 0.7s ease-in-out infinite;
+}
+
+@keyframes red-pulse-trace {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* برچسب */
+.node-label {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+  min-width: 100px;
+  max-width: 100%;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.light-node:hover .node-label {
+  background: rgba(255,255,255,0.05);
+  border-color: var(--muted);
+}
+
+.node-label-id {
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.node-label-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.node-label-section {
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* بخش‌های ویژه */
+.node-label.section-ingress { border-color: rgba(59,130,246,0.3); }
+.node-label.section-intelligence { border-color: rgba(168,85,247,0.3); }
+.node-label.section-response { border-color: rgba(239,68,68,0.3); }
+.node-label.section-output { border-color: rgba(16,185,129,0.3); }
+.node-label.section-selfdefense { border-color: rgba(245,158,11,0.3); }
+
+/* گرید جدید */
+.lights-grid-nodes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+  padding: 12px;
+  background: 
+    linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px) 0 0 / 100% 40px,
+    linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px) 0 0 / 40px 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+/* موبایل */
+@media (max-width: 600px) {
+  .lights-grid-nodes {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 4px;
+  }
+  .node-label-name { font-size: 11px; }
+}
