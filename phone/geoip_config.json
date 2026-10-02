@@ -1,0 +1,26 @@
+{
+  "mode": "blocklist",
+  "blocked_countries": [
+    "North Korea",
+    "Syria",
+    "Sudan",
+    "Belarus"
+  ],
+  "allowed_countries": [
+    "Iran",
+    "United States",
+    "Germany",
+    "Netherlands"
+  ],
+  "high_risk_score": 25,
+  "medium_risk_score": 10,
+  "low_risk_score": 0,
+  "auto_block": true,
+  "notify": true,
+  "test_countries": [
+    "North Korea",
+    "Syria",
+    "Belarus",
+    "Sudan"
+  ]
+}
