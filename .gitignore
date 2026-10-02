@@ -1,0 +1,18 @@
+# Secrets
+.env
+phone/config.json
+*.key
+*.pem
+
+# Logs
+logs/
+*.log
+*.out
+*.jsonl
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
