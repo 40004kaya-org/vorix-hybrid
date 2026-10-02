@@ -1,0 +1,47 @@
+{
+  "last_check": "2026-10-02T11:45:57.355273",
+  "results": [
+    {
+      "path": "/data/data/com.termux/files/home/vorix-backups/vorix-full-20261002_031054.tar.gz",
+      "name": "vorix-full-20261002_031054.tar.gz",
+      "status": "ok",
+      "size": 140492,
+      "age_hours": 8,
+      "issues": []
+    },
+    {
+      "path": "/data/data/com.termux/files/home/vorix-backups/vorix-full-20261002_031323.tar.gz",
+      "name": "vorix-full-20261002_031323.tar.gz",
+      "status": "ok",
+      "size": 141793,
+      "age_hours": 8,
+      "issues": []
+    },
+    {
+      "path": "/data/data/com.termux/files/home/killswitch-backups/emergency_20261002_111910.tar.gz",
+      "name": "emergency_20261002_111910.tar.gz",
+      "status": "ok",
+      "size": 139014,
+      "age_hours": 0,
+      "issues": []
+    },
+    {
+      "path": "/data/data/com.termux/files/home/vorix-hybrid/phone/quarantine/backup_20261002_113519.tar.gz",
+      "name": "backup_20261002_113519.tar.gz",
+      "status": "ok",
+      "size": 141849,
+      "age_hours": 0,
+      "issues": []
+    },
+    {
+      "path": "/data/data/com.termux/files/home/vorix-hybrid/phone/quarantine/snapshot_20261002_113514.tar.gz",
+      "name": "snapshot_20261002_113514.tar.gz",
+      "status": "corrupted",
+      "size": 265,
+      "age_hours": 0,
+      "issues": [
+        "size_too_small"
+      ]
+    }
+  ]
+}
