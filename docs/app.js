@@ -31,6 +31,16 @@ const LAYER_LIST = [
   { name: 'L-Multichannel', status: 'active' },
 ];
 
+
+// ─── SAFE BTOA (Unicode) ───
+function safeBtoa(str) {
+  try {
+    return btoa(unescape(encodeURIComponent(str)));
+  } catch(e) {
+    return 'evt-' + Math.random().toString(36).slice(2) + '-' + Date.now();
+  }
+}
+
 // ─── HELPERS ───
 function fmtTime(ts) {
   try {
@@ -124,7 +134,7 @@ function renderEvents() {
   // Dashboard: only 10 latest
   const latest = events.slice(0, 10);
   container.innerHTML = latest.length 
-    ? latest.map(renderEventHTML).join('')
+    ? latest.map((e, i) => renderEventHTML(e, i)).join('')
     : '<div class="empty"><div class="empty-icon">📭</div>رویدادی ثبت نشده</div>';
   
   // All events: apply filters
@@ -142,7 +152,7 @@ function renderEvents() {
   }
   
   allContainer.innerHTML = filtered.length
-    ? filtered.map(renderEventHTML).join('')
+    ? filtered.map((e, i) => renderEventHTML(e, i)).join('')
     : '<div class="empty"><div class="empty-icon">🔍</div>رویدادی مطابق فیلتر پیدا نشد</div>';
   
   // Add click handlers
@@ -156,7 +166,7 @@ function renderEventHTML(e, i) {
   const type = getEventType(e);
   const ts = e.ts || e.timestamp || '';
   const msg = getEventMessage(e);
-  const id = btoa(JSON.stringify(e)).slice(0, 20) + '-' + i;
+  const id = 'evt-' + i + '-' + Date.now();
   
   return `
     <div class="event ${sev}" data-event-id="${id}" data-event-json='${JSON.stringify(e).replace(/'/g, "&#39;")}'>
@@ -282,7 +292,7 @@ function showEventDetail(id) {
   const el = document.querySelector(`[data-event-id="${id}"]`);
   if (!el) return;
   try {
-    const e = JSON.parse(el.dataset.eventJson);
+    const e = JSON.parse(decodeURIComponent(el.dataset.eventJson));
     const body = document.getElementById('modal-body');
     body.innerHTML = `
       <div style="margin-bottom:12px">
