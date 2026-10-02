@@ -161,6 +161,7 @@ async function load() {
     const stats = await fetch('stats.json?v='+Date.now()).then(r=>r.json());
     document.getElementById('total').textContent = stats.total || 0;
     document.getElementById('critical').textContent = stats.critical || 0;
+    document.getElementById('blocked').textContent = stats.blocked || 0;
     document.getElementById('last-update').textContent = 'آخرین بروزرسانی: ' + fmtTime(stats.last_update);
   } catch(e) { console.log('stats err', e); }
 
@@ -169,10 +170,15 @@ async function load() {
     const el = document.getElementById('events');
     if (!events.length) { el.innerHTML = '<div class="event">رویدادی ثبت نشده</div>'; return; }
     el.innerHTML = events.slice().reverse().slice(0,20).map(e => {
-      const sev = String(e.severity || e.event_type || 'INFO').toUpperCase();
+      const sev = String(e.severity || e.event_type || e.attack || 'INFO').toUpperCase();
       const cls = sev.includes('CRIT') ? 'CRITICAL' : sev.includes('WARN') ? 'WARN' : 'INFO';
       const ts = e.ts || e.timestamp || '';
-      const msg = e.message || e.event || e.event_type || JSON.stringify(e).slice(0,100);
+      let msg = '';
+      if (e.message) msg = e.message;
+      else if (e.event) msg = e.event;
+      else if (e.event_type) msg = e.event_type;
+      else if (e.attack) msg = e.attack + (e.ip ? ' از ' + e.ip : '');
+      else msg = JSON.stringify(e).slice(0, 100);
       return `<div class="event ${cls}">
         <div class="ts">${fmtTime(ts)}</div>
         <div class="msg">${msg}</div>
