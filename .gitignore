@@ -71,3 +71,12 @@ phone/layer_rootkit_state.json
 phone/fim_baseline.json
 phone/fim_state.json
 phone/fim_backups/
+phone/layer_voice_state.json
+phone/layer_hashchain_state.json
+phone/layer_forensics_state.json
+phone/layer_mitre_state.json
+phone/layer_mocker_state.json
+phone/hash_chain.jsonl
+phone/forensics/
+phone/fim_baseline.json
+phone/fim_backups/
