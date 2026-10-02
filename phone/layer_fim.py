@@ -139,7 +139,7 @@ class FIM:
             if modified:
                 self.stats["modified"] += len(modified)
                 for fname, status in modified:
-                    self._restore_file(fname, status)
+                    # self._restore_file(fname, status)  # DISABLED - alert only
                     self._alert(fname, status)
 
             return modified

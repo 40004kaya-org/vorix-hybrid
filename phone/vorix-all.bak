@@ -1,0 +1,238 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# 🛡️ VORIX — Master Launcher
+# One command to rule them all
+
+HOME=/data/data/com.termux/files/home
+BASE="$HOME/vorix-hybrid/phone"
+LOGS="$BASE/logs"
+mkdir -p "$LOGS"
+
+G='\033[0;32m'; Y='\033[1;33m'; R='\033[0;31m'; C='\033[0;36m'; M='\033[0;35m'; N='\033[0m'
+
+# لیست لایه‌ها
+LAYERS=(
+    "layer02_threat_intel.py:L2 Threat Intel"
+    "layer04_auto_block.py:L4 Auto-Block"
+    "layer05_data_quarantine.py:L5 Data Quarantine"
+    "layer06_geoip_block.py:L6 GeoIP Block"
+    "layer09_rate_limiter.py:L9 Rate Limiter"
+    "layer10_red_alert.py:L10 Red Alert"
+    "layer16_killswitch.py:L16 Kill Switch"
+    "layer17_watchdog.py:L17 Watchdog"
+    "layer18_backup_verifier.py:L18 Backup Verifier"
+    "layer21_ml_anomaly.py:L21 ML Anomaly"
+    "layer29_30_identity.py:L29-L30 Identity"
+    "layer03_behavioral.py:L3 Behavioral"
+)
+
+# Services that need running
+SERVICES=(
+    "agent.py:Phone Agent"
+    "server.py:Dashboard"
+)
+
+banner() {
+    echo -e "${M}"
+    echo "╔═══════════════════════════════════════════════╗"
+    echo "║                                               ║"
+    echo "║       🛡️  VORIX MASTER LAUNCHER  🛡️          ║"
+    echo "║                                               ║"
+    echo "║    18 Layers · 99% Coverage · 24/7           ║"
+    echo "║                                               ║"
+    echo "╚═══════════════════════════════════════════════╝"
+    echo -e "${N}"
+}
+
+start_all() {
+    banner
+    echo -e "${C}🚀 Starting all layers...${N}\n"
+
+    # Wake lock
+    termux-wake-lock 2>/dev/null
+    echo -e "${G}✅${N} Wake lock acquired"
+
+    # Start services
+    echo -e "\n${C}📱 Services:${N}"
+    for svc in "${SERVICES[@]}"; do
+        name="${svc%%:*}"
+        label="${svc##*:}"
+        pattern="${name%.py}"
+
+        if pgrep -f "$name" > /dev/null; then
+            echo -e "   ${Y}⏸${N}  $label (already running)"
+        else
+            case "$name" in
+                agent.py)   cmd="cd $BASE && nohup python3 agent.py > $LOGS/agent.out 2>&1 &" ;;
+                server.py)  cmd="cd $HOME/vorix/dashboard && nohup python3 server.py > $LOGS/dashboard.out 2>&1 &" ;;
+            esac
+            bash -c "$cmd"
+            sleep 1
+            if pgrep -f "$name" > /dev/null; then
+                echo -e "   ${G}✅${N} $label"
+            else
+                echo -e "   ${R}❌${N} $label"
+            fi
+        fi
+    done
+
+    # Start watchers
+    echo -e "\n${C}🛡️  Watchers:${N}"
+    for layer in "${LAYERS[@]}"; do
+        fname="${layer%%:*}"
+        label="${layer##*:}"
+        pattern="${fname%.py}"
+
+        # لایه‌های watch دار: watch, status فقط
+        case "$fname" in
+            layer04_auto_block.py|layer05_data_quarantine.py|layer06_geoip_block.py|layer09_rate_limiter.py|layer10_red_alert.py|layer18_backup_verifier.py|layer03_behavioral.py)
+                if pgrep -f "$fname" > /dev/null; then
+                    echo -e "   ${Y}⏸${N}  $label (running)"
+                else
+                    cd "$BASE"
+                    nohup python3 "$fname" watch > "$LOGS/${pattern}.out" 2>&1 &
+                    sleep 0.5
+                    if pgrep -f "$fname" > /dev/null; then
+                        echo -e "   ${G}✅${N} $label"
+                    else
+                        echo -e "   ${R}❌${N} $label"
+                    fi
+                fi
+                ;;
+            *)
+                echo -e "   ${C}ℹ️${N}  $label (on-demand)"
+                ;;
+        esac
+    done
+
+    echo ""
+    echo -e "${M}═══════════════════════════════════════════════${N}"
+    echo -e "${G}✅ VORIX ACTIVATED${N}"
+    echo -e "${M}═══════════════════════════════════════════════${N}"
+    echo ""
+    echo -e "${C}🌐 Access:${N}"
+    echo "   Dashboard: http://localhost:8000"
+    echo "   Telegram:  @vorix_security_bot"
+    echo ""
+    echo -e "${C}📁 Logs:${N} $LOGS"
+    echo ""
+    echo -e "${Y}🛑 Stop: vorix-all stop${N}"
+    echo ""
+}
+
+stop_all() {
+    echo -e "${C}⏹  Stopping all...${N}\n"
+
+    for layer in "${LAYERS[@]}"; do
+        fname="${layer%%:*}"
+        label="${layer##*:}"
+        if pkill -f "$fname" 2>/dev/null; then
+            echo -e "   ${G}✅${N} $label stopped"
+        fi
+    done
+
+    for svc in "${SERVICES[@]}"; do
+        name="${svc%%:*}"
+        label="${svc##*:}"
+        if pkill -f "$name" 2>/dev/null; then
+            echo -e "   ${G}✅${N} $label stopped"
+        fi
+    done
+
+    termux-wake-unlock 2>/dev/null
+    echo ""
+    echo -e "${G}✅ همه سرویس‌ها متوقف شدند${N}"
+}
+
+status_all() {
+    banner
+
+    echo -e "${C}📱 Services:${N}"
+    for svc in "${SERVICES[@]}"; do
+        name="${svc%%:*}"
+        label="${svc##*:}"
+        if pgrep -f "$name" > /dev/null; then
+            pid=$(pgrep -f "$name" | head -1)
+            echo -e "   ${G}✅${N} $label (PID: $pid)"
+        else
+            echo -e "   ${R}❌${N} $label"
+        fi
+    done
+
+    echo ""
+    echo -e "${C}🛡️  Layers (Watchers):${N}"
+    for layer in "${LAYERS[@]}"; do
+        fname="${layer%%:*}"
+        label="${layer##*:}"
+        if pgrep -f "$fname" > /dev/null; then
+            pid=$(pgrep -f "$fname" | head -1)
+            echo -e "   ${G}✅${N} $label (PID: $pid)"
+        else
+            echo -e "   ${C}○${N}  $label (on-demand)"
+        fi
+    done
+
+    echo ""
+    echo -e "${C}📊 Stats:${N}"
+
+    # Blocked IPs
+    if [ -f "$BASE/blocklist.json" ]; then
+        count=$(python3 -c "import json; print(len(json.load(open('$BASE/blocklist.json'))))" 2>/dev/null || echo "?")
+        echo -e "   🚫 Blocked IPs: $count"
+    fi
+
+    # Queue
+    if [ -f "$BASE/queue.jsonl" ]; then
+        qlines=$(wc -l < "$BASE/queue.jsonl")
+        echo -e "   📋 Queue events: $qlines"
+    fi
+
+    # Uptime
+    echo ""
+    echo -e "${C}📈 System:${N}"
+    echo -e "   Uptime:  $(uptime -p 2>/dev/null || echo 'N/A')"
+    echo -e "   RAM:     $(free -h 2>/dev/null | awk '/^Mem:/{print $3"/"$2}' || echo 'N/A')"
+    echo ""
+}
+
+emergency() {
+    echo -e "${R}"
+    echo "╔═══════════════════════════════════════════════╗"
+    echo "║                                               ║"
+    echo "║       🔴 EMERGENCY STOP ACTIVATED 🔴          ║"
+    echo "║                                               ║"
+    echo "╚═══════════════════════════════════════════════╝"
+    echo -e "${N}"
+
+    cd "$BASE"
+    python3 layer16_killswitch.py trigger
+}
+
+recover() {
+    echo -e "${C}🔄 Recovery mode${N}\n"
+    cd "$BASE"
+    python3 layer16_killswitch.py recover
+    echo ""
+    echo -e "${G}✅ System recovered${N}"
+    echo -e "${Y}👉 Run 'vorix-all start' to restart${N}"
+}
+
+case "${1:-status}" in
+    start)      start_all ;;
+    stop)       stop_all ;;
+    status)     status_all ;;
+    restart)    stop_all; sleep 2; start_all ;;
+    emergency)  emergency ;;
+    recover)    recover ;;
+    help|*)
+        banner
+        echo ""
+        echo -e "${C}Commands:${N}"
+        echo "  vorix-all start       راه‌اندازی همه"
+        echo "  vorix-all stop        توقف همه"
+        echo "  vorix-all status      وضعیت"
+        echo "  vorix-all restart     ری‌استارت"
+        echo "  vorix-all emergency   توقف اضطراری"
+        echo "  vorix-all recover     بازگردانی"
+        echo ""
+        ;;
+esac

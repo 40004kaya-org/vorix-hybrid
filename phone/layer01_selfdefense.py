@@ -18,12 +18,18 @@ CHAT = "175160049"
 # فایل‌هایی که باید همیشه زنده باشن
 PROTECTED = [
     "layer01_selfdefense",
-    "layer02_threat_intel",
     "layer03_behavioral",
-    "layer04_auto_block",
+    "layer06_geoip_block",
+    "layer08_network_monitor",
+    "layer09_rate_limiter",
+    "layer10_red_alert",
     "layer17_watchdog",
-    "agent.py",
-    "server.py",
+    "layer19_password_leak",
+    "layer21_ml_anomaly",
+    "layer25_ssl_monitor",
+    "layer_fim",
+    "layer_rootkit",
+    "layer_multichannel",
 ]
 
 CONFIG = {

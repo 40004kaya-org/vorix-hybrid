@@ -1,93 +1,33 @@
-# Secrets
-.env
-phone/config.json
-*.key
-*.pem
-
-# Logs
-logs/
-*.log
+# Runtime files
+*.lock
+*.pid
 *.out
-*.jsonl
 
-# Python
-__pycache__/
-*.pyc
+# Backups
+*.bak
+*.bak2
+fim_backups/
 
 # OS
 .DS_Store
+Thumbs.db
 
-# State files
-phone/quarantine_state.json
-phone/killswitch_state.json
-phone/stats.json
-phone/threat_cache.json
-phone/queue.jsonl
+# IDE
+.vscode/
+.idea/
 
-# Quarantine
-phone/quarantine/
-phone/killswitch-backups/
+# Unrelated
+mechanical_assembly.scad
 
-# Logs
-phone/*.log
-phone/*.out
+# Sensitive
+.env
+*.token
+.tg-token
 
-# Layer state files
-phone/layer02_cache.json
-phone/tor_exits.json
-phone/blocklist.json
-phone/layer04_state.json
-phone/layer09_state.json
-phone/watchdog_state.json
-phone/backup_verifier_state.json
+# Python cache
+__pycache__/
+*.pyc
 
-# Cache files
-phone/*.cache
-phone/levels_*.txt
-phone/layer10_state.json
-phone/layer29_30_state.json
-phone/layer10_state.json
-phone/layer29_30_state.json
-phone/layer21_state.json
-phone/layer21_baseline.json
-phone/layer21_state.json
-phone/layer21_baseline.json
-phone/layer03_state.json
-phone/layer08_state.json
-phone/layer11_state.json
-phone/layer11_blocked.txt
-phone/layer25_state.json
-phone/layer31_state.json
-phone/.log_encryption_key
+# Logs (except important ones)
+phone/logs/*.log
 phone/encrypted_logs/
-phone/layer12_state.json
-phone/layer15_state.json
-phone/layer22_state.json
-phone/layer23_state.json
-phone/layer24_state.json
-phone/layer26_state.json
-phone/layer01_state.json
-phone/layer_rootkit_state.json
-phone/fim_baseline.json
-phone/fim_state.json
-phone/fim_backups/
-phone/layer_voice_state.json
-phone/layer_hashchain_state.json
-phone/layer_forensics_state.json
-phone/layer_mitre_state.json
-phone/layer_mocker_state.json
-phone/hash_chain.jsonl
-phone/forensics/
-phone/fim_baseline.json
-phone/fim_backups/
-phone/layer07_state.json
-phone/layer13_state.json
-phone/layer19_state.json
-phone/layer_response_state.json
-phone/layer_scoring_state.json
-phone/layer_reports_state.json
-phone/layer_multichannel_state.json
-phone/playbooks.jsonl
-phone/alerts_queue.jsonl
-phone/reports/
-phone/killswitch_ready.flag
