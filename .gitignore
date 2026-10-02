@@ -54,3 +54,9 @@ phone/layer21_state.json
 phone/layer21_baseline.json
 phone/layer03_state.json
 phone/layer08_state.json
+phone/layer11_state.json
+phone/layer11_blocked.txt
+phone/layer25_state.json
+phone/layer31_state.json
+phone/.log_encryption_key
+phone/encrypted_logs/
