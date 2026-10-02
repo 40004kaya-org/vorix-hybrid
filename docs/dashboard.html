@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VORIX Dashboard</title>
+<link rel="stylesheet" href="lights.css">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="status-dot" id="global-dot"></div>
+    <h1>🛡️ VORIX</h1>
+    <div class="header-spacer"></div>
+    <div class="header-time" id="clock">—</div>
+  </div>
+
+  <div class="circuit-board" id="circuit"></div>
+
+  <div class="stats-row" id="stats"></div>
+
+  <div class="panel">
+    <div class="panel-title">
+      <span>🛡️ لایه‌ها</span>
+      <span id="layer-count" style="color:var(--muted);font-size:11px"></span>
+    </div>
+    <div class="lights-grid-nodes" id="layers-grid"></div>
+  </div>
+
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
