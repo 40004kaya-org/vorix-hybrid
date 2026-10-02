@@ -16,3 +16,18 @@ __pycache__/
 
 # OS
 .DS_Store
+
+# State files
+phone/quarantine_state.json
+phone/killswitch_state.json
+phone/stats.json
+phone/threat_cache.json
+phone/queue.jsonl
+
+# Quarantine
+phone/quarantine/
+phone/killswitch-backups/
+
+# Logs
+phone/*.log
+phone/*.out
