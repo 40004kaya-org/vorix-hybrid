@@ -3,34 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VORIX Dashboard</title>
-<link rel="stylesheet" href="lights.css">
+<title>VORIX Datacenter</title>
+<link rel="stylesheet" href="vorix.css">
 </head>
 <body>
 
+<div class="ceiling-alert" id="ceiling-alert"></div>
+<div class="alert-banner" id="alert-banner"></div>
+
 <div class="container">
 
+  <!-- Header -->
   <div class="header">
-    <div class="status-dot" id="global-dot"></div>
-    <h1>🛡️ VORIX</h1>
-    <div class="header-spacer"></div>
+    <div class="header-dot"></div>
+    <h1>🏢 VORIX DATACENTER</h1>
+    <div class="spacer"></div>
     <div class="header-time" id="clock">—</div>
   </div>
 
-  <div class="circuit-board" id="circuit"></div>
-
-  <div class="stats-row" id="stats"></div>
-
-  <div class="panel">
-    <div class="panel-title">
-      <span>🛡️ لایه‌ها</span>
-      <span id="layer-count" style="color:var(--muted);font-size:11px"></span>
-    </div>
-    <div class="lights-grid-nodes" id="layers-grid"></div>
+  <!-- Circuit Board -->
+  <div class="circuit-panel">
+    <div class="circuit-title">DATA FLOW</div>
+    <div class="circuit-row" id="circuit"></div>
   </div>
+
+  <!-- Server Room -->
+  <div class="server-room">
+    <div class="room-title">SERVER ROOM</div>
+    <div class="racks-row" id="racks"></div>
+    <div class="room-floor"></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar" id="stats"></div>
 
 </div>
 
-<script src="dashboard.js"></script>
+<script src="vorix.js"></script>
 </body>
 </html>
