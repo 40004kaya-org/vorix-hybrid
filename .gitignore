@@ -31,3 +31,16 @@ phone/killswitch-backups/
 # Logs
 phone/*.log
 phone/*.out
+
+# Layer state files
+phone/layer02_cache.json
+phone/tor_exits.json
+phone/blocklist.json
+phone/layer04_state.json
+phone/layer09_state.json
+phone/watchdog_state.json
+phone/backup_verifier_state.json
+
+# Cache files
+phone/*.cache
+phone/levels_*.txt
