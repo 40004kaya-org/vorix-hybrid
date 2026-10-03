@@ -1,0 +1,559 @@
+{
+ "ts": "2026-10-03T05:26:32.571531Z",
+ "source": "SANS DShield + ip-api + Feodo",
+ "attacks": [
+  {
+   "ip": "13.94.254.200",
+   "rank": 1,
+   "count": 319739,
+   "targets": 1,
+   "country": "NL",
+   "country_name": "Netherlands",
+   "isp": "Microsoft Corporation",
+   "asn": "AS8075"
+  },
+  {
+   "ip": "194.224.249.214",
+   "rank": 2,
+   "count": 309508,
+   "targets": 1,
+   "country": "ES",
+   "country_name": "Spain",
+   "isp": "TDENET (Red de servicios IP)",
+   "asn": "AS3352"
+  },
+  {
+   "ip": "52.157.207.201",
+   "rank": 3,
+   "count": 194780,
+   "targets": 1,
+   "country": "NL",
+   "country_name": "Netherlands",
+   "isp": "Microsoft Corporation",
+   "asn": "AS8075"
+  },
+  {
+   "ip": "89.248.163.109",
+   "rank": 4,
+   "count": 96279,
+   "targets": 150,
+   "country": "PL",
+   "country_name": "Poland",
+   "isp": "IP Volume inc",
+   "asn": "AS202425"
+  },
+  {
+   "ip": "143.244.186.35",
+   "rank": 5,
+   "count": 92007,
+   "targets": 8,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "DigitalOcean, LLC",
+   "asn": "AS14061"
+  },
+  {
+   "ip": "18.116.198.191",
+   "rank": 6,
+   "count": 59907,
+   "targets": 1,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "Amazon.com, Inc.",
+   "asn": "AS16509"
+  },
+  {
+   "ip": "152.89.198.163",
+   "rank": 7,
+   "count": 41378,
+   "targets": 478,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Infronet-Telecom LLC",
+   "asn": "AS213498"
+  },
+  {
+   "ip": "152.89.198.103",
+   "rank": 8,
+   "count": 41346,
+   "targets": 479,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Infronet-Telecom LLC",
+   "asn": "AS213498"
+  },
+  {
+   "ip": "152.89.198.187",
+   "rank": 9,
+   "count": 41332,
+   "targets": 477,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Infronet-Telecom LLC",
+   "asn": "AS213498"
+  },
+  {
+   "ip": "185.122.204.71",
+   "rank": 10,
+   "count": 41221,
+   "targets": 479,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Nubes LLC",
+   "asn": ""
+  },
+  {
+   "ip": "176.113.115.104",
+   "rank": 11,
+   "count": 41164,
+   "targets": 486,
+   "country": "DE",
+   "country_name": "Germany",
+   "isp": "miriquidi networks GmbH",
+   "asn": "AS20292"
+  },
+  {
+   "ip": "91.240.118.59",
+   "rank": 12,
+   "count": 41148,
+   "targets": 476,
+   "country": "GB",
+   "country_name": "United Kingdom",
+   "isp": "UFO TECHNOLOGIES LIMITED",
+   "asn": "AS201738"
+  },
+  {
+   "ip": "62.204.41.205",
+   "rank": 13,
+   "count": 41094,
+   "targets": 477,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Chang Way Technologies Co. Limited",
+   "asn": "AS201738"
+  },
+  {
+   "ip": "152.89.198.61",
+   "rank": 14,
+   "count": 40959,
+   "targets": 484,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Infronet-Telecom LLC",
+   "asn": "AS213498"
+  },
+  {
+   "ip": "62.233.50.245",
+   "rank": 15,
+   "count": 40869,
+   "targets": 472,
+   "country": "GB",
+   "country_name": "United Kingdom",
+   "isp": "Harbour Energy Services Limited",
+   "asn": ""
+  },
+  {
+   "ip": "185.81.68.110",
+   "rank": 16,
+   "count": 40860,
+   "targets": 481,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "UFO TECHNOLOGIES LIMITED",
+   "asn": "AS201738"
+  },
+  {
+   "ip": "152.89.198.153",
+   "rank": 17,
+   "count": 40261,
+   "targets": 481,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Infronet-Telecom LLC",
+   "asn": "AS213498"
+  },
+  {
+   "ip": "152.89.196.156",
+   "rank": 18,
+   "count": 39822,
+   "targets": 140,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "\"Cloud Technologies\" LLC trading as Clou",
+   "asn": "AS208677"
+  },
+  {
+   "ip": "89.248.163.108",
+   "rank": 19,
+   "count": 34020,
+   "targets": 7896,
+   "country": "PL",
+   "country_name": "Poland",
+   "isp": "IP Volume inc",
+   "asn": "AS202425"
+  },
+  {
+   "ip": "49.88.112.67",
+   "rank": 20,
+   "count": 32881,
+   "targets": 106,
+   "country": "CN",
+   "country_name": "China",
+   "isp": "Chinanet",
+   "asn": "AS4134"
+  },
+  {
+   "ip": "176.111.174.123",
+   "rank": 21,
+   "count": 28149,
+   "targets": 141,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Nubes LLC",
+   "asn": "AS212136"
+  },
+  {
+   "ip": "176.111.174.128",
+   "rank": 22,
+   "count": 27407,
+   "targets": 143,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Nubes LLC",
+   "asn": "AS212136"
+  },
+  {
+   "ip": "89.248.163.18",
+   "rank": 23,
+   "count": 27006,
+   "targets": 616,
+   "country": "NL",
+   "country_name": "The Netherlands",
+   "isp": "IP Volume inc",
+   "asn": "AS202425"
+  },
+  {
+   "ip": "45.93.201.57",
+   "rank": 24,
+   "count": 25622,
+   "targets": 140,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "JSC \"TIMEWEB\"",
+   "asn": "AS9123"
+  },
+  {
+   "ip": "77.83.36.40",
+   "rank": 25,
+   "count": 25152,
+   "targets": 140,
+   "country": "SC",
+   "country_name": "Seychelles",
+   "isp": "Layer7 Networks GmbH",
+   "asn": "AS214403"
+  },
+  {
+   "ip": "66.240.219.146",
+   "rank": 26,
+   "count": 25108,
+   "targets": 125,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "CariNet, Inc.",
+   "asn": "AS10439"
+  },
+  {
+   "ip": "185.73.124.50",
+   "rank": 27,
+   "count": 24988,
+   "targets": 238,
+   "country": "EE",
+   "country_name": "Estonia",
+   "isp": "IPHOSTER OU",
+   "asn": "AS210734"
+  },
+  {
+   "ip": "216.127.175.10",
+   "rank": 28,
+   "count": 23788,
+   "targets": 1,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "Amazon.com, Inc.",
+   "asn": "AS16509"
+  },
+  {
+   "ip": "216.127.190.44",
+   "rank": 29,
+   "count": 23787,
+   "targets": 1,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "Amazon.com, Inc.",
+   "asn": "AS16509"
+  },
+  {
+   "ip": "170.178.223.145",
+   "rank": 30,
+   "count": 23774,
+   "targets": 1,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "Amazon.com, Inc.",
+   "asn": "AS16509"
+  },
+  {
+   "ip": "23.234.215.49",
+   "rank": 31,
+   "count": 23689,
+   "targets": 1,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "Amazon.com, Inc.",
+   "asn": "AS16509"
+  },
+  {
+   "ip": "92.255.85.183",
+   "rank": 32,
+   "count": 23585,
+   "targets": 153,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Chang Way Technologies Co. Limited",
+   "asn": ""
+  },
+  {
+   "ip": "185.65.246.97",
+   "rank": 33,
+   "count": 21369,
+   "targets": 54,
+   "country": "UA",
+   "country_name": "Ukraine",
+   "isp": "Hosting Ukraine LTD",
+   "asn": "AS200000"
+  },
+  {
+   "ip": "185.65.246.98",
+   "rank": 34,
+   "count": 21185,
+   "targets": 54,
+   "country": "UA",
+   "country_name": "Ukraine",
+   "isp": "Hosting Ukraine LTD",
+   "asn": "AS200000"
+  },
+  {
+   "ip": "194.26.29.31",
+   "rank": 35,
+   "count": 20898,
+   "targets": 140,
+   "country": "RU",
+   "country_name": "Russia",
+   "isp": "Media Land LLC",
+   "asn": ""
+  },
+  {
+   "ip": "192.161.184.151",
+   "rank": 36,
+   "count": 20450,
+   "targets": 54,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "HostPapa",
+   "asn": "AS36352"
+  },
+  {
+   "ip": "185.20.186.68",
+   "rank": 37,
+   "count": 19752,
+   "targets": 54,
+   "country": "NL",
+   "country_name": "The Netherlands",
+   "isp": "FOP Zemlyaniy Dmitro Leonidovich",
+   "asn": "AS42159"
+  },
+  {
+   "ip": "85.145.131.51",
+   "rank": 38,
+   "count": 19672,
+   "targets": 2226,
+   "country": "NL",
+   "country_name": "The Netherlands",
+   "isp": "Odido Netherlands",
+   "asn": "AS50266"
+  },
+  {
+   "ip": "49.88.112.68",
+   "rank": 39,
+   "count": 19477,
+   "targets": 129,
+   "country": "CN",
+   "country_name": "China",
+   "isp": "Chinanet",
+   "asn": "AS4134"
+  },
+  {
+   "ip": "79.124.59.154",
+   "rank": 40,
+   "count": 19162,
+   "targets": 83,
+   "country": "BG",
+   "country_name": "Bulgaria",
+   "isp": "Tamatiya EOOD",
+   "asn": "AS50360"
+  },
+  {
+   "ip": "154.53.57.35",
+   "rank": 41,
+   "count": 18810,
+   "targets": 19,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "Contabo Inc",
+   "asn": "AS40021"
+  },
+  {
+   "ip": "23.94.163.118",
+   "rank": 42,
+   "count": 18295,
+   "targets": 19,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "HostPapa",
+   "asn": "AS36352"
+  },
+  {
+   "ip": "154.53.58.77",
+   "rank": 43,
+   "count": 18231,
+   "targets": 19,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "Contabo Inc",
+   "asn": "AS40021"
+  },
+  {
+   "ip": "128.22.166.92",
+   "rank": 44,
+   "count": 18036,
+   "targets": 19,
+   "country": "JP",
+   "country_name": "Japan",
+   "isp": "OPTAGE Inc.",
+   "asn": "AS17511"
+  },
+  {
+   "ip": "23.94.236.153",
+   "rank": 45,
+   "count": 17887,
+   "targets": 18,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "HostPapa",
+   "asn": "AS36352"
+  },
+  {
+   "ip": "192.3.111.147",
+   "rank": 46,
+   "count": 17859,
+   "targets": 19,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "HostPapa",
+   "asn": "AS36352"
+  },
+  {
+   "ip": "210.149.87.87",
+   "rank": 47,
+   "count": 17453,
+   "targets": 19,
+   "country": "JP",
+   "country_name": "Japan",
+   "isp": "T-CLOUD",
+   "asn": "AS2497"
+  },
+  {
+   "ip": "109.106.251.95",
+   "rank": 48,
+   "count": 17096,
+   "targets": 1,
+   "country": "US",
+   "country_name": "United States",
+   "isp": "HOSTINGER US",
+   "asn": "AS47583"
+  },
+  {
+   "ip": "210.149.87.84",
+   "rank": 49,
+   "count": 16296,
+   "targets": 17,
+   "country": "JP",
+   "country_name": "Japan",
+   "isp": "T-CLOUD",
+   "asn": "AS2497"
+  },
+  {
+   "ip": "150.66.45.69",
+   "rank": 50,
+   "count": 15953,
+   "targets": 18,
+   "country": "JP",
+   "country_name": "Japan",
+   "isp": "OPTAGE Inc.",
+   "asn": "AS17511"
+  }
+ ],
+ "countries": {
+  "NL": 580949,
+  "RU": 493934,
+  "US": 400688,
+  "ES": 309508,
+  "PL": 130299,
+  "GB": 82017,
+  "JP": 67738,
+  "CN": 52358,
+  "UA": 42554,
+  "DE": 41164,
+  "SC": 25152,
+  "EE": 24988,
+  "BG": 19162
+ },
+ "feodo": [
+  {
+   "ip": "162.243.103.246",
+   "port": 8080,
+   "malware": "Emotet",
+   "country": "US"
+  },
+  {
+   "ip": "50.16.16.211",
+   "port": 443,
+   "malware": "QakBot",
+   "country": "US"
+  },
+  {
+   "ip": "34.204.119.63",
+   "port": 443,
+   "malware": "QakBot",
+   "country": "US"
+  },
+  {
+   "ip": "178.62.3.223",
+   "port": 443,
+   "malware": "QakBot",
+   "country": "GB"
+  },
+  {
+   "ip": "27.133.154.218",
+   "port": 443,
+   "malware": "QakBot",
+   "country": "JP"
+  }
+ ],
+ "stats": {
+  "total_attacks": 2270511,
+  "unique_ips": 50,
+  "unique_countries": 13,
+  "c2_count": 5
+ }
+}

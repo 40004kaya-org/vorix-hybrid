@@ -3,7 +3,7 @@
   var menu = [
     {h:'index.html',l:'داشبورد'},
     {h:'metrics.html',l:'متریک'},
-    {h:'discover.html',l:'Discover'},{h:'logs.html',l:'لاگ‌ها'},
+    {h:'world.html',l:'جهانی'},{h:'discover.html',l:'Discover'},{h:'logs.html',l:'لاگ‌ها'},
     {h:'events.html',l:'رویدادها'},
     {h:'layers.html',l:'لایه‌ها'}
   ];
