@@ -7,11 +7,9 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
---bg:#080c10;--bg2:#0c1319;--bg3:#111a22;
---grn:#00ffb4;--grn2:#00c888;--cyan:#00d4ff;--blu:#00b4ff;
---yel:#ffb800;--org:#ff8c00;--red:#ff3a5e;--pur:#a855f7;
---teal:#14d4b8;--dim:#1a2a35;--dim2:#243646;
---txt:#a8b8c4;--txt2:#6a8090;
+--bg:#080c10;--grn:#00ffb4;--cyan:#00d4ff;--blu:#00b4ff;
+--yel:#ffb800;--org:#ff8c00;--red:#ff3a5e;--pur:#a855f7;--teal:#14d4b8;
+--dim:#1a2a35;--txt:#a8b8c4;--txt2:#6a8090;
 }
 html,body{background:var(--bg);color:var(--txt);font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -29,7 +27,6 @@ background:repeating-linear-gradient(0deg,rgba(0,0,0,.3) 0,rgba(0,0,0,.3) 1px,tr
 .nav a:hover{color:var(--grn)}
 .nav a.on{color:var(--grn);border-bottom-color:var(--grn);text-shadow:0 0 8px var(--grn)}
 
-/* WRAP */
 .wrap{position:relative;z-index:1;padding:12px;max-width:900px;margin:0 auto}
 
 /* HERO */
@@ -72,43 +69,39 @@ border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rg
 .node.core .node-val{font-size:20px;color:var(--grn);text-shadow:0 0 12px var(--grn)}
 .node.core .node-sub{color:rgba(0,255,180,.6)}
 
-.node.hmac{top:14%;left:6%;border-color:var(--yel);box-shadow:0 0 12px rgba(255,184,0,.2)}
+.node.hmac{top:12%;left:5%;border-color:var(--yel);box-shadow:0 0 12px rgba(255,184,0,.2)}
 .node.hmac .node-label{color:var(--yel)}
 .node.hmac .led-top{background:var(--yel);box-shadow:0 0 6px var(--yel)}
 
-.node.trap{top:14%;right:6%;border-color:var(--blu);box-shadow:0 0 12px rgba(0,180,255,.2)}
+.node.trap{top:12%;right:5%;border-color:var(--blu);box-shadow:0 0 12px rgba(0,180,255,.2)}
 .node.trap .node-label{color:var(--blu)}
 .node.trap .led-top{background:var(--blu);box-shadow:0 0 6px var(--blu)}
 
-.node.honey{bottom:22%;left:6%;border-color:var(--red);box-shadow:0 0 12px rgba(255,58,94,.25)}
+.node.honey{bottom:22%;left:5%;border-color:var(--red);box-shadow:0 0 12px rgba(255,58,94,.25)}
 .node.honey .node-label{color:var(--red)}
 .node.honey .led-corner{background:var(--red);box-shadow:0 0 6px var(--red);animation:blink .8s infinite}
 
-.node.vault{top:72%;right:6%;border-color:var(--pur);box-shadow:0 0 12px rgba(168,85,247,.25)}
+.node.vault{top:70%;right:5%;border-color:var(--pur);box-shadow:0 0 12px rgba(168,85,247,.25)}
 .node.vault .node-label{color:var(--pur)}
 .node.vault .led-top{background:var(--pur);box-shadow:0 0 6px var(--pur)}
 
-/* MATRIX STRIP */
-.matrix-strip{position:absolute;bottom:8px;left:12px;right:12px;border:1px solid var(--dim);background:rgba(0,0,0,.4);padding:6px 10px;display:flex;justify-content:space-between;align-items:center;border-radius:2px}
-.matrix-strip .ms-title{font-size:8px;letter-spacing:3px;color:var(--txt2)}
-.matrix-strip .ms-items{display:flex;gap:8px}
-.matrix-strip .ms-item{display:flex;flex-direction:column;align-items:center;gap:2px}
-.matrix-strip .ms-item .led{width:5px;height:5px;border-radius:50%}
-.matrix-strip .ms-item .lbl{font-size:7px;color:var(--txt2);letter-spacing:1px}
-
-/* LED MATRIX */
-.matrix{position:relative;border:1px solid var(--dim);background:linear-gradient(180deg,rgba(8,15,20,.95),rgba(5,10,14,.98));border-radius:4px;padding:12px 14px;margin-bottom:12px}
-.matrix-head{display:flex;justify-content:space-between;font-size:9px;letter-spacing:3px;color:var(--txt2);margin-bottom:10px}
-.matrix-head .cnt{color:var(--grn)}
-.matrix-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
-.dot{aspect-ratio:1;border-radius:50%;background:var(--dim);position:relative}
-.dot.on-org{background:radial-gradient(circle at 30% 30%,#ffd070,var(--org));box-shadow:0 0 6px rgba(255,140,0,.6),inset 0 0 4px rgba(255,255,255,.3)}
-.dot.on-yel{background:radial-gradient(circle at 30% 30%,#ffe070,var(--yel));box-shadow:0 0 6px rgba(255,184,0,.6),inset 0 0 4px rgba(255,255,255,.3)}
-.dot.on-red{background:radial-gradient(circle at 30% 30%,#ff7090,var(--red));box-shadow:0 0 8px rgba(255,58,94,.7),inset 0 0 4px rgba(255,255,255,.3)}
-.dot.on-grn{background:radial-gradient(circle at 30% 30%,#70ffcc,var(--grn));box-shadow:0 0 8px rgba(0,255,180,.7),inset 0 0 4px rgba(255,255,255,.3)}
-.dot.on-tel{background:radial-gradient(circle at 30% 30%,#70e8d8,var(--teal));box-shadow:0 0 8px rgba(20,212,184,.6),inset 0 0 4px rgba(255,255,255,.3)}
-.dot.pulse{animation:dotpulse 1.5s ease-in-out infinite}
-@keyframes dotpulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.85);opacity:.6}}
+/* ═════ CHIP GRID (new) ═════ */
+.chip-grid{position:absolute;bottom:8px;left:12px;right:12px;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;z-index:3}
+.chip-mini{border:1px solid var(--dim);background:rgba(0,0,0,.55);padding:4px 3px;border-radius:2px;text-align:center;position:relative}
+.chip-mini .chip-name{font-size:7px;font-weight:bold;letter-spacing:1px;color:var(--txt2);margin-bottom:3px}
+.chip-mini .chip-leds{display:flex;justify-content:center;gap:2px}
+.chip-mini .mini{width:4px;height:4px;border-radius:50%;background:var(--dim);transition:.3s}
+.chip-mini .mini.on{box-shadow:0 0 4px currentColor}
+.chip-mini.on-grn{border-color:rgba(0,255,180,.4)}
+.chip-mini.on-grn .chip-name{color:var(--grn)}
+.chip-mini.on-yel{border-color:rgba(255,184,0,.4)}
+.chip-mini.on-yel .chip-name{color:var(--yel)}
+.chip-mini.on-blu{border-color:rgba(0,180,255,.4)}
+.chip-mini.on-blu .chip-name{color:var(--blu)}
+.chip-mini.on-red{border-color:rgba(255,58,94,.5)}
+.chip-mini.on-red .chip-name{color:var(--red)}
+.chip-mini.on-pur{border-color:rgba(168,85,247,.4)}
+.chip-mini.on-pur .chip-name{color:var(--pur)}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
@@ -131,8 +124,8 @@ border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rg
 .svc-row:nth-child(2n) .svc-led{animation-delay:.3s}
 .svc-row:nth-child(3n) .svc-led{animation-delay:.6s}
 .svc-name{flex:1;font-size:12px;color:var(--txt)}
+.svc-tag{font-size:8px;color:var(--txt2);letter-spacing:1px;margin-right:auto;padding-right:8px}
 .svc-badge{font-size:9px;padding:3px 8px;border:1px solid rgba(0,255,180,.4);color:var(--grn);letter-spacing:2px;background:rgba(0,255,180,.06);border-radius:2px}
-.svc-badge.warn{color:var(--yel);border-color:rgba(255,184,0,.4);background:rgba(255,184,0,.06)}
 
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.9)}}
@@ -148,7 +141,7 @@ border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rg
 .node-val{font-size:12px}
 .node.core .node-val{font-size:16px}
 .node.core{min-width:110px}
-.matrix-grid{grid-template-columns:repeat(8,1fr);gap:5px}
+.chip-mini .chip-name{font-size:6px}
 }
 </style>
 </head>
@@ -167,7 +160,6 @@ border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rg
 
 <div class="wrap">
 
-<!-- HERO -->
 <div class="hero">
 <div class="hero-top">
 <div class="clock"><span id="clk">--:--:--</span><span class="dot"></span></div>
@@ -181,33 +173,26 @@ border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rg
 </div>
 </div>
 
-<!-- BOARD -->
 <div class="board">
 <svg class="wires" viewBox="0 0 400 350" preserveAspectRatio="none">
-<!-- HMAC to CORE -->
 <path d="M100,80 L100,130 L150,130 L150,160"/>
 <path class="pulse" d="M100,80 L100,130 L150,130 L150,160"/>
-<!-- TRAP to CORE -->
 <path d="M300,80 L300,130 L250,130 L250,160"/>
 <path class="pulse" d="M300,80 L300,130 L250,130 L250,160" style="animation-delay:-1s"/>
-<!-- HONEY to CORE -->
 <path d="M100,270 L100,220 L150,220 L150,190"/>
 <path class="pulse" d="M100,270 L100,220 L150,220 L150,190" style="animation-delay:-2s"/>
-<!-- VAULT to CORE -->
 <path d="M300,270 L300,220 L250,220 L250,190"/>
 <path class="pulse" d="M300,270 L300,220 L250,220 L250,190" style="animation-delay:-3s"/>
-<!-- CORE down to matrix -->
-<path d="M200,200 L200,300"/>
 </svg>
 
-<div class="node hmac" style="top:12%;left:5%">
+<div class="node hmac">
 <span class="led-top"></span>
 <div class="node-label">HMAC</div>
 <div class="node-val">9/9</div>
-<div class="node-sub">signature layers</div>
+<div class="node-sub">signature</div>
 </div>
 
-<div class="node trap" style="top:12%;right:5%">
+<div class="node trap">
 <span class="led-top"></span>
 <div class="node-label">TRAP</div>
 <div class="node-val">7</div>
@@ -221,36 +206,25 @@ border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rg
 <div class="node-sub">ACTIVE · 24/7</div>
 </div>
 
-<div class="node honey" style="bottom:22%;left:5%">
+<div class="node honey">
 <span class="led-corner"></span>
 <div class="node-label">HONEYPOT</div>
 <div class="node-val">0</div>
 <div class="node-sub">hits today</div>
 </div>
 
-<div class="node vault" style="top:70%;right:5%">
+<div class="node vault">
 <span class="led-top"></span>
 <div class="node-label">VAULT</div>
 <div class="node-val">4</div>
 <div class="node-sub">backups</div>
 </div>
 
-<div class="matrix-strip">
-<div class="ms-title">◆ SHIELD MATRIX</div>
-<div class="ms-items" id="msItems"></div>
-</div>
+<!-- CHIP GRID with NAMES -->
+<div class="chip-grid" id="chipGrid"></div>
+
 </div>
 
-<!-- LED MATRIX -->
-<div class="matrix">
-<div class="matrix-head">
-<span>LAYER ACTIVITY</span>
-<span><span class="cnt" id="cntOn">42</span> / <span id="cntAll">60</span></span>
-</div>
-<div class="matrix-grid" id="mtx"></div>
-</div>
-
-<!-- STATS -->
 <div class="stats">
 <div class="stat g"><div class="v" id="stHoney">0</div><div class="l">Honeypot</div></div>
 <div class="stat b"><div class="v">13</div><div class="l">مجاز</div></div>
@@ -258,19 +232,18 @@ border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rg
 <div class="stat r"><div class="v">0</div><div class="l">بلاک شده</div></div>
 </div>
 
-<!-- SERVICE LIST -->
 <div class="svc">
 <div class="svc-head"><span class="ac">◆ SHIELD STATUS</span><span>10 LAYERS</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">HMAC Token</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">HMAC Signature</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">IP Whitelist</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Rate Limit</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Anomaly Score</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Honeypot</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Hash Chain</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">AES Vault</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Brute Guard</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Telegram Alerts</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">HMAC Token</span><span class="svc-tag">L1</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">HMAC Signature</span><span class="svc-tag">L2</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">IP Whitelist</span><span class="svc-tag">L3</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Rate Limit</span><span class="svc-tag">L4</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Anomaly Score</span><span class="svc-tag">L5</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Honeypot</span><span class="svc-tag">L6</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Hash Chain</span><span class="svc-tag">L7</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">AES Vault</span><span class="svc-tag">L8</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Brute Guard</span><span class="svc-tag">L9</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Telegram Alerts</span><span class="svc-tag">L10</span><span class="svc-badge">ACTIVE</span></div>
 </div>
 
 <div class="footer">VORIX <span class="g">◆</span> SHIELD CONTROL <span class="g">◆</span> 2026</div>
@@ -281,82 +254,80 @@ border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rg
 // Clock
 function tick(){
   var d=new Date();
-  var h=String(d.getHours()).padStart(2,'0');
-  var m=String(d.getMinutes()).padStart(2,'0');
-  var s=String(d.getSeconds()).padStart(2,'0');
-  document.getElementById('clk').textContent=h+':'+m+':'+s;
+  document.getElementById('clk').textContent=
+    String(d.getHours()).padStart(2,'0')+':'+
+    String(d.getMinutes()).padStart(2,'0')+':'+
+    String(d.getSeconds()).padStart(2,'0');
 }
 setInterval(tick,1000);tick();
 
-// Matrix strip (mini LEDs in board)
-var msNames=['CORE','HMAC','TRAP','SHLD','HNY','VLT','AUTH','SYNC','CHN','RATE'];
-var msHTML='';
-msNames.forEach(function(n){
-  msHTML+='<div class="ms-item"><span class="led" style="background:var(--grn);box-shadow:0 0 6px var(--grn)"></span><span class="lbl">'+n+'</span></div>';
+// CHIP GRID - 10 named chips, each 3 mini LEDs
+var chips=[
+  {n:'HMAC',  c:'grn', s:'token'},
+  {n:'SIG',   c:'grn', s:'sign'},
+  {n:'IP',    c:'blu', s:'white'},
+  {n:'RATE',  c:'blu', s:'limit'},
+  {n:'ANOM',  c:'yel', s:'score'},
+  {n:'HONEY', c:'red', s:'trap'},
+  {n:'HASH',  c:'yel', s:'chain'},
+  {n:'AES',   c:'pur', s:'vault'},
+  {n:'BRUTE', c:'org', s:'guard'},
+  {n:'TEL',   c:'grn', s:'alert'}
+];
+var cg=document.getElementById('chipGrid');
+var allMinis=[];
+chips.forEach(function(ch){
+  var el=document.createElement('div');
+  el.className='chip-mini on-'+ch.c;
+  var leds='';
+  for(var i=0;i<3;i++){
+    leds+='<span class="mini" data-c="'+ch.c+'"></span>';
+  }
+  el.innerHTML='<div class="chip-name">'+ch.n+'</div><div class="chip-leds">'+leds+'</div>';
+  cg.appendChild(el);
 });
-document.getElementById('msItems').innerHTML=msHTML;
 
-// Big LED matrix
-var mtx=document.getElementById('mtx');
-var colors=['on-yel','on-org','on-red','on-tel','on-grn'];
-var dots=[];
-for(var i=0;i<60;i++){
-  var d=document.createElement('div');
-  d.className='dot';
-  mtx.appendChild(d);
-  dots.push(d);
+function colorToVar(c){
+  return {grn:'#00ffb4',yel:'#ffb800',blu:'#00b4ff',red:'#ff3a5e',pur:'#a855f7',org:'#ff8c00'}[c];
 }
 
-function randColor(){
-  var r=Math.random();
-  if(r<0.55) return colors[Math.floor(Math.random()*colors.length)];
-  return null;
-}
-
-function refreshMatrix(){
-  var on=0;
-  dots.forEach(function(d,i){
-    // 20% chance to be dim
-    if(Math.random()<0.35){
-      d.className='dot';
-      return;
+function refreshChips(){
+  document.querySelectorAll('.chip-mini .mini').forEach(function(m){
+    var c=m.getAttribute('data-c');
+    if(Math.random()<0.6){
+      m.style.background=colorToVar(c);
+      m.style.color=colorToVar(c);
+      m.classList.add('on');
+    } else {
+      m.style.background='#1a2a35';
+      m.style.color='transparent';
+      m.classList.remove('on');
     }
-    var c=randColor()||'on-grn';
-    d.className='dot '+c;
-    if(Math.random()<0.1) d.classList.add('pulse');
-    on++;
   });
-  document.getElementById('cntOn').textContent=on;
 }
-refreshMatrix();
-setInterval(refreshMatrix,3500);
+refreshChips();
+setInterval(refreshChips,2500);
 
-// Simulate honeypot hit occasionally
+// Honeypot counter increment
 setInterval(function(){
-  var el=document.getElementById('stHoney');
-  if(Math.random()<0.3){
+  if(Math.random()<0.25){
+    var el=document.getElementById('stHoney');
     var n=parseInt(el.textContent)||0;
     el.textContent=n+1;
-    // flash a red dot
-    var d=dots[Math.floor(Math.random()*dots.length)];
-    d.className='dot on-red pulse';
   }
 },9000);
 
-// Flash a node LED every 8s
+// Flash a node every 8s
 setInterval(function(){
   var nodes=document.querySelectorAll('.node');
   if(!nodes.length)return;
   var n=nodes[Math.floor(Math.random()*nodes.length)];
   var l=n.querySelector('.led-top,.led-corner');
   if(!l)return;
-  var oldBg=l.style.background;
+  var ob=l.style.background, os=l.style.boxShadow;
   l.style.background='#ff3a5e';
   l.style.boxShadow='0 0 10px #ff3a5e';
-  setTimeout(function(){
-    l.style.background=oldBg;
-    l.style.boxShadow='';
-  },1500);
+  setTimeout(function(){l.style.background=ob;l.style.boxShadow=os;},1500);
 },8000);
 </script>
 
