@@ -1,5 +1,5 @@
 {
- "ts": "2026-10-03T06:30:17.113965Z",
+ "ts": "2026-10-03T06:31:25.325974Z",
  "total": 100,
  "entries": [
   {
@@ -88,12 +88,6 @@
   },
   {
    "src": "layer_seal",
-   "ts": "05:06:48",
-   "sev": "info",
-   "msg": "🔒 Sealed 63 files"
-  },
-  {
-   "src": "layer_seal",
    "ts": "05:11:43",
    "sev": "info",
    "msg": "🔒 Sealed 63 files"
@@ -177,34 +171,10 @@
    "msg": "➕ new file: vorix_shop_api.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "09:57:03",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "09:57:13",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "09:57:28",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "09:57:43",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "09:57:58",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
+   "src": "layer_seal",
+   "ts": "10:01:03",
+   "sev": "ok",
+   "msg": "⚠ SEAL BROKEN: vorix_shop_api.py"
   },
   {
    "src": "layer_tarpit",
@@ -265,6 +235,36 @@
    "ts": "10:00:13",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:00:28",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:00:43",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:00:53",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:01:08",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:01:23",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
