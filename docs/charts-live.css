@@ -1,0 +1,256 @@
+/* ═══════════════════════════════════════════
+   LIVE CHARTS with Status LED
+   ═══════════════════════════════════════════ */
+
+.chart-box {
+  background: linear-gradient(180deg, rgba(15,20,32,0.8), rgba(10,14,26,0.6));
+  border: 1px solid #1a2233;
+  border-radius: 12px;
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.chart-box:hover {
+  border-color: rgba(16,185,129,0.3);
+  box-shadow: 0 0 30px rgba(16,185,129,0.08);
+}
+
+/* خط نور بالای چارت */
+.chart-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16,185,129,0.5), transparent);
+  opacity: 0.4;
+}
+
+/* ─── HEADER با LED ─── */
+.chart-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+/* ─── LED زنده ─── */
+.chart-led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  margin-right: 2px;
+}
+
+/* Halo */
+.chart-led::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: inherit;
+  filter: blur(6px);
+  opacity: 0.6;
+}
+
+/* ─── سبز — زنده ─── */
+.chart-led.green {
+  background: radial-gradient(circle at 30% 30%, #6ee7b7, #10b981);
+  box-shadow:
+    0 0 8px #10b981,
+    0 0 16px rgba(16,185,129,0.6);
+  animation: live-green 1.5s ease-in-out infinite;
+}
+
+@keyframes live-green {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 8px #10b981, 0 0 16px rgba(16,185,129,0.6);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+    box-shadow: 0 0 14px #10b981, 0 0 28px rgba(16,185,129,1);
+  }
+}
+
+/* ─── زرد — کهنه ─── */
+.chart-led.yellow {
+  background: radial-gradient(circle at 30% 30%, #fde68a, #f59e0b);
+  box-shadow: 0 0 8px #f59e0b;
+  animation: live-yellow 2.5s ease-in-out infinite;
+}
+
+@keyframes live-yellow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; box-shadow: 0 0 14px #f59e0b; }
+}
+
+/* ─── قرمز — خطا ─── */
+.chart-led.red {
+  background: radial-gradient(circle at 30% 30%, #fca5a5, #ef4444);
+  box-shadow:
+    0 0 10px #ef4444,
+    0 0 20px rgba(239,68,68,0.8);
+  animation: live-red 0.7s ease-in-out infinite;
+}
+
+@keyframes live-red {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 10px #ef4444, 0 0 20px rgba(239,68,68,0.8);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.4);
+    box-shadow: 0 0 20px #ef4444, 0 0 40px rgba(239,68,68,1);
+  }
+}
+
+/* ─── نارنجی — هشدار ─── */
+.chart-led.orange {
+  background: radial-gradient(circle at 30% 30%, #fdba74, #f97316);
+  box-shadow: 0 0 10px #f97316;
+  animation: live-orange 1.2s ease-in-out infinite;
+}
+
+@keyframes live-orange {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+/* ─── CHART CONTENT ─── */
+.chart-content {
+  min-height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* خط اسکن عمودی */
+.chart-content::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(16,185,129,0.5), transparent);
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@keyframes scan {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* ─── SVG ANIMATIONS ─── */
+.chart-svg-line {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: draw-line 2s ease-out forwards;
+}
+
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+/* نبض روی نقطه‌های آخر */
+.chart-end-dot {
+  animation: end-dot-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes end-dot-pulse {
+  0%, 100% { r: 2; opacity: 1; }
+  50% { r: 3.5; opacity: 0.6; }
+}
+
+/* ─── LIVE BADGE ─── */
+.chart-live-badge {
+  font-size: 8px;
+  color: var(--green);
+  font-family: ui-monospace, monospace;
+  letter-spacing: 1px;
+  padding: 2px 6px;
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: 4px;
+  margin-right: auto;
+}
+
+.chart-live-badge.offline {
+  color: var(--red);
+  background: rgba(239,68,68,0.1);
+  border-color: rgba(239,68,68,0.3);
+}
+
+/* ─── نبض روی بارها ─── */
+.mini-bar {
+  animation: bar-pulse 2s ease-in-out infinite;
+}
+
+.mini-bar:nth-child(odd) { animation-delay: 0.2s; }
+.mini-bar:nth-child(3n) { animation-delay: 0.5s; }
+
+@keyframes bar-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ─── Donut چرخش آروم ─── */
+.donut-svg {
+  animation: donut-rotate 20s linear infinite;
+}
+
+@keyframes donut-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Gauge عقربه زنده ─── */
+.gauge-needle {
+  transform-origin: 50px 50px;
+  animation: gauge-live 3s ease-in-out infinite;
+}
+
+@keyframes gauge-live {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* ─── Radar چرخش ─── */
+.radar-svg polygon[fill*="rgba"] {
+  animation: radar-pulse 2s ease-in-out infinite;
+}
+
+@keyframes radar-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* ─── Sparkline dash ─── */
+.sparkline-svg path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: spark-draw 1.5s ease-out forwards;
+}
+
+@keyframes spark-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .chart-title { font-size: 9px; letter-spacing: 1px; }
+  .chart-led { width: 8px; height: 8px; }
+}
