@@ -1,85 +1,47 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VORIX Motherboard</title>
-<link rel="stylesheet" href="mainboard.css">
+<title>VORIX Board</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #05070d;
+    color: #e5e7eb;
+    font-family: ui-monospace, monospace;
+    padding: 10px;
+    min-height: 100vh;
+  }
+  .board-svg {
+    width: 100%;
+    max-width: 900px;
+    display: block;
+    margin: 0 auto;
+    background: #05070d;
+  }
+  .box { fill: #0d1320; stroke: #2a3548; stroke-width: 2; }
+  .box.green { stroke: #10b981; }
+  .box.yellow { stroke: #f59e0b; }
+  .box.orange { stroke: #f97316; }
+  .box.red { stroke: #ef4444; stroke-width: 2.5; }
+  .label { fill: #9ca3af; font-size: 11px; text-anchor: middle; font-family: ui-monospace; }
+  .title { fill: #10b981; font-size: 14px; font-weight: bold; text-anchor: middle; }
+  .sub { fill: #6b7280; font-size: 10px; text-anchor: middle; }
+  .line { stroke: #10b981; stroke-width: 2; fill: none; }
+  .line.thin { stroke: #10b981; stroke-width: 1.5; opacity: 0.6; }
+  .led.green { fill: #10b981; }
+  .led.yellow { fill: #f59e0b; }
+  .led.orange { fill: #f97316; }
+  .led.red { fill: #ef4444; }
+  .led.dark { fill: #4b5563; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .led.pulse { animation: pulse 2s ease-in-out infinite; }
+  .led.red.pulse { animation: pulse 0.8s ease-in-out infinite; }
+</style>
 </head>
 <body>
-
-<div class="alert-line" id="alert"></div>
-
-<div class="board">
-
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="dot"></div>
-    <h1>🛡️ VORIX</h1>
-    <div class="spacer"></div>
-    <div class="stat-pill" id="status-pill">ONLINE</div>
-    <div class="time" id="clock">—</div>
-  </div>
-
-  <!-- CORE (CPU) -->
-  <div class="core-wrap">
-    <div class="core">
-      <div class="core-title">◉ VORIX CORE</div>
-      <div class="core-leds">
-        <div class="core-led"></div>
-        <div class="core-led"></div>
-        <div class="core-led"></div>
-        <div class="core-led"></div>
-        <div class="core-led"></div>
-      </div>
-      <div class="core-metrics">
-        <div class="metric">
-          <div class="metric-label">CPU</div>
-          <div class="metric-bar"><div class="metric-fill" id="cpu-bar" style="width:0%"></div></div>
-          <div class="metric-value" id="cpu-val">—</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">RAM</div>
-          <div class="metric-bar"><div class="metric-fill" id="ram-bar" style="width:0%"></div></div>
-          <div class="metric-value" id="ram-val">—</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">NET</div>
-          <div class="metric-bar"><div class="metric-fill" id="net-bar" style="width:0%"></div></div>
-          <div class="metric-value" id="net-val">—</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TRACE -->
-  <div class="trace-zone"><div class="trace-line"></div></div>
-
-  <!-- CHIPSET 1 (4 اصلی) -->
-  <div class="chipset chipset-4" id="chipset1"></div>
-
-  <!-- TRACE -->
-  <div class="trace-zone"><div class="trace-line"></div></div>
-
-  <!-- CHIPSET 2 (3 جانبی) -->
-  <div class="chipset chipset-3" id="chipset2"></div>
-
-  <!-- TRACE -->
-  <div class="trace-zone"><div class="trace-line"></div></div>
-
-  <!-- SLOTS -->
-  <div class="slots-wrap">
-    <div class="slots-grid" id="slots"></div>
-  </div>
-
-  <!-- I/O PORTS -->
-  <div class="ioports" id="ioports"></div>
-
-  <!-- BOTTOM METRICS -->
-  <div class="bottom-metrics" id="bottom"></div>
-
-</div>
-
-<script src="mainboard.js"></script>
+<svg viewBox="0 0 900 620" class="board-svg" id="board"></svg>
+<script src="board.js"></script>
 </body>
 </html>
