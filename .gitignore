@@ -1,34 +1,30 @@
-# Runtime files
+# ═══ Sensitive data ═══
+shop-data/
+phone/shop_events.jsonl
+phone/shop_bridge_state.json
+phone/shop_bridge_v2_state.json
+phone/shop_events*.jsonl
+
+# ═══ Runtime ═══
 *.lock
 *.pid
 *.out
 
-# Backups
+# ═══ Backups ═══
 *.bak
 *.bak2
-fim_backups/
+*_backup_*
 
-# OS
-.DS_Store
-Thumbs.db
+# ═══ Logs ═══
+*.log
+phone/logs/
+phone/encrypted_logs/
 
-# IDE
-.vscode/
-.idea/
-
-# Unrelated
-mechanical_assembly.scad
-
-# Sensitive
-.env
-*.token
-.tg-token
-
-# Python cache
+# ═══ Python ═══
 __pycache__/
 *.pyc
 
-# Logs (except important ones)
-phone/logs/*.log
-phone/encrypted_logs/
-docs/data/live.json
+# ═══ OS/IDE ═══
+.DS_Store
+.vscode/
+.idea/

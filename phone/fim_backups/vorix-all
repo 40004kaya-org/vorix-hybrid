@@ -1,0 +1,166 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# VORIX Master Launcher v4
+
+HOME=/data/data/com.termux/files/home
+BASE="$HOME/vorix-hybrid/phone"
+LOGS="$BASE/logs"
+mkdir -p "$LOGS"
+
+G='\033[0;32m'; Y='\033[1;33m'; R='\033[0;31m'
+C='\033[0;36m'; M='\033[0;35m'; N='\033[0m'
+
+# format: filename|subcommand|label
+LAYERS=(
+    "layer01_selfdefense.py|watch|L01 Anti-Kill"
+    "layer03_behavioral.py|watch|L3 Behavioral"
+    "layer04_auto_block.py|watch|L4 Auto-Block"
+    "layer06_geoip_block.py|watch|L6 GeoIP Block"
+    "layer08_network_monitor.py|watch|L8 Net Monitor"
+    "layer09_rate_limiter.py|watch|L9 Rate Limiter"
+    "layer10_red_alert.py|watch|L10 Red Alert"
+    "layer17_watchdog.py|watch|L17 Watchdog"
+    "layer18_backup_verifier.py|check|L18 Backup Verifier"
+    "layer19_password_leak.py|watch|L19 Password Leak"
+    "layer21_ml_anomaly.py|watch|L21 ML Anomaly"
+    "layer25_ssl_monitor.py|watch|L25 SSL Monitor"
+    "layer29_30_identity.py|watch|L29-30 Identity"
+    "layer_multichannel.py|watch|L-Multichannel"
+    "layer_fim.py|watch|L-FIM"
+    "layer_rootkit.py|watch|L-Rootkit"
+    "layer_mitre.py||L-MITRE"
+    "layer_mocker.py||L-Mocker"
+    "layer_reports.py||L-Reports"
+    "layer_response.py||L-Response"
+    "layer_scoring.py||L-Scoring"
+    "layer_forensics.py||L-Forensics"
+    "layer_hashchain.py||L-HashChain"
+    "layer_voice.py||L-Voice"
+)
+
+banner() {
+    echo -e "${M}"
+    echo "=============================================="
+    echo "  VORIX MASTER LAUNCHER v4"
+    echo "  24 Layers / 99.98% / 24-7"
+    echo "=============================================="
+    echo -e "${N}"
+}
+
+is_running() {
+    pgrep -f "python.*$1" > /dev/null 2>&1
+}
+
+start_layer() {
+    local entry="$1"
+    local fname sub label
+    IFS='|' read -r fname sub label <<< "$entry"
+
+    if [ ! -f "$BASE/$fname" ]; then
+        echo -e "   ${Y}[?]${N} $label ${Y}(file missing)${N}"
+        return 1
+    fi
+
+    local pattern="${fname%.py}"
+    if is_running "$pattern"; then
+        echo -e "   ${Y}[o]${N} $label ${Y}(already)${N}"
+        return 2
+    fi
+
+    cd "$BASE"
+    if [ -n "$sub" ]; then
+        nohup python "$fname" "$sub" >> "$LOGS/${fname}.log" 2>&1 &
+        sleep 0.3
+        echo -e "   ${G}[+]${N} $label ${C}($sub)${N}"
+    else
+        nohup python "$fname" >> "$LOGS/${fname}.log" 2>&1 &
+        sleep 0.3
+        echo -e "   ${G}[+]${N} $label"
+    fi
+    return 0
+}
+
+start_all() {
+    banner
+    termux-wake-lock 2>/dev/null
+    echo -e "${G}[OK]${N} Wake lock"
+    echo ""
+    echo -e "${C}Starting ${#LAYERS[@]} layers...${N}"
+    echo ""
+
+    local STARTED=0 ALREADY=0 MISSING=0
+    for entry in "${LAYERS[@]}"; do
+        start_layer "$entry"
+        case $? in
+            0) STARTED=$((STARTED+1)) ;;
+            1) MISSING=$((MISSING+1)) ;;
+            2) ALREADY=$((ALREADY+1)) ;;
+        esac
+    done
+
+    echo ""
+    echo "----------------------------------------------"
+    echo -e "${G}[+] Started:${N} $STARTED"
+    echo -e "${Y}[o] Already:${N} $ALREADY"
+    echo -e "${R}[?] Missing:${N} $MISSING"
+    echo -e "${C}    Total:${N}   ${#LAYERS[@]}"
+}
+
+stop_all() {
+    banner
+    echo -e "${R}Stopping all layers...${N}"
+    for entry in "${LAYERS[@]}"; do
+        local fname sub label
+        IFS='|' read -r fname sub label <<< "$entry"
+        local pattern="${fname%.py}"
+        if pkill -f "python.*$pattern" 2>/dev/null; then
+            echo -e "   ${R}[x]${N} $label"
+        fi
+    done
+    echo ""
+    echo -e "${G}[OK]${N} Stopped"
+}
+
+status_all() {
+    banner
+    echo -e "${C}Layers (${#LAYERS[@]}):${N}"
+    echo ""
+
+    local RUNNING=0 STOPPED=0 MISSING=0
+    for entry in "${LAYERS[@]}"; do
+        local fname sub label
+        IFS='|' read -r fname sub label <<< "$entry"
+        local pattern="${fname%.py}"
+
+        if [ ! -f "$BASE/$fname" ]; then
+            echo -e "   ${Y}[?]${N} $label ${Y}(missing)${N}"
+            MISSING=$((MISSING+1))
+        elif is_running "$pattern"; then
+            local PID=$(pgrep -f "python.*$pattern" | head -1)
+            echo -e "   ${G}[+]${N} $label ${C}(PID: $PID)${N}"
+            RUNNING=$((RUNNING+1))
+        else
+            echo -e "   ${R}[-]${N} $label"
+            STOPPED=$((STOPPED+1))
+        fi
+    done
+
+    echo ""
+    echo "----------------------------------------------"
+    echo -e "${G}[+] Running:${N} $RUNNING / ${#LAYERS[@]}"
+    echo -e "${R}[-] Stopped:${N} $STOPPED"
+    echo -e "${Y}[?] Missing:${N} $MISSING"
+
+    local BLOCKED=$(python -c "import json; print(len(json.load(open('$BASE/blocklist.json'))))" 2>/dev/null || echo "?")
+    echo -e "Blocked IPs: $BLOCKED"
+}
+
+case "$1" in
+    start)   start_all ;;
+    stop)    stop_all ;;
+    status)  status_all ;;
+    restart) stop_all; sleep 2; start_all ;;
+    *)
+        banner
+        echo "Usage: vorix-all {start|stop|status|restart}"
+        ;;
+esac

@@ -1,7 +1,7 @@
 {
   "stats": {
-    "checks": 2484,
-    "restarts": 402,
+    "checks": 2523,
+    "restarts": 489,
     "kill_attempts": 11,
     "started": 1790937322.7239606
   }
