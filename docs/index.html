@@ -1,55 +1,65 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>VORIX Board</title>
+<link rel="stylesheet" href="style.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #05070d;
-    color: #e5e7eb;
-    font-family: ui-monospace, monospace;
-    padding: 10px;
-    min-height: 100vh;
-  }
-  .board-svg {
-    width: 100%;
-    max-width: 900px;
-    display: block;
-    margin: 0 auto;
-    background: #05070d;
-  }
-  .box { fill: #0d1320; stroke: #2a3548; stroke-width: 1.5; }
-  .box.green { stroke: #10b981; }
-  .box.yellow { stroke: #f59e0b; }
-  .box.orange { stroke: #f97316; }
-  .box.red { stroke: #ef4444; stroke-width: 2; }
-  .label { fill: #9ca3af; font-size: 11px; text-anchor: middle; font-family: ui-monospace; }
-  .title { fill: #10b981; font-size: 14px; font-weight: bold; text-anchor: middle; font-family: ui-monospace; }
-  .sub { fill: #6b7280; font-size: 9px; text-anchor: middle; font-family: ui-monospace; }
-  .chart-label { fill: #9ca3af; font-size: 9px; text-anchor: middle; font-family: ui-monospace; letter-spacing: 1px; }
-  .line { stroke: #10b981; stroke-width: 1.5; fill: none; }
-  .line.thin { stroke: #10b981; stroke-width: 1; opacity: 0.6; }
-  .line.area { fill: rgba(16,185,129,0.15); stroke: none; }
-  .led.green { fill: #10b981; }
-  .led.yellow { fill: #f59e0b; }
-  .led.orange { fill: #f97316; }
-  .led.red { fill: #ef4444; }
-  .led.dark { fill: #4b5563; }
-  .led.blue { fill: #3b82f6; }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-  .led.pulse { animation: pulse 2s ease-in-out infinite; }
-  .led.red.pulse { animation: pulse 0.8s ease-in-out infinite; }
-  .hm { fill: rgba(16,185,129,0.15); }
-  .hm.l1 { fill: rgba(16,185,129,0.25); }
-  .hm.l2 { fill: rgba(16,185,129,0.45); }
-  .hm.l3 { fill: rgba(16,185,129,0.7); }
-  .hm.l4 { fill: #10b981; }
+#lock{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0a0a;
+      display:flex;align-items:center;justify-content:center;z-index:9999}
+#lock .box{text-align:center;padding:40px 30px;background:#151515;
+      border:1px solid #1f5f3f;border-radius:16px;width:340px;
+      box-shadow:0 0 40px rgba(0,255,150,0.08)}
+#lock .logo{font-size:48px;margin-bottom:16px}
+#lock h1{color:#0fb;margin-bottom:24px;font-size:22px;letter-spacing:2px}
+#lock input{width:100%;padding:14px;background:#0d0d0d;color:#eee;
+      border:1px solid #333;border-radius:8px;font-size:16px;
+      text-align:center;direction:ltr;letter-spacing:1px;box-sizing:border-box}
+#lock input:focus{outline:none;border-color:#0fb}
+#lock button{margin-top:16px;width:100%;padding:12px;background:#0fb;
+      color:#000;border:none;border-radius:8px;font-size:16px;
+      font-weight:bold;cursor:pointer}
+#lock button:active{transform:scale(0.98)}
+#lock #err{color:#f44;margin-top:12px;font-size:12px;min-height:20px}
 </style>
 </head>
 <body>
-<svg viewBox="0 0 900 900" class="board-svg" id="board"></svg>
+
+<div id="lock">
+  <div class="box">
+    <div class="logo">🛡️</div>
+    <h1>VORIX</h1>
+    <input type="password" id="pin" placeholder="رمز عبور" autocomplete="off">
+    <button onclick="unlock()">ورود</button>
+    <p id="err"></p>
+  </div>
+</div>
+
+<svg id="board" viewBox="0 0 900 780" preserveAspectRatio="xMidYMid meet"></svg>
+
+<script>
+const HASH_REV = "0cb5f542a18a13f39335d338fd9c8c6b0c71b89323f391b34ebcde03e51c1add";
+async function unlock() {
+  const pin = document.getElementById('pin').value;
+  const buf = new TextEncoder().encode(pin);
+  const h = await crypto.subtle.digest('SHA-256', buf);
+  const rev = Array.from(new Uint8Array(h))
+    .map(b => b.toString(16).padStart(2,'0')).join('')
+    .split('').reverse().join('');
+  if (rev === HASH_REV) {
+    document.getElementById('lock').style.display = 'none';
+  } else {
+    document.getElementById('err').textContent = '❌ رمز اشتباه';
+    document.getElementById('pin').value = '';
+  }
+}
+document.getElementById('pin').addEventListener('keypress', e => {
+  if (e.key === 'Enter') unlock();
+});
+</script>
+
 <script src="board.js"></script>
+
 </body>
 </html>
