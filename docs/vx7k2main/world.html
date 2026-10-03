@@ -2,68 +2,101 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>World Attacks</title>
+<title>Global Attacks</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
-h2{color:#10b981;font-size:12px;letter-spacing:2px;margin:12px 0 8px;
-   border-bottom:1px solid #1f5f3f;padding-bottom:6px}
-.live{color:#6b7280;font-size:10px;text-align:center;margin-bottom:8px}
+body{background:#02040a;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;
+   border-bottom:1px solid #1f5f3f;padding-bottom:6px;text-transform:uppercase}
+.live{color:#6b7280;font-size:10px;text-align:center;margin-bottom:10px}
 .live b{color:#10b981}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
-.st{background:#0f1420;border:1px solid #1f2937;border-radius:8px;
-    padding:10px 4px;text-align:center}
-.st .n{font-size:16px;font-weight:bold;color:#10b981}
-.st .l{font-size:9px;color:#6b7280;margin-top:2px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px}
+.st{background:linear-gradient(180deg,#0a0f1a 0%,#060a12 100%);
+    border:1px solid #1a2a3a;border-radius:6px;padding:10px 4px;text-align:center}
+.st .n{font-size:15px;font-weight:bold;color:#10b981;letter-spacing:-0.5px}
+.st .l{font-size:8px;color:#4b5563;margin-top:2px;text-transform:uppercase}
 .st.r .n{color:#ef4444}.st.y .n{color:#f59e0b}.st.c .n{color:#06b6d4}
 
-.mw{background:#050a15;border:1px solid #1f5f3f;border-radius:10px;
-    padding:8px;position:relative;overflow:hidden}
-svg.world{width:100%;height:auto;display:block}
-.cont{fill:#0a1520;stroke:#1f5f3f;stroke-width:0.8}
-.gr{stroke:rgba(16,185,129,0.05);stroke-width:0.5}
-.hit{fill:#ef4444;filter:drop-shadow(0 0 6px #ef4444)}
-.hit.mid{fill:#f59e0b;filter:drop-shadow(0 0 6px #f59e0b)}
-.hit.small{fill:#10b981;filter:drop-shadow(0 0 4px #10b981)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.pulse{animation:pulse 2s ease-in-out infinite}
-@keyframes ping{0%{r:6;opacity:.8}100%{r:30;opacity:0}}
-.ping{animation:ping 2s ease-out infinite}
+.mw{background:radial-gradient(ellipse at center,#06122a 0%,#02040a 100%);
+    border:1px solid #1a3a5a;border-radius:8px;padding:6px;position:relative;
+    overflow:hidden;box-shadow:inset 0 0 60px rgba(16,185,129,0.05)}
+.mw::before{content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(16,185,129,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,185,129,0.03) 1px,transparent 1px);
+  background-size:25px 25px;pointer-events:none;z-index:0}
+svg.world{width:100%;height:auto;display:block;position:relative;z-index:1}
 
-.lg{display:flex;gap:12px;justify-content:center;font-size:10px;
-    color:#6b7280;margin-top:10px;flex-wrap:wrap}
+.cont{fill:#0d1a2b;stroke:#1a3a5a;stroke-width:0.6}
+.cont-inner{fill:none;stroke:rgba(16,185,129,0.08);stroke-width:0.4}
+
+/* Attack dots */
+.atk{fill:#ef4444;filter:drop-shadow(0 0 4px #ef4444) drop-shadow(0 0 8px #ef4444)}
+.atk.mid{fill:#f59e0b;filter:drop-shadow(0 0 4px #f59e0b)}
+.atk.small{fill:#06b6d4;filter:drop-shadow(0 0 3px #06b6d4)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.85)}}
+.atk-anim{animation:pulse 2s ease-in-out infinite;transform-origin:center}
+@keyframes ripple{0%{r:3;opacity:0.8;stroke-width:2}
+                  100%{r:22;opacity:0;stroke-width:0.5}}
+.ripple{fill:none;stroke:#ef4444;animation:ripple 2s ease-out infinite}
+@keyframes rippley{0%{r:3;opacity:0.8;stroke-width:2}
+                   100%{r:18;opacity:0;stroke-width:0.5}}
+.ripple-y{fill:none;stroke:#f59e0b;animation:rippley 2s ease-out infinite}
+
+/* Target marker */
+.target{fill:#10b981;filter:drop-shadow(0 0 6px #10b981) drop-shadow(0 0 12px #10b981)}
+@keyframes tping{0%{r:5;opacity:1;stroke-width:2}
+                 100%{r:30;opacity:0;stroke-width:0.5}}
+.tping{fill:none;stroke:#10b981;animation:tping 2.5s ease-out infinite}
+
+/* Attack arc */
+.arc{fill:none;stroke:url(#arcGrad);stroke-width:1.2;stroke-linecap:round;
+     stroke-dasharray:4 4;animation:dash 3s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-100}}
+
+.lg{display:flex;gap:12px;justify-content:center;font-size:9px;
+    color:#4b5563;margin-top:8px;flex-wrap:wrap}
 .lg span{display:flex;align-items:center;gap:4px}
-.lg .d{width:8px;height:8px;border-radius:50%}
+.lg .d{width:7px;height:7px;border-radius:50%;box-shadow:0 0 6px currentColor}
 
-.lst{display:flex;flex-direction:column;gap:3px;max-height:400px;overflow-y:auto}
-.it{background:#0f1420;border-right:3px solid #333;border-radius:4px;
-    padding:7px 10px;font-size:11px;display:flex;gap:8px;align-items:center}
-.it.top{border-right-color:#ef4444}
-.it .rk{color:#6b7280;font-size:9px;min-width:22px}
+/* Bars */
+.bars{margin-top:4px}
+.br{display:flex;align-items:center;gap:6px;font-size:10px;margin-bottom:3px}
+.br .n{width:26px;color:#f59e0b;font-weight:bold;font-size:10px}
+.br .b{flex:1;height:11px;background:#0a0f1a;border-radius:2px;overflow:hidden;
+       border:1px solid #1a2a3a;position:relative}
+.br .f{height:100%;background:linear-gradient(90deg,#ef4444 0%,#f59e0b 60%,#06b6d4 100%);
+       border-radius:2px;transition:width 0.5s;box-shadow:0 0 8px rgba(239,68,68,0.4)}
+.br .v{width:58px;color:#10b981;font-size:9px;text-align:left;
+       direction:ltr;font-family:monospace}
+
+/* IP list */
+.lst{display:flex;flex-direction:column;gap:2px}
+.it{background:linear-gradient(90deg,#0a0f1a 0%,#060a12 100%);
+    border-right:3px solid #1a2a3a;border-radius:3px;
+    padding:6px 8px;font-size:10px;display:flex;gap:6px;align-items:center}
+.it.top{border-right-color:#ef4444;background:linear-gradient(90deg,#1a0a0a 0%,#060a12 100%)}
+.it .rk{color:#4b5563;font-size:9px;min-width:20px;font-weight:bold}
 .it .ip{color:#10b981;font-family:monospace;flex:1;font-size:10px;
         direction:ltr;text-align:left}
-.it .cc{color:#f59e0b;font-weight:bold;min-width:26px;font-size:10px}
-.it .cnt{color:#ef4444;font-weight:bold;min-width:55px;text-align:left;
-         direction:ltr;font-size:10px}
-.it .isp{color:#6b7280;font-size:9px;overflow:hidden;
-         text-overflow:ellipsis;white-space:nowrap;max-width:80px}
+.it .cc{color:#f59e0b;font-weight:bold;min-width:22px;font-size:9px}
+.it .cnt{color:#ef4444;font-weight:bold;min-width:50px;text-align:left;
+         direction:ltr;font-size:9px}
+.it .isp{color:#4b5563;font-size:8px;overflow:hidden;
+         text-overflow:ellipsis;white-space:nowrap;max-width:60px}
 
-.c2{background:#2a1010;border-right:3px solid #ef4444;border-radius:4px;
-    padding:7px 10px;font-size:10px;display:flex;gap:8px;margin-bottom:3px}
+/* C2 */
+.c2{background:linear-gradient(90deg,#2a0a0a 0%,#0a0505 100%);
+    border-right:3px solid #ef4444;border-radius:3px;
+    padding:6px 8px;font-size:9px;display:flex;gap:6px;margin-bottom:2px}
 .c2 .ip{color:#fca5a5;font-family:monospace;flex:1;direction:ltr}
 .c2 .mw{color:#fbbf24;font-weight:bold;font-size:9px}
 .c2 .pt{color:#6b7280;font-size:9px}
-
-.bars{margin-top:8px}
-.br{display:flex;align-items:center;gap:8px;font-size:10px;margin-bottom:4px}
-.br .n{width:30px;color:#f59e0b;font-weight:bold}
-.br .b{flex:1;height:12px;background:#0a0a0a;border-radius:3px;overflow:hidden}
-.br .f{height:100%;background:linear-gradient(90deg,#ef4444,#f59e0b);border-radius:3px}
-.br .v{width:60px;color:#10b981;font-size:9px;text-align:left;direction:ltr}
 </style></head><body>
 
-<h2>GLOBAL ATTACK MAP — LIVE</h2>
-<div class="live" id="live">در حال بارگذاری... <b>●</b></div>
+<h2>GLOBAL ATTACK MAP</h2>
+<div class="live" id="live">در حال بارگذاری <b>●</b></div>
 
 <div class="stats">
   <div class="st r"><div class="n" id="s-att">0</div><div class="l">کل حمله</div></div>
@@ -74,29 +107,87 @@ svg.world{width:100%;height:auto;display:block}
 
 <div class="mw">
   <svg class="world" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
-    <g>
-      <line class="gr" x1="0" y1="125" x2="1000" y2="125"/>
-      <line class="gr" x1="0" y1="250" x2="1000" y2="250"/>
-      <line class="gr" x1="0" y1="375" x2="1000" y2="375"/>
-      <line class="gr" x1="250" y1="0" x2="250" y2="500"/>
-      <line class="gr" x1="500" y1="0" x2="500" y2="500"/>
-      <line class="gr" x1="750" y1="0" x2="750" y2="500"/>
+    <defs>
+      <radialGradient id="glow">
+        <stop offset="0%" stop-color="#ef4444" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#ef4444" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#10b981" stop-opacity="0.3"/>
+      </linearGradient>
+    </defs>
+
+    <!-- grid -->
+    <g opacity="0.15">
+      <line x1="0" y1="83" x2="1000" y2="83" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="0" y1="167" x2="1000" y2="167" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="0" y1="250" x2="1000" y2="250" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="0" y1="333" x2="1000" y2="333" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="0" y1="417" x2="1000" y2="417" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="139" y1="0" x2="139" y2="500" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="278" y1="0" x2="278" y2="500" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="417" y1="0" x2="417" y2="500" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="556" y1="0" x2="556" y2="500" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="695" y1="0" x2="695" y2="500" stroke="#10b981" stroke-width="0.3"/>
+      <line x1="834" y1="0" x2="834" y2="500" stroke="#10b981" stroke-width="0.3"/>
     </g>
-    <g>
-      <path class="cont" d="M110,110 Q140,80 200,95 L260,110 Q290,125 285,165 L255,205 Q220,235 185,240 L145,225 Q120,195 115,165 Z"/>
-      <path class="cont" d="M255,255 Q300,245 330,265 L345,310 Q340,360 315,400 Q290,430 270,415 L245,375 Q235,320 245,280 Z"/>
-      <path class="cont" d="M475,105 Q510,90 555,95 L590,115 Q595,145 575,175 L540,185 Q505,180 485,155 Q470,135 475,105 Z"/>
-      <path class="cont" d="M470,195 Q530,180 585,190 L605,230 Q610,290 585,340 Q555,385 520,375 L485,335 Q470,285 465,240 Z"/>
-      <path class="cont" d="M600,95 Q680,80 780,85 L870,105 Q920,130 925,175 L910,215 Q870,245 805,240 L730,225 Q670,205 625,175 Q605,140 600,95 Z"/>
-      <path class="cont" d="M690,205 Q730,195 745,220 L750,265 Q735,290 715,285 L695,250 Z"/>
-      <path class="cont" d="M810,345 Q870,330 910,345 L925,395 Q915,425 875,435 L830,420 Q805,395 810,345 Z"/>
+
+    <!-- Real-ish world map (equirectangular projection aligned) -->
+    <g id="continents">
+      <!-- Greenland -->
+      <path class="cont" d="M 330,45 Q 370,30 400,45 L 415,80 Q 405,105 380,110 L 345,105 Q 325,85 330,45 Z"/>
+      <!-- North America -->
+      <path class="cont" d="M 80,95 Q 100,70 145,68 L 210,65 Q 255,70 275,95 L 290,125 Q 285,160 265,180 L 245,210 Q 225,235 195,240 L 160,235 Q 130,220 115,195 L 100,165 Q 85,140 80,95 Z"/>
+      <!-- Central America -->
+      <path class="cont" d="M 195,240 L 220,250 L 245,275 L 240,295 L 220,290 L 205,265 Z"/>
+      <!-- South America -->
+      <path class="cont" d="M 245,300 Q 280,290 305,305 L 330,340 Q 345,385 330,430 Q 310,465 285,460 L 260,425 Q 245,385 245,340 Z"/>
+      <!-- UK + Ireland -->
+      <path class="cont" d="M 480,100 Q 490,95 495,108 L 490,125 L 480,120 Z"/>
+      <path class="cont" d="M 470,110 Q 478,108 480,118 L 475,128 L 468,122 Z"/>
+      <!-- Scandinavia -->
+      <path class="cont" d="M 535,65 Q 555,55 570,70 L 575,105 L 555,105 L 540,90 Z"/>
+      <!-- Europe mainland -->
+      <path class="cont" d="M 485,120 Q 510,110 545,115 L 575,130 Q 590,145 585,165 L 565,185 Q 540,195 515,190 L 495,175 Q 480,155 485,120 Z"/>
+      <!-- Africa -->
+      <path class="cont" d="M 485,195 Q 525,180 565,185 L 595,200 Q 615,235 615,280 Q 605,330 580,375 L 555,400 Q 530,410 510,395 Q 490,365 480,325 Q 470,280 470,240 Z"/>
+      <!-- Middle East -->
+      <path class="cont" d="M 590,180 Q 620,175 650,190 L 660,215 Q 655,240 630,245 L 600,230 L 585,205 Z"/>
+      <!-- Russia / North Asia -->
+      <path class="cont" d="M 580,105 Q 640,80 720,78 L 810,80 Q 880,85 930,105 L 950,130 Q 955,160 935,180 L 900,195 Q 855,205 815,205 L 775,205 Q 730,195 685,180 L 650,170 Q 615,155 590,135 L 580,115 Z"/>
+      <!-- Central Asia -->
+      <path class="cont" d="M 625,170 Q 665,165 705,170 L 725,190 L 705,205 L 665,200 L 640,190 Z"/>
+      <!-- India -->
+      <path class="cont" d="M 685,210 Q 720,205 745,225 L 755,255 Q 745,290 720,295 L 700,275 Q 685,245 685,210 Z"/>
+      <!-- SE Asia / Indochina -->
+      <path class="cont" d="M 760,225 Q 800,220 825,240 L 825,265 Q 810,285 785,280 L 770,260 Q 758,245 760,225 Z"/>
+      <!-- China east coast + Korea -->
+      <path class="cont" d="M 805,170 Q 835,165 850,180 L 855,205 L 830,215 L 810,195 Z"/>
+      <!-- Japan -->
+      <path class="cont" d="M 875,175 Q 885,170 890,185 L 885,210 Q 878,220 875,205 Z"/>
+      <!-- Indonesia / Philippines -->
+      <path class="cont" d="M 790,295 Q 815,290 830,300 L 840,315 L 820,320 L 800,310 Z"/>
+      <path class="cont" d="M 850,255 Q 865,250 870,265 L 865,290 L 855,280 Z"/>
+      <!-- Australia -->
+      <path class="cont" d="M 800,345 Q 855,325 905,340 L 935,365 Q 945,400 920,425 L 875,435 Q 835,430 815,405 Q 795,375 800,345 Z"/>
+      <!-- NZ -->
+      <path class="cont" d="M 945,400 Q 955,398 960,410 L 955,428 L 945,420 Z"/>
+      <!-- Madagascar -->
+      <path class="cont" d="M 605,325 Q 620,318 625,330 L 625,365 L 610,360 Q 600,345 605,325 Z"/>
+      <!-- Antarctica hint -->
+      <path class="cont" d="M 100,480 Q 300,470 500,478 Q 700,470 900,480 L 900,495 L 100,495 Z" opacity="0.3"/>
     </g>
+
+    <!-- Attack arcs layer -->
+    <g id="arcs"></g>
+    <!-- Attack dots layer -->
     <g id="hits"></g>
   </svg>
   <div class="lg">
-    <span><span class="d" style="background:#ef4444"></span>خیلی زیاد (>100K)</span>
-    <span><span class="d" style="background:#f59e0b"></span>زیاد (10K-100K)</span>
-    <span><span class="d" style="background:#10b981"></span>متوسط (<10K)</span>
+    <span><span class="d" style="background:#ef4444;color:#ef4444"></span>خیلی زیاد (&gt;100K)</span>
+    <span><span class="d" style="background:#f59e0b;color:#f59e0b"></span>زیاد (10-100K)</span>
+    <span><span class="d" style="background:#06b6d4;color:#06b6d4"></span>متوسط (&lt;10K)</span>
   </div>
 </div>
 
@@ -107,41 +198,55 @@ svg.world{width:100%;height:auto;display:block}
 <div class="lst" id="ips"></div>
 
 <h2>سرورهای C2 فعال</h2>
-<div id="c2"></div>
+<div id="c2wrap"></div>
 
 <script src="nav.js"></script>
 <script>
-var COORDS = {
-  'US':[200,155],'CA':[205,110],'MX':[195,215],
-  'BR':[310,320],'AR':[290,370],'CL':[275,390],'CO':[270,280],
-  'GB':[490,125],'IE':[478,130],'FR':[500,150],'DE':[535,140],
-  'NL':[510,135],'BE':[512,142],'PL':[548,132],'ES':[490,160],
-  'PT':[478,162],'IT':[535,165],'SE':[545,105],'NO':[535,98],
-  'FI':[560,100],'DK':[535,118],'CH':[520,152],'AT':[540,155],
-  'CZ':[538,138],'RO':[562,155],'BG':[568,162],'GR':[552,172],
-  'UA':[578,138],'RU':[690,125],'BY':[565,125],'LT':[558,120],
-  'LV':[562,113],'EE':[565,108],
-  'TR':[560,160],'IR':[655,205],'SA':[590,225],'AE':[630,235],
-  'IL':[570,215],'EG':[560,200],'MA':[490,190],'DZ':[510,195],
-  'LY':[535,200],'ZA':[545,340],'NG':[510,255],'KE':[580,290],
-  'CN':[790,180],'JP':[870,175],'KR':[840,170],'TW':[820,200],
-  'HK':[815,210],'VN':[790,215],'TH':[775,235],'MY':[785,260],
-  'SG':[790,275],'ID':[820,290],'PH':[835,235],'IN':[715,235],
-  'PK':[690,205],'BD':[740,225],'LK':[720,270],
-  'AU':[860,375],'NZ':[935,395],'SC':[615,290],'MD':[567,155]
-};
-
-function sevClass(cnt) {
-  if (cnt > 100000) return 'hit';
-  if (cnt > 10000) return 'hit mid';
-  return 'hit small';
+// Lat/Long → x/y projection (equirectangular)
+// x = (lon+180) * (1000/360) = (lon+180) * 2.7778
+// y = (90-lat) * (500/180)  = (90-lat) * 2.7778
+function proj(lat, lon) {
+  return [(lon + 180) * 2.7778, (90 - lat) * 2.7778];
 }
+
+var GEO = {
+  'US':[37.09,-95.71],'CA':[56.13,-106.35],'MX':[23.63,-102.55],
+  'BR':[-14.24,-51.93],'AR':[-38.42,-63.62],'CL':[-35.68,-71.54],
+  'CO':[4.57,-74.30],'GB':[55.37,-3.43],'IE':[53.41,-8.24],
+  'FR':[46.23,2.21],'DE':[51.16,10.45],'NL':[52.13,5.29],
+  'BE':[50.50,4.47],'ES':[40.46,-3.74],'PT':[39.40,-8.22],
+  'IT':[41.87,12.56],'PL':[51.91,19.14],'CZ':[49.81,15.47],
+  'AT':[47.51,14.55],'CH':[46.82,8.22],'SE':[60.12,18.64],
+  'NO':[60.47,8.46],'FI':[61.92,25.74],'DK':[56.26,9.50],
+  'GR':[39.07,21.82],'RO':[45.94,24.96],'BG':[42.73,25.48],
+  'UA':[48.37,31.16],'RU':[61.52,105.31],'TR':[38.96,35.24],
+  'IR':[32.42,53.68],'SA':[23.88,45.07],'AE':[23.42,53.84],
+  'IL':[31.04,34.85],'EG':[26.82,30.80],'ZA':[-30.55,22.93],
+  'NG':[9.08,8.67],'KE':[-0.02,37.90],'CN':[35.86,104.19],
+  'JP':[36.20,138.25],'KR':[35.90,127.76],'TW':[23.69,120.96],
+  'HK':[22.32,114.16],'VN':[14.05,108.27],'TH':[15.87,100.99],
+  'MY':[4.21,101.97],'SG':[1.35,103.81],'ID':[-0.78,113.92],
+  'PH':[12.87,121.77],'IN':[20.59,78.96],'PK':[30.37,69.34],
+  'BD':[23.68,90.35],'AU':[-25.27,133.77],'NZ':[-40.90,174.88],
+  'SC':[-4.67,55.49],'MD':[47.41,28.36],'EE':[58.59,25.01],
+  'LV':[56.87,24.60],'LT':[55.17,23.88],'BY':[53.70,27.95]
+};
 
 function esc(s){return String(s).replace(/[<>&]/g,function(c){
   return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+function fmtNum(n){try{return Number(n).toLocaleString('en-US')}catch(e){return '0'}}
 
-function fmtNum(n) {
-  return Number(n).toLocaleString('en-US');
+function clsForCount(c) {
+  if (c > 100000) return 'atk';
+  if (c > 10000)  return 'atk mid';
+  return 'atk small';
+}
+
+// Curved arc from source to target
+function arcPath(x1, y1, x2, y2) {
+  var mx = (x1 + x2) / 2;
+  var my = (y1 + y2) / 2 - Math.abs(x2 - x1) * 0.18;
+  return 'M ' + x1 + ',' + y1 + ' Q ' + mx + ',' + my + ' ' + x2 + ',' + y2;
 }
 
 function render(data) {
@@ -151,72 +256,89 @@ function render(data) {
   var feodo = data.feodo || [];
   var stats = data.stats || {};
 
-  document.getElementById('live').innerHTML = 
-    'آخرین آپدیت: <b>' + (data.ts || '').replace('T',' ').substring(0,19) + '</b> ●';
+  document.getElementById('live').innerHTML =
+    'آخرین آپدیت: <b>' + String(data.ts||'').replace('T',' ').substring(0,19) + '</b> ●';
   document.getElementById('s-att').textContent = fmtNum(stats.total_attacks || 0);
-  document.getElementById('s-ip').textContent = stats.unique_ips || 0;
-  document.getElementById('s-cc').textContent = stats.unique_countries || 0;
-  document.getElementById('s-c2').textContent = stats.c2_count || 0;
+  document.getElementById('s-ip').textContent  = stats.unique_ips || 0;
+  document.getElementById('s-cc').textContent  = stats.unique_countries || 0;
+  document.getElementById('s-c2').textContent  = stats.c2_count || 0;
 
-  // Hits on map
+  // ─── Dots + Ripples + Arcs ───
   var hits = document.getElementById('hits');
-  var html = '';
-  attacks.forEach(function(a, i) {
-    var c = a.country;
-    var xy = COORDS[c];
-    if (!xy) return;
-    // jitter
-    var jx = (Math.random()-0.5) * 12;
-    var jy = (Math.random()-0.5) * 12;
-    var cls = sevClass(a.count);
-    html += '<circle class="' + cls + ' pulse" cx="' + (xy[0]+jx) + 
-            '" cy="' + (xy[1]+jy) + '" r="' + (a.count > 100000 ? 5 : 4) +
-            '" style="animation-delay:' + (i*0.05) + 's"/>';
-  });
-  // یه ping ثابت روی اولین حمله‌کننده
-  if (attacks.length && COORDS[attacks[0].country]) {
-    var xy0 = COORDS[attacks[0].country];
-    html += '<circle class="ping" cx="' + xy0[0] + '" cy="' + xy0[1] +
-            '" r="8" fill="none" stroke="#ef4444" stroke-width="2"/>';
-  }
-  hits.innerHTML = html;
+  var arcs = document.getElementById('arcs');
+  var hitsHtml = '';
+  var arcsHtml = '';
 
-  // Countries bars
+  // Target: Iranserver / server (for arcs)
+  // اگر ایران رو هدف در نظر بگیریم: lat 35.7, lon 51.4
+  var txy = proj(35.7, 51.4);
+
+  attacks.forEach(function(a, i) {
+    var g = GEO[a.country];
+    if (!g) return;
+    var xy = proj(g[0], g[1]);
+    var cls = clsForCount(a.count);
+
+    // dot
+    hitsHtml += '<circle class="' + cls + ' atk-anim" cx="' + xy[0].toFixed(1) +
+                '" cy="' + xy[1].toFixed(1) + '" r="' + (a.count > 100000 ? 4.5 : a.count > 10000 ? 3.5 : 2.5) +
+                '" style="animation-delay:' + (i * 0.15) + 's"/>';
+
+    // ripple for top ones
+    if (i < 8) {
+      var rippleCls = a.count > 100000 ? 'ripple' : 'ripple-y';
+      hitsHtml += '<circle class="' + rippleCls + '" cx="' + xy[0].toFixed(1) +
+                  '" cy="' + xy[1].toFixed(1) + '" r="3" ' +
+                  'style="animation-delay:' + (i * 0.3) + 's"/>';
+    }
+
+    // arc from top 12 to target
+    if (i < 12) {
+      arcsHtml += '<path class="arc" d="' + arcPath(xy[0], xy[1], txy[0], txy[1]) +
+                  '" style="animation-delay:' + (i * 0.2) + 's;opacity:' +
+                  (a.count > 100000 ? 0.9 : a.count > 10000 ? 0.6 : 0.35) + '"/>';
+    }
+  });
+
+  // Target marker
+  hitsHtml += '<circle class="target" cx="' + txy[0].toFixed(1) + '" cy="' + txy[1].toFixed(1) + '" r="5"/>';
+  hitsHtml += '<circle class="tping" cx="' + txy[0].toFixed(1) + '" cy="' + txy[1].toFixed(1) + '" r="5"/>';
+
+  hits.innerHTML = hitsHtml;
+  arcs.innerHTML = arcsHtml;
+
+  // ─── Country bars ───
   var cc = document.getElementById('cc');
-  var ccKeys = Object.keys(countries).slice(0, 12);
-  var maxC = ccKeys.length ? Math.max.apply(null, ccKeys.map(function(k){return countries[k]})) : 1;
-  cc.innerHTML = ccKeys.map(function(k) {
-    var pct = (countries[k] / maxC * 100).toFixed(0);
-    return '<div class="br">' +
-      '<div class="n">' + k + '</div>' +
+  var keys = Object.keys(countries).slice(0, 12);
+  var max = keys.length ? Math.max.apply(null, keys.map(function(k){return countries[k]})) : 1;
+  cc.innerHTML = keys.map(function(k) {
+    var pct = (countries[k] / max * 100).toFixed(0);
+    return '<div class="br"><div class="n">' + k + '</div>' +
       '<div class="b"><div class="f" style="width:' + pct + '%"></div></div>' +
-      '<div class="v">' + fmtNum(countries[k]) + '</div>' +
-      '</div>';
+      '<div class="v">' + fmtNum(countries[k]) + '</div></div>';
   }).join('');
 
-  // Top IPs
+  // ─── Top IPs ───
   var ips = document.getElementById('ips');
   ips.innerHTML = attacks.slice(0, 20).map(function(a, i) {
     return '<div class="it ' + (i < 5 ? 'top' : '') + '">' +
-      '<span class="rk">#' + (i+1) + '</span>' +
+      '<span class="rk">#' + (i + 1) + '</span>' +
       '<span class="ip">' + esc(a.ip) + '</span>' +
       '<span class="cc">' + esc(a.country) + '</span>' +
       '<span class="cnt">' + fmtNum(a.count) + '</span>' +
-      '<span class="isp">' + esc(a.isp || '') + '</span>' +
-      '</div>';
+      '<span class="isp">' + esc(a.isp || '') + '</span></div>';
   }).join('');
 
-  // C2
-  var c2 = document.getElementById('c2');
+  // ─── C2 ───
+  var c2 = document.getElementById('c2wrap');
   if (!feodo.length) {
-    c2.innerHTML = '<div style="color:#666;text-align:center;padding:20px;font-size:11px">C2 فعالی نیست</div>';
+    c2.innerHTML = '<div style="color:#4b5563;text-align:center;padding:14px;font-size:10px">C2 فعالی نیست</div>';
   } else {
-    c2.innerHTML = feodo.slice(0, 20).map(function(x) {
+    c2.innerHTML = feodo.slice(0, 15).map(function(x) {
       return '<div class="c2">' +
         '<span class="ip">' + esc(x.ip) + ':' + (x.port || '?') + '</span>' +
         '<span class="mw">' + esc(x.malware) + '</span>' +
-        '<span class="pt">' + esc(x.country) + '</span>' +
-        '</div>';
+        '<span class="pt">' + esc(x.country) + '</span></div>';
     }).join('');
   }
 }
@@ -227,7 +349,6 @@ function load() {
     .then(render)
     .catch(function(e){ console.error(e); });
 }
-
 load();
 setInterval(load, 30000);
 </script>
