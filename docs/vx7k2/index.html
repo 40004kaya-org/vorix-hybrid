@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VORIX Board</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  if (sessionStorage.getItem('vorix_auth') !== 'ok') {
+    window.location.replace('../index.html');
+  }
+</script>
+</head>
+<body>
+  <svg id="board" viewBox="0 0 900 780" preserveAspectRatio="xMidYMid meet"></svg>
+  <script src="board.js"></script>
+</body>
+</html>
