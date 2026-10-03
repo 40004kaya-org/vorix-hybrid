@@ -1,10 +1,9 @@
 {
-  "ts": "2026-10-03T10:55:32.373224",
-  "alive": 17,
-  "dead": 3,
+  "ts": "2026-10-03T11:00:03.973077",
+  "alive": 18,
+  "dead": 2,
   "dead_list": [
     "layer02_threat_intel",
-    "layer05_data_quarantine",
-    "sync_loop"
+    "layer05_data_quarantine"
   ]
 }

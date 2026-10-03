@@ -197,3 +197,12 @@
 [10:55:37] ⚠️ sentinel is DOWN
 [10:55:37] 🚀 Restarting: sentinel
 [10:55:40] ✅ sentinel started
+[10:58:48] ⚠️ phone-agent is DOWN
+[10:58:48] 🚀 Restarting: phone-agent
+[10:58:52] ✅ phone-agent started
+[10:58:52] ⚠️ dashboard is DOWN
+[10:58:52] 🚀 Restarting: dashboard
+[10:58:52] ⚠️ sentinel is DOWN
+[10:58:52] 🚀 Restarting: sentinel
+[10:58:55] ✅ dashboard started
+[10:58:56] ✅ sentinel started
