@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Tail</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#0f0;font-family:ui-monospace,monospace;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+.top{background:#0a0f1a;border-bottom:1px solid #1f5f3f;padding:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.top h2{color:#10b981;font-size:12px;letter-spacing:2px;margin-left:auto}
+.ind{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#0a1a15;border:1px solid #10b981;border-radius:10px;font-size:10px;color:#10b981}
+.led{width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 6px #10b981;animation:p 1.5s infinite}
+@keyframes p{50%{opacity:.3}}
+.top select,.top input{background:#161b22;color:#c9d1d9;border:1px solid #30363d;padding:6px 10px;border-radius:4px;font-family:inherit;font-size:11px}
+.top input{flex:1;min-width:100px}
+.top select{cursor:pointer}
+.tail{flex:1;overflow-y:auto;padding:8px;font-size:11px;line-height:1.5}
+.ln{display:flex;gap:6px;padding:2px 4px;border-radius:2px;font-family:monospace;direction:ltr;text-align:left;animation:fadein 0.3s}
+@keyframes fadein{from{background:#1f3f3f;opacity:0}to{background:transparent;opacity:1}}
+.ln:hover{background:#0a1a15}
+.ln .t{color:#4b5563;min-width:60px;flex-shrink:0}
+.ln .s{min-width:55px;flex-shrink:0;font-weight:bold;text-align:center;border-radius:2px;padding:0 4px}
+.ln .s.error{color:#fca5a5;background:#2a0a0a}
+.ln .s.warn{color:#fcd34d;background:#2a1a0a}
+.ln .s.ok{color:#6ee7b7;background:#0a2a15}
+.ln .s.info{color:#93c5fd;background:#0a152a}
+.ln .src{color:#10b981;min-width:120px;flex-shrink:0}
+.ln .msg{color:#d1d5db;flex:1}
+.legend{padding:6px 10px;background:#0a0f1a;border-top:1px solid #1f5f3f;font-size:10px;color:#6b7280;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+</style></head><body>
+
+<div class="top">
+<select id="flt" onchange="render()">
+<option value="">همه</option>
+<option value="error">errors only</option>
+<option value="warn">warnings</option>
+<option value="ok">success</option>
+<option value="info">info</option>
+</select>
+<input id="q" placeholder="جستجو در پیام..." oninput="render()">
+<h2>LIVE TAIL</h2>
+<div class="ind"><span class="led"></span>TAILING</div>
+</div>
+
+<div class="tail" id="tail"></div>
+
+<div class="legend">
+<span>Auto-refresh: 3s</span>
+<span id="last">-</span>
+<span id="cnt">0 lines</span>
+</div>
+
+<script src="nav.js"></script><script>
+var DATA=null;
+function esc(s){return String(s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+function render(){
+if(!DATA)return;
+var f=document.getElementById('flt').value;
+var q=(document.getElementById('q').value||'').toLowerCase();
+var en=(DATA.entries||[]).filter(e=>{
+if(f&&e.sev!==f)return false;
+if(q&&!(e.msg||'').toLowerCase().includes(q)&&!(e.src||'').toLowerCase().includes(q))return false;
+return true;
+});
+var tail=document.getElementById('tail');
+if(!en.length){tail.innerHTML='<div style="color:#4b5563;text-align:center;padding:30px">لاگی مطابق فیلتر نیست</div>';return}
+tail.innerHTML=en.slice().reverse().map(e=>{
+var s=e.sev||'info',t=(e.ts||'').substring(11,19)||'--:--:--';
+return '<div class="ln"><span class="t">'+esc(t)+'</span><span class="s '+s+'">'+s.toUpperCase()+'</span><span class="src">'+esc(e.src||'?')+'</span><span class="msg">'+esc(e.msg||'')+'</span></div>';
+}).join('');
+document.getElementById('cnt').textContent=en.length+' lines';
+}
+function load(){
+fetch('../data/logs.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+DATA=d;render();
+document.getElementById('last').textContent='آخرین: '+String(d.ts||'').substring(11,19);
+}).catch(console.error);
+}
+load();setInterval(load,3000);
+</script></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MITRE</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#10b981;font-size:11px;letter-spacing:2px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
+.matrix{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.col{background:#0a0f1a;border:1px solid #1f2937;border-radius:6px;padding:8px;overflow:hidden}
+.col h3{color:#0fb;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #1f2937}
+.tech{background:#0f1420;border-left:3px solid #1f2937;border-radius:3px;padding:4px 8px;margin-bottom:3px;font-size:10px;display:flex;justify-content:space-between;align-items:center}
+.tech.hit{border-left-color:#ef4444;background:linear-gradient(90deg,#1a0505 0%,#0f1420 100%)}
+.tech .id{color:#6b7280;font-family:monospace;font-size:9px}
+.tech.hit .id{color:#fca5a5}
+.tech .cnt{background:#ef4444;color:#fff;font-size:8px;padding:1px 6px;border-radius:8px;font-weight:bold}
+</style></head><body>
+
+<h2>MITRE ATT&CK MATRIX</h2>
+<div class="matrix" id="m"></div>
+
+<script src="nav.js"></script><script>
+var M={
+'Reconnaissance':[['T1595','Active Scanning'],['T1592','Gather Host Info'],['T1590','Gather Network']],
+'Initial Access':[['T1190','Exploit Public App'],['T1078','Valid Accounts'],['T1566','Phishing']],
+'Execution':[['T1059','Command & Script'],['T1203','Client Exploit'],['T1053','Scheduled Task']],
+'Persistence':[['T1098','Account Manip'],['T1136','Create Account'],['T1543','Create Service']],
+'Privilege Escalation':[['T1068','Exploit for Priv'],['T1548','Abuse Elevation'],['T1134','Token Manip']],
+'Defense Evasion':[['T1070','Indicator Removal'],['T1027','Obfuscation'],['T1112','Modify Registry']],
+'Credential Access':[['T1110','Brute Force'],['T1555','Password Store'],['T1003','OS Cred Dump']],
+'Discovery':[['T1046','Network Scan'],['T1087','Account Disc'],['T1083','File Dir Disc']],
+'Lateral Movement':[['T1021','Remote Services'],['T1570','Lateral Tool'],['T1080','Taint Share']],
+'Collection':[['T1005','Local Data'],['T1039','Network Share'],['T1114','Email Coll']],
+'Command & Control':[['T1071','App Layer Proto'],['T1095','Non-App Layer'],['T1573','Encrypted Ch']],
+'Exfiltration':[['T1041','C2 Exfil'],['T1048','Alt Proto'],['T1567','Web Service']],
+'Impact':[['T1498','Network DoS'],['T1486','Data Encrypted'],['T1489','Service Stop']]
+};
+function render(d){
+var mitre=(d&&d.mitre)||{};
+var html='';
+Object.keys(M).forEach(function(cat){
+html+='<div class="col"><h3>'+cat+'</h3>';
+M[cat].forEach(function(t){
+var id=t[0],name=t[1];
+var cnt=mitre[id]||0;
+var hit=cnt>0?'hit':'';
+html+='<div class="tech '+hit+'"><span><span class="id">'+id+'</span> '+name+'</span>';
+if(cnt>0)html+='<span class="cnt">'+cnt+'</span>';
+html+='</div>';
+});
+html+='</div>';
+});
+document.getElementById('m').innerHTML=html;
+}
+fetch('../data/attacks.json?v='+Date.now()).then(r=>r.json()).then(render).catch(console.error);
+</script></body></html>

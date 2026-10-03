@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alerts</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#ef4444;font-size:11px;letter-spacing:2px;margin:12px 0 8px;border-bottom:1px solid #7f1d1d;padding-bottom:6px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px}
+.st{background:#0a0f1a;border:1px solid #1f2937;border-radius:6px;padding:10px 4px;text-align:center}
+.st .n{font-size:16px;font-weight:bold;color:#10b981}
+.st .l{font-size:8px;color:#6b7280;margin-top:2px}
+.st.r .n{color:#ef4444}.st.y .n{color:#f59e0b}
+.rule{background:#0a0f1a;border:1px solid #1f2937;border-right:3px solid #333;border-radius:6px;padding:10px;margin-bottom:6px;font-size:11px}
+.rule.firing{border-right-color:#ef4444;background:linear-gradient(90deg,#1a0a0a 0%,#0a0f1a 100%)}
+.rule.ok{border-right-color:#10b981}
+.rule .name{color:#0fb;font-weight:bold;font-size:12px;margin-bottom:4px}
+.rule .cond{color:#6b7280;font-size:10px;font-family:monospace;direction:ltr;text-align:left;background:#000;padding:4px 6px;border-radius:3px;margin:4px 0}
+.rule .state{float:left;padding:2px 8px;border-radius:8px;font-size:9px;font-weight:bold}
+.rule .state.firing{background:#7f1d1d;color:#fca5a5;animation:blink 1s infinite}
+.rule .state.ok{background:#064e3b;color:#6ee7b7}
+@keyframes blink{50%{opacity:0.6}}
+.rule .meta{color:#4b5563;font-size:9px;margin-top:4px}
+.hist{background:#0a0f1a;border:1px solid #1f2937;border-radius:6px;padding:8px;max-height:300px;overflow-y:auto}
+.hist .item{padding:6px 8px;border-bottom:1px solid #1a2a3a;font-size:10px;display:flex;gap:8px}
+.hist .item:last-child{border:none}
+.hist .t{color:#6b7280;min-width:50px}
+.hist .n{color:#0fb;flex:1}
+.hist .s{padding:1px 6px;border-radius:3px;font-size:8px;font-weight:bold}
+.hist .s.firing{background:#7f1d1d;color:#fca5a5}
+.hist .s.resolved{background:#064e3b;color:#6ee7b7}
+.empty{color:#4b5563;text-align:center;padding:20px;font-size:11px}
+</style></head><body>
+
+<h2>ALERT RULES</h2>
+<div class="stats">
+<div class="st r"><div class="n" id="s-fire">0</div><div class="l">Firing</div></div>
+<div class="st"><div class="n" id="s-total">0</div><div class="l">Rules</div></div>
+<div class="st y"><div class="n" id="s-24h">0</div><div class="l">24h</div></div>
+<div class="st"><div class="n" id="s-crit">0</div><div class="l">Critical</div></div>
+</div>
+
+<div id="rules"></div>
+
+<h2>HISTORY</h2>
+<div class="hist" id="hist"></div>
+
+<script src="nav.js"></script><script>
+function esc(s){return String(s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+var RULES=[
+{n:'High Attack Rate',c:'attacks.24h > 100',s:'critical'},
+{n:'C2 Detected',c:'feodo.count > 3',s:'critical'},
+{n:'Layer Down',c:'layers.down > 3',s:'warning'},
+{n:'Many Countries',c:'countries > 15',s:'warning'},
+{n:'Critical Severity',c:'events.critical > 0',s:'critical'},
+{n:'Log Errors',c:'logs.error > 10',s:'warning'}
+];
+function load(){
+var alerts={rules:[],history:[]};
+Promise.all([
+fetch('../data/live.json?v='+Date.now()).then(r=>r.json()).catch(()=>null),
+fetch('../data/live_global.json?v='+Date.now()).then(r=>r.json()).catch(()=>null),
+fetch('../data/logs.json?v='+Date.now()).then(r=>r.json()).catch(()=>null),
+fetch('../data/attacks.json?v='+Date.now()).then(r=>r.json()).catch(()=>null)
+]).then(function(r){
+var live=r[0],gl=r[1],logs=r[2],at=r[3];
+var firing=0,crit=0;
+var rows=RULES.map(function(rl){
+var fire=false,val=0;
+if(rl.n==='High Attack Rate'){val=gl?gl.stats.total_attacks:0;fire=val>100000}
+else if(rl.n==='C2 Detected'){val=gl?gl.stats.c2_count:0;fire=val>3}
+else if(rl.n==='Layer Down'){val=live?live.layers.filter(l=>l.color==='red').length:0;fire=val>3}
+else if(rl.n==='Many Countries'){val=gl?gl.stats.unique_countries:0;fire=val>15}
+else if(rl.n==='Critical Severity'){val=at?at.stats.critical:0;fire=val>0}
+else if(rl.n==='Log Errors'){val=logs?logs.entries.filter(e=>e.sev==='error').length:0;fire=val>10}
+if(fire)firing++;
+if(fire&&rl.s==='critical')crit++;
+return '<div class="rule '+(fire?'firing':'ok')+'"><div class="name">'+esc(rl.n)+' <span class="state '+(fire?'firing':'ok')+'">'+(fire?'FIRING':'OK')+'</span></div><div class="cond">'+esc(rl.c)+'</div><div class="meta">Value: '+val+' | Severity: '+rl.s+'</div></div>';
+}).join('');
+document.getElementById('s-fire').textContent=firing;
+document.getElementById('s-total').textContent=RULES.length;
+document.getElementById('s-crit').textContent=crit;
+document.getElementById('s-24h').textContent=at?at.stats.total:0;
+document.getElementById('rules').innerHTML=rows;
+var hist=at?(at.attacks||[]).slice(0,20).map(a=>{
+var sev=(a.severity||'low').toUpperCase();
+return '<div class="item"><span class="t">'+esc((a.ts||'').substring(11,16))+'</span><span class="s firing">'+sev+'</span><span class="n">'+esc(a.attack_type||'?')+'</span></div>';
+}).join(''):'<div class="empty">داده‌ای نیست</div>';
+document.getElementById('hist').innerHTML=hist;
+});
+}
+load();setInterval(load,30000);
+</script></body></html>

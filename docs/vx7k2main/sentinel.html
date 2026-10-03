@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sentinel</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#ef4444;font-size:11px;letter-spacing:2px;margin:12px 0 8px;border-bottom:1px solid #7f1d1d;padding-bottom:6px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:12px}
+.st{background:#0a0f1a;border:1px solid #1f2937;border-radius:6px;padding:8px 4px;text-align:center}
+.st .n{font-size:15px;font-weight:bold;color:#10b981}
+.st .l{font-size:8px;color:#6b7280;margin-top:2px}
+.st.r .n{color:#ef4444}.st.y .n{color:#f59e0b}.st.c .n{color:#06b6d4}
+.tabs{display:flex;gap:2px;margin-bottom:8px;border-bottom:1px solid #1f2937}
+.tabs button{background:transparent;color:#6b7280;border:none;padding:8px 12px;cursor:pointer;font-family:inherit;font-size:11px;border-bottom:2px solid transparent}
+.tabs button.active{color:#0fb;border-bottom-color:#0fb}
+.tab-cnt{background:#1f2937;color:#9ca3af;padding:1px 5px;border-radius:8px;font-size:9px;margin-right:4px}
+.tab-cnt.r{background:#7f1d1d;color:#fca5a5}
+.q{display:flex;flex-direction:column;gap:4px}
+.item{background:#0a0f1a;border-right:3px solid #333;border-radius:6px;padding:8px 10px;font-size:11px;cursor:pointer;transition:all 0.15s}
+.item:hover{background:#0f1420;transform:translateX(-2px)}
+.item.crit{border-right-color:#ef4444;background:linear-gradient(90deg,#1a0505 0%,#0a0f1a 100%)}
+.item.high{border-right-color:#f59e0b}
+.item.med{border-right-color:#06b6d4}
+.item.low{border-right-color:#10b981}
+.item .row1{display:flex;justify-content:space-between;margin-bottom:3px}
+.item .id{color:#10b981;font-family:monospace;font-size:9px}
+.item .sev{padding:1px 6px;border-radius:3px;font-size:8px;font-weight:bold}
+.item .sev.crit{background:#7f1d1d;color:#fca5a5}
+.item .sev.high{background:#78350f;color:#fcd34d}
+.item .sev.med{background:#0c4a6e;color:#7dd3fc}
+.item .sev.low{background:#064e3b;color:#6ee7b7}
+.item .ttl{color:#e5e7eb;font-weight:bold;font-size:11px;margin-bottom:2px}
+.item .meta{color:#6b7280;font-size:9px;display:flex;gap:8px;flex-wrap:wrap}
+.item .meta span{display:flex;align-items:center;gap:3px}
+.item .det{display:none;margin-top:8px;padding:8px;background:#000;border:1px solid #1f2937;border-radius:4px;font-family:monospace;font-size:10px;color:#9ca3af;direction:ltr;text-align:left}
+.item.open .det{display:block}
+.actions{display:flex;gap:6px;margin-top:8px}
+.actions button{background:#1f2937;color:#c9d1d9;border:1px solid #30363d;padding:4px 10px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:10px}
+.actions button:hover{background:#30363d}
+.empty{color:#4b5563;text-align:center;padding:30px;font-size:11px}
+</style></head><body>
+
+<h2>SENTINEL — INCIDENT QUEUE</h2>
+<div class="stats">
+<div class="st r"><div class="n" id="s-crit">0</div><div class="l">Critical</div></div>
+<div class="st y"><div class="n" id="s-high">0</div><div class="l">High</div></div>
+<div class="st c"><div class="n" id="s-med">0</div><div class="l">Medium</div></div>
+<div class="st"><div class="n" id="s-low">0</div><div class="l">Low</div></div>
+<div class="st"><div class="n" id="s-tot">0</div><div class="l">Total</div></div>
+</div>
+
+<div class="tabs" id="tabs">
+<button class="active" data-f="all" onclick="setF('all',this)">همه <span class="tab-cnt" id="c-all">0</span></button>
+<button data-f="critical" onclick="setF('critical',this)">Critical <span class="tab-cnt r" id="c-critical">0</span></button>
+<button data-f="high" onclick="setF('high',this)">High <span class="tab-cnt" id="c-high">0</span></button>
+<button data-f="medium" onclick="setF('medium',this)">Med <span class="tab-cnt" id="c-medium">0</span></button>
+<button data-f="low" onclick="setF('low',this)">Low <span class="tab-cnt" id="c-low">0</span></button>
+</div>
+
+<div class="q" id="q"></div>
+
+<script src="nav.js"></script><script>
+var DATA=null,F='all';
+function esc(s){return String(s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+function setF(f,b){F=f;document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
+function toggleItem(el){el.classList.toggle('open')}
+function render(){
+if(!DATA)return;
+var at=(DATA.attacks||[]);
+var counts={all:at.length,critical:0,high:0,medium:0,low:0};
+at.forEach(a=>{var s=(a.severity||'low').toLowerCase();if(s==='warning'||s==='warn')s='high';if(s==='info')s='low';if(counts[s]!==undefined)counts[s]++});
+document.getElementById('s-crit').textContent=counts.critical;
+document.getElementById('s-high').textContent=counts.high;
+document.getElementById('s-med').textContent=counts.medium;
+document.getElementById('s-low').textContent=counts.low;
+document.getElementById('s-tot').textContent=counts.all;
+document.getElementById('c-all').textContent=counts.all;
+document.getElementById('c-critical').textContent=counts.critical;
+document.getElementById('c-high').textContent=counts.high;
+document.getElementById('c-medium').textContent=counts.medium;
+document.getElementById('c-low').textContent=counts.low;
+var filtered=F==='all'?at:at.filter(a=>{
+var s=(a.severity||'low').toLowerCase();
+if(s==='warning'||s==='warn')s='high';
+if(s==='info')s='low';
+return s===F;
+});
+var q=document.getElementById('q');
+if(!filtered.length){q.innerHTML='<div class="empty">incident مطابق فیلتر نیست</div>';return}
+q.innerHTML=filtered.slice(0,40).map((a,i)=>{
+var s=(a.severity||'low').toLowerCase();
+if(s==='warning'||s==='warn')s='high';
+if(s==='info')s='low';
+var sevCls={critical:'crit',high:'high',medium:'med',low:'low'}[s]||'low';
+var id='INC-'+(1000+i);
+var t=(a.ts||'').substring(11,19)||'--:--:--';
+return '<div class="item '+sevCls+'" onclick="toggleItem(this)">'
++'<div class="row1"><span class="id">'+id+'</span><span class="sev '+sevCls+'">'+s.toUpperCase()+'</span></div>'
++'<div class="ttl">'+esc(a.attack_type||'unknown')+'</div>'
++'<div class="meta"><span>IP: '+esc(a.ip||'?')+'</span><span>Country: '+esc(a.country||'??')+'</span><span>Time: '+esc(t)+'</span>'+(a.layer?'<span>Layer: '+esc(a.layer)+'</span>':'')+'</div>'
++'<div class="det">Action: '+esc(a.action||'detected')+'\nMITRE: '+esc(a.mitre||'N/A')+'\nRaw: '+esc(JSON.stringify(a))+'</div>'
++'</div>';
+}).join('');
+}
+function load(){
+fetch('../data/attacks.json?v='+Date.now()).then(r=>r.json()).then(d=>{DATA=d;render()}).catch(console.error);
+}
+load();setInterval(load,30000);
+</script></body></html>
