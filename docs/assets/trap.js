@@ -2,6 +2,11 @@
 // ═══════════════════════════════════════════════════
 //  VX-OPS — Fingerprint & Trap Engine
 // ═══════════════════════════════════════════════════
+
+// ─── Worker Configuration ───
+const VX_WORKER_URL = "https://gentle-paper-c03a.40004kaya.workers.dev/trap";
+const VX_SECRET = "vx-trap-2026";
+
 (function() {
   'use strict';
 
@@ -119,18 +124,18 @@
         ref: fp.ref
       }});
 
-      // Try to send to webhook if configured
-      const hook = localStorage.getItem('_vxhook');
-      if (hook) {
-        try {
-          await fetch(hook, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ event: event, extra: extra, fp: fp })
-          });
-        } catch(e) {}
-      }
+      // ─── ارسال به Cloudflare Worker ───
+      try {
+        await fetch(VX_WORKER_URL, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-VX-Secret': VX_SECRET
+          },
+          body: JSON.stringify({ event: event, extra: extra, fp: fp })
+        });
+      } catch(e) {}
 
       return fp;
     }
