@@ -3,111 +3,170 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VORIX — امنیت</title>
+<title>VORIX Security</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#070a12;color:#94a3b8;font-family:"SF Mono",monospace;padding:10px;font-size:12px}
-h2{color:#ef4444;font-size:11px;letter-spacing:3px;margin:14px 0 8px;border-bottom:1px solid #7f1d1d;padding-bottom:6px}
-.header{background:#1a0e0e;border:1px solid #7f1d1d;border-radius:8px;padding:14px;margin-bottom:14px;text-align:center}
-.header h1{color:#ef4444;font-size:16px;letter-spacing:6px;font-weight:600;margin-bottom:6px}
-.header .sub{color:#7f1d1d;font-size:10px;letter-spacing:1px}
-.header .live{color:#ef4444;font-size:11px;margin-top:8px;animation:p 2s infinite}
-@keyframes p{50%{opacity:0.4}}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
-.st{background:#0f1420;border:1px solid #1e293b;border-radius:6px;padding:12px;text-align:center}
-.st .v{color:#e2e8f0;font-size:20px;font-weight:600}
-.st .l{color:#475569;font-size:9px;letter-spacing:1px;margin-top:4px}
-.st.red .v{color:#ef4444}
-.st.green .v{color:#10b981}
-.st.yellow .v{color:#f59e0b}
-.section{background:#0f1420;border:1px solid #1e293b;border-radius:6px;padding:12px;margin-bottom:10px}
-.section h3{color:#64748b;font-size:10px;letter-spacing:2px;margin-bottom:10px}
-.row{display:flex;justify-content:space-between;padding:6px 0;font-size:11px;border-bottom:1px solid #0a0e1a;align-items:center}
-.row:last-child{border:none}
-.row .k{color:#94a3b8}
-.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:600;letter-spacing:1px}
-.badge.on{background:#064e3b;color:#6ee7b7}
-.badge.off{background:#7f1d1d;color:#fca5a5}
-.badge.warn{background:#78350f;color:#fcd34d}
-.empty{color:#475569;text-align:center;padding:20px;font-size:11px}
+body{font-family:'Courier New',monospace;background:#08080c;color:#b8b8c8;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;background:radial-gradient(circle at 20% 30%,rgba(0,255,180,.08) 0,transparent 40%),radial-gradient(circle at 80% 70%,rgba(255,0,80,.06) 0,transparent 40%),#08080c}
+.bg svg{width:100%;height:100%}
+.trace{fill:none;stroke:#0d5a4a;stroke-width:.8;opacity:.7}
+.trace-glow{fill:none;stroke:#00ffb4;stroke-width:1.2;opacity:.5;filter:drop-shadow(0 0 3px #00ffb4);stroke-dasharray:8 200;animation:signal 6s linear infinite}
+@keyframes signal{to{stroke-dashoffset:-400}}
+.node{fill:#0d5a4a;opacity:.8}
+.nav{position:sticky;top:0;z-index:100;background:rgba(8,8,12,.95);backdrop-filter:blur(10px);border-bottom:1px solid #1a3a30;display:flex;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex-shrink:0;padding:12px 16px;color:#5a7a6a;text-decoration:none;font-size:12px;font-weight:bold;letter-spacing:1px;border-bottom:2px solid transparent}
+.nav a.active{color:#00ffb4;border-bottom-color:#00ffb4;text-shadow:0 0 8px #00ffb4}
+.wrap{position:relative;z-index:1;padding:16px;max-width:900px;margin:0 auto}
+.hero{position:relative;border:1px solid #1f4a3d;background:linear-gradient(135deg,#0a0a0f,#0f1512);padding:28px 16px;margin-bottom:20px}
+.hero::before,.hero::after{content:'';position:absolute;width:12px;height:12px;border:1px solid #00ffb4;opacity:.6}
+.hero::before{top:6px;right:6px;border-left:none;border-bottom:none}
+.hero::after{bottom:6px;left:6px;border-right:none;border-top:none}
+.hero-title{text-align:center;font-size:22px;font-weight:bold;letter-spacing:6px;color:#00ffb4;text-shadow:0 0 12px #00ffb4,0 0 24px #00ffb480;margin-bottom:8px;animation:flick 5s infinite}
+@keyframes flick{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.6}94%{opacity:1}}
+.hero-sub{text-align:center;font-size:11px;letter-spacing:3px;color:#6a9a8a;margin-bottom:14px}
+.hero-status{text-align:center;font-size:11px;letter-spacing:2px;color:#ff3366;display:flex;align-items:center;justify-content:center;gap:8px}
+.led{display:inline-block;width:10px;height:10px;border-radius:50%;position:relative;flex-shrink:0}
+.led::after{content:'';position:absolute;inset:-4px;border-radius:50%;opacity:.4}
+.led-green{background:#00ff88;box-shadow:0 0 6px #00ff88,0 0 12px #00ff8880,inset 0 0 3px #ffffff80;animation:pulse 2s ease-in-out infinite}
+.led-green::after{background:#00ff88;animation:halo 2s ease-in-out infinite}
+.led-red{background:#ff2244;box-shadow:0 0 8px #ff2244,0 0 16px #ff224480,inset 0 0 3px #ffffff80;animation:blink .8s ease-in-out infinite}
+.led-red::after{background:#ff2244;animation:halo-blink .8s ease-in-out infinite}
+.led-blue{background:#00ccff;box-shadow:0 0 8px #00ccff,0 0 16px #00ccff80,inset 0 0 3px #ffffff80;animation:breathe 3s ease-in-out infinite}
+.led-blue::after{background:#00ccff;animation:halo-breathe 3s ease-in-out infinite}
+.led-cyan{background:#00ffff;box-shadow:0 0 10px #00ffff,0 0 20px #00ffff80,inset 0 0 4px #ffffff80;animation:pulse 1.6s ease-in-out infinite}
+.led-lg{width:14px;height:14px}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(.92)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes breathe{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes halo{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.4);opacity:.15}}
+@keyframes halo-blink{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.5);opacity:.1}}
+@keyframes halo-breathe{0%,100%{transform:scale(1);opacity:.15}50%{transform:scale(1.6);opacity:.5}}
+.section-title{font-size:12px;color:#ff3366;letter-spacing:3px;text-align:right;margin:20px 4px 10px;padding-right:10px;border-right:3px solid #ff3366;text-shadow:0 0 8px #ff336660}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.stat{background:linear-gradient(180deg,#0f0f16,#0a0a10);border:1px solid #1a3a30;padding:14px 6px;text-align:center}
+.stat-num{font-size:22px;font-weight:bold;line-height:1;margin-bottom:6px}
+.stat-num.green{color:#00ff88;text-shadow:0 0 8px #00ff8860}
+.stat-num.red{color:#ff2244;text-shadow:0 0 8px #ff224460}
+.stat-num.yellow{color:#ffcc00;text-shadow:0 0 8px #ffcc0060}
+.stat-num.blue{color:#00ccff;text-shadow:0 0 8px #00ccff60}
+.stat-label{font-size:9px;color:#5a7a6a;letter-spacing:1px}
+.panel{background:linear-gradient(180deg,#0c0c14,#08080e);border:1px solid #1f4a3d;padding:6px;position:relative}
+.panel::before,.panel::after{content:'';position:absolute;width:8px;height:8px;border:1px solid #00ffb4;opacity:.5}
+.panel::before{top:3px;right:3px;border-left:none;border-bottom:none}
+.panel::after{bottom:3px;left:3px;border-right:none;border-top:none}
+.row{display:flex;align-items:center;gap:12px;padding:12px 10px;border-bottom:1px dashed #152a24}
+.row:last-child{border-bottom:none}
+.row-num{font-size:10px;color:#3a6a5a;min-width:20px;letter-spacing:1px}
+.row-name{flex:1;font-size:13px;color:#a8c8b8;letter-spacing:1px;text-align:right}
+.row-status{font-size:10px;font-weight:bold;letter-spacing:2px;padding:3px 8px;border:1px solid;min-width:60px;text-align:center}
+.status-active{color:#00ff88;border-color:#00ff8860;background:#00ff8810;text-shadow:0 0 6px #00ff8860}
+.worker-panel{background:radial-gradient(circle at 100% 0,#00ffff10 0,transparent 50%),linear-gradient(180deg,#0c0c14,#08080e);border:1px solid #00ffff40;padding:18px}
+.worker-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.worker-label{font-size:11px;color:#00ffff;letter-spacing:3px;text-shadow:0 0 8px #00ffff60}
+.worker-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #00ffff20;font-size:12px}
+.worker-row:last-child{border-bottom:none}
+.worker-row .k{color:#5a8a7a;letter-spacing:1px}
+.worker-row .v{color:#00ffff;text-shadow:0 0 6px #00ffff60}
+.footer{text-align:center;padding:24px 12px 40px;font-size:10px;color:#2a4a3a;letter-spacing:3px}
+@media(max-width:400px){.stat-grid{grid-template-columns:repeat(2,1fr)}.hero-title{font-size:18px;letter-spacing:4px}}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <h1>🛡️ SECURITY</h1>
-  <div class="sub">SHIELD · TRAP · HONEYPOT</div>
-  <div class="live">● MONITORING ACTIVE</div>
+<div class="bg">
+<svg viewBox="0 0 400 900" preserveAspectRatio="xMidYMid slice">
+<path class="trace" d="M0,80 H120 V140 H320 V200 H400"/>
+<path class="trace" d="M0,220 H80 V280 H280 V340 H400"/>
+<path class="trace" d="M0,400 H150 V460 H400"/>
+<path class="trace" d="M0,520 H200 V580 H360 V640 H400"/>
+<path class="trace" d="M0,700 H100 V760 H300 V820 H400"/>
+<path class="trace" d="M120,0 V140 H180 V400 H120 V700"/>
+<path class="trace" d="M280,0 V200 H240 V520 H280 V800"/>
+<path class="trace" d="M360,0 V80 H340 V460 H380 V900"/>
+<path class="trace-glow" d="M0,80 H120 V140 H320 V200 H400"/>
+<path class="trace-glow" d="M0,400 H150 V460 H400" style="animation-delay:-2s"/>
+<path class="trace-glow" d="M0,700 H100 V760 H300 V820 H400" style="animation-delay:-4s"/>
+<circle class="node" cx="120" cy="140" r="3"/><circle class="node" cx="320" cy="200" r="3"/>
+<circle class="node" cx="80" cy="280" r="3"/><circle class="node" cx="280" cy="340" r="3"/>
+<circle class="node" cx="150" cy="460" r="3"/><circle class="node" cx="200" cy="580" r="3"/>
+<circle class="node" cx="360" cy="640" r="3"/><circle class="node" cx="100" cy="760" r="3"/>
+<circle class="node" cx="300" cy="820" r="3"/>
+</svg>
 </div>
-
-<h2>آمار تهدیدات</h2>
-<div class="grid">
-  <div class="st red"><div class="v" id="s-blocked">0</div><div class="l">بلاک شده</div></div>
-  <div class="st yellow"><div class="v" id="s-flagged">0</div><div class="l">علامت‌دار</div></div>
-  <div class="st green"><div class="v" id="s-passed">0</div><div class="l">مجاز</div></div>
-  <div class="st"><div class="v" id="s-honeypot">0</div><div class="l">Honeypot</div></div>
+<nav class="nav">
+<a href="index.html">مادر</a>
+<a href="security.html" class="active">امنیت</a>
+<a href="shop.html">فروشگاه</a>
+<a href="shop-board.html">برد فروشگاه</a>
+<a href="world.html">جهانی</a>
+<a href="discover.html">کشف</a>
+<a href="mitre.html">MITRE</a>
+<a href="sentinel.html">Sentinel</a>
+</nav>
+<div class="wrap">
+<div class="hero">
+<div class="hero-title">S E C U R I T Y</div>
+<div class="hero-sub">SHIELD · TRAP · HONEYPOT</div>
+<div class="hero-status">MONITORING ACTIVE <span class="led led-red led-lg"></span></div>
 </div>
-
-<h2>۱۰ لایه Shield</h2>
-<div class="section">
-  <div class="row"><span class="k">۰۱ · HMAC Token</span><span class="badge on">فعال</span></div>
-  <div class="row"><span class="k">۰۲ · HMAC Signature</span><span class="badge on">فعال</span></div>
-  <div class="row"><span class="k">۰۳ · IP Whitelist</span><span class="badge on">فعال</span></div>
-  <div class="row"><span class="k">۰۴ · Rate Limit</span><span class="badge on">فعال</span></div>
-  <div class="row"><span class="k">۰۵ · Anomaly Score</span><span class="badge on">فعال</span></div>
-  <div class="row"><span class="k">۰۶ · Honeypot</span><span class="badge on">فعال</span></div>
-  <div class="row"><span class="k">۰۷ · Hash Chain</span><span class="badge on">فعال</span></div>
-  <div class="row"><span class="k">۰۸ · AES Vault</span><span class="badge on">فعال</span></div>
-  <div class="row"><span class="k">۰۹ · Brute Guard</span><span class="badge on">فعال</span></div>
-  <div class="row"><span class="k">۱۰ · Telegram Alerts</span><span class="badge on">فعال</span></div>
+<div class="section-title">آمار تهدیدات</div>
+<div class="stat-grid">
+<div class="stat"><div class="stat-num green">0</div><div class="stat-label">Honeypot</div></div>
+<div class="stat"><div class="stat-num blue">13</div><div class="stat-label">مجاز</div></div>
+<div class="stat"><div class="stat-num yellow">0</div><div class="stat-label">علامت‌دار</div></div>
+<div class="stat"><div class="stat-num red">0</div><div class="stat-label">بلاک شده</div></div>
 </div>
-
-<h2>۷ تله فعال</h2>
-<div class="section">
-  <div class="row"><span class="k">/dashboard/</span><span class="badge on">ACTIVE</span></div>
-  <div class="row"><span class="k">/api/admin</span><span class="badge on">ACTIVE</span></div>
-  <div class="row"><span class="k">/api/.env</span><span class="badge on">ACTIVE</span></div>
-  <div class="row"><span class="k">/api/config.php</span><span class="badge on">ACTIVE</span></div>
-  <div class="row"><span class="k">/api/backup</span><span class="badge on">ACTIVE</span></div>
-  <div class="row"><span class="k">/api/wp-admin</span><span class="badge on">ACTIVE</span></div>
-  <div class="row"><span class="k">/api/.git</span><span class="badge on">ACTIVE</span></div>
+<div class="section-title">لایه‌های Shield</div>
+<div class="panel">
+<div class="row"><span class="row-num">01</span><span class="led led-green"></span><span class="row-name">HMAC Token</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">02</span><span class="led led-green"></span><span class="row-name">HMAC Signature</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">03</span><span class="led led-green"></span><span class="row-name">IP Whitelist</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">04</span><span class="led led-green"></span><span class="row-name">Rate Limit</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">05</span><span class="led led-green"></span><span class="row-name">Anomaly Score</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">06</span><span class="led led-green"></span><span class="row-name">Honeypot</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">07</span><span class="led led-green"></span><span class="row-name">Hash Chain</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">08</span><span class="led led-green"></span><span class="row-name">AES Vault</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">09</span><span class="led led-green"></span><span class="row-name">Brute Guard</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">10</span><span class="led led-green"></span><span class="row-name">Telegram Alerts</span><span class="row-status status-active">ACTIVE</span></div>
 </div>
-
-<h2>Cloudflare Worker</h2>
-<div class="section">
-  <div class="row"><span class="k">URL</span><span style="color:#3b82f6;font-size:10px">gentle-paper-c03a.workers.dev</span></div>
-  <div class="row"><span class="k">Endpoint</span><span>POST /trap</span></div>
-  <div class="row"><span class="k">Status</span><span class="badge on">ONLINE</span></div>
+<div class="section-title">تله‌های فعال</div>
+<div class="panel">
+<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">/dashboard/</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/admin/</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/.env/</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/config.php/</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/backup/</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/wp-admin/</span><span class="row-status status-active">ACTIVE</span></div>
+<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/.git/</span><span class="row-status status-active">ACTIVE</span></div>
 </div>
-
-<h2>آخرین تهدیدات</h2>
-<div class="section" id="threats"><div class="empty">در حال بارگذاری...</div></div>
-
-<script src="nav.js"></script>
+<div class="section-title">Cloudflare Worker</div>
+<div class="worker-panel">
+<div class="worker-head"><span class="worker-label">◆ WORKER STATUS</span><span class="led led-cyan led-lg"></span></div>
+<div class="worker-row"><span class="k">URL</span><span class="v">gentle-paper-c03a.workers.dev</span></div>
+<div class="worker-row"><span class="k">ENDPOINT</span><span class="v">POST /trap</span></div>
+<div class="worker-row"><span class="k">STATUS</span><span class="v" style="color:#00ffff">● ONLINE</span></div>
+</div>
+<div class="footer">VORIX SECURITY · v3.0 · CIRCUIT EDITION</div>
+</div>
 <script>
-fetch('../data/attacks.json?v=' + Date.now())
-  .then(r=>r.json())
-  .then(d=>{
-    const s = d.stats || {};
-    document.getElementById('s-blocked').textContent = s.blocked || 0;
-    document.getElementById('s-flagged').textContent = s.high || 0;
-    document.getElementById('s-passed').textContent = s.total || 0;
-  })
-  .catch(e=>console.error(e));
-
-fetch('../data/attacks.json?v=' + Date.now())
-  .then(r=>r.json())
-  .then(d=>{
-    const at = (d.attacks||[]).slice(0, 10);
-    if(!at.length){document.getElementById('threats').innerHTML='<div class="empty">تهدیدی نیست</div>';return;}
-    document.getElementById('threats').innerHTML = at.map(a=>{
-      const sev = (a.severity||'low').toLowerCase();
-      const t = (a.ts||'').substring(11,19);
-      const cls = sev==='critical'?'off':'warn';
-      return '<div class="row"><span class="k">' + t + ' · ' + (a.attack_type||'?') + '</span><span class="badge ' + cls + '">' + sev.toUpperCase() + '</span></div>';
-    }).join('');
-  })
-  .catch(e=>console.error(e));
+document.addEventListener('DOMContentLoaded',function(){
+setInterval(function(){
+var leds=document.querySelectorAll('.row .led-green');
+if(!leds.length)return;
+var r=leds[Math.floor(Math.random()*leds.length)];
+r.classList.remove('led-green');r.classList.add('led-red');
+setTimeout(function(){r.classList.remove('led-red');r.classList.add('led-green')},2000);
+},8000);
+setInterval(function(){
+document.querySelectorAll('.led-green').forEach(function(led,i){
+setTimeout(function(){led.style.filter='brightness(2)';setTimeout(function(){led.style.filter=''},200)},i*60);
+});
+},15000);
+setInterval(function(){
+var el=document.querySelector('.stat-num.green');
+if(el)el.textContent=Math.floor(Math.random()*3);
+},12000);
+});
 </script>
 </body>
 </html>
