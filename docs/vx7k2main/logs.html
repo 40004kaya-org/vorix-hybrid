@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Logs</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px;font-size:12px}
+h2{color:#10b981;font-size:12px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
+.bar{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.bar input,.bar select{
+  background:#0f1420;color:#e5e7eb;border:1px solid #1f2937;
+  border-radius:6px;padding:8px 10px;font-family:inherit;font-size:11px;
+}
+.bar input{flex:1;min-width:120px}
+.stats{display:flex;gap:8px;margin-bottom:10px;font-size:10px;color:#6b7280}
+.stats b{color:#10b981}
+.lst{background:#000;border:1px solid #1f2937;border-radius:8px;padding:8px;max-height:75vh;overflow-y:auto}
+.ln{display:flex;gap:8px;padding:4px 6px;border-radius:3px;font-size:11px;
+    border-right:2px solid transparent;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ln:hover{background:#0f1420}
+.ln.error{border-right-color:#ef4444;color:#fca5a5}
+.ln.warn{border-right-color:#f59e0b;color:#fcd34d}
+.ln.ok{border-right-color:#10b981;color:#6ee7b7}
+.ln.info{border-right-color:#06b6d4;color:#93c5fd}
+.ln .t{color:#4b5563;min-width:60px;flex-shrink:0}
+.ln .s{color:#10b981;min-width:80px;flex-shrink:0;opacity:.7}
+.ln .m{flex:1;overflow:hidden;text-overflow:ellipsis}
+@keyframes bl{0%,50%{opacity:1}51%,100%{opacity:0}}
+.bl{animation:bl 1s infinite;color:#10b981}
+</style></head><body>
+
+<h2>LIVE LOGS <span class="bl">●</span></h2>
+<div class="bar">
+<input id="q" placeholder="جستجو..." oninput="render()">
+<select id="f" onchange="render()">
+<option value="">همه</option>
+<option value="error">error</option>
+<option value="warn">warn</option>
+<option value="ok">ok</option>
+<option value="info">info</option>
+</select>
+</div>
+<div class="stats" id="st">...</div>
+<div class="lst" id="lst"></div>
+
+<script src="nav.js"></script><script>
+var DATA=null;
+function e(s){return String(s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+function r(){
+if(!DATA)return;
+var q=(document.getElementById('q').value||'').toLowerCase();
+var f=document.getElementById('f').value;
+var en=DATA.entries||[];
+var filtered=en.filter(function(x){
+if(f&&x.sev!==f)return false;
+if(q&&!(x.msg||'').toLowerCase().includes(q)&&!(x.src||'').toLowerCase().includes(q))return false;
+return true;
+});
+document.getElementById('st').innerHTML='کل: <b>'+en.length+'</b> | نمایش: <b>'+filtered.length+'</b> | '+(DATA.ts||'');
+var lst=document.getElementById('lst');
+if(!filtered.length){lst.innerHTML='<div style="color:#666;text-align:center;padding:20px">لاگی نیست</div>';return}
+lst.innerHTML=filtered.slice().reverse().map(function(x){
+return '<div class="ln '+(x.sev||'info')+'">'+
+'<span class="t">'+e(x.ts||'--:--')+'</span>'+
+'<span class="s">'+e(x.src||'?')+'</span>'+
+'<span class="m">'+e(x.msg||'')+'</span></div>';
+}).join('');
+}
+function render(){r()}
+function L(){fetch('../data/logs.json?v='+Date.now()).then(r=>r.json()).then(d=>{DATA=d;r()}).catch(console.error)}
+L();setInterval(L,30000);
+</script></body></html>

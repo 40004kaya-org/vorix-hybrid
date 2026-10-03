@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Metrics</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#10b981;font-size:12px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card{background:#0f1420;border:1px solid #1f2937;border-radius:8px;padding:10px}
+.card .h{font-size:10px;color:#6b7280;margin-bottom:6px}
+.card .v{font-size:22px;font-weight:bold;color:#10b981}
+.card .v.y{color:#f59e0b}
+.card .v.r{color:#ef4444}
+.card .v.c{color:#06b6d4}
+.bars{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.brow{display:flex;align-items:center;gap:8px;font-size:10px}
+.brow .n{width:70px;color:#9ca3af}
+.brow .b{flex:1;height:12px;background:#0a0a0a;border-radius:3px;overflow:hidden}
+.brow .f{height:100%;background:linear-gradient(90deg,#10b981,#06b6d4);border-radius:3px;transition:width .5s}
+.brow .v{width:28px;color:#10b981;font-weight:bold;text-align:left}
+.full{grid-column:1/-1}
+</style></head><body>
+
+<h2>METRICS</h2>
+<div class="grid" id="g">
+<div class="card"><div class="h">فعال</div><div class="v" id="act">-</div></div>
+<div class="card"><div class="h">کل لایه</div><div class="v c" id="tot">-</div></div>
+<div class="card"><div class="h">آماده</div><div class="v y" id="sby">-</div></div>
+<div class="card"><div class="h">خاموش</div><div class="v r" id="dn">-</div></div>
+<div class="card full">
+<div class="h">وضعیت لایه‌ها</div>
+<div class="bars" id="bars"></div>
+</div>
+<div class="card full">
+<div class="h">آخرین بروزرسانی</div>
+<div class="v c" id="ts" style="font-size:14px">-</div>
+</div>
+</div>
+
+<script src="nav.js"></script><script>
+function r(d){
+var L=(d&&d.layers)||[];
+var a=L.filter(l=>l.running).length;
+var s=L.filter(l=>!l.running&&l.color==='yellow').length;
+var dn=L.filter(l=>!l.running&&l.color==='red').length;
+document.getElementById('act').textContent=a;
+document.getElementById('sby').textContent=s;
+document.getElementById('dn').textContent=dn;
+document.getElementById('tot').textContent=L.length;
+document.getElementById('ts').textContent=(d&&d.ts)||'-';
+
+// Bars
+var groups={
+'🟢 فعال':a,'🟡 آماده':s,'🔴 خاموش':dn
+};
+var mx=Math.max(a,s,dn,1);
+document.getElementById('bars').innerHTML=Object.keys(groups).map(function(k){
+var v=groups[k];
+return '<div class="brow"><div class="n">'+k+'</div><div class="b"><div class="f" style="width:'+(v/mx*100)+'%"></div></div><div class="v">'+v+'</div></div>';
+}).join('');
+}
+fetch('../data/live.json?v='+Date.now()).then(r=>r.json()).then(r).catch(console.error);
+setInterval(()=>fetch('../data/live.json?v='+Date.now()).then(r=>r.json()).then(r),30000);
+</script></body></html>

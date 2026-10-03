@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discover</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0e1a;color:#dfe5ef;font-family:-apple-system,system-ui,sans-serif;font-size:13px;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+/* Top bar */
+.kb-top{display:flex;gap:8px;padding:8px;background:#0d1117;border-bottom:1px solid #1f2937;align-items:center}
+.kb-search{flex:1;position:relative}
+.kb-search input{width:100%;background:#161b22;border:1px solid #30363d;color:#dfe5ef;padding:8px 12px 8px 34px;border-radius:4px;font-size:12px;font-family:monospace;direction:ltr;text-align:left}
+.kb-search input:focus{outline:none;border-color:#1f6feb;box-shadow:0 0 0 2px rgba(31,111,235,.3)}
+.kb-search .icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#6e7681;font-size:14px}
+.kb-search .hint{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#6e7681;font-size:10px}
+
+.kb-btn{background:#21262d;border:1px solid #30363d;color:#c9d1d9;padding:7px 12px;border-radius:4px;cursor:pointer;font-size:11px;font-family:inherit;white-space:nowrap}
+.kb-btn:hover{background:#30363d}
+.kb-btn.primary{background:#238636;border-color:#2ea043;color:#fff}
+.kb-btn.primary:hover{background:#2ea043}
+
+/* Time picker */
+.kb-time{background:#21262d;border:1px solid #30363d;color:#c9d1d9;padding:7px 10px;border-radius:4px;font-size:11px;cursor:pointer}
+.kb-time:hover{background:#30363d}
+
+/* Chips */
+.kb-chips{padding:6px 8px;background:#0d1117;border-bottom:1px solid #1f2937;display:flex;gap:6px;flex-wrap:wrap;min-height:34px;align-items:center}
+.kb-chip{background:#1f6feb;color:#fff;padding:3px 8px;border-radius:12px;font-size:10px;display:flex;align-items:center;gap:5px;font-family:monospace}
+.kb-chip .x{cursor:pointer;opacity:.7;font-weight:bold}
+.kb-chip .x:hover{opacity:1}
+.kb-chip.empty{background:transparent;color:#6e7681;font-style:italic}
+
+/* Layout */
+.kb-main{display:flex;flex:1;overflow:hidden}
+.kb-side{width:200px;background:#0d1117;border-left:1px solid #1f2937;overflow-y:auto;padding:8px;flex-shrink:0}
+.kb-side h3{font-size:10px;color:#6e7681;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.kb-field{padding:5px 8px;border-radius:4px;cursor:pointer;font-size:11px;color:#8b949e;font-family:monospace;display:flex;justify-content:space-between;margin-bottom:2px}
+.kb-field:hover{background:#161b22;color:#c9d1d9}
+.kb-field.active{background:#1f6feb33;color:#79c0ff;border-right:2px solid #1f6feb}
+.kb-field .count{background:#21262d;color:#6e7681;padding:1px 6px;border-radius:8px;font-size:9px}
+.kb-field.active .count{background:#1f6feb;color:#fff}
+
+.kb-content{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.kb-hist{height:90px;background:#0d1117;border-bottom:1px solid #1f2937;padding:8px;position:relative}
+.kb-hist svg{width:100%;height:100%;display:block}
+
+/* Logs */
+.kb-logs{flex:1;overflow-y:auto;background:#0d1117}
+.kb-logs .hdr{display:flex;padding:6px 10px;background:#161b22;border-bottom:1px solid #30363d;font-size:10px;color:#6e7681;text-transform:uppercase;letter-spacing:1px;position:sticky;top:0;z-index:2}
+.kb-logs .hdr .c{padding:0 8px}
+.kb-log{display:flex;padding:5px 10px;border-bottom:1px solid #161b22;font-size:11px;cursor:pointer;font-family:monospace;align-items:flex-start;gap:8px}
+.kb-log:hover{background:#161b22}
+.kb-log .ts{color:#6e7681;min-width:140px;flex-shrink:0;direction:ltr;text-align:left}
+.kb-log .sv{padding:1px 6px;border-radius:3px;font-size:9px;font-weight:bold;min-width:50px;text-align:center;flex-shrink:0}
+.sv.error{background:#5c1f1f;color:#ff8182}
+.sv.warn{background:#5c3f1f;color:#ffc680}
+.sv.ok{background:#1f5c37;color:#7ee787}
+.sv.info{background:#1f3a5c;color:#79c0ff}
+.kb-log .src{color:#79c0ff;min-width:100px;flex-shrink:0}
+.kb-log .msg{flex:1;color:#c9d1d9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr;text-align:left}
+.kb-log.open{background:#161b22;padding-bottom:14px}
+.kb-log.open .msg{white-space:pre-wrap;word-break:break-all;text-overflow:clip}
+
+.kb-log .expand{display:none;margin-top:8px;padding:8px;background:#0a0e1a;border:1px solid #21262d;border-radius:4px;width:100%;font-size:11px;color:#8b949e}
+.kb-log.open .expand{display:block}
+.kb-log .expand .row{display:flex;gap:8px;padding:3px 0;border-bottom:1px solid #161b22}
+.kb-log .expand .row:last-child{border:none}
+.kb-log .expand .k{color:#6e7681;min-width:80px}
+.kb-log .expand .v{color:#c9d1d9;flex:1;word-break:break-all}
+
+.empty{color:#6e7681;text-align:center;padding:40px;font-style:italic}
+
+/* autocomplete */
+.kb-ac{position:absolute;top:100%;left:0;right:0;background:#161b22;border:1px solid #30363d;border-top:none;border-radius:0 0 4px 4px;max-height:200px;overflow-y:auto;display:none;z-index:100}
+.kb-ac.show{display:block}
+.kb-ac .item{padding:6px 12px;cursor:pointer;font-size:11px;font-family:monospace;color:#c9d1d9;direction:ltr;text-align:left}
+.kb-ac .item:hover,.kb-ac .item.sel{background:#1f6feb33;color:#79c0ff}
+.kb-ac .item .k{color:#79c0ff}
+.kb-ac .item .d{color:#6e7681;margin-left:8px}
+
+/* loading */
+.loading{position:fixed;top:0;left:0;right:0;height:2px;background:#1f6feb;animation:ld 1s infinite;z-index:9999}
+@keyframes ld{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+</style></head><body>
+
+<div class="kb-top">
+  <button class="kb-btn" onclick="refresh()">↻</button>
+  <div class="kb-search">
+    <span class="icon">⌕</span>
+    <input id="q" placeholder='level:error AND msg:"fail"' oninput="ac()" onkeydown="acKey(event)" onfocus="ac()">
+    <span class="hint">KQL</span>
+    <div class="kb-ac" id="ac"></div>
+  </div>
+  <button class="kb-time" onclick="cycleTime()" id="tp">Last 24h</button>
+  <button class="kb-btn primary" onclick="saveSearch()">💾 Save</button>
+</div>
+
+<div class="kb-chips" id="chips"></div>
+
+<div class="kb-main">
+  <div class="kb-side">
+    <h3>Fields</h3>
+    <div id="fields"></div>
+  </div>
+  <div class="kb-content">
+    <div class="kb-hist">
+      <svg id="hist" preserveAspectRatio="none" viewBox="0 0 1000 80"></svg>
+    </div>
+    <div class="kb-logs">
+      <div class="hdr">
+        <span class="c" style="min-width:140px">Time</span>
+        <span class="c" style="min-width:50px">Level</span>
+        <span class="c" style="min-width:100px">Source</span>
+        <span class="c" style="flex:1">Message</span>
+      </div>
+      <div id="logs"></div>
+    </div>
+  </div>
+</div>
+
+<script src="nav.js"></script>
+<script>
+var DATA = null;
+var FILTERS = [];  // array of {field, value, op}
+var TIMES = ['Last 15m','Last 1h','Last 4h','Last 24h','Last 7d','Last 30d'];
+var TIDX = 3;
+var AC_ITEMS = [];
+var AC_SEL = -1;
+
+function fmtTime(ts) {
+  if (!ts) return '--';
+  return ts.replace('T',' ').substring(0,19);
+}
+
+function withinTime(ts) {
+  var ranges = [15*60, 60*60, 4*3600, 24*3600, 7*86400, 30*86400];
+  var sec = ranges[TIDX];
+  // ساده‌سازی: اگه ts کوتاه بود (HH:MM), فقط بذار
+  if (!ts || ts.length < 10) return true;
+  try {
+    var t = new Date(ts).getTime();
+    return (Date.now() - t) < sec * 1000;
+  } catch(e) { return true; }
+}
+
+function applyKQL(entries, q) {
+  if (!q) return entries;
+  // پارس ساده: field:value AND field2:value2
+  var parts = q.split(/\s+AND\s+/i);
+  return entries.filter(function(e) {
+    return parts.every(function(p) {
+      p = p.trim();
+      // NOT
+      var neg = false;
+      if (/^NOT\s+/i.test(p)) { neg = true; p = p.replace(/^NOT\s+/i,''); }
+      var m = p.match(/^(\w+):"([^"]+)"$/) || p.match(/^(\w+):(\S+)$/);
+      var res;
+      if (m) {
+        var field = m[1], val = m[2].toLowerCase();
+        var fv = String(e[field] || '').toLowerCase();
+        if (field === 'level' || field === 'sev' || field === 'severity') {
+          fv = String(e.sev || e.severity || '').toLowerCase();
+        }
+        res = fv.indexOf(val) >= 0;
+      } else {
+        // free text
+        var low = p.toLowerCase();
+        res = JSON.stringify(e).toLowerCase().indexOf(low) >= 0;
+      }
+      return neg ? !res : res;
+    });
+  });
+}
+
+function applyFilters(entries) {
+  return entries.filter(function(e) {
+    return FILTERS.every(function(f) {
+      var fv = String(e[f.field] || '').toLowerCase();
+      if (f.field === 'level') fv = String(e.sev || '').toLowerCase();
+      if (f.op === ':') return fv === f.value.toLowerCase();
+      return fv.indexOf(f.value.toLowerCase()) >= 0;
+    });
+  });
+}
+
+function getEntries() {
+  if (!DATA) return [];
+  return (DATA.entries || []).filter(function(e) { return withinTime(e.ts); });
+}
+
+function renderChips() {
+  var el = document.getElementById('chips');
+  var q = document.getElementById('q').value.trim();
+  var html = '';
+  if (q) {
+    html += '<span class="kb-chip">🔍 ' + q.replace(/</g,'&lt;') + '</span>';
+  }
+  FILTERS.forEach(function(f, i) {
+    html += '<span class="kb-chip">' + f.field + ':' + f.value +
+      ' <span class="x" onclick="rmFilter(' + i + ')">✕</span></span>';
+  });
+  if (!html) html = '<span class="kb-chip empty">هیچ فیلتری فعال نیست — روی فیلدها کلیک کن</span>';
+  el.innerHTML = html;
+}
+
+function rmFilter(i) {
+  FILTERS.splice(i, 1);
+  render();
+}
+
+function renderFields() {
+  var e = getEntries();
+  var counts = {};
+  e.forEach(function(x) {
+    ['src','sev'].forEach(function(k) {
+      var v = x[k] || '-';
+      counts[k] = counts[k] || {};
+      counts[k][v] = (counts[k][v] || 0) + 1;
+    });
+  });
+  var html = '';
+  ['src','sev'].forEach(function(k) {
+    Object.keys(counts[k] || {}).sort().forEach(function(v) {
+      var active = FILTERS.some(function(f) { return f.field === k && f.value === v; });
+      html += '<div class="kb-field' + (active ? ' active' : '') +
+        '" onclick="toggleFilter(\'' + k + '\',\'' + v + '\')">' +
+        '<span>' + k + ': ' + v + '</span>' +
+        '<span class="count">' + counts[k][v] + '</span></div>';
+    });
+  });
+  document.getElementById('fields').innerHTML = html || '<div class="empty" style="padding:10px;font-size:11px">فیلدی نیست</div>';
+}
+
+function toggleFilter(field, value) {
+  var idx = FILTERS.findIndex(function(f) { return f.field === field && f.value === value; });
+  if (idx >= 0) FILTERS.splice(idx, 1);
+  else FILTERS.push({ field: field, value: value, op: ':' });
+  render();
+}
+
+function renderHistogram(entries) {
+  var svg = document.getElementById('hist');
+  var W = 1000, H = 80;
+  // گروه‌بندی در 30 بازه
+  var buckets = new Array(30).fill(0);
+  var sevBuckets = new Array(30).fill(null).map(function(){ return {error:0,warn:0,ok:0,info:0}; });
+  var now = Date.now();
+  var ranges = [15*60, 60*60, 4*3600, 24*3600, 7*86400, 30*86400];
+  var range = ranges[TIDX] * 1000;
+  entries.forEach(function(e) {
+    if (!e.ts || e.ts.length < 10) return;
+    var t;
+    try { t = new Date(e.ts).getTime(); } catch(err) { return; }
+    var dt = now - t;
+    if (dt < 0 || dt > range) return;
+    var idx = Math.floor((1 - dt/range) * 29);
+    if (idx < 0) idx = 0; if (idx > 29) idx = 29;
+    buckets[idx]++;
+    var sv = e.sev || 'info';
+    if (sevBuckets[idx][sv] !== undefined) sevBuckets[idx][sv]++;
+  });
+  var max = Math.max(1, Math.max.apply(null, buckets));
+  var bw = W / 30;
+  var html = '<rect x="0" y="0" width="1000" height="80" fill="#0d1117"/>';
+  // grid line
+  html += '<line x1="0" y1="79" x2="1000" y2="79" stroke="#30363d" stroke-width="1"/>';
+  sevBuckets.forEach(function(s, i) {
+    var total = s.error + s.warn + s.ok + s.info;
+    if (!total) return;
+    var x = i * bw;
+    var yBase = 78;
+    // draw stacked
+    var colors = { error:'#f85149', warn:'#d29922', ok:'#3fb950', info:'#58a6ff' };
+    ['error','warn','info','ok'].forEach(function(k) {
+      if (!s[k]) return;
+      var h = (s[k] / max) * 70;
+      html += '<rect x="' + (x+1) + '" y="' + (yBase - h) + '" width="' + (bw-2) + '" height="' + h + '" fill="' + colors[k] + '" opacity="0.8"/>';
+      yBase -= h;
+    });
+  });
+  svg.innerHTML = html;
+}
+
+function renderLogs(entries) {
+  var el = document.getElementById('logs');
+  if (!entries.length) {
+    el.innerHTML = '<div class="empty">هیچ لاگی مطابق فیلتر نیست</div>';
+    return;
+  }
+  el.innerHTML = entries.slice().reverse().map(function(e, i) {
+    var sv = e.sev || 'info';
+    return '<div class="kb-log" onclick="this.classList.toggle(\'open\')">' +
+      '<span class="ts">' + fmtTime(e.ts) + '</span>' +
+      '<span class="sv ' + sv + '">' + sv.toUpperCase() + '</span>' +
+      '<span class="src">' + (e.src || '-') + '</span>' +
+      '<span class="msg">' + (e.msg || '').replace(/</g,'&lt;') + '</span>' +
+      '<div class="expand">' +
+        '<div class="row"><span class="k">src</span><span class="v">' + (e.src||'-') + '</span></div>' +
+        '<div class="row"><span class="k">sev</span><span class="v">' + (e.sev||'-') + '</span></div>' +
+        '<div class="row"><span class="k">ts</span><span class="v">' + (e.ts||'-') + '</span></div>' +
+        '<div class="row"><span class="k">msg</span><span class="v">' + (e.msg||'-').replace(/</g,'&lt;') + '</span></div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function render() {
+  var all = getEntries();
+  var q = document.getElementById('q').value;
+  var afterKQL = applyKQL(all, q);
+  var afterFilters = applyFilters(afterKQL);
+  document.getElementById('tp').textContent = TIMES[TIDX];
+  renderChips();
+  renderFields();
+  renderHistogram(afterFilters);
+  renderLogs(afterFilters);
+}
+
+function refresh() {
+  document.body.insertAdjacentHTML('afterbegin', '<div class="loading"></div>');
+  fetch('../data/logs.json?v=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(d) {
+      DATA = d;
+      render();
+      var l = document.querySelector('.loading'); if (l) l.remove();
+    })
+    .catch(function(e) {
+      console.error(e);
+      var l = document.querySelector('.loading'); if (l) l.remove();
+    });
+}
+
+function cycleTime() {
+  TIDX = (TIDX + 1) % TIMES.length;
+  render();
+}
+
+/* autocomplete */
+function ac() {
+  var q = document.getElementById('q').value;
+  var acEl = document.getElementById('ac');
+  // پیشنهادهای ثابت
+  var sugg = [
+    { t: 'level:error', d: 'فقط خطاها' },
+    { t: 'level:warn',  d: 'هشدارها' },
+    { t: 'level:ok',    d: 'موفق' },
+    { t: 'src:layer_heartbeat', d: 'لایه heartbeat' },
+    { t: 'src:layer_guard',     d: 'لایه guard' },
+    { t: 'src:layer_aegis',     d: 'لایه aegis' },
+    { t: 'msg:"started"',       d: 'شروع شده' },
+    { t: 'msg:"error"',         d: 'خطا' },
+  ];
+  var last = q.split(/\s+/).pop() || '';
+  AC_ITEMS = sugg.filter(function(s) {
+    return !last || s.t.toLowerCase().indexOf(last.toLowerCase()) >= 0;
+  });
+  AC_SEL = -1;
+  if (!AC_ITEMS.length || !q || q.endsWith(' ')) {
+    acEl.classList.remove('show');
+    return;
+  }
+  acEl.innerHTML = AC_ITEMS.map(function(s,i) {
+    return '<div class="item" data-i="' + i + '" onclick="acPick(' + i + ')">' +
+      '<span class="k">' + s.t + '</span><span class="d">' + s.d + '</span></div>';
+  }).join('');
+  acEl.classList.add('show');
+}
+
+function acPick(i) {
+  var item = AC_ITEMS[i];
+  if (!item) return;
+  var q = document.getElementById('q').value;
+  var parts = q.split(/\s+/);
+  parts[parts.length - 1] = item.t;
+  document.getElementById('q').value = parts.join(' ');
+  document.getElementById('ac').classList.remove('show');
+  render();
+}
+
+function acKey(e) {
+  var acEl = document.getElementById('ac');
+  if (!acEl.classList.contains('show')) {
+    if (e.key === 'Enter') render();
+    return;
+  }
+  if (e.key === 'ArrowDown') { AC_SEL = Math.min(AC_SEL+1, AC_ITEMS.length-1); e.preventDefault(); }
+  else if (e.key === 'ArrowUp') { AC_SEL = Math.max(AC_SEL-1, 0); e.preventDefault(); }
+  else if (e.key === 'Enter') {
+    if (AC_SEL >= 0) acPick(AC_SEL);
+    else { acEl.classList.remove('show'); render(); }
+    e.preventDefault();
+    return;
+  } else if (e.key === 'Escape') { acEl.classList.remove('show'); return; }
+  document.querySelectorAll('.kb-ac .item').forEach(function(el,i) {
+    el.classList.toggle('sel', i === AC_SEL);
+  });
+}
+
+function saveSearch() {
+  var q = document.getElementById('q').value;
+  try {
+    var saved = JSON.parse(localStorage.getItem('vx_saved') || '[]');
+    saved.push({ q: q, filters: FILTERS.slice(), time: TIMES[TIDX] });
+    if (saved.length > 10) saved = saved.slice(-10);
+    localStorage.setItem('vx_saved', JSON.stringify(saved));
+    alert('ذخیره شد: ' + q);
+  } catch(e) { alert('خطا در ذخیره'); }
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.kb-search')) {
+    document.getElementById('ac').classList.remove('show');
+  }
+});
+
+// خروجی بستن state
+refresh();
+setInterval(refresh, 30000);
+</script>
+</body></html>
