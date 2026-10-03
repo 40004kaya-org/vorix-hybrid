@@ -1,20 +1,8 @@
 {
- "ts": "2026-10-03T07:21:06.417526Z",
+ "ts": "2026-10-03T07:22:15.352955Z",
  "total": 100,
  "entries": [
   {
-   "src": "layer_resurrect",
-   "ts": "10:35:02",
-   "sev": "ok",
-   "msg": "♻️ Resurrect started"
-  },
-  {
-   "src": "layer_rootkit",
-   "ts": "",
-   "sev": "info",
-   "msg": "Usage: layer_rootkit.py {watch|status|test|scan}"
-  },
-  {
    "src": "layer_scoring",
    "ts": "",
    "sev": "info",
@@ -43,54 +31,6 @@
    "ts": "",
    "sev": "info",
    "msg": "Usage: layer_scoring.py {test|status|get <ip>|add <ip> <layer> <score>}"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:31:03",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_shield.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:31:03",
-   "sev": "info",
-   "msg": "➕ new file: vorix_bot_v2.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:31:03",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_api.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:31:09",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:31:09",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_shield.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:31:09",
-   "sev": "info",
-   "msg": "➕ new file: vorix_bot_v2.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:31:09",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_api.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:34:55",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
   },
   {
    "src": "layer_seal",
@@ -135,40 +75,52 @@
    "msg": "➕ new file: vorix_shop_api.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:10:03",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+   "src": "layer_seal",
+   "ts": "10:51:08",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:31:04",
+   "src": "layer_seal",
+   "ts": "10:51:08",
    "sev": "info",
-   "msg": "🕸️ Tarpit listening on 9999"
+   "msg": "➕ new file: vorix_shop_shield.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:31:09",
+   "src": "layer_seal",
+   "ts": "10:51:08",
    "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
+   "msg": "➕ new file: vorix_bot_v2.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:31:13",
+   "src": "layer_seal",
+   "ts": "10:51:08",
    "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+   "msg": "➕ new file: vorix_shop_api.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:31:28",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+   "src": "layer_seal",
+   "ts": "10:51:14",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:31:41",
+   "src": "layer_seal",
+   "ts": "10:51:14",
    "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
+   "msg": "➕ new file: vorix_shop_shield.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:51:14",
+   "sev": "info",
+   "msg": "➕ new file: vorix_bot_v2.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:51:14",
+   "sev": "info",
+   "msg": "➕ new file: vorix_shop_api.py"
   },
   {
    "src": "layer_tarpit",
@@ -226,6 +178,42 @@
   },
   {
    "src": "layer_tarpit",
+   "ts": "10:51:08",
+   "sev": "info",
+   "msg": "🕸️ Tarpit listening on 9999"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:51:14",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:51:38",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:51:45",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:51:53",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:52:08",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
    "ts": "06:31:44",
    "sev": "info",
    "msg": "ERR: [Errno 98] Address already in use"
@@ -255,6 +243,18 @@
    "msg": "ERR: [Errno 98] Address already in use"
   },
   {
+   "src": "layer_tarpit",
+   "ts": "10:51:14",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:51:45",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
    "src": "layer_voice",
    "ts": "",
    "sev": "info",
@@ -283,18 +283,6 @@
    "ts": "",
    "sev": "info",
    "msg": "Usage: layer_voice.py {test|status|speak <text>}"
-  },
-  {
-   "src": "layer_watchtower",
-   "ts": "06:14:16",
-   "sev": "ok",
-   "msg": "🗼 Watchtower started"
-  },
-  {
-   "src": "layer_watchtower",
-   "ts": "06:16:54",
-   "sev": "ok",
-   "msg": "🗼 Watchtower started"
   },
   {
    "src": "layer_watchtower",
@@ -375,28 +363,16 @@
    "msg": "🗼 Watchtower started"
   },
   {
-   "src": "layer_whitelist",
-   "ts": "06:26:28",
-   "sev": "info",
-   "msg": "Loaded 2 IPs"
-  },
-  {
-   "src": "layer_whitelist",
-   "ts": "06:28:33",
+   "src": "layer_watchtower",
+   "ts": "10:51:09",
    "sev": "ok",
-   "msg": "✅ Whitelist started"
+   "msg": "🗼 Watchtower started"
   },
   {
-   "src": "layer_whitelist",
-   "ts": "06:28:33",
-   "sev": "info",
-   "msg": "Loaded 2 IPs"
-  },
-  {
-   "src": "layer_whitelist",
-   "ts": "06:31:44",
+   "src": "layer_watchtower",
+   "ts": "10:51:14",
    "sev": "ok",
-   "msg": "✅ Whitelist started"
+   "msg": "🗼 Watchtower started"
   },
   {
    "src": "layer_whitelist",
@@ -461,6 +437,30 @@
   {
    "src": "layer_whitelist",
    "ts": "10:35:02",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "10:51:08",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "10:51:08",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "10:51:14",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "10:51:14",
    "sev": "info",
    "msg": "Loaded 2 IPs"
   },

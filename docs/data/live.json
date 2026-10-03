@@ -1,14 +1,14 @@
 {
-  "ts": "2026-10-03T07:21:06.247908Z",
+  "ts": "2026-10-03T07:22:15.146928Z",
   "layers": [
     {
       "id": "L01",
       "file": "layer01_selfdefense",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21193",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L02",
@@ -22,20 +22,20 @@
     {
       "id": "L03",
       "file": "layer03_behavioral",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21195",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L04",
       "file": "layer04_auto_block",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21197",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L05",
@@ -49,11 +49,11 @@
     {
       "id": "L06",
       "file": "layer06_geoip_block",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21199",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L07",
@@ -67,29 +67,29 @@
     {
       "id": "L08",
       "file": "layer08_network_monitor",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21203",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L09",
       "file": "layer09_rate_limiter",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21209",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L10",
       "file": "layer10_red_alert",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21214",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L11",
@@ -139,11 +139,11 @@
     {
       "id": "L17",
       "file": "layer17_watchdog",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21217",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L18",
@@ -157,20 +157,20 @@
     {
       "id": "L19",
       "file": "layer19_password_leak",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21222",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L21",
       "file": "layer21_ml_anomaly",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21229",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L22",
@@ -202,11 +202,11 @@
     {
       "id": "L25",
       "file": "layer25_ssl_monitor",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21232",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L26",
@@ -220,11 +220,11 @@
     {
       "id": "L29",
       "file": "layer29_30_identity",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21235",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L31",
@@ -238,38 +238,38 @@
     {
       "id": "L-FIM",
       "file": "layer_fim",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21239",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L-Root",
       "file": "layer_rootkit",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21248",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L-MC",
       "file": "layer_multichannel",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21252",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L-LF",
       "file": "layer_livefeed",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21345",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L-MITRE",
@@ -346,11 +346,11 @@
     {
       "id": "L-Bot",
       "file": "vorix_bot",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21094",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L-Sync",
@@ -364,27 +364,27 @@
     {
       "id": "L-Keep",
       "file": "keepalive",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21373",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L-Agent",
       "file": "agent",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "21086",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     }
   ],
   "stats": {
-    "green": 1,
+    "green": 20,
     "yellow": 22,
     "orange": 0,
-    "red": 19,
+    "red": 0,
     "total": 42
   }
 }
