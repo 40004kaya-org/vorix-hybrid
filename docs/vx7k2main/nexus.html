@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VORIX · NEXUS-9</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#050510;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden;min-height:100vh}
+body{padding:10px;position:relative;font-size:13px}
+
+/* ═══ AMBIENT ORBS ═══ */
+.orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:.4;pointer-events:none;z-index:0}
+.orb.o1{width:300px;height:300px;background:#7c3aed;top:-100px;left:-80px;animation:float1 20s infinite}
+.orb.o2{width:250px;height:250px;background:#06b6d4;top:30%;right:-100px;animation:float2 25s infinite}
+.orb.o3{width:280px;height:280px;background:#ec4899;bottom:-100px;left:30%;animation:float3 22s infinite}
+.orb.o4{width:200px;height:200px;background:#f59e0b;top:60%;left:-60px;animation:float1 30s infinite}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,60px) scale(1.1)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,30px) scale(0.9)}}
+@keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
+
+/* ═══ PARTICLE CANVAS ═══ */
+#particles{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+/* ═══ GRID OVERLAY ═══ */
+.grid-overlay{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(139,92,246,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(6,182,212,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%)}
+
+/* ═══ CONTAINER ═══ */
+.wrap{position:relative;z-index:3;max-width:900px;margin:0 auto}
+
+/* ═══ GLASS CARD ═══ */
+.glass{background:rgba(15,20,35,.55);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(139,92,246,.2);border-radius:16px;padding:14px;margin-bottom:12px;
+  box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05);
+  position:relative;overflow:hidden}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(139,92,246,.8),transparent)}
+.glass.glow-cyan::before{background:linear-gradient(90deg,transparent,rgba(6,182,212,.9),transparent)}
+.glass.glow-pink::before{background:linear-gradient(90deg,transparent,rgba(236,72,153,.9),transparent)}
+
+/* ═══ HEADER ═══ */
+.hdr{padding:16px;margin-bottom:12px}
+.hdr-top{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:12px}
+.logo-3d{width:44px;height:44px;position:relative}
+.logo-3d svg{width:100%;height:100%;filter:drop-shadow(0 0 15px rgba(139,92,246,.8))}
+.brand-name{font-size:16px;font-weight:700;letter-spacing:8px;
+  background:linear-gradient(90deg,#8b5cf6,#06b6d4,#ec4899);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;filter:drop-shadow(0 0 20px rgba(139,92,246,.5))}
+.brand-sub{color:#64748b;font-size:9px;letter-spacing:4px;margin-top:2px}
+.status-wrap{text-align:left}
+.status-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;
+  background:linear-gradient(90deg,rgba(6,182,212,.15),rgba(139,92,246,.15));
+  border:1px solid rgba(6,182,212,.4);font-size:10px;letter-spacing:2px;color:#22d3ee;
+  box-shadow:0 0 15px rgba(6,182,212,.3)}
+.dot{width:6px;height:6px;border-radius:50%;background:#22d3ee;box-shadow:0 0 8px #22d3ee;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.time{color:#8b5cf6;font-size:11px;margin-top:6px;letter-spacing:3px;font-family:monospace;filter:drop-shadow(0 0 8px rgba(139,92,246,.6))}
+
+/* ═══ NETWORK SVG ═══ */
+.network{padding:8px;position:relative}
+.network svg{width:100%;height:auto;display:block}
+
+/* SVG styles */
+.panel{fill:rgba(15,20,35,.7);stroke:rgba(139,92,246,.3);stroke-width:1}
+.panel.core{fill:rgba(139,92,246,.1);stroke:rgba(139,92,246,.8);stroke-width:2;filter:drop-shadow(0 0 20px rgba(139,92,246,.6))}
+.panel.cyan{stroke:rgba(6,182,212,.6)}
+.panel.pink{stroke:rgba(236,72,153,.6)}
+.panel.yellow{stroke:rgba(245,158,11,.6)}
+.panel.green{stroke:rgba(16,185,129,.6)}
+
+.conn{stroke:rgba(139,92,246,.4);stroke-width:1;fill:none}
+.conn.anim{stroke:rgba(139,92,246,.9);stroke-dasharray:4 8;animation:dash 2s linear infinite;filter:drop-shadow(0 0 4px rgba(139,92,246,.8))}
+.conn.anim.cyan{stroke:#22d3ee;filter:drop-shadow(0 0 6px #22d3ee)}
+.conn.anim.pink{stroke:#ec4899;filter:drop-shadow(0 0 6px #ec4899)}
+.conn.anim.yellow{stroke:#f59e0b;filter:drop-shadow(0 0 6px #f59e0b)}
+.conn.anim.green{stroke:#10b981;filter:drop-shadow(0 0 6px #10b981)}
+@keyframes dash{to{stroke-dashoffset:-40}}
+
+.txt-title{fill:#e2e8f0;font-size:10px;font-weight:700;letter-spacing:2px;text-anchor:middle;font-family:monospace}
+.txt-sub{fill:#94a3b8;font-size:8px;text-anchor:middle;font-family:monospace}
+.txt-val{font-size:16px;font-weight:700;text-anchor:middle;font-family:monospace}
+.txt-val.purple{fill:#8b5cf6;filter:drop-shadow(0 0 8px rgba(139,92,246,.8))}
+.txt-val.cyan{fill:#22d3ee;filter:drop-shadow(0 0 8px rgba(6,182,212,.8))}
+.txt-val.pink{fill:#ec4899;filter:drop-shadow(0 0 8px rgba(236,72,153,.8))}
+.txt-val.yellow{fill:#f59e0b;filter:drop-shadow(0 0 8px rgba(245,158,11,.8))}
+.txt-val.green{fill:#10b981;filter:drop-shadow(0 0 8px rgba(16,185,129,.8))}
+.txt-core{fill:#e2e8f0;font-size:14px;font-weight:700;letter-spacing:4px;text-anchor:middle;font-family:monospace}
+
+.ring{fill:none;stroke-width:1}
+.ring.purple{stroke:rgba(139,92,246,.6)}
+.ring.cyan{stroke:rgba(6,182,212,.6)}
+.ring.pink{stroke:rgba(236,72,153,.6)}
+
+/* ═══ STATS GRID ═══ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.stat{padding:12px 8px;text-align:center;position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#8b5cf6,transparent)}
+.stat.cyan::before{background:linear-gradient(90deg,transparent,#22d3ee,transparent)}
+.stat.pink::before{background:linear-gradient(90deg,transparent,#ec4899,transparent)}
+.stat.yellow::before{background:linear-gradient(90deg,transparent,#f59e0b,transparent)}
+.stat .icon{font-size:20px;margin-bottom:4px;filter:drop-shadow(0 0 10px currentColor)}
+.stat .v{font-size:22px;font-weight:800;letter-spacing:-1px;font-family:monospace}
+.stat.purple .v{color:#8b5cf6;text-shadow:0 0 15px rgba(139,92,246,.6)}
+.stat.cyan .v{color:#22d3ee;text-shadow:0 0 15px rgba(6,182,212,.6)}
+.stat.pink .v{color:#ec4899;text-shadow:0 0 15px rgba(236,72,153,.6)}
+.stat.yellow .v{color:#f59e0b;text-shadow:0 0 15px rgba(245,158,11,.6)}
+.stat .l{color:#64748b;font-size:9px;letter-spacing:2px;margin-top:4px;text-transform:uppercase}
+
+/* ═══ SECTION HEADER ═══ */
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(139,92,246,.15)}
+.sec-hdr h2{font-size:11px;letter-spacing:4px;color:#8b5cf6;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:8px}
+.sec-hdr .count{color:#64748b;font-size:10px;font-family:monospace}
+
+/* ═══ FEED ITEM ═══ */
+.feed-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;margin-bottom:4px;
+  background:rgba(15,20,35,.5);border-radius:8px;border-right:3px solid #8b5cf6;font-size:11px;
+  transition:all .2s;animation:slidein .4s}
+.feed-item:hover{background:rgba(139,92,246,.1);transform:translateX(-3px)}
+@keyframes slidein{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.feed-item .time-txt{color:#64748b;font-family:monospace;font-size:10px}
+.feed-item .name{color:#e2e8f0;flex:1;margin:0 8px;font-size:11px}
+.feed-item .sev{padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px}
+.sev.crit{background:rgba(239,68,68,.2);color:#fca5a5;box-shadow:0 0 10px rgba(239,68,68,.4)}
+.sev.high{background:rgba(245,158,11,.2);color:#fcd34d;box-shadow:0 0 10px rgba(245,158,11,.3)}
+.sev.med{background:rgba(6,182,212,.2);color:#67e8f9}
+.sev.low{background:rgba(16,185,129,.2);color:#6ee7b7}
+.feed-item.crit{border-right-color:#ef4444}
+.feed-item.high{border-right-color:#f59e0b}
+.feed-item.med{border-right-color:#06b6d4}
+.feed-item.low{border-right-color:#10b981}
+
+/* ═══ FOOTER ═══ */
+.footer{color:#334155;font-size:9px;text-align:center;padding:16px;letter-spacing:3px;font-family:monospace}
+
+/* ═══ EMPTY ═══ */
+.empty{color:#475569;text-align:center;padding:30px;font-size:11px;letter-spacing:1px}
+</style>
+</head>
+<body>
+
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<div class="orb o3"></div>
+<div class="orb o4"></div>
+<canvas id="particles"></canvas>
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="glass hdr">
+    <div class="hdr-top">
+      <div class="brand">
+        <div class="logo-3d">
+          <svg viewBox="0 0 60 60">
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8b5cf6"/>
+                <stop offset="50%" stop-color="#06b6d4"/>
+                <stop offset="100%" stop-color="#ec4899"/>
+              </linearGradient>
+            </defs>
+            <polygon points="30,6 52,18 52,42 30,54 8,42 8,18" fill="none" stroke="url(#logoGrad)" stroke-width="2"/>
+            <polygon points="30,15 44,23 44,37 30,45 16,37 16,23" fill="none" stroke="url(#logoGrad)" stroke-width="0.8" opacity="0.5"/>
+            <circle cx="30" cy="30" r="5" fill="url(#logoGrad)"/>
+            <circle cx="30" cy="30" r="10" fill="none" stroke="#06b6d4" stroke-width="0.5" stroke-dasharray="2 3">
+              <animateTransform attributeName="transform" type="rotate" from="0 30 30" to="360 30 30" dur="8s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-name">VORIX</div>
+          <div class="brand-sub">NEXUS · 9</div>
+        </div>
+      </div>
+      <div class="status-wrap">
+        <div class="status-pill"><span class="dot"></span>ONLINE</div>
+        <div class="time" id="clock">--:--:--</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NETWORK MAP -->
+  <div class="glass network">
+    <svg viewBox="0 0 900 480" preserveAspectRatio="xMidYMid meet">
+
+      <!-- Connections -->
+      <path class="conn" d="M450,160 L450,60 L180,60 L180,100"/>
+      <path class="conn anim" d="M450,160 L450,60 L180,60 L180,100"/>
+
+      <path class="conn" d="M450,160 L450,60 L720,60 L720,100"/>
+      <path class="conn anim cyan" d="M450,160 L450,60 L720,60 L720,100" style="animation-delay:.3s"/>
+
+      <path class="conn" d="M450,240 L450,340 L180,340 L180,300"/>
+      <path class="conn anim pink" d="M450,240 L450,340 L180,340 L180,300" style="animation-delay:.6s"/>
+
+      <path class="conn" d="M450,240 L450,340 L720,340 L720,300"/>
+      <path class="conn anim yellow" d="M450,240 L450,340 L720,340 L720,300" style="animation-delay:.9s"/>
+
+      <!-- ═══ MODULES ═══ -->
+      <!-- SHOP -->
+      <rect class="panel yellow" x="90" y="100" width="180" height="72" rx="12"/>
+      <text class="txt-title" x="180" y="125" fill="#f59e0b">SHOP</text>
+      <text class="txt-val yellow" x="180" y="150" id="mod-shop">-</text>
+      <text class="txt-sub" x="180" y="164">transactions</text>
+
+      <!-- NETWORK -->
+      <rect class="panel cyan" x="630" y="100" width="180" height="72" rx="12"/>
+      <text class="txt-title" x="720" y="125" fill="#22d3ee">NETWORK</text>
+      <text class="txt-val cyan" x="720" y="150" id="mod-net">-</text>
+      <text class="txt-sub" x="720" y="164">events</text>
+
+      <!-- SECURITY -->
+      <rect class="panel pink" x="90" y="300" width="180" height="72" rx="12"/>
+      <text class="txt-title" x="180" y="325" fill="#ec4899">SECURITY</text>
+      <text class="txt-val pink" x="180" y="350" id="mod-sec">10/10</text>
+      <text class="txt-sub" x="180" y="364">layers armed</text>
+
+      <!-- VAULT -->
+      <rect class="panel green" x="630" y="300" width="180" height="72" rx="12"/>
+      <text class="txt-title" x="720" y="325" fill="#10b981">VAULT</text>
+      <text class="txt-val green" x="720" y="350" id="mod-vault">-</text>
+      <text class="txt-sub" x="720" y="364">backups</text>
+
+      <!-- CORE -->
+      <rect class="panel core" x="325" y="160" width="250" height="130" rx="20"/>
+      <text class="txt-core" x="450" y="205">◈ VORIX ◈</text>
+      <text class="txt-sub" x="450" y="225" style="font-size:9px;letter-spacing:3px">MASTER CORE</text>
+      <text class="txt-sub" x="450" y="245" id="core-update" style="font-size:8px">update --:--</text>
+      <!-- Rotating rings -->
+      <g transform="translate(450, 268)">
+        <circle r="10" class="ring purple" stroke-dasharray="3 4">
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="6" class="ring cyan" stroke-dasharray="2 2">
+          <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.5" fill="#8b5cf6" style="filter:drop-shadow(0 0 10px #8b5cf6)"/>
+      </g>
+
+      <!-- Bottom services matrix -->
+      <rect class="panel" x="90" y="395" width="720" height="70" rx="12" style="stroke:rgba(139,92,246,.4)"/>
+      <text class="txt-sub" x="450" y="415" style="font-size:8px;letter-spacing:3px;fill:#8b5cf6">◈ SERVICE MATRIX ◈</text>
+
+      <g transform="translate(140, 445)">
+        <circle r="3" fill="#10b981" style="filter:drop-shadow(0 0 8px #10b981)"/>
+        <text class="txt-sub" x="0" y="15" style="font-size:7px">CORE</text>
+      </g>
+      <g transform="translate(240, 445)">
+        <circle r="3" fill="#10b981" style="filter:drop-shadow(0 0 8px #10b981)"/>
+        <text class="txt-sub" x="0" y="15" style="font-size:7px">BRIDGE</text>
+      </g>
+      <g transform="translate(340, 445)">
+        <circle r="3" fill="#10b981" style="filter:drop-shadow(0 0 8px #10b981)"/>
+        <text class="txt-sub" x="0" y="15" style="font-size:7px">API</text>
+      </g>
+      <g transform="translate(440, 445)">
+        <circle r="3" fill="#10b981" style="filter:drop-shadow(0 0 8px #10b981)"/>
+        <text class="txt-sub" x="0" y="15" style="font-size:7px">SHIELD</text>
+      </g>
+      <g transform="translate(540, 445)">
+        <circle r="3" fill="#10b981" style="filter:drop-shadow(0 0 8px #10b981)"/>
+        <text class="txt-sub" x="0" y="15" style="font-size:7px">VAULT</text>
+      </g>
+      <g transform="translate(640, 445)">
+        <circle r="3" fill="#10b981" style="filter:drop-shadow(0 0 8px #10b981)"/>
+        <text class="txt-sub" x="0" y="15" style="font-size:7px">SYNC</text>
+      </g>
+      <g transform="translate(740, 445)">
+        <circle r="3" fill="#10b981" style="filter:drop-shadow(0 0 8px #10b981)"/>
+        <text class="txt-sub" x="0" y="15" style="font-size:7px">WATCH</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="glass stat purple">
+      <div class="icon">◆</div>
+      <div class="v" id="s-users">-</div>
+      <div class="l">Users</div>
+    </div>
+    <div class="glass stat yellow">
+      <div class="icon">▣</div>
+      <div class="v" id="s-orders">-</div>
+      <div class="l">Orders</div>
+    </div>
+    <div class="glass stat cyan">
+      <div class="icon">◈</div>
+      <div class="v" id="s-pay">-</div>
+      <div class="l">Payments</div>
+    </div>
+    <div class="glass stat pink">
+      <div class="icon">₹</div>
+      <div class="v" id="s-rev">-</div>
+      <div class="l">Revenue</div>
+    </div>
+  </div>
+
+  <!-- THREAT FEED -->
+  <div class="glass">
+    <div class="sec-hdr">
+      <h2>◆ Threat Feed</h2>
+      <span class="count" id="threat-count">0</span>
+    </div>
+    <div id="threat-list"><div class="empty">◌ receiving data...</div></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">VORIX · NEXUS-9 · SECURITY OPERATIONS CENTER © 2026</div>
+
+</div>
+
+<script src="nav.js"></script>
+<script>
+/* ═══ PARTICLE BACKGROUND ═══ */
+(function(){
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    particles = [];
+    const count = Math.min(60, Math.floor(w/20));
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.3,
+        vy: (Math.random()-0.5)*0.3,
+        r: Math.random()*1.5+0.5,
+        c: ['#8b5cf6','#06b6d4','#ec4899','#10b981'][Math.floor(Math.random()*4)]
+      });
+    }
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.c;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = p.c;
+      ctx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ═══ CLOCK ═══ */
+function clock(){
+  document.getElementById('clock').textContent = new Date().toTimeString().substring(0,8);
+}
+clock(); setInterval(clock, 1000);
+
+/* ═══ LOAD DATA ═══ */
+function fmt(n){try{return Number(n||0).toLocaleString('en-US')}catch(e){return '0'}}
+function fmtShort(n){n=Number(n||0);if(n>=1000000)return (n/1000000).toFixed(1)+'M';if(n>=1000)return (n/1000).toFixed(0)+'K';return String(n)}
+
+function loadStats(){
+  fetch('../data/shop_all.json?v=' + Date.now())
+    .then(r=>r.json())
+    .then(d=>{
+      const u = (d.users||[]).length;
+      const o = (d.orders||[]).length;
+      const p = (d.payments||[]).length;
+      let rev = 0;
+      (d.orders||[]).forEach(x=>{rev += x.total_price||0;});
+      document.getElementById('s-users').textContent = u;
+      document.getElementById('s-orders').textContent = o;
+      document.getElementById('s-pay').textContent = p;
+      document.getElementById('s-rev').textContent = fmtShort(rev);
+      document.getElementById('mod-shop').textContent = fmtShort(rev);
+      document.getElementById('mod-vault').textContent = (d.receipts||[]).length;
+    })
+    .catch(e=>console.error(e));
+}
+
+function loadLayers(){
+  fetch('../data/live.json?v=' + Date.now())
+    .then(r=>r.json())
+    .then(d=>{
+      const active = (d.layers||[]).filter(l=>l.running).length;
+      document.getElementById('mod-net').textContent = active;
+      document.getElementById('core-update').textContent = 'update ' + (d.ts||'').substring(11,16) + ' · ' + active + 'L';
+    })
+    .catch(e=>console.error(e));
+}
+
+function loadThreats(){
+  fetch('../data/attacks.json?v=' + Date.now())
+    .then(r=>r.json())
+    .then(d=>{
+      const s = d.stats || {};
+      const at = (d.attacks||[]).slice(0, 12);
+      document.getElementById('threat-count').textContent = at.length + ' / ' + (s.total||0);
+      if (!at.length) {
+        document.getElementById('threat-list').innerHTML = '<div class="empty">◌ no threats detected</div>';
+        return;
+      }
+      document.getElementById('threat-list').innerHTML = at.map((a,i)=>{
+        const sev = (a.severity||'low').toLowerCase();
+        const cls = sev==='critical'?'crit':sev==='high'?'high':sev==='medium'?'med':'low';
+        const t = (a.ts||'').substring(11,19);
+        const type = (a.attack_type||'unknown').slice(0, 30);
+        return '<div class="feed-item ' + cls + '" style="animation-delay:' + (i*0.05) + 's">' +
+          '<span class="time-txt">' + t + '</span>' +
+          '<span class="name">' + type + '</span>' +
+          '<span class="sev ' + cls + '">' + sev.toUpperCase() + '</span>' +
+          '</div>';
+      }).join('');
+    })
+    .catch(e=>console.error(e));
+}
+
+loadStats(); loadLayers(); loadThreats();
+setInterval(loadStats, 20000);
+setInterval(loadLayers, 15000);
+setInterval(loadThreats, 12000);
+</script>
+</body>
+</html>
