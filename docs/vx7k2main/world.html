@@ -14,7 +14,7 @@ h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px}
 .st{background:linear-gradient(180deg,#0a0f1a 0%,#060a12 100%);
     border:1px solid #1a2a3a;border-radius:6px;padding:10px 4px;text-align:center}
-.st .n{font-size:15px;font-weight:bold;color:#10b981;letter-spacing:-0.5px}
+.st .n{font-size:15px;font-weight:bold;color:#10b981}
 .st .l{font-size:8px;color:#4b5563;margin-top:2px;text-transform:uppercase}
 .st.r .n{color:#ef4444}.st.y .n{color:#f59e0b}.st.c .n{color:#06b6d4}
 
@@ -26,28 +26,31 @@ h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;
     linear-gradient(rgba(16,185,129,0.02) 1px,transparent 1px),
     linear-gradient(90deg,rgba(16,185,129,0.02) 1px,transparent 1px);
   background-size:27.78px 27.78px;pointer-events:none;z-index:0}
-svg.world{width:100%;height:auto;display:block;position:relative;z-index:1}
+#map{width:100%;height:auto;display:block;position:relative;z-index:1}
+.land{fill:#0f1e2e;stroke:#2a4a6a;stroke-width:0.4;
+      transition:fill 0.3s}
+.land:hover{fill:#152a3e}
+.graticule{fill:none;stroke:rgba(16,185,129,0.06);stroke-width:0.3}
+.sphere{fill:#06122a;stroke:#1a3a5a;stroke-width:0.5}
 
-.cont{fill:#0f1e2e;stroke:#2a4a6a;stroke-width:0.5;stroke-linejoin:round}
-.cont-glow{fill:none;stroke:rgba(16,185,129,0.04);stroke-width:0.5}
-.ocean-line{stroke:rgba(16,185,129,0.06);stroke-width:0.3;fill:none}
-
-.atk{fill:#ef4444;filter:drop-shadow(0 0 4px #ef4444) drop-shadow(0 0 8px #ef4444)}
+.atk{fill:#ef4444;filter:drop-shadow(0 0 4px #ef4444) drop-shadow(0 0 8px #ef4444);
+     pointer-events:none}
 .atk.mid{fill:#f59e0b;filter:drop-shadow(0 0 4px #f59e0b)}
 .atk.small{fill:#06b6d4;filter:drop-shadow(0 0 3px #06b6d4)}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.85)}}
-.atk-anim{animation:pulse 2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
-@keyframes ripple{0%{r:3;opacity:0.8;stroke-width:2}100%{r:22;opacity:0;stroke-width:0.5}}
-.ripple{fill:none;stroke:#ef4444;animation:ripple 2s ease-out infinite}
-@keyframes rippley{0%{r:3;opacity:0.8;stroke-width:2}100%{r:18;opacity:0;stroke-width:0.5}}
-.ripple-y{fill:none;stroke:#f59e0b;animation:rippley 2s ease-out infinite}
 
-.target{fill:#10b981;filter:drop-shadow(0 0 6px #10b981) drop-shadow(0 0 12px #10b981)}
-@keyframes tping{0%{r:5;opacity:1;stroke-width:2}100%{r:30;opacity:0;stroke-width:0.5}}
-.tping{fill:none;stroke:#10b981;animation:tping 2.5s ease-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.atk-anim{animation:pulse 2s ease-in-out infinite}
+@keyframes ripple{0%{r:3;opacity:0.8;stroke-width:2}100%{r:22;opacity:0;stroke-width:0.3}}
+.ripple{fill:none;stroke:#ef4444;animation:ripple 2s ease-out infinite;pointer-events:none}
+@keyframes rippley{0%{r:3;opacity:0.8;stroke-width:2}100%{r:18;opacity:0;stroke-width:0.3}}
+.ripple-y{fill:none;stroke:#f59e0b;animation:rippley 2s ease-out infinite;pointer-events:none}
 
-.arc{fill:none;stroke:url(#arcGrad);stroke-width:1;stroke-linecap:round;
-     stroke-dasharray:4 4;animation:dash 3s linear infinite}
+.target{fill:#10b981;filter:drop-shadow(0 0 6px #10b981);pointer-events:none}
+@keyframes tping{0%{r:5;opacity:1;stroke-width:2}100%{r:30;opacity:0;stroke-width:0.3}}
+.tping{fill:none;stroke:#10b981;animation:tping 2.5s ease-out infinite;pointer-events:none}
+
+.arc{fill:none;stroke-width:1;stroke-linecap:round;
+     stroke-dasharray:4 4;animation:dash 3s linear infinite;pointer-events:none}
 @keyframes dash{to{stroke-dashoffset:-100}}
 
 .lg{display:flex;gap:12px;justify-content:center;font-size:9px;
@@ -61,7 +64,7 @@ svg.world{width:100%;height:auto;display:block;position:relative;z-index:1}
 .br .b{flex:1;height:11px;background:#0a0f1a;border-radius:2px;overflow:hidden;
        border:1px solid #1a2a3a}
 .br .f{height:100%;background:linear-gradient(90deg,#ef4444 0%,#f59e0b 60%,#06b6d4 100%);
-       border-radius:2px;transition:width 0.5s;box-shadow:0 0 8px rgba(239,68,68,0.4)}
+       border-radius:2px;transition:width 0.5s}
 .br .v{width:58px;color:#10b981;font-size:9px;text-align:left;
        direction:ltr;font-family:monospace}
 
@@ -71,13 +74,10 @@ svg.world{width:100%;height:auto;display:block;position:relative;z-index:1}
     padding:6px 8px;font-size:10px;display:flex;gap:6px;align-items:center}
 .it.top{border-right-color:#ef4444;background:linear-gradient(90deg,#1a0a0a 0%,#060a12 100%)}
 .it .rk{color:#4b5563;font-size:9px;min-width:20px;font-weight:bold}
-.it .ip{color:#10b981;font-family:monospace;flex:1;font-size:10px;
-        direction:ltr;text-align:left}
+.it .ip{color:#10b981;font-family:monospace;flex:1;font-size:10px;direction:ltr;text-align:left}
 .it .cc{color:#f59e0b;font-weight:bold;min-width:22px;font-size:9px}
-.it .cnt{color:#ef4444;font-weight:bold;min-width:50px;text-align:left;
-         direction:ltr;font-size:9px}
-.it .isp{color:#4b5563;font-size:8px;overflow:hidden;
-         text-overflow:ellipsis;white-space:nowrap;max-width:60px}
+.it .cnt{color:#ef4444;font-weight:bold;min-width:50px;text-align:left;direction:ltr;font-size:9px}
+.it .isp{color:#4b5563;font-size:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60px}
 
 .c2{background:linear-gradient(90deg,#2a0a0a 0%,#0a0505 100%);
     border-right:3px solid #ef4444;border-radius:3px;
@@ -85,10 +85,12 @@ svg.world{width:100%;height:auto;display:block;position:relative;z-index:1}
 .c2 .ip{color:#fca5a5;font-family:monospace;flex:1;direction:ltr}
 .c2 .mw{color:#fbbf24;font-weight:bold;font-size:9px}
 .c2 .pt{color:#6b7280;font-size:9px}
-</style></head><body>
+</style>
+</head>
+<body>
 
-<h2>GLOBAL ATTACK MAP</h2>
-<div class="live" id="live">در حال بارگذاری <b>●</b></div>
+<h2>GLOBAL ATTACK MAP — REAL EARTH</h2>
+<div class="live" id="live">در حال بارگذاری داده جغرافیایی... <b>●</b></div>
 
 <div class="stats">
   <div class="st r"><div class="n" id="s-att">0</div><div class="l">کل حمله</div></div>
@@ -98,168 +100,7 @@ svg.world{width:100%;height:auto;display:block;position:relative;z-index:1}
 </div>
 
 <div class="mw">
-  <svg class="world" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
-    <defs>
-      <radialGradient id="glow">
-        <stop offset="0%" stop-color="#ef4444" stop-opacity="0.6"/>
-        <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
-      </radialGradient>
-      <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#ef4444" stop-opacity="0.8"/>
-        <stop offset="100%" stop-color="#10b981" stop-opacity="0.3"/>
-      </linearGradient>
-    </defs>
-
-    <!-- Ocean grid (equirectangular 27.78px per 10 deg) -->
-    <g class="ocean-line" opacity="0.5">
-      <line x1="0" y1="139" x2="1000" y2="139"/> <!-- +40 -->
-      <line x1="0" y1="250" x2="1000" y2="250"/> <!-- 0 equator -->
-      <line x1="0" y1="361" x2="1000" y2="361"/> <!-- -40 -->
-      <line x1="278" y1="0" x2="278" y2="500"/> <!-- -80 -->
-      <line x1="500" y1="0" x2="500" y2="500"/> <!-- 0 -->
-      <line x1="722" y1="0" x2="722" y2="500"/> <!-- +80 -->
-    </g>
-
-    <!-- Continent outlines (real lat/long → x/y projection) -->
-    <!-- Formula: x = (lon+180)*2.7778, y = (90-lat)*2.7778 -->
-    <g id="continents">
-
-      <!-- ═══ NORTH AMERICA ═══ -->
-      <path class="cont" d="M 41,124 L 61,105 L 89,97 L 125,92 L 155,95 L 180,100
-        L 200,105 L 220,118 L 235,130 L 250,145 L 260,155 L 265,170 L 260,185
-        L 250,200 L 240,215 L 225,228 L 210,240 L 195,248 L 180,250 L 165,245
-        L 150,240 L 140,235 L 130,225 L 118,210 L 105,195 L 95,180 L 85,165
-        L 75,150 L 60,140 L 50,132 L 41,124 Z"/>
-      <path class="cont-glow" d="M 41,124 L 61,105 L 89,97 L 125,92 L 155,95 L 180,100
-        L 200,105 L 220,118 L 235,130 L 250,145 L 260,155 L 265,170 L 260,185
-        L 250,200 L 240,215 L 225,228 L 210,240 L 195,248 L 180,250 L 165,245
-        L 150,240 L 140,235 L 130,225 L 118,210 L 105,195 L 95,180 L 85,165
-        L 75,150 L 60,140 L 50,132 L 41,124 Z"/>
-
-      <!-- Greenland -->
-      <path class="cont" d="M 330,42 L 360,38 L 385,45 L 400,60 L 405,80 L 398,98
-        L 380,108 L 355,110 L 335,105 L 322,90 L 318,72 L 322,55 L 330,42 Z"/>
-
-      <!-- ═══ CENTRAL AMERICA + CARIBBEAN ═══ -->
-      <path class="cont" d="M 210,240 L 220,245 L 232,255 L 245,268 L 255,278
-        L 258,288 L 252,295 L 242,290 L 235,280 L 225,272 L 215,262 L 208,252 Z"/>
-
-      <!-- ═══ SOUTH AMERICA ═══ -->
-      <path class="cont" d="M 258,295 L 275,290 L 300,292 L 320,300 L 340,315
-        L 350,335 L 355,360 L 355,385 L 350,410 L 340,432 L 325,450 L 310,462
-        L 295,465 L 285,458 L 278,445 L 270,425 L 262,400 L 255,375 L 248,350
-        L 245,325 L 250,305 L 258,295 Z"/>
-      <path class="cont-glow" d="M 258,295 L 275,290 L 300,292 L 320,300 L 340,315
-        L 350,335 L 355,360 L 355,385 L 350,410 L 340,432 L 325,450 L 310,462
-        L 295,465 L 285,458 L 278,445 L 270,425 L 262,400 L 255,375 L 248,350
-        L 245,325 L 250,305 L 258,295 Z"/>
-
-      <!-- ═══ EUROPE ═══ -->
-      <!-- Iberian peninsula -->
-      <path class="cont" d="M 472,180 L 480,175 L 490,175 L 500,180 L 505,190
-        L 500,200 L 490,205 L 478,200 L 472,192 Z"/>
-      <!-- France, Germany, Italy, Poland -->
-      <path class="cont" d="M 495,165 L 510,158 L 525,155 L 545,152 L 560,150
-        L 575,150 L 590,155 L 600,165 L 605,180 L 600,195 L 590,205 L 580,210
-        L 570,205 L 565,195 L 555,190 L 545,195 L 535,192 L 528,180 L 520,178
-        L 508,180 L 500,175 L 495,165 Z"/>
-      <!-- Scandinavia -->
-      <path class="cont" d="M 535,95 L 550,88 L 565,90 L 578,105 L 585,125
-        L 580,140 L 570,148 L 558,145 L 548,138 L 542,125 L 538,110 Z"/>
-      <!-- UK + Ireland -->
-      <path class="cont" d="M 480,125 L 488,118 L 495,125 L 498,140 L 492,152
-        L 485,148 L 480,138 Z"/>
-      <path class="cont" d="M 470,132 L 477,128 L 480,138 L 478,148 L 470,145 Z"/>
-
-      <!-- ═══ AFRICA ═══ -->
-      <path class="cont" d="M 490,215 L 505,208 L 525,205 L 545,205 L 560,208
-        L 575,215 L 588,225 L 595,240 L 600,258 L 605,278 L 605,300 L 600,320
-        L 590,340 L 575,355 L 560,368 L 545,375 L 530,375 L 518,368 L 508,355
-        L 500,340 L 495,320 L 490,300 L 485,280 L 482,260 L 482,240 L 485,225
-        L 490,215 Z"/>
-      <path class="cont-glow" d="M 490,215 L 505,208 L 525,205 L 545,205 L 560,208
-        L 575,215 L 588,225 L 595,240 L 600,258 L 605,278 L 605,300 L 600,320
-        L 590,340 L 575,355 L 560,368 L 545,375 L 530,375 L 518,368 L 508,355
-        L 500,340 L 495,320 L 490,300 L 485,280 L 482,260 L 482,240 L 485,225
-        L 490,215 Z"/>
-
-      <!-- Madagascar -->
-      <path class="cont" d="M 612,345 L 622,340 L 628,350 L 628,375 L 622,385
-        L 612,382 L 608,368 L 608,355 Z"/>
-
-      <!-- ═══ MIDDLE EAST ═══ -->
-      <path class="cont" d="M 595,180 L 610,175 L 630,172 L 650,175 L 665,185
-        L 675,200 L 680,220 L 675,235 L 665,245 L 650,248 L 635,245 L 622,238
-        L 610,228 L 600,215 L 595,200 L 595,180 Z"/>
-
-      <!-- ═══ RUSSIA / NORTH ASIA ═══ -->
-      <path class="cont" d="M 610,100 L 640,88 L 675,82 L 715,80 L 755,82
-        L 795,85 L 835,90 L 870,95 L 900,102 L 925,115 L 940,130 L 945,148
-        L 940,165 L 928,178 L 910,188 L 890,192 L 865,192 L 840,190 L 815,190
-        L 790,192 L 765,192 L 740,190 L 715,185 L 690,178 L 665,168 L 645,158
-        L 630,145 L 620,130 L 612,115 L 610,100 Z"/>
-      <path class="cont-glow" d="M 610,100 L 640,88 L 675,82 L 715,80 L 755,82
-        L 795,85 L 835,90 L 870,95 L 900,102 L 925,115 L 940,130 L 945,148
-        L 940,165 L 928,178 L 910,188 L 890,192 L 865,192 L 840,190 L 815,190
-        L 790,192 L 765,192 L 740,190 L 715,185 L 690,178 L 665,168 L 645,158
-        L 630,145 L 620,130 L 612,115 L 610,100 Z"/>
-
-      <!-- ═══ CENTRAL ASIA ═══ -->
-      <path class="cont" d="M 640,178 L 665,175 L 690,175 L 710,180 L 725,190
-        L 730,205 L 725,215 L 710,220 L 690,218 L 670,215 L 650,208 L 640,198 Z"/>
-
-      <!-- ═══ INDIA ═══ -->
-      <path class="cont" d="M 690,215 L 710,210 L 730,212 L 745,220 L 752,235
-        L 752,255 L 748,275 L 738,290 L 725,295 L 712,288 L 702,275 L 695,258
-        L 690,240 L 688,225 Z"/>
-
-      <!-- ═══ SE ASIA / INDOCHINA ═══ -->
-      <path class="cont" d="M 758,220 L 775,218 L 790,222 L 800,232 L 802,245
-        L 798,258 L 790,268 L 778,272 L 768,268 L 760,258 L 756,245 L 756,230 Z"/>
-
-      <!-- ═══ CHINA EAST + KOREA ═══ -->
-      <path class="cont" d="M 800,168 L 815,165 L 828,170 L 835,182 L 835,198
-        L 828,210 L 815,212 L 805,205 L 800,192 L 798,178 Z"/>
-      <path class="cont" d="M 838,182 L 848,180 L 852,192 L 850,205 L 842,208
-        L 838,198 Z"/>
-
-      <!-- ═══ JAPAN ═══ -->
-      <path class="cont" d="M 875,175 L 882,172 L 888,180 L 888,195 L 884,210
-        L 878,215 L 873,205 L 873,190 L 875,178 Z"/>
-
-      <!-- ═══ INDONESIA / PHILIPPINES ═══ -->
-      <path class="cont" d="M 785,285 L 800,282 L 815,288 L 828,295 L 835,308
-        L 828,318 L 815,320 L 800,315 L 788,305 L 780,295 Z"/>
-      <path class="cont" d="M 848,240 L 858,235 L 865,245 L 868,260 L 862,275
-        L 855,278 L 848,268 L 845,255 Z"/>
-      <path class="cont" d="M 750,290 L 762,285 L 772,292 L 770,305 L 760,310
-        L 750,305 Z"/>
-
-      <!-- ═══ AUSTRALIA ═══ -->
-      <path class="cont" d="M 792,362 L 810,352 L 832,345 L 855,342 L 878,342
-        L 900,348 L 920,358 L 935,372 L 942,392 L 940,412 L 928,428 L 910,438
-        L 888,442 L 865,440 L 845,432 L 828,420 L 815,405 L 805,388 L 795,375 Z"/>
-      <path class="cont-glow" d="M 792,362 L 810,352 L 832,345 L 855,342 L 878,342
-        L 900,348 L 920,358 L 935,372 L 942,392 L 940,412 L 928,428 L 910,438
-        L 888,442 L 865,440 L 845,432 L 828,420 L 815,405 L 805,388 L 795,375 Z"/>
-
-      <!-- Tasmania -->
-      <path class="cont" d="M 900,455 L 910,452 L 915,460 L 912,470 L 902,470
-        L 897,462 Z"/>
-
-      <!-- ═══ NEW ZEALAND ═══ -->
-      <path class="cont" d="M 945,400 L 952,395 L 958,405 L 955,420 L 948,425
-        L 943,415 L 943,405 Z"/>
-
-      <!-- Antarctica hint -->
-      <path class="cont" d="M 50,490 Q 250,478 500,485 Q 750,478 950,490 L 950,500 L 50,500 Z" opacity="0.35"/>
-    </g>
-
-    <!-- Attack arcs (behind dots) -->
-    <g id="arcs"></g>
-    <!-- Attack dots -->
-    <g id="hits"></g>
-  </svg>
+  <svg id="map" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid meet"></svg>
   <div class="lg">
     <span><span class="d" style="background:#ef4444;color:#ef4444"></span>خیلی زیاد (&gt;100K)</span>
     <span><span class="d" style="background:#f59e0b;color:#f59e0b"></span>زیاد (10-100K)</span>
@@ -277,13 +118,10 @@ svg.world{width:100%;height:auto;display:block;position:relative;z-index:1}
 <div id="c2wrap"></div>
 
 <script src="nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 <script>
-// ─── Lat/Long → x/y (equirectangular) ───
-function proj(lat, lon) {
-  return [(lon + 180) * 2.7778, (90 - lat) * 2.7778];
-}
-
-// ─── Real country centroids (lat, lon) ───
+// ─── Country centroids (lat/lon) — override from topojson if available ───
 var GEO = {
   'US':[39.8,-98.6],'CA':[56.1,-106.3],'MX':[23.6,-102.5],
   'BR':[-10.8,-52.9],'AR':[-38.4,-63.6],'CL':[-35.7,-71.5],
@@ -316,25 +154,69 @@ var GEO = {
   'AZ':[40.1,47.6],'CY':[35.1,33.4],'LB':[33.9,35.9],
   'JO':[30.6,36.2],'KW':[29.3,47.5],'QA':[25.4,51.2],
   'OM':[21.5,55.9],'YE':[15.6,48.5],'SY':[34.8,39.0],
-  'IQ':[33.2,43.7]
+  'IQ':[33.2,43.7],'PY':[-23.4,-58.4],'UY':[-32.5,-55.8],
+  'BO':[-16.3,-63.6],'EC':[-1.8,-78.2],'GT':[15.8,-90.2],
+  'CU':[21.5,-77.8],'DO':[18.7,-70.2],'JM':[18.1,-77.3],
+  'HT':[18.9,-72.3],'CR':[9.7,-83.8],'PA':[8.5,-80.8],
+  'HN':[15.2,-86.2],'NI':[12.9,-85.2],'SV':[13.8,-88.9],
+  'BZ':[17.2,-88.5],'TT':[10.7,-61.2],'BB':[13.2,-59.5]
 };
 
-function esc(s){return String(s).replace(/[<>&]/g,function(c){
-  return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
 function fmtNum(n){try{return Number(n).toLocaleString('en-US')}catch(e){return '0'}}
+function clsForCount(c){if(c>100000)return 'atk';if(c>10000)return 'atk mid';return 'atk small'}
 
-function clsForCount(c) {
-  if (c > 100000) return 'atk';
-  if (c > 10000)  return 'atk mid';
-  return 'atk small';
-}
+// ─── Projection ───
+var W = 1000, H = 520;
+var projection = d3.geoNaturalEarth1()
+  .scale(160)
+  .translate([W/2, H/2 + 20]);
+var path = d3.geoPath().projection(projection);
 
-function arcPath(x1, y1, x2, y2) {
-  var mx = (x1 + x2) / 2;
-  var my = (y1 + y2) / 2 - Math.abs(x2 - x1) * 0.18;
-  return 'M ' + x1.toFixed(1) + ',' + y1.toFixed(1) + ' Q ' + mx.toFixed(1) + ',' + my.toFixed(1) + ' ' + x2.toFixed(1) + ',' + y2.toFixed(1);
-}
+var svg = d3.select('#map');
+var gMap = svg.append('g');
+var gArc = svg.append('g').attr('id', 'arcs');
+var gHit = svg.append('g').attr('id', 'hits');
 
+// ─── Load world map ───
+var worldLoaded = false;
+d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+  .then(function(world) {
+    var countries = topojson.feature(world, world.objects.countries).features;
+
+    // Graticule (خطوط طول/عرض)
+    var graticule = d3.geoGraticule10();
+    gMap.append('path')
+      .datum(graticule)
+      .attr('class', 'graticule')
+      .attr('d', path);
+
+    // Ocean sphere
+    gMap.append('path')
+      .datum({type: 'Sphere'})
+      .attr('class', 'sphere')
+      .attr('d', path);
+
+    // Countries
+    gMap.selectAll('path.land')
+      .data(countries)
+      .enter()
+      .append('path')
+      .attr('class', 'land')
+      .attr('d', path);
+
+    worldLoaded = true;
+    document.getElementById('live').innerHTML = 'نقشه واقعی لود شد — داده‌ها در حال بارگذاری <b>●</b>';
+    load();
+  })
+  .catch(function(e) {
+    console.error('Failed to load map:', e);
+    document.getElementById('live').innerHTML = '⚠️ نقشه لود نشد — از لوکال <b>●</b>';
+    worldLoaded = true;  // تا load() اجرا شه
+    load();
+  });
+
+// ─── Render attacks ───
 function render(data) {
   if (!data) return;
   var attacks = data.attacks || [];
@@ -349,47 +231,57 @@ function render(data) {
   document.getElementById('s-cc').textContent  = stats.unique_countries || 0;
   document.getElementById('s-c2').textContent  = stats.c2_count || 0;
 
-  var hits = document.getElementById('hits');
-  var arcs = document.getElementById('arcs');
-  var hitsHtml = '';
-  var arcsHtml = '';
+  // Clear old markers (keep land paths)
+  gArc.selectAll('*').remove();
+  gHit.selectAll('*').remove();
 
-  // Target = Iran (server hypothetical)
-  var txy = proj(35.7, 51.4);
+  // Target = Iran
+  var txy = projection([51.4, 35.7]);
+
+  var hitsNodes = '';
+  var arcsNodes = '';
 
   attacks.forEach(function(a, i) {
     var g = GEO[a.country];
     if (!g) return;
-    var xy = proj(g[0], g[1]);
+    var xy = projection([g[1], g[0]]); // [lon, lat]
+    if (!xy) return;
     var cls = clsForCount(a.count);
+    var r = a.count > 100000 ? 4.5 : a.count > 10000 ? 3.5 : 2.5;
 
-    // Dot
-    hitsHtml += '<circle class="' + cls + ' atk-anim" cx="' + xy[0].toFixed(1) +
-                '" cy="' + xy[1].toFixed(1) + '" r="' + (a.count > 100000 ? 4.5 : a.count > 10000 ? 3.5 : 2.5) +
-                '" style="animation-delay:' + (i * 0.15) + 's"/>';
+    // Attack dot
+    hitsNodes += '<circle class="' + cls + ' atk-anim" cx="' + xy[0].toFixed(1) +
+                 '" cy="' + xy[1].toFixed(1) + '" r="' + r +
+                 '" style="animation-delay:' + (i * 0.15) + 's"/>';
 
-    // Ripple for top
+    // Ripple
     if (i < 8) {
       var rippleCls = a.count > 100000 ? 'ripple' : 'ripple-y';
-      hitsHtml += '<circle class="' + rippleCls + '" cx="' + xy[0].toFixed(1) +
-                  '" cy="' + xy[1].toFixed(1) + '" r="3" ' +
-                  'style="animation-delay:' + (i * 0.3) + 's"/>';
+      hitsNodes += '<circle class="' + rippleCls + '" cx="' + xy[0].toFixed(1) +
+                   '" cy="' + xy[1].toFixed(1) + '" r="3" ' +
+                   'style="animation-delay:' + (i * 0.3) + 's"/>';
     }
 
-    // Arc from top 12
+    // Arc to target (top 12)
     if (i < 12) {
-      arcsHtml += '<path class="arc" d="' + arcPath(xy[0], xy[1], txy[0], txy[1]) +
-                  '" style="animation-delay:' + (i * 0.2) + 's;opacity:' +
-                  (a.count > 100000 ? 0.9 : a.count > 10000 ? 0.6 : 0.35) + '"/>';
+      var x1 = xy[0], y1 = xy[1];
+      var x2 = txy[0], y2 = txy[1];
+      var mx = (x1 + x2) / 2;
+      var my = (y1 + y2) / 2 - Math.abs(x2 - x1) * 0.18;
+      var arcD = 'M ' + x1.toFixed(1) + ',' + y1.toFixed(1) + ' Q ' + mx.toFixed(1) + ',' + my.toFixed(1) + ' ' + x2.toFixed(1) + ',' + y2.toFixed(1);
+      var opacity = a.count > 100000 ? 0.9 : a.count > 10000 ? 0.6 : 0.35;
+      var color = a.count > 100000 ? '#ef4444' : a.count > 10000 ? '#f59e0b' : '#06b6d4';
+      arcsNodes += '<path class="arc" d="' + arcD + '" stroke="' + color +
+                   '" style="animation-delay:' + (i * 0.2) + 's;opacity:' + opacity + '"/>';
     }
   });
 
   // Target marker
-  hitsHtml += '<circle class="target" cx="' + txy[0].toFixed(1) + '" cy="' + txy[1].toFixed(1) + '" r="5"/>';
-  hitsHtml += '<circle class="tping" cx="' + txy[0].toFixed(1) + '" cy="' + txy[1].toFixed(1) + '" r="5"/>';
+  hitsNodes += '<circle class="target" cx="' + txy[0].toFixed(1) + '" cy="' + txy[1].toFixed(1) + '" r="5"/>';
+  hitsNodes += '<circle class="tping" cx="' + txy[0].toFixed(1) + '" cy="' + txy[1].toFixed(1) + '" r="5"/>';
 
-  hits.innerHTML = hitsHtml;
-  arcs.innerHTML = arcsHtml;
+  gArc.node().innerHTML = arcsNodes;
+  gHit.node().innerHTML = hitsNodes;
 
   // Countries bars
   var cc = document.getElementById('cc');
@@ -433,7 +325,6 @@ function load() {
     .then(render)
     .catch(function(e){ console.error(e); });
 }
-load();
 setInterval(load, 30000);
 </script>
 </body></html>
