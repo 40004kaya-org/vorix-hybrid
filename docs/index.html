@@ -47,19 +47,19 @@ async function check() {
   const h = await sha256(pin);
   const rev = h.split('').reverse().join('');
   const err = document.getElementById('err');
-  
+  err.style.whiteSpace = 'pre-wrap';
+  err.style.fontSize = '11px';
+  err.style.fontFamily = 'monospace';
+  err.style.textAlign = 'left';
   if (rev === HASH_REV) {
     err.style.color = '#0fb';
-    err.textContent = '✅ OK, entering...';
+    err.textContent = 'OK';
     localStorage.setItem('vorix_auth', 'ok');
     localStorage.setItem('vorix_pin', pin);
     window.location.href = 'vx7k2/index.html';
   } else {
     err.style.color = '#f44';
-    err.textContent = '❌ WRONG\n' +
-      'len: ' + pin.length + '\n' +
-      'hash_rev: ' + rev.substring(0, 40) + '...\n' +
-      'expected: ' + HASH_REV.substring(0, 40) + '...';
+    err.textContent = 'WRONG\nlen=' + pin.length + '\nHASH=' + rev.substring(0,32) + '\nWANT=' + HASH_REV.substring(0,32);
   }
 }
 
