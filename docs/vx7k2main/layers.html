@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Layers</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.st{background:#0f1420;border:1px solid #1f2937;border-radius:8px;padding:10px 4px;text-align:center}
+.st .n{font-size:18px;font-weight:bold;color:#10b981}
+.st .l{font-size:9px;color:#6b7280;margin-top:2px}
+.st.y .n{color:#f59e0b}.st.r .n{color:#ef4444}
+.fl{display:flex;gap:6px;margin-bottom:10px;font-size:11px;flex-wrap:wrap}
+.fl button{background:#0f1420;color:#6b7280;border:1px solid #333;padding:6px 12px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:11px}
+.fl button.active{color:#10b981;border-color:#10b981}
+.lst{display:flex;flex-direction:column;gap:5px}
+.it{display:flex;align-items:center;gap:10px;background:#0f1420;border:1px solid #1f2937;border-radius:6px;padding:9px 12px;font-size:12px}
+.it .dt{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dt.green{background:#10b981;box-shadow:0 0 6px #10b981}
+.dt.yellow{background:#f59e0b}.dt.red{background:#ef4444}.dt.dark{background:#444}
+.it .id{color:#0fb;font-weight:bold;min-width:70px}
+.it .fn{color:#9ca3af;flex:1;font-size:10px}.it .pd{color:#6b7280;font-size:10px}
+</style></head><body>
+<div class="stats">
+<div class="st"><div class="n" id="a">0</div><div class="l">فعال</div></div>
+<div class="st y"><div class="n" id="b">0</div><div class="l">آماده</div></div>
+<div class="st r"><div class="n" id="c">0</div><div class="l">خاموش</div></div>
+<div class="st"><div class="n" id="d">0</div><div class="l">کل</div></div>
+</div>
+<div class="fl">
+<button class="active" onclick="F('all',this)">همه</button>
+<button onclick="F('green',this)">فعال</button>
+<button onclick="F('yellow',this)">آماده</button>
+<button onclick="F('red',this)">خاموش</button>
+</div>
+<div class="lst" id="ls"></div>
+<script src="nav.js"></script><script>
+var D=null,FT='all';
+function e(s){return String(s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+function co(l){if(l.running)return'green';return l.color||'dark'}
+function r(){
+if(!D)return;
+var L=D.layers||[];
+document.getElementById('a').textContent=L.filter(l=>l.running).length;
+document.getElementById('b').textContent=L.filter(l=>!l.running&&l.color==='yellow').length;
+document.getElementById('c').textContent=L.filter(l=>!l.running&&l.color==='red').length;
+document.getElementById('d').textContent=L.length;
+var f=FT==='all'?L:L.filter(l=>co(l)===FT);
+var ls=document.getElementById('ls');
+ls.innerHTML=f.length?f.map(l=>'<div class="it"><span class="dt '+co(l)+'"></span><span class="id">'+e(l.id||'?')+'</span><span class="fn">'+e(l.file||'-')+'</span><span class="pd">'+(l.pid?'PID '+l.pid:'')+'</span></div>').join(''):'<div style="color:#666;text-align:center;padding:20px">موردی نیست</div>';
+}
+function F(f,b){FT=f;document.querySelectorAll('.fl button').forEach(x=>x.classList.remove('active'));b.classList.add('active');r()}
+function Ld(){fetch('../data/live.json?v='+Date.now()).then(r=>r.json()).then(d=>{D=d;r()}).catch(console.error)}
+Ld();setInterval(Ld,30000);
+</script></body></html>

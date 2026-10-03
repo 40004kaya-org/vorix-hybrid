@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Attacks</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#10b981;font-size:12px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.st{background:#0f1420;border:1px solid #1f2937;border-radius:8px;padding:10px 4px;text-align:center}
+.st .n{font-size:18px;font-weight:bold;color:#10b981}
+.st .l{font-size:9px;color:#6b7280;margin-top:2px}
+.st.r .n{color:#ef4444}.st.y .n{color:#f59e0b}.st.c .n{color:#06b6d4}
+.lst{display:flex;flex-direction:column;gap:4px}
+.it{background:#0f1420;border-right:3px solid #333;border-radius:4px;padding:8px 10px;font-size:11px;display:flex;gap:8px}
+.it.critical{border-right-color:#ef4444}.it.high{border-right-color:#f59e0b}
+.it.medium{border-right-color:#06b6d4}.it.low{border-right-color:#10b981}
+.it .t{color:#6b7280;font-size:10px;min-width:45px}
+.it .c{color:#10b981;font-weight:bold;min-width:24px}
+.it .tp{color:#0fb;flex:1}.it .ip{color:#6b7280;font-size:9px}
+.br{display:flex;align-items:center;gap:8px;font-size:11px;margin-bottom:6px}
+.br .nm{width:100px;color:#9ca3af}
+.br .b{flex:1;height:14px;background:#0a0a0a;border-radius:3px;overflow:hidden}
+.br .f{height:100%;background:linear-gradient(90deg,#10b981,#06b6d4)}
+.br .v{width:30px;color:#10b981;font-weight:bold}
+</style></head><body>
+<div class="stats">
+<div class="st r"><div class="n" id="a">0</div><div class="l">کل</div></div>
+<div class="st y"><div class="n" id="b">0</div><div class="l">CRITICAL</div></div>
+<div class="st c"><div class="n" id="c">0</div><div class="l">HIGH</div></div>
+<div class="st"><div class="n" id="d">0</div><div class="l">بلاک</div></div>
+</div>
+<h2>انواع حملات</h2><div id="ty"></div>
+<h2>کشورها</h2><div id="co"></div>
+<h2>آخرین</h2><div class="lst" id="ls"></div>
+<script src="nav.js"></script><script>
+function e(s){return String(s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+function sc(s){s=(s||'low').toLowerCase();if(s==='warning'||s==='warn')s='high';if(s==='info')s='low';return s}
+function r(d){
+var at=(d&&d.attacks)||[],st=(d&&d.stats)||{};
+document.getElementById('a').textContent=st.total||0;
+document.getElementById('b').textContent=st.critical||0;
+document.getElementById('c').textContent=st.high||0;
+document.getElementById('d').textContent=st.blocked||0;
+var ty=st.top_types||{},tk=Object.keys(ty);
+var mx=tk.length?Math.max.apply(null,tk.map(k=>ty[k])):1;
+document.getElementById('ty').innerHTML=tk.length?tk.map(k=>'<div class="br"><div class="nm">'+e(k)+'</div><div class="b"><div class="f" style="width:'+(ty[k]/mx*100)+'%"></div></div><div class="v">'+ty[k]+'</div></div>').join(''):'<div style="color:#666;padding:10px">داده‌ای نیست</div>';
+var co=st.top_countries||{},ck=Object.keys(co);
+var mc=ck.length?Math.max.apply(null,ck.map(k=>co[k])):1;
+document.getElementById('co').innerHTML=ck.length?ck.map(k=>'<div class="br"><div class="nm">'+e(k)+'</div><div class="b"><div class="f" style="width:'+(co[k]/mc*100)+'%"></div></div><div class="v">'+co[k]+'</div></div>').join(''):'<div style="color:#666;padding:10px">داده‌ای نیست</div>';
+var ls=document.getElementById('ls');
+if(!at.length){ls.innerHTML='<div style="color:#666;text-align:center;padding:20px">داده‌ای نیست</div>';return}
+ls.innerHTML=at.slice(0,30).map(function(a){
+var sv=sc(a.severity),t=(a.ts||'').substring(11,16)||'--:--';
+return '<div class="it '+sv+'"><span class="t">'+e(t)+'</span><span class="c">'+e(a.country||'??')+'</span><span class="tp">'+e(a.attack_type||'?')+'</span><span class="ip">'+e(a.ip||'')+'</span></div>';
+}).join('');
+}
+fetch('../data/attacks.json?v='+Date.now()).then(r=>r.json()).then(r).catch(console.error);
+</script></body></html>

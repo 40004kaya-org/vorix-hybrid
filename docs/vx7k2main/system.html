@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>System</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#10b981;font-size:12px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
+.cd{background:#0f1420;border:1px solid #1f2937;border-radius:8px;padding:12px;margin-bottom:10px}
+.rw{display:flex;justify-content:space-between;padding:6px 0;font-size:12px;border-bottom:1px solid #1f2937}
+.rw:last-child{border-bottom:none}
+.rw .k{color:#6b7280}.rw .v{color:#10b981;font-weight:bold}
+.bg{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px}
+.bg.ok{background:#064e3b;color:#6ee7b7}.bg.er{background:#7f1d1d;color:#fca5a5}
+</style></head><body>
+<h2>اطلاعات</h2><div class="cd" id="i"><div class="rw"><span class="k">...</span></div></div>
+<h2>سرویس‌ها</h2><div class="cd" id="s"><div class="rw"><span class="k">...</span></div></div>
+<script src="nav.js"></script><script>
+function r(d){
+var L=(d&&d.layers)||[],ts=(d&&d.ts)||'-';
+document.getElementById('i').innerHTML=
+'<div class="rw"><span class="k">زمان داده</span><span class="v">'+ts+'</span></div>'+
+'<div class="rw"><span class="k">کل لایه‌ها</span><span class="v">'+L.length+'</span></div>'+
+'<div class="rw"><span class="k">فعال</span><span class="v">'+L.filter(l=>l.running).length+'</span></div>'+
+'<div class="rw"><span class="k">درصد</span><span class="v">'+(L.length?Math.round(L.filter(l=>l.running).length/L.length*100):0)+'%</span></div>';
+var svc=[{n:'Sync',id:'L-Sync'},{n:'Keep',id:'L-Keep'},{n:'Bot',id:'L-Bot'},{n:'Agent',id:'L-Agent'}];
+document.getElementById('s').innerHTML=svc.map(function(s){
+var ok=L.some(l=>l.id===s.id&&l.running);
+return '<div class="rw"><span class="k">'+s.n+'</span><span class="v"><span class="bg '+(ok?'ok':'er')+'">'+(ok?'RUNNING':'DOWN')+'</span></span></div>';
+}).join('');
+}
+fetch('../data/live.json?v='+Date.now()).then(r=>r.json()).then(r).catch(console.error);
+</script></body></html>

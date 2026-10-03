@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Events</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#10b981;font-size:12px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
+.lst{display:flex;flex-direction:column;gap:4px}
+.it{background:#0f1420;border-right:3px solid #333;border-radius:4px;padding:8px 10px;font-size:11px;display:flex;gap:8px}
+.it.critical{border-right-color:#ef4444}.it.high{border-right-color:#f59e0b}
+.it.medium{border-right-color:#06b6d4}.it.low{border-right-color:#10b981}
+.it .t{color:#6b7280;font-size:10px;min-width:50px}
+.it .sv{padding:1px 6px;border-radius:3px;font-size:9px;font-weight:bold}
+.sv.critical{background:#7f1d1d;color:#fca5a5}
+.sv.high{background:#78350f;color:#fcd34d}
+.sv.medium{background:#365314;color:#bef264}
+.sv.low{background:#1e3a8a;color:#93c5fd}
+.it .tp{color:#0fb;flex:1}.it .ip{color:#6b7280;font-size:9px}
+</style></head><body>
+<h2>آخرین رویدادها</h2><div class="lst" id="ls"></div>
+<script src="nav.js"></script><script>
+function e(s){return String(s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+function sc(s){s=(s||'low').toLowerCase();if(s==='warning'||s==='warn')s='high';if(s==='info')s='low';return s}
+function r(d){
+var at=(d&&d.attacks)||[];
+var ls=document.getElementById('ls');
+if(!at.length){ls.innerHTML='<div style="color:#666;text-align:center;padding:20px">رویدادی نیست</div>';return}
+ls.innerHTML=at.slice(0,30).map(function(a){
+var sv=sc(a.severity),t=(a.ts||'').substring(11,19)||'--:--:--';
+return '<div class="it '+sv+'"><span class="t">'+e(t)+'</span><span class="sv '+sv+'">'+sv.toUpperCase()+'</span><span class="tp">'+e(a.attack_type||'?')+'</span><span class="ip">'+e(a.ip||'')+'</span></div>';
+}).join('');
+}
+fetch('../data/attacks.json?v='+Date.now()).then(r=>r.json()).then(r).catch(console.error);
+</script></body></html>

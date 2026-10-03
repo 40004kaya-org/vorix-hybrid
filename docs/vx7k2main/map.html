@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Map</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070d;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#10b981;font-size:12px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.st{background:#0f1420;border:1px solid #1f2937;border-radius:8px;padding:10px 4px;text-align:center}
+.st .n{font-size:18px;font-weight:bold;color:#10b981}
+.st .l{font-size:9px;color:#6b7280;margin-top:2px}
+.st.r .n{color:#ef4444}.st.y .n{color:#f59e0b}.st.c .n{color:#06b6d4}
+.mw{background:#050a15;border:1px solid #1f5f3f;border-radius:10px;padding:8px}
+svg{width:100%;height:auto;display:block}
+.ct{fill:#0a1520;stroke:#1f5f3f;stroke-width:.8}
+.gr{stroke:rgba(16,185,129,.05);stroke-width:.5}
+.ar{fill:none;stroke-width:1.8;stroke-dasharray:200}
+.ar.critical{stroke:#ef4444}.ar.high{stroke:#f59e0b}
+.ar.medium{stroke:#06b6d4}.ar.low{stroke:#10b981}
+.ds{fill:#ef4444}.dd{fill:#10b981}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.4}}
+.pu{animation:pu 1.5s infinite}
+@keyframes pi{0%{r:6;opacity:.8}100%{r:22;opacity:0}}
+.pi{animation:pi 1.5s infinite}
+.lg{display:flex;gap:12px;justify-content:center;font-size:10px;color:#6b7280;margin-top:10px}
+.lg span{display:flex;align-items:center;gap:4px}
+.lg .d{width:8px;height:8px;border-radius:50%}
+.lst{display:flex;flex-direction:column;gap:4px;max-height:280px;overflow-y:auto}
+.it{background:#0f1420;border-right:3px solid #333;border-radius:4px;padding:8px 10px;font-size:11px;display:flex;gap:8px}
+.it.critical{border-right-color:#ef4444}.it.high{border-right-color:#f59e0b}
+.it.medium{border-right-color:#06b6d4}.it.low{border-right-color:#10b981}
+.it .t{color:#6b7280;font-size:10px;min-width:45px}
+.it .c{color:#10b981;font-weight:bold;min-width:24px}
+.it .tp{color:#0fb;flex:1}.it .ip{color:#6b7280;font-size:9px}
+</style></head><body>
+<h2>LIVE ATTACK MAP</h2>
+<div class="stats">
+<div class="st r"><div class="n" id="a">0</div><div class="l">کل</div></div>
+<div class="st y"><div class="n" id="b">0</div><div class="l">CRITICAL</div></div>
+<div class="st c"><div class="n" id="c">0</div><div class="l">کشور</div></div>
+<div class="st"><div class="n" id="d">0</div><div class="l">بلاک</div></div>
+</div>
+<div class="mw"><svg viewBox="0 0 1000 500"><g>
+<line class="gr" x1="0" y1="125" x2="1000" y2="125"/>
+<line class="gr" x1="0" y1="250" x2="1000" y2="250"/>
+<line class="gr" x1="0" y1="375" x2="1000" y2="375"/>
+<line class="gr" x1="250" y1="0" x2="250" y2="500"/>
+<line class="gr" x1="500" y1="0" x2="500" y2="500"/>
+<line class="gr" x1="750" y1="0" x2="750" y2="500"/>
+</g><g>
+<path class="ct" d="M110,110 Q140,80 200,95 L260,110 Q290,125 285,165 L255,205 Q220,235 185,240 L145,225 Q120,195 115,165 Z"/>
+<path class="ct" d="M255,255 Q300,245 330,265 L345,310 Q340,360 315,400 Q290,430 270,415 L245,375 Q235,320 245,280 Z"/>
+<path class="ct" d="M475,105 Q510,90 555,95 L590,115 Q595,145 575,175 L540,185 Q505,180 485,155 Q470,135 475,105 Z"/>
+<path class="ct" d="M470,195 Q530,180 585,190 L605,230 Q610,290 585,340 Q555,385 520,375 L485,335 Q470,285 465,240 Z"/>
+<path class="ct" d="M600,95 Q680,80 780,85 L870,105 Q920,130 925,175 L910,215 Q870,245 805,240 L730,225 Q670,205 625,175 Q605,140 600,95 Z"/>
+<path class="ct" d="M690,205 Q730,195 745,220 L750,265 Q735,290 715,285 L695,250 Z"/>
+<path class="ct" d="M810,345 Q870,330 910,345 L925,395 Q915,425 875,435 L830,420 Q805,395 810,345 Z"/>
+</g><g id="ar"></g><g id="mk"></g></svg>
+<div class="lg">
+<span><span class="d" style="background:#ef4444"></span>Critical</span>
+<span><span class="d" style="background:#f59e0b"></span>High</span>
+<span><span class="d" style="background:#06b6d4"></span>Medium</span>
+<span><span class="d" style="background:#10b981"></span>Low</span>
+</div></div>
+<h2>آخرین حملات</h2><div class="lst" id="ls"></div>
+<script src="nav.js"></script><script>
+var C={RU:[690,125],CN:[790,180],US:[200,155],IR:[655,205],TR:[560,160],BR:[310,320],IN:[715,235],DE:[535,140],VN:[790,215],KR:[840,170],NL:[510,135],FR:[500,150],GB:[490,125],JP:[870,180],AU:[860,375],CA:[205,110],PK:[690,205],ID:[820,290],TH:[775,235],EG:[560,200]};
+var T=[655,205];
+function e(s){return String(s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}
+function sc(s){s=(s||'low').toLowerCase();if(s==='warning'||s==='warn')s='high';if(s==='info')s='low';return s}
+function ap(x1,y1,x2,y2){var dx=x2-x1,dy=y2-y1;return'M'+x1+','+y1+' Q'+((x1+x2)/2-dy*.35)+','+((y1+y2)/2+dx*.35)+' '+x2+','+y2}
+function r(d){
+var at=(d&&d.attacks)||[],st=(d&&d.stats)||{};
+document.getElementById('a').textContent=st.total||0;
+document.getElementById('b').textContent=st.critical||0;
+document.getElementById('c').textContent=Object.keys(st.top_countries||{}).length;
+document.getElementById('d').textContent=st.blocked||0;
+var ah='',mh='';
+mh+='<circle class="dd" cx="'+T[0]+'" cy="'+T[1]+'" r="5"/>';
+mh+='<circle class="pi" cx="'+T[0]+'" cy="'+T[1]+'" r="6" fill="none" stroke="#10b981" stroke-width="2"/>';
+at.slice(0,20).forEach(function(a,i){
+var c=a.country||'??';if(c==='??')return;var xy=C[c];if(!xy)return;
+var sv=sc(a.severity);
+ah+='<path class="ar '+sv+'" d="'+ap(xy[0],xy[1],T[0],T[1])+'"><animate attributeName="stroke-dashoffset" from="200" to="0" dur="'+(1.5+Math.random()*1.5)+'s" begin="'+(i*.12)+'s" repeatCount="indefinite"/></path>';
+mh+='<circle class="ds pu" cx="'+xy[0]+'" cy="'+xy[1]+'" r="4" style="animation-delay:'+(i*.1)+'s"/>';
+});
+document.getElementById('ar').innerHTML=ah;
+document.getElementById('mk').innerHTML=mh;
+var ls=document.getElementById('ls');
+if(!at.length){ls.innerHTML='<div style="color:#666;text-align:center;padding:20px">داده‌ای نیست</div>';return}
+ls.innerHTML=at.slice(0,15).map(function(a){
+var sv=sc(a.severity),t=(a.ts||'').substring(11,16)||'--:--';
+return '<div class="it '+sv+'"><span class="t">'+e(t)+'</span><span class="c">'+e(a.country||'??')+'</span><span class="tp">'+e(a.attack_type||'?')+'</span><span class="ip">'+e(a.ip||'')+'</span></div>';
+}).join('');
+}
+function L(){fetch('../data/attacks.json?v='+Date.now()).then(r=>r.json()).then(r).catch(console.error)}
+L();setInterval(L,20000);
+</script></body></html>
