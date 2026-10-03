@@ -1,14 +1,14 @@
 {
-  "ts": "2026-10-03T02:46:50.751968Z",
+  "ts": "2026-10-03T02:54:02.221339Z",
   "layers": [
     {
       "id": "L01",
       "file": "layer01_selfdefense",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "14182",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L02",
@@ -266,7 +266,7 @@
       "id": "L-LF",
       "file": "layer_livefeed",
       "running": true,
-      "pid": "9586",
+      "pid": "14179",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -347,7 +347,7 @@
       "id": "L-Bot",
       "file": "vorix_bot",
       "running": true,
-      "pid": "9581",
+      "pid": "14174",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -356,7 +356,7 @@
       "id": "L-Sync",
       "file": "sync_loop",
       "running": true,
-      "pid": "9571",
+      "pid": "14165",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -381,10 +381,10 @@
     }
   ],
   "stats": {
-    "green": 3,
+    "green": 4,
     "yellow": 22,
     "orange": 0,
-    "red": 17,
+    "red": 16,
     "total": 42
   }
 }
