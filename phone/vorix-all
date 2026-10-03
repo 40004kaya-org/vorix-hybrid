@@ -35,6 +35,21 @@ LAYERS=(
     "layer_forensics.py||L-Forensics"
     "layer_hashchain.py||L-HashChain"
     "layer_voice.py||L-Voice"
+    "layer_heartbeat.py|watch|L-Heartbeat"
+    "layer_guard.py|watch|L-Guard"
+    "layer_canary.py|watch|L-Canary"
+    "layer_seal.py|watch|L-Seal"
+    "layer_quarantine.py|watch|L-Quarantine"
+    "layer_aegis.py|watch|L-Aegis"
+    "layer_beacon.py|watch|L-Beacon"
+    "layer_whitelist.py|watch|L-Whitelist"
+    "layer_resurrect.py|watch|L-Resurrect"
+    "layer_feed.py|watch|L-Feed"
+    "layer_honeytoken.py|watch|L-Honeytoken"
+    "layer_tarpit.py|watch|L-Tarpit"
+    "layer_mirror.py|watch|L-Mirror"
+    "layer_watchtower.py|watch|L-Watchtower"
+    "layer_chaos.py|watch|L-Chaos"
 )
 
 banner() {

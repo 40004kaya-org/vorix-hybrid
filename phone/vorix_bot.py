@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """VORIX Bot — منوی کامل دکمه‌ای"""
+from layer_deep_link import handle_deep_link, diagnose, format_status_message, build_actions
 import os, json, time, requests
 from datetime import datetime
 
@@ -300,7 +301,14 @@ def proc_msg(msg):
     c = msg["chat"]["id"]
     t = msg.get("text", "")
     cmd = t.split()[0].lower().split("@")[0] if t else ""
-    if cmd in ("/start", "/menu"): show_main(c)
+    if cmd in ("/start", "/menu"):
+        # چک کن args داره (deep link)
+        # چک args از ربات (deep link)
+        args = t.split()[1:] if len(t.split()) > 1 else []
+        if args and len(args) > 0:
+            handle_deep_link(c, args[0])
+        else:
+            show_main(c)
     elif cmd == "/stats": show_stats(c, None)
     elif cmd == "/history": show_history(c, None)
     elif cmd == "/layers": show_layers(c, None)

@@ -1,0 +1,2 @@
+# TRAP — DO NOT OPEN
+honeypot_token=1aa5d94c7f4e060f84b20e111d67a04c

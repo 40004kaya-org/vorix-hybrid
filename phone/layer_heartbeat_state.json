@@ -1,0 +1,27 @@
+{
+  "ts": "2026-10-03T05:12:31.605650",
+  "alive": 0,
+  "dead": 20,
+  "dead_list": [
+    "layer01_selfdefense",
+    "layer02_threat_intel",
+    "layer03_behavioral",
+    "layer04_auto_block",
+    "layer05_data_quarantine",
+    "layer06_geoip_block",
+    "layer08_network_monitor",
+    "layer09_rate_limiter",
+    "layer10_red_alert",
+    "layer17_watchdog",
+    "layer19_password_leak",
+    "layer21_ml_anomaly",
+    "layer25_ssl_monitor",
+    "layer29_30_identity",
+    "layer_fim",
+    "layer_rootkit",
+    "layer_multichannel",
+    "layer_livefeed",
+    "vorix_bot",
+    "sync_loop"
+  ]
+}

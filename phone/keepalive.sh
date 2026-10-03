@@ -37,6 +37,21 @@ LAYERS=(
     "layer_fim.py|watch"
     "layer_rootkit.py|watch"
     "layer_multichannel.py|watch"
+    "layer_heartbeat.py|watch"
+    "layer_guard.py|watch"
+    "layer_canary.py|watch"
+    "layer_seal.py|watch"
+    "layer_quarantine.py|watch"
+    "layer_aegis.py|watch"
+    "layer_beacon.py|watch"
+    "layer_whitelist.py|watch"
+    "layer_resurrect.py|watch"
+    "layer_feed.py|watch"
+    "layer_honeytoken.py|watch"
+    "layer_tarpit.py|watch"
+    "layer_mirror.py|watch"
+    "layer_watchtower.py|watch"
+    "layer_chaos.py|watch"
 )
 
 while true; do
