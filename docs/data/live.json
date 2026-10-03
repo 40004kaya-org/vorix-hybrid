@@ -1,11 +1,11 @@
 {
-  "ts": "2026-10-02T23:51:01.181958Z",
+  "ts": "2026-10-03T02:27:07.717691Z",
   "layers": [
     {
       "id": "L01",
       "file": "layer01_selfdefense",
       "running": true,
-      "pid": "18511",
+      "pid": "21652",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -23,7 +23,7 @@
       "id": "L03",
       "file": "layer03_behavioral",
       "running": true,
-      "pid": "18513",
+      "pid": "25582",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -32,7 +32,7 @@
       "id": "L04",
       "file": "layer04_auto_block",
       "running": true,
-      "pid": "18515",
+      "pid": "25584",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -50,7 +50,7 @@
       "id": "L06",
       "file": "layer06_geoip_block",
       "running": true,
-      "pid": "18517",
+      "pid": "25587",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -68,7 +68,7 @@
       "id": "L08",
       "file": "layer08_network_monitor",
       "running": true,
-      "pid": "18519",
+      "pid": "25589",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -77,7 +77,7 @@
       "id": "L09",
       "file": "layer09_rate_limiter",
       "running": true,
-      "pid": "18521",
+      "pid": "25591",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -86,7 +86,7 @@
       "id": "L10",
       "file": "layer10_red_alert",
       "running": true,
-      "pid": "18523",
+      "pid": "25593",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -140,7 +140,7 @@
       "id": "L17",
       "file": "layer17_watchdog",
       "running": true,
-      "pid": "18525",
+      "pid": "25595",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -158,7 +158,7 @@
       "id": "L19",
       "file": "layer19_password_leak",
       "running": true,
-      "pid": "18527",
+      "pid": "25600",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -167,7 +167,7 @@
       "id": "L21",
       "file": "layer21_ml_anomaly",
       "running": true,
-      "pid": "18529",
+      "pid": "25603",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -203,7 +203,7 @@
       "id": "L25",
       "file": "layer25_ssl_monitor",
       "running": true,
-      "pid": "18531",
+      "pid": "25607",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -221,7 +221,7 @@
       "id": "L29",
       "file": "layer29_30_identity",
       "running": true,
-      "pid": "18533",
+      "pid": "25609",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -239,7 +239,7 @@
       "id": "L-FIM",
       "file": "layer_fim",
       "running": true,
-      "pid": "18536",
+      "pid": "25611",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -248,7 +248,7 @@
       "id": "L-Root",
       "file": "layer_rootkit",
       "running": true,
-      "pid": "18538",
+      "pid": "25613",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -257,7 +257,7 @@
       "id": "L-MC",
       "file": "layer_multichannel",
       "running": true,
-      "pid": "18540",
+      "pid": "25616",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -266,7 +266,7 @@
       "id": "L-LF",
       "file": "layer_livefeed",
       "running": true,
-      "pid": "18509",
+      "pid": "25579",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -347,7 +347,7 @@
       "id": "L-Bot",
       "file": "vorix_bot",
       "running": true,
-      "pid": "18507",
+      "pid": "25577",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -355,6 +355,15 @@
     {
       "id": "L-Sync",
       "file": "sync_loop",
+      "running": true,
+      "pid": "23157",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
+    },
+    {
+      "id": "L-Keep",
+      "file": "keepalive",
       "running": false,
       "pid": null,
       "mode": "watch",
@@ -362,19 +371,10 @@
       "label": "قطع"
     },
     {
-      "id": "L-Keep",
-      "file": "keepalive",
-      "running": true,
-      "pid": "18503",
-      "mode": "watch",
-      "color": "green",
-      "label": "فعال"
-    },
-    {
       "id": "L-Agent",
       "file": "agent",
       "running": true,
-      "pid": "18571",
+      "pid": "25712",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
