@@ -6,14 +6,18 @@
 <title>VORIX Board</title>
 <link rel="stylesheet" href="style.css">
 <script>
-  if (localStorage.getItem('vorix_auth') !== 'ok') {
+  // چک: آیا رمز تو URL هست؟ اگه نه، برگرد به لاگین
+  const params = new URLSearchParams(location.search);
+  const k = params.get('k');
+  if (!k) {
     window.location.replace('../index.html');
   }
+  // ذخیره رمز برای decrypt
+  window.__VORIX_PIN__ = k;
 </script>
 </head>
 <body>
-<div id="dbg" style="position:fixed;top:0;left:0;right:0;background:#000;color:#0f0;padding:4px;font-size:11px;font-family:monospace;z-index:9999;">boot</div>
-<svg id="board" viewBox="0 0 900 780" preserveAspectRatio="xMidYMid meet"></svg>
-  <script src="board.js?v=3"></script>
+  <svg id="board" viewBox="0 0 900 780" preserveAspectRatio="xMidYMid meet"></svg>
+  <script src="board.js?v=5"></script>
 </body>
 </html>

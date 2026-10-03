@@ -7,13 +7,15 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:#0a0a0a;color:#eee;font-family:sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center}
-  .box{background:#151515;padding:40px 30px;border-radius:16px;border:1px solid #1f5f3f;width:340px;text-align:center}
+  .box{background:#151515;padding:40px 30px;border-radius:16px;border:1px solid #1f5f3f;width:340px;text-align:center;box-shadow:0 0 40px rgba(0,255,150,0.08)}
   h1{color:#0fb;margin-bottom:24px;font-size:22px;letter-spacing:2px}
   input{width:100%;padding:14px;background:#0d0d0d;color:#eee;border:1px solid #333;border-radius:8px;font-size:16px;text-align:center;letter-spacing:1px;direction:ltr}
   input:focus{outline:none;border-color:#0fb}
   button{margin-top:16px;width:100%;padding:12px;background:#0fb;color:#000;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer}
-  #err{color:#f44;margin-top:12px;font-size:12px;font-family:monospace;text-align:left;white-space:pre-wrap}
+  button:active{transform:scale(0.98)}
+  #err{color:#f44;margin-top:12px;font-size:12px;min-height:20px;word-break:break-all;font-family:monospace;direction:ltr;text-align:left}
   .logo{font-size:48px;margin-bottom:16px}
+  .show{font-size:12px;color:#888;margin-top:8px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -21,11 +23,17 @@
     <div class="logo">🛡️</div>
     <h1>VORIX SECURITY</h1>
     <input type="password" id="pin" placeholder="رمز عبور" autocomplete="off">
+    <p class="show" onclick="toggleShow()">👁️ نمایش رمز</p>
     <button onclick="check()">ورود</button>
     <p id="err"></p>
   </div>
 <script>
 const HASH_REV = "fe3b03f0ea1eeaa2568e796bc94cceb20ff0a87a1576c335dad7f10573b4e932";
+
+function toggleShow() {
+  const el = document.getElementById('pin');
+  el.type = el.type === 'password' ? 'text' : 'password';
+}
 
 async function sha256(msg) {
   const buf = new TextEncoder().encode(msg);
@@ -42,12 +50,16 @@ async function check() {
   
   if (rev === HASH_REV) {
     err.style.color = '#0fb';
-    err.textContent = 'OK — enter...';
-    // رمز رو تو URL بفرست (نه localStorage)
-    window.location.href = 'vx7k2/index.html?k=' + encodeURIComponent(pin);
+    err.textContent = '✅ OK, entering...';
+    localStorage.setItem('vorix_auth', 'ok');
+    localStorage.setItem('vorix_pin', pin);
+    window.location.href = 'vx7k2/index.html';
   } else {
     err.style.color = '#f44';
-    err.textContent = 'WRONG';
+    err.textContent = '❌ WRONG\n' +
+      'len: ' + pin.length + '\n' +
+      'hash_rev: ' + rev.substring(0, 40) + '...\n' +
+      'expected: ' + HASH_REV.substring(0, 40) + '...';
   }
 }
 
