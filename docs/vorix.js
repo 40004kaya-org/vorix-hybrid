@@ -81,10 +81,14 @@ function renderRacks() {
     const hasRed = layers.some(l => l.color === 'red');
     
     const bladesHTML = layers.map(l => `
-      <div class="blade ${l.color === 'red' ? 'blade-red' : ''}" title="${l.id}" onclick="openDrawer('${l.id}')">
+      <a class="blade ${l.color === 'red' ? 'blade-red' : ''}" 
+         href="https://t.me/vorix_security_bot?start=layer_${l.id}"
+         target="_blank" 
+         title="${l.id} - ${l.mode}"
+         style="text-decoration:none;color:inherit;display:flex">
         <div class="blade-led ${l.color}"></div>
         <div class="blade-name">${l.id}</div>
-      </div>
+      </a>
     `).join('');
     
     const s = SECTIONS[section];
