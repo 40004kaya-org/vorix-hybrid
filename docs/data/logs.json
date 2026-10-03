@@ -1,5 +1,5 @@
 {
- "ts": "2026-10-03T06:17:40.002202Z",
+ "ts": "2026-10-03T06:18:49.305916Z",
  "total": 100,
  "entries": [
   {
@@ -178,36 +178,6 @@
   },
   {
    "src": "layer_tarpit",
-   "ts": "09:44:22",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "09:44:37",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "09:44:52",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "09:45:07",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "09:45:17",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
    "ts": "09:45:32",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
@@ -263,6 +233,36 @@
   {
    "src": "layer_tarpit",
    "ts": "09:47:37",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "09:47:52",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "09:48:02",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "09:48:17",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "09:48:32",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "09:48:47",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
