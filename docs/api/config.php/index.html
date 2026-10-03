@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<title>403 Forbidden</title>
+<script src="../../../assets/trap.js"></script>
+<style>
+body{background:#070a12;color:#f87171;font-family:monospace;
+     display:flex;align-items:center;justify-content:center;height:100vh;font-size:13px}
+.box{border:1px solid #7f1d1d;padding:30px;border-radius:6px;background:#1a0e0e;text-align:center}
+h1{font-size:14px;letter-spacing:3px;margin-bottom:12px}
+p{color:#94a3b8;font-size:11px;letter-spacing:1px}
+</style></head>
+<body>
+<div class="box">
+  <h1>403 · FORBIDDEN</h1>
+  <p>Access denied · Resource unavailable</p>
+  <p style="margin-top:20px;color:#475569;font-size:9px">Reference: VX-ERR-403-A7F9</p>
+</div>
+<script>
+if (window.VX) VX.trap('api_trap_403', { path: location.pathname });
+</script>
+</body></html>

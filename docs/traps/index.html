@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Traps — Private</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#070a12;color:#94a3b8;font-family:"SF Mono",monospace;padding:12px;font-size:12px}
+h1{color:#f87171;font-size:14px;letter-spacing:3px;margin-bottom:16px;border-bottom:1px solid #7f1d1d;padding-bottom:8px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.st{background:#0f1420;border:1px solid #1e293b;border-radius:6px;padding:12px;text-align:center}
+.st .v{color:#e2e8f0;font-size:20px;font-weight:600}
+.st .l{color:#475569;font-size:9px;letter-spacing:1px;margin-top:4px}
+.trap{background:#1a0e0e;border-right:3px solid #dc2626;padding:10px;margin-bottom:6px;border-radius:4px;font-size:10px}
+.trap .hdr{display:flex;justify-content:space-between;margin-bottom:6px}
+.trap .ev{color:#f87171;font-weight:600;letter-spacing:1px}
+.trap .t{color:#475569}
+.trap .x{color:#94a3b8;direction:ltr;text-align:left;font-size:9px;line-height:1.5}
+.actions{display:flex;gap:8px;margin-bottom:16px}
+.btn{background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:8px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:10px;letter-spacing:1px}
+.btn:hover{background:#334155;color:#e2e8f0}
+.btn.danger{background:#7f1d1d;border-color:#dc2626;color:#fca5a5}
+.empty{color:#475569;text-align:center;padding:30px;font-size:11px}
+</style>
+</head>
+<body>
+
+<h1>🪤 TRAP LOG — PRIVATE</h1>
+
+<div class="actions">
+  <button class="btn" onclick="refresh()">↻ REFRESH</button>
+  <button class="btn" onclick="exportJSON()">↓ EXPORT JSON</button>
+  <button class="btn danger" onclick="clearAll()">✕ CLEAR</button>
+</div>
+
+<div class="stats" id="stats"></div>
+<div id="log"></div>
+
+<script>
+function fmt(ts) {
+  const d = new Date(ts);
+  return d.toISOString().replace('T',' ').substring(0,19);
+}
+
+function refresh() {
+  const traps = JSON.parse(localStorage.getItem('_vxt') || '[]');
+  const el = document.getElementById('log');
+  const st = document.getElementById('stats');
+
+  // Stats
+  const now = Date.now();
+  const last1h = traps.filter(t => now - t.t < 3600000).length;
+  const last24h = traps.filter(t => now - t.t < 86400000).length;
+  const uniqueEv = new Set(traps.map(t => t.ev)).size;
+
+  st.innerHTML = `
+    <div class="st"><div class="v">${traps.length}</div><div class="l">TOTAL</div></div>
+    <div class="st"><div class="v">${last1h}</div><div class="l">LAST 1H</div></div>
+    <div class="st"><div class="v">${uniqueEv}</div><div class="l">UNIQUE EVENTS</div></div>
+  `;
+
+  if (!traps.length) {
+    el.innerHTML = '<div class="empty">هیچ trap ای ثبت نشده</div>';
+    return;
+  }
+
+  el.innerHTML = traps.slice().reverse().map(t => {
+    const extra = t.x ? JSON.stringify(t.x, null, 1) : '—';
+    return `<div class="trap">
+      <div class="hdr"><span class="ev">${t.ev}</span><span class="t">${fmt(t.t)}</span></div>
+      <div class="x">${extra.replace(/</g,'&lt;')}</div>
+    </div>`;
+  }).join('');
+}
+
+function exportJSON() {
+  const traps = JSON.parse(localStorage.getItem('_vxt') || '[]');
+  const blob = new Blob([JSON.stringify(traps, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'traps-' + Date.now() + '.json';
+  a.click();
+}
+
+function clearAll() {
+  if (!confirm('همه trap ها پاک بشن؟')) return;
+  localStorage.removeItem('_vxt');
+  refresh();
+}
+
+refresh();
+setInterval(refresh, 5000);
+</script>
+</body>
+</html>

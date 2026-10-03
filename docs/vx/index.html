@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>...</title>
+<script src="../assets/trap.js"></script>
+<style>
+body{background:#070a12;color:#475569;font-family:monospace;
+     display:flex;align-items:center;justify-content:center;height:100vh}
+</style>
+</head>
+<body>
+<div>Loading...</div>
+<script>
+// ═════════════════════════════════════════════════
+//  Time-Lock Gate
+//  فقط امروز کار می‌کند
+// ═════════════════════════════════════════════════
+(async function() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth()+1).padStart(2,'0');
+  const dd = String(today.getDate()).padStart(2,'0');
+  const KEY = `vx-${yyyy}${mm}${dd}`;
+
+  // چک اگر URL درست است
+  const url = new URL(location.href);
+  const token = url.searchParams.get('k');
+
+  // حالت ۱: اگه token درست نبود → trap
+  if (token !== KEY) {
+    if (window.VX) {
+      await VX.trap('vx_gate_wrong_token', {
+        provided: token,
+        expected: KEY.slice(0,8) + '****'
+      });
+    }
+    document.body.innerHTML = '<div style="color:#475569">403</div>';
+    return;
+  }
+
+  // حالت ۲: token درست → برو به داشبورد واقعی
+  // مسیر واقعی: vx7k2main/shop-board.html
+  location.replace('../vx7k2main/shop-board.html');
+})();
+</script>
+</body>
+</html>

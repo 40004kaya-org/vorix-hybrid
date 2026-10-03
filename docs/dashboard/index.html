@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VX-OPS · Console</title>
+<script src="../assets/trap.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#070a12;color:#94a3b8;font-family:"SF Mono",monospace;padding:10px;font-size:12px}
+.hdr{display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #1e293b;margin-bottom:12px}
+.brand{color:#e2e8f0;font-size:13px;letter-spacing:3px}
+.brand span{color:#3b82f6}
+.live{color:#059669;font-size:10px;display:flex;align-items:center;gap:5px}
+.dot{width:6px;height:6px;background:#059669;border-radius:50%;animation:p 2s infinite}
+@keyframes p{50%{opacity:0.3}}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.card{background:#0f1420;border:1px solid #1e293b;border-radius:6px;padding:14px}
+.card h3{color:#475569;font-size:9px;letter-spacing:2px;font-weight:600;margin-bottom:8px}
+.card .v{color:#e2e8f0;font-size:22px;font-weight:600}
+.card .s{color:#475569;font-size:9px;margin-top:4px}
+.card.warn .v{color:#f59e0b}
+.card.ok .v{color:#059669}
+
+.panel{background:#0f1420;border:1px solid #1e293b;border-radius:6px;padding:12px;margin-bottom:10px}
+.panel h2{color:#64748b;font-size:10px;letter-spacing:2px;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;padding:6px 0;font-size:11px;border-bottom:1px solid #0a0e1a}
+.row:last-child{border:none}
+.row .k{color:#475569}
+.row .val{color:#94a3b8}
+
+.admin-link{color:#3b82f6;text-decoration:none;font-size:10px;letter-spacing:1px}
+.admin-link:hover{color:#60a5fa}
+
+.warning{background:#1a0e0e;border:1px solid #7f1d1d;color:#fca5a5;padding:10px;border-radius:4px;font-size:10px;letter-spacing:1px}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="brand">VX<span>·</span>OPS</div>
+  <div class="live"><span class="dot"></span>LIVE</div>
+</div>
+
+<div class="warning">⚠ DEMO MODE · LIMITED DATA ACCESS</div>
+
+<div class="grid" style="margin-top:12px">
+  <div class="card"><h3>NODES</h3><div class="v">3</div><div class="s">registered</div></div>
+  <div class="card"><h3>TRANSACTIONS</h3><div class="v">7</div><div class="s">total</div></div>
+  <div class="card warn"><h3>REVENUE</h3><div class="v">$200</div><div class="s">today</div></div>
+</div>
+
+<div class="panel">
+  <h2>ACTIVE MODULES</h2>
+  <div class="row"><span class="k">M-01 · CORE</span><span class="val">RUNNING</span></div>
+  <div class="row"><span class="k">M-02 · BRIDGE</span><span class="val">RUNNING</span></div>
+  <div class="row"><span class="k">M-03 · API</span><span class="val">STANDBY</span></div>
+  <div class="row"><span class="k">M-04 · SEC</span><span class="val">DISABLED</span></div>
+</div>
+
+<div class="panel">
+  <h2>RECENT EVENTS</h2>
+  <div class="row"><span class="k">11:24:03</span><span class="val">node_connect</span></div>
+  <div class="row"><span class="k">11:22:47</span><span class="val">txn_create</span></div>
+  <div class="row"><span class="k">11:18:12</span><span class="val">auth_attempt</span></div>
+  <div class="row"><span class="k">11:14:55</span><span class="val">data_sync</span></div>
+</div>
+
+<div class="panel">
+  <h2>QUICK ACCESS</h2>
+  <div class="row"><span class="k">Admin Panel</span><a class="admin-link" href="../api/admin/" onclick="if(window.VX)VX.trap('fake_admin_click');">→ /api/admin</a></div>
+  <div class="row"><span class="k">Config</span><a class="admin-link" href="../api/.env/" onclick="if(window.VX)VX.trap('fake_env_click');">→ /.env</a></div>
+  <div class="row"><span class="k">Backups</span><a class="admin-link" href="../api/backup/" onclick="if(window.VX)VX.trap('fake_backup_click');">→ /api/backup</a></div>
+</div>
+
+<script>
+if (window.VX) VX.trap('decoy_dashboard_visit');
+</script>
+</body>
+</html>

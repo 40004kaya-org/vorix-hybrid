@@ -1,9 +1,29 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
-<title>404</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 — Not Found</title>
+<script src="assets/trap.js"></script>
 <style>
-body{background:#0a0a0a;color:#333;font-family:monospace;
-display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
-</style></head>
-<body><div>404 — Not Found</div></body></html>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#070a12;color:#475569;font-family:"SF Mono",monospace;
+     display:flex;align-items:center;justify-content:center;height:100vh;font-size:14px}
+.box{text-align:center}
+.code{font-size:64px;color:#1e293b;font-weight:300;letter-spacing:8px}
+.msg{margin-top:16px;color:#334155;letter-spacing:2px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="code">404</div>
+  <div class="msg">RESOURCE NOT AVAILABLE</div>
+</div>
+<script>
+// Trap fire
+if (window.VX) {
+  VX.trap('root_404_visit', { path: location.pathname });
+}
+</script>
+</body>
+</html>
