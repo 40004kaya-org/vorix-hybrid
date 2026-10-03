@@ -63,8 +63,10 @@ body{background:#02040a;color:#94a3b8;font-family:"SF Mono",monospace;padding:8p
 .matrix{background:linear-gradient(180deg,#0a0f1a 0%,#050a15 100%);border:1px solid #1e293b;border-radius:8px;padding:10px;margin-bottom:10px}
 .matrix-hdr{color:#64748b;font-size:9px;letter-spacing:2px;margin-bottom:8px;display:flex;justify-content:space-between}
 .matrix-hdr .c{color:#10b981}
-.layers-grid{display:grid;grid-template-columns:repeat(16,1fr);gap:3px}
-.layer-dot{aspect-ratio:1;border-radius:50%;background:#1e293b}
+.layers-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.layer-dot{width:6px;height:6px;border-radius:50%;background:#1e293b;margin:0 auto}
+.layer-chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 2px;border:1px solid #1e293b;border-radius:2px;background:rgba(10,15,26,.6)}
+.layer-chip .nm{font-size:6px;color:#64748b;letter-spacing:.3px;line-height:1;text-align:center;overflow:hidden;white-space:nowrap;max-width:100%}
 .layer-dot.green{background:#10b981;box-shadow:0 0 4px #10b981}
 .layer-dot.yellow{background:#f59e0b;box-shadow:0 0 4px #f59e0b}
 .layer-dot.red{background:#ef4444;box-shadow:0 0 4px #ef4444;animation:pulse .8s infinite}
@@ -238,11 +240,13 @@ function renderLayers() {
     .then(r=>r.json())
     .then(d=>{
       const layers = d.layers || [];
+      const layerNames=['HMAC','SIG','IP','RATE','ANOM','HONEY','HASH','AES','BRUTE','TEL','KEY','TOK','CHK','FIL','RT','LIM','SCORE','TRAP','CHAIN','VAULT','GRD','ALRT','LOG','FIM','ROOT','MITRE','RSP','CORE','LOCK','VOICE','BOT','SYNC','KEEP','AGNT','SCRB','ARCH','PROXY','AUDIT','SCAN','WATCH','EGR','SLF','SHLD','CTRL','SYN','NET','SHOP','VLT','API','SYN2','WG','MIR','FED','THRT','TOR','X1','X2'];
       let html = '';
       for (let i = 0; i < 57; i++) {
         const l = layers[i];
         const cls = l ? (l.running ? 'green' : (l.color === 'red' ? 'red' : 'yellow')) : 'dark';
-        html += '<div class="layer-dot ' + cls + '" title="' + (l ? (l.id || '') : 'N/A') + '"></div>';
+        const lnm = l && l.id ? String(l.id).substring(0,7) : (layerNames[i] || ('L'+(i+1)));
+        html += '<div class="layer-chip" title="' + (l ? (l.id || '') : 'N/A') + '"><span class="nm">' + lnm + '</span><span class="layer-dot ' + cls + '"></span></div>';
       }
       grid.innerHTML = html;
       const active = layers.filter(x=>x.running).length;
