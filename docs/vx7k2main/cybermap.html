@@ -2,53 +2,249 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Live Threat Map</title>
+<title>Live Threat Intel</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#02040a;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
 h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
-.tabs{display:flex;gap:3px;margin-bottom:8px;background:#0a0f1a;border:1px solid #1f2937;border-radius:8px;padding:3px}
-.tabs button{flex:1;background:transparent;color:#6b7280;border:none;padding:10px;cursor:pointer;font-family:inherit;font-size:11px;border-radius:6px}
-.tabs button.active{color:#0fb;background:#0f1420;box-shadow:0 0 0 1px #10b981 inset}
-.wrap{background:#050a15;border:1px solid #1f5f3f;border-radius:8px;overflow:hidden;height:82vh;min-height:500px}
-.wrap iframe{width:100%;height:100%;border:0;display:block}
-.info{background:#0a0f1a;border:1px solid #1f2937;border-radius:6px;padding:10px;margin-top:10px;font-size:10px;color:#9ca3af;line-height:1.7}
+h3{color:#f59e0b;font-size:10px;letter-spacing:2px;margin:14px 0 6px}
+.live{color:#6b7280;font-size:10px;text-align:center;margin-bottom:10px}
+.modes{display:flex;gap:4px;margin-bottom:12px;background:#0a0f1a;border:1px solid #1f2937;border-radius:10px;padding:4px}
+.modes button{flex:1;background:transparent;color:#6b7280;border:none;padding:12px 8px;cursor:pointer;font-family:inherit;font-size:12px;border-radius:8px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.modes button.active{color:#0fb;background:#0f1420;box-shadow:0 0 0 1px #10b981 inset}
+.modes button .ico{font-size:18px;line-height:1}
+.modes button .sub{font-size:8px;color:#4b5563;letter-spacing:1px}
+.modes button.active .sub{color:#10b981}
+.view{display:none}
+.view.active{display:block}
+.src-tabs{display:flex;gap:3px;margin-bottom:8px;background:#0a0f1a;border:1px solid #1f2937;border-radius:8px;padding:3px}
+.src-tabs button{flex:1;background:transparent;color:#6b7280;border:none;padding:8px;cursor:pointer;font-family:inherit;font-size:10px;border-radius:6px}
+.src-tabs button.active{color:#0fb;background:#0f1420;box-shadow:0 0 0 1px #10b981 inset}
+.map-wrap{background:#050a15;border:1px solid #1f5f3f;border-radius:8px;overflow:hidden;height:75vh;min-height:480px}
+.map-wrap iframe{width:100%;height:100%;border:0;display:block;background:#000}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px}
+.st{background:#0a0f1a;border:1px solid #1a2a3a;border-radius:6px;padding:10px 4px;text-align:center}
+.st .n{font-size:15px;font-weight:bold;color:#10b981}
+.st .l{font-size:8px;color:#4b5563;margin-top:2px;text-transform:uppercase}
+.st.r .n{color:#ef4444}.st.y .n{color:#f59e0b}.st.c .n{color:#06b6d4}
+.mwrap{background:#0a0f1a;border:1px solid #1a3a5a;border-radius:8px;padding:8px;overflow-x:auto;margin-bottom:12px}
+.matrix{border-collapse:collapse;font-size:9px;min-width:600px;margin:0 auto}
+.matrix th{padding:4px 6px;color:#6b7280;font-weight:normal;text-transform:uppercase;font-size:8px;text-align:center}
+.matrix th.att{color:#ef4444;font-weight:bold;text-align:right;padding-left:8px}
+.matrix th.tgt{color:#10b981;font-weight:bold;writing-mode:vertical-rl;transform:rotate(180deg);padding:6px 3px;height:70px}
+.matrix td{padding:3px 5px;text-align:center;border-radius:3px;font-family:monospace;font-size:9px;cursor:pointer}
+.matrix td.att{color:#ef4444;font-weight:bold;text-align:right;padding-right:8px;background:#0a0f1a;border-right:1px solid #1f2937;font-size:11px;position:sticky;right:0;z-index:2}
+.matrix td.cell{background:#060a12;color:#4b5563;min-width:32px}
+.matrix td.cell.l1{background:#0a2a1a;color:#10b981}
+.matrix td.cell.l2{background:#1a3a1a;color:#6ee7b7}
+.matrix td.cell.l3{background:#3a3a0a;color:#fcd34d}
+.matrix td.cell.l4{background:#5a2a0a;color:#fb923c}
+.matrix td.cell.l5{background:#7f1d1d;color:#fca5a5;font-weight:bold;box-shadow:0 0 8px rgba(239,68,68,0.5)}
+.legend{display:flex;gap:10px;justify-content:center;font-size:9px;color:#4b5563;margin-top:8px;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend .d{width:11px;height:11px;border-radius:2px}
+.bars{display:flex;flex-direction:column;gap:3px}
+.br{display:flex;align-items:center;gap:6px;font-size:10px}
+.br .n{width:28px;color:#f59e0b;font-weight:bold}
+.br .b{flex:1;height:14px;background:#0a0f1a;border-radius:2px;overflow:hidden;border:1px solid #1a2a3a}
+.br .f{height:100%;background:linear-gradient(90deg,#ef4444,#f59e0b);border-radius:2px;transition:width 0.5s}
+.br .v{width:62px;color:#10b981;font-size:9px;text-align:left;direction:ltr;font-family:monospace}
+.tops{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
+.ipi{background:#0a0f1a;border:1px solid #1a2a3a;border-right:3px solid #ef4444;border-radius:3px;padding:6px 8px;font-size:9px}
+.ipi .ip{color:#10b981;font-family:monospace;direction:ltr;text-align:left;display:block;margin-bottom:2px}
+.ipi .cc{color:#f59e0b;font-weight:bold}
+.ipi .cnt{color:#ef4444;font-weight:bold;float:left;direction:ltr}
+.info{background:#0a0f1a;border:1px solid #1f2937;border-radius:6px;padding:10px;margin-top:12px;font-size:10px;color:#9ca3af;line-height:1.7}
 .info b{color:#10b981}
 </style>
 </head>
 <body>
 
-<h2>LIVE THREAT MAP</h2>
+<h2>LIVE THREAT INTEL</h2>
+<div class="live">● LIVE — نقشه زنده ۳بعدی + ماتریس کشور به کشور</div>
 
-<div class="tabs">
-<button class="active" onclick="go('k', this)">Kaspersky</button>
-<button onclick="go('c', this)">Check Point</button>
-<button onclick="go('f', this)">Fortinet</button>
+<div class="modes">
+  <button class="active" onclick="switchMode('map3d', this)">
+    <span class="ico">🌐</span>نقشه زنده
+    <span class="sub">3D / KASPERSKY</span>
+  </button>
+  <button onclick="switchMode('matrix', this)">
+    <span class="ico">⚔️</span>کشور به کشور
+    <span class="sub">COUNTRY MATRIX</span>
+  </button>
 </div>
 
-<div class="wrap">
-<iframe id="f" src="https://cybermap.kaspersky.com/en/widget/dynamic/dark" allowfullscreen></iframe>
+<div class="view active" id="v-map3d">
+  <div class="src-tabs">
+    <button class="active" onclick="switchMap('kaspersky', this)">🎯 Kaspersky</button>
+    <button onclick="switchMap('checkpoint', this)">🛡️ Check Point</button>
+    <button onclick="switchMap('fortinet', this)">⚡ Fortinet</button>
+  </div>
+  <div class="map-wrap">
+    <iframe id="mapframe" src="https://cybermap.kaspersky.com/en/widget/dynamic/dark" allowfullscreen></iframe>
+  </div>
+  <div class="info">
+    <b>📊 این نقشه چیه:</b><br>
+    • <b>Kaspersky</b>: میلیون‌ها honeypot در سراسر دنیا، نقشه ۳بعدی<br>
+    • <b>Check Point</b>: ThreatCloud با ۱۰۰K+ sensor<br>
+    • <b>Fortinet</b>: FortiGuard Labs با ۵M+ sensor<br><br>
+    <b>⚡ همه لحظه‌ای هستن</b> — هر حمله، فوری نمایش داده می‌شه.
+  </div>
 </div>
 
-<div class="info">
-<b>📊 سه نقشه زنده:</b><br>
-• <b>Kaspersky</b> — نقشه ۳بعدی، میلیون‌ها honeypot<br>
-• <b>Check Point</b> — ThreatCloud، ۱۰۰K+ sensor<br>
-• <b>Fortinet</b> — FortiGuard، ۵M+ sensor<br><br>
-<b>⚡ همه لحظه‌ای</b> — هر حمله، فوری نمایش داده می‌شه.
+<div class="view" id="v-matrix">
+  <div class="stats">
+    <div class="st r"><div class="n" id="s-att">0</div><div class="l">مهاجم</div></div>
+    <div class="st c"><div class="n" id="s-tgt">0</div><div class="l">هدف</div></div>
+    <div class="st y"><div class="n" id="s-cnt">0</div><div class="l">کشور</div></div>
+    <div class="st"><div class="n" id="s-tot">0</div><div class="l">کل حمله</div></div>
+  </div>
+
+  <h3>🗺️ ماتریس کشور به کشور</h3>
+  <div class="mwrap">
+    <table class="matrix" id="matrix"></table>
+    <div class="legend">
+      <span><span class="d" style="background:#060a12"></span>0</span>
+      <span><span class="d" style="background:#0a2a1a"></span>کم</span>
+      <span><span class="d" style="background:#3a3a0a"></span>متوسط</span>
+      <span><span class="d" style="background:#7f1d1d"></span>زیاد</span>
+    </div>
+  </div>
+
+  <h3>🎯 Top 20 مهاجم</h3>
+  <div class="bars" id="attbars"></div>
+
+  <h3>🌍 Top هدف‌ها</h3>
+  <div class="bars" id="tgtbars"></div>
+
+  <h3>🔴 IPهای فعال</h3>
+  <div class="tops" id="ips"></div>
 </div>
 
 <script src="nav.js"></script>
 <script>
-var U = {
-  k: 'https://cybermap.kaspersky.com/en/widget/dynamic/dark',
-  c: 'https://threatmap.checkpoint.com/ThreatPortal/livemap.html',
-  f: 'https://threatmap.fortiguard.net/'
-};
-function go(name, btn) {
-  document.querySelectorAll('.tabs button').forEach(function(b){b.classList.remove('active')});
+function switchMode(view, btn) {
+  document.querySelectorAll('.modes button').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
-  document.getElementById('f').src = U[name];
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active')});
+  document.getElementById('v-' + view).classList.add('active');
+  if (view === 'matrix') loadMatrix();
 }
+
+var URLS = {
+  kaspersky: 'https://cybermap.kaspersky.com/en/widget/dynamic/dark',
+  checkpoint: 'https://threatmap.checkpoint.com/ThreatPortal/livemap.html',
+  fortinet: 'https://threatmap.fortiguard.net/'
+};
+
+function switchMap(name, btn) {
+  document.querySelectorAll('.src-tabs button').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  document.getElementById('mapframe').src = URLS[name];
+}
+
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+function fmt(n){try{return Number(n).toLocaleString('en-US')}catch(e){return '0'}}
+
+function levelClass(v, max) {
+  if (v === 0) return '';
+  var pct = v / max;
+  if (pct < 0.1) return 'l1';
+  if (pct < 0.3) return 'l2';
+  if (pct < 0.6) return 'l3';
+  if (pct < 0.85) return 'l4';
+  return 'l5';
+}
+
+function renderMatrix(data) {
+  var attackers = data.attackers || [];
+  var targets = data.targets || [];
+  var flow = data.flow || {};
+  var max = 1;
+  attackers.forEach(function(a) {
+    targets.forEach(function(t) {
+      var v = (flow[a] || {})[t] || 0;
+      if (v > max) max = v;
+    });
+  });
+  var html = '<thead><tr>';
+  html += '<th class="att">←</th>';
+  targets.forEach(function(t) { html += '<th class="tgt">' + t + '</th>'; });
+  html += '<th class="tgt">Σ</th>';
+  html += '</tr></thead><tbody>';
+  attackers.forEach(function(a) {
+    var total = 0;
+    var row = '<tr>';
+    row += '<td class="att">' + a + '</td>';
+    targets.forEach(function(t) {
+      var v = (flow[a] || {})[t] || 0;
+      total += v;
+      var cls = levelClass(v, max);
+      var display = v > 0 ? (v >= 1000 ? Math.round(v/1000) + 'K' : v) : '·';
+      row += '<td class="cell ' + cls + '" title="' + a + ' → ' + t + ': ' + fmt(v) + '">' + display + '</td>';
+    });
+    row += '<td class="cell l3" title="Total: ' + fmt(total) + '">' + Math.round(total/1000) + 'K</td>';
+    row += '</tr>';
+    html += row;
+  });
+  html += '</tbody>';
+  document.getElementById('matrix').innerHTML = html;
+}
+
+function renderBars(data) {
+  var matrix = data.matrix || {};
+  var keys = Object.keys(matrix).slice(0, 20);
+  var maxA = keys.length ? Math.max.apply(null, keys.map(function(k){return matrix[k].total})) : 1;
+  document.getElementById('attbars').innerHTML = keys.map(function(k) {
+    var v = matrix[k].total;
+    var pct = (v / maxA * 100).toFixed(0);
+    return '<div class="br"><div class="n">' + k + '</div><div class="b"><div class="f" style="width:' + pct + '%"></div></div><div class="v">' + fmt(v) + '</div></div>';
+  }).join('');
+
+  var tw = data.target_weights || {};
+  var tgtKeys = Object.keys(tw);
+  var maxT = tgtKeys.length ? Math.max.apply(null, tgtKeys.map(function(k){return tw[k]})) : 1;
+  document.getElementById('tgtbars').innerHTML = tgtKeys.slice(0, 15).map(function(k) {
+    var v = tw[k];
+    var pct = (v / maxT * 100).toFixed(0);
+    return '<div class="br"><div class="n">' + k + '</div><div class="b"><div class="f" style="width:' + pct + '%;background:linear-gradient(90deg,#06b6d4,#10b981)"></div></div><div class="v">' + v + '%</div></div>';
+  }).join('');
+}
+
+function renderIPs(data) {
+  var allIps = [];
+  var matrix = data.matrix || {};
+  Object.keys(matrix).forEach(function(cc) {
+    (matrix[cc].ips || []).forEach(function(x) {
+      allIps.push({ip: x.ip, count: x.count, cc: cc});
+    });
+  });
+  allIps.sort(function(a,b){return b.count - a.count});
+  document.getElementById('ips').innerHTML = allIps.slice(0, 12).map(function(x) {
+    return '<div class="ipi"><span class="cnt">' + fmt(x.count) + '</span><span class="ip">' + esc(x.ip) + '</span><span class="cc">' + esc(x.cc) + '</span></div>';
+  }).join('');
+}
+
+function render(data) {
+  if (!data) return;
+  var stats = data.stats || {};
+  document.getElementById('s-att').textContent = stats.total_attackers || 0;
+  document.getElementById('s-tgt').textContent = stats.total_targets || 0;
+  document.getElementById('s-cnt').textContent = Object.keys(data.matrix || {}).length;
+  document.getElementById('s-tot').textContent = fmt(stats.grand_total || 0);
+  renderMatrix(data);
+  renderBars(data);
+  renderIPs(data);
+}
+
+function loadMatrix() {
+  fetch('../data/country_matrix.json?v=' + Date.now())
+    .then(function(r){return r.json()})
+    .then(render)
+    .catch(function(e){console.error(e)});
+}
+
+setInterval(loadMatrix, 60000);
 </script>
-</body></html>
+</body>
+</html>
