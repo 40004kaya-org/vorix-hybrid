@@ -31,3 +31,4 @@ __pycache__/
 # Logs (except important ones)
 phone/logs/*.log
 phone/encrypted_logs/
+docs/data/live.json

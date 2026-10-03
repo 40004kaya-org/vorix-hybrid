@@ -7,6 +7,37 @@ const svg = document.getElementById('board');
 
 let LIVE = { layers: [], stats: {} };
 
+// ─── VORIX DECRYPT ─────────────────────────────
+async function fetchDecrypted() {
+  const pin = sessionStorage.getItem('vorix_pin');
+  if (!pin) throw new Error('no_pin');
+
+  const enc = new TextEncoder();
+  const km = await crypto.subtle.importKey(
+    'raw', enc.encode(pin),
+    { name: 'PBKDF2' }, false, ['deriveKey']
+  );
+  const key = await crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt: enc.encode('vorix_salt_16byte'),
+      iterations: 100000, hash: 'SHA-256' },
+    km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']
+  );
+
+  const wrapper = await fetch('../data/live.enc.json?v=' + Date.now())
+    .then(r => r.json());
+  const raw = Uint8Array.from(atob(wrapper.blob), c => c.charCodeAt(0));
+  const nonce = raw.slice(0, 12);
+  const ct = raw.slice(12);
+
+  const pt = await crypto.subtle.decrypt(
+    { name: 'AES-GCM', iv: nonce }, key, ct
+  );
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+// ───────────────────────────────────────────────
+
+
+
 function el(tag, attrs) {
   const e = document.createElementNS(NS, tag);
   for (const k in attrs) e.setAttribute(k, attrs[k]);
@@ -332,7 +363,7 @@ function renderBars(x, y, w, h) {
 // ═══ Load ═══
 async function load() {
   try {
-    const data = await fetch('../data/live.json?v=' + Date.now()).then(r => r.json());
+    const data = await fetchDecrypted();
     LIVE = data;
   } catch (e) {
     LIVE = {
