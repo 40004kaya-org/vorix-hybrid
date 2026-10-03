@@ -1,0 +1,60 @@
+[11:43:34] ⚠️ phone-agent is DOWN
+[11:43:34] 🚀 Restarting: phone-agent
+[11:43:37] ✅ phone-agent started
+[11:43:37] ⚠️ dashboard is DOWN
+[11:43:37] 🚀 Restarting: dashboard
+[11:43:40] ✅ dashboard started
+[11:43:40] ⚠️ sentinel is DOWN
+[11:43:40] 🚀 Restarting: sentinel
+[11:43:43] ✅ sentinel started
+[14:05:25] ⚠️ dashboard is DOWN
+[14:05:25] 🚀 Restarting: dashboard
+[14:05:29] ✅ dashboard started
+[14:05:29] ⚠️ sentinel is DOWN
+[14:05:29] 🚀 Restarting: sentinel
+[14:05:32] ✅ sentinel started
+[15:28:55] ⚠️ phone-agent is DOWN
+[15:28:55] 🚀 Restarting: phone-agent
+[15:28:58] ✅ phone-agent started
+[15:28:58] ⚠️ dashboard is DOWN
+[15:28:58] 🚀 Restarting: dashboard
+[15:29:01] ✅ dashboard started
+[15:29:01] ⚠️ sentinel is DOWN
+[15:29:01] 🚀 Restarting: sentinel
+[15:29:04] ✅ sentinel started
+[16:01:34] ⚠️ phone-agent is DOWN
+[16:01:34] 🚀 Restarting: phone-agent
+[16:01:37] ✅ phone-agent started
+[16:26:22] ⚠️ phone-agent is DOWN
+[16:26:22] 🚀 Restarting: phone-agent
+[16:26:25] ✅ phone-agent started
+[16:26:25] ⚠️ dashboard is DOWN
+[16:26:25] 🚀 Restarting: dashboard
+[16:26:29] ✅ dashboard started
+[16:26:29] ⚠️ sentinel is DOWN
+[16:26:29] 🚀 Restarting: sentinel
+[16:26:32] ✅ sentinel started
+[16:29:02] ⚠️ dashboard is DOWN
+[16:29:02] 🚀 Restarting: dashboard
+[16:29:05] ✅ dashboard started
+[16:29:05] ⚠️ sentinel is DOWN
+[16:29:05] 🚀 Restarting: sentinel
+[16:29:08] ✅ sentinel started
+[00:18:03] ⚠️ phone-agent is DOWN
+[00:18:03] 🚀 Restarting: phone-agent
+[00:18:06] ✅ phone-agent started
+[00:18:06] ⚠️ dashboard is DOWN
+[00:18:06] 🚀 Restarting: dashboard
+[00:18:09] ✅ dashboard started
+[00:18:09] ⚠️ sentinel is DOWN
+[00:18:09] 🚀 Restarting: sentinel
+[00:18:12] ✅ sentinel started
+[03:20:11] ⚠️ phone-agent is DOWN
+[03:20:11] 🚀 Restarting: phone-agent
+[03:20:14] ✅ phone-agent started
+[03:20:14] ⚠️ dashboard is DOWN
+[03:20:14] 🚀 Restarting: dashboard
+[03:20:17] ✅ dashboard started
+[03:20:17] ⚠️ sentinel is DOWN
+[03:20:17] 🚀 Restarting: sentinel
+[03:20:20] ✅ sentinel started

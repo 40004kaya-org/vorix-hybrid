@@ -1,0 +1,22 @@
+{
+  "stats": {
+    "lookups": 3,
+    "suspicious": 0,
+    "no_ptr": 0,
+    "started": 1790931556.4000835
+  },
+  "cache": {
+    "8.8.8.8": {
+      "hostname": "dns.google",
+      "ts": 1790931556.9642713
+    },
+    "1.1.1.1": {
+      "hostname": "one.one.one.one",
+      "ts": 1790931557.468887
+    },
+    "45.33.32.156": {
+      "hostname": "scanme.nmap.org",
+      "ts": 1790931558.13124
+    }
+  }
+}

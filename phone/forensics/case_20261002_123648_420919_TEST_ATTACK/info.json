@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-10-02T12:36:48.421136",
+  "attack_type": "TEST_ATTACK",
+  "source_ip": "1.2.3.4",
+  "extra": {
+    "test": true,
+    "reason": "unit test"
+  }
+}

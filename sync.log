@@ -1,0 +1,150 @@
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 10 events, 2 critical
+[main 34c54d6] sync: 00:19
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   68ef88b..34c54d6  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 11 events, 2 critical
+[main b7a4b42] sync: 00:24
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   34c54d6..b7a4b42  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main ba3251a] sync: 00:29
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   b7a4b42..ba3251a  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 14ced56] sync: 00:34
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   d1590d1..14ced56  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 6f21f2b] sync: 00:39
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   14ced56..6f21f2b  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 0b64600] sync: 00:44
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   6f21f2b..0b64600  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main f96a7ec] sync: 00:49
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   1635e3c..f96a7ec  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main da2649c] sync: 00:55
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   e26e18f..da2649c  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 5d416b0] sync: 01:00
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   da2649c..5d416b0  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main c1589e1] sync: 01:05
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   1069894..c1589e1  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 304819b] sync: 01:10
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   c1589e1..304819b  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main ac1f72b] sync: 01:15
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   e842471..ac1f72b  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main e29a92f] sync: 01:20
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   45ad267..e29a92f  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 5d38035] sync: 01:25
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   e29a92f..5d38035  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 02e98b5] sync: 01:30
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   5d38035..02e98b5  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 2248b1a] sync: 01:35
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   02e98b5..2248b1a  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main e0f1a33] sync: 01:40
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   2248b1a..e0f1a33  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main d629bfe] sync: 01:45
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   e0f1a33..d629bfe  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main f391bdf] sync: 01:50
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   d629bfe..f391bdf  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main eeb46eb] sync: 01:55
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   f391bdf..eeb46eb  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 94b1ef9] sync: 02:00
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   eeb46eb..94b1ef9  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main b4c726c] sync: 02:06
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   94b1ef9..b4c726c  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 5493058] sync: 02:11
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   b4c726c..5493058  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 70f0999] sync: 02:16
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   5493058..70f0999  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main 73d3681] sync: 02:21
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   70f0999..73d3681  main -> main

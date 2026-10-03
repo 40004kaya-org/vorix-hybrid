@@ -1,0 +1,9 @@
+[11:43:34] ⚠️ phone-agent is DOWN
+[11:43:34] 🚀 Restarting: phone-agent
+[11:43:37] ✅ phone-agent started
+[11:43:37] ⚠️ dashboard is DOWN
+[11:43:37] 🚀 Restarting: dashboard
+[11:43:40] ✅ dashboard started
+[11:43:40] ⚠️ sentinel is DOWN
+[11:43:40] 🚀 Restarting: sentinel
+[11:43:43] ✅ sentinel started

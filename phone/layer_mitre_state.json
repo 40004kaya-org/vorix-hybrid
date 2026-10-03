@@ -1,0 +1,24 @@
+{
+  "stats": {
+    "mapped": 8,
+    "started": 1790931934.077804
+  },
+  "techniques": {
+    "T1046|Network Service Discovery": 1,
+    "T1190|Exploit Public-Facing Application": 1,
+    "T1110|Brute Force": 1,
+    "T1110.004|Credential Stuffing": 1,
+    "T1071|Application Layer Protocol": 1,
+    "T1071.004|DNS": 1,
+    "T1041|Exfil Over C2 Channel": 1,
+    "T1498|Network DoS": 1
+  },
+  "tactics": {
+    "Reconnaissance": 1,
+    "Initial Access": 1,
+    "Credential Access": 2,
+    "Command and Control": 2,
+    "Exfiltration": 1,
+    "Impact": 1
+  }
+}

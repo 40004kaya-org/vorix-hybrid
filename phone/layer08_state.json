@@ -1,0 +1,13 @@
+{
+  "stats": {
+    "scans": 2513,
+    "high_conns": 0,
+    "port_scans": 0,
+    "suspicious_ports": 0,
+    "beaconing": 0,
+    "dns_tunnels": 0,
+    "data_exfil": 0,
+    "suspicious_hours": 0,
+    "started": 1790937324.615857
+  }
+}

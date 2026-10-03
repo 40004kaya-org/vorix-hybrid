@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-10-02T12:42:59.985965",
+  "blocked_ips": 18,
+  "permanent_blocks": 3,
+  "threat_intel": {
+    "status": "no_data"
+  },
+  "behavioral": {
+    "status": "no_data"
+  },
+  "rate_limit": {
+    "status": "no_data"
+  },
+  "network": {
+    "status": "no_data"
+  },
+  "identity": {
+    "status": "no_data"
+  },
+  "self_defense": {
+    "status": "no_data"
+  },
+  "watchdog": {},
+  "ml": {
+    "status": "no_data"
+  },
+  "queue_events": 0,
+  "severity": {},
+  "top_attacks": {}
+}

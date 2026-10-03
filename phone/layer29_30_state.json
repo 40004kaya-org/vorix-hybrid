@@ -1,0 +1,10 @@
+{
+  "stats": {
+    "total_logins": 0,
+    "failed_logins": 0,
+    "credential_stuffing": 0,
+    "brute_force": 0,
+    "timing_attacks": 0,
+    "started": 1790942337.2608016
+  }
+}

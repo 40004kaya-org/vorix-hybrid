@@ -1,0 +1,42 @@
+{
+  "stats": {
+    "checked": 4,
+    "missing_hsts": 1,
+    "weak_hsts": 0,
+    "started": 1790931683.192668
+  },
+  "results": {
+    "github.com": {
+      "domain": "github.com",
+      "hsts": "max-age=31536000; includeSubdomains; preload",
+      "has_hsts": true,
+      "max_age": 31536000,
+      "include_subdomains": true,
+      "preload": true
+    },
+    "google.com": {
+      "domain": "google.com",
+      "hsts": "",
+      "has_hsts": false,
+      "max_age": 0,
+      "include_subdomains": false,
+      "preload": false
+    },
+    "cloudflare.com": {
+      "domain": "cloudflare.com",
+      "hsts": "max-age=31536000; includeSubDomains",
+      "has_hsts": true,
+      "max_age": 31536000,
+      "include_subdomains": true,
+      "preload": false
+    },
+    "telegram.org": {
+      "domain": "telegram.org",
+      "hsts": "max-age=31536000; includeSubDomains; preload",
+      "has_hsts": true,
+      "max_age": 31536000,
+      "include_subdomains": true,
+      "preload": true
+    }
+  }
+}

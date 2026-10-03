@@ -1,0 +1,8 @@
+{
+  "timestamp": "2026-10-02T12:42:50.755771",
+  "attack_type": "SQL_INJECTION",
+  "source_ip": "1.2.3.4",
+  "extra": {
+    "payload": "' OR 1=1--"
+  }
+}

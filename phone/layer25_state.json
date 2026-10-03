@@ -1,0 +1,70 @@
+{
+  "stats": {
+    "checks": 40,
+    "warnings": 0,
+    "critical": 1,
+    "started": 1790931484.5601768
+  },
+  "results": {
+    "github.com": {
+      "host": "github.com",
+      "expires": "2026-11-29T23:59:59",
+      "days_left": 57,
+      "tls": "TLSv1.3",
+      "cipher": "TLS_AES_128_GCM_SHA256",
+      "issuer": {
+        "countryName": "GB",
+        "organizationName": "Sectigo Limited",
+        "commonName": "Sectigo Public Server Authentication CA DV E36"
+      },
+      "subject": {
+        "commonName": "github.com"
+      }
+    },
+    "google.com": {
+      "host": "google.com",
+      "expires": "2026-12-11T20:00:18",
+      "days_left": 69,
+      "tls": "TLSv1.3",
+      "cipher": "TLS_AES_256_GCM_SHA384",
+      "issuer": {
+        "countryName": "US",
+        "organizationName": "Google Trust Services",
+        "commonName": "WE2"
+      },
+      "subject": {
+        "commonName": "*.google.com"
+      }
+    },
+    "cloudflare.com": {
+      "host": "cloudflare.com",
+      "expires": "2026-12-04T23:29:33",
+      "days_left": 62,
+      "tls": "TLSv1.3",
+      "cipher": "TLS_AES_256_GCM_SHA384",
+      "issuer": {
+        "countryName": "US",
+        "organizationName": "Google Trust Services",
+        "commonName": "WE1"
+      },
+      "subject": {
+        "commonName": "cloudflare.com"
+      }
+    },
+    "telegram.org": {
+      "host": "telegram.org",
+      "expires": "2027-03-11T15:23:05",
+      "days_left": 159,
+      "tls": "TLSv1.3",
+      "cipher": "TLS_AES_256_GCM_SHA384",
+      "issuer": {
+        "countryName": "US",
+        "organizationName": "GoDaddy.com",
+        "commonName": "GoDaddy TLS Intermediate CA DV - R1v1"
+      },
+      "subject": {
+        "commonName": "*.telegram.org"
+      }
+    }
+  }
+}

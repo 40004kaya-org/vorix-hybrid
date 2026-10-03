@@ -1,0 +1,6 @@
+{
+  "cloud_url": "http://localhost:9999",
+  "api_key": "test-key",
+  "agent_id": "phone-test-01",
+  "agent_name": "Test Phone"
+}

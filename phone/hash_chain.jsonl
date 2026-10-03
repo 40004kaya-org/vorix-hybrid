@@ -1,0 +1,10 @@
+{"ts": "2026-10-02T12:35:33.412230", "source": "test", "event": "Test event 1", "prev": "0000000000000000000000000000000000000000000000000000000000000000", "hash": "1e0b07e1537f53ca7ec90e056f96442bea8cadef02b5276f2bc3fe13b06bedb3"}
+{"ts": "2026-10-02T12:35:33.412895", "source": "test", "event": "Test event 2", "prev": "1e0b07e1537f53ca7ec90e056f96442bea8cadef02b5276f2bc3fe13b06bedb3", "hash": "55f881b0478491cf24aa05e59fa7e41634b8f6191a4edbaed493d8f2325129c8"}
+{"ts": "2026-10-02T12:35:33.413271", "source": "test", "event": "Test event 3", "prev": "55f881b0478491cf24aa05e59fa7e41634b8f6191a4edbaed493d8f2325129c8", "hash": "61c654faea0b914566daa8185bcb1016ff87cdc2348b00adab04f9dfa620898c"}
+{"ts":"2026-10-02T13:20:00","severity":"WARN","event":"Test LiveFeed","message":"test from terminal"}
+{"ts":"2026-10-02T13:30:00","severity":"CRITICAL","event":"Brute Force","message":"45.33.32.156 - 50 attempts in 10s"}
+{"ts":"2026-10-02T13:35:00","severity":"WARN","event":"Test Fast","message":"should arrive in 1 second"}
+{"ts":"2026-10-02T13:40:00","severity":"CRITICAL","event":"Fast Test","message":"200ms delay test"}
+{"ts":"2026-10-02T13:56:36","severity":"INFO","event":"Final Test","message":"دائمی‌سازی موفق"}
+{"ts":"2026-10-03T00:20:36","severity":"WARNING","event_type":"TEST_SYNC","message":"تست sync زنده"}
+{"ts":"2026-10-03T00:26:50","severity":"WARNING","event_type":"TEST_SYNC","message":"تست sync زنده"}
