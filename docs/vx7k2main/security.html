@@ -64,6 +64,28 @@ canvas{display:block;width:100%;height:auto}
 .bstat.t .num{color:#14d4b8}
 .bstat .lbl{color:#6a9a8a;font-size:9px}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes ledPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+@keyframes ledBlink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes ledBreathe{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.7)}}
+@keyframes dotFade{0%,100%{opacity:.4}50%{opacity:1}}
+.mod-leds .led{animation:ledPulse 2s ease-in-out infinite}
+.mod-leds .led.on-g{animation:ledBreathe 1.8s ease-in-out infinite}
+.mod-leds .led.on-y{animation:ledBlink 1.2s ease-in-out infinite}
+.mod-leds .led.on-t{animation:ledBreathe 2.2s ease-in-out infinite}
+.mod-leds .led.on-r{animation:ledBlink .5s ease-in-out infinite}
+.mod-leds .led:nth-child(2){animation-delay:.3s}
+.mod-leds .led:nth-child(3){animation-delay:.6s}
+.mod-leds .led:nth-child(4){animation-delay:.9s}
+.mod-leds .led:nth-child(5){animation-delay:1.2s}
+.slot .dot{animation:dotPulse 2s ease-in-out infinite}
+.slot.off .dot{animation:ledBlink 1.5s ease-in-out infinite}
+.slot.crit .dot{animation:ledBlink .5s ease-in-out infinite}
+.slot:nth-child(3n) .dot{animation-delay:.4s}
+.slot:nth-child(5n) .dot{animation-delay:.8s}
+.slot:nth-child(7n) .dot{animation-delay:1.2s}
+.slot:nth-child(11n) .dot{animation-delay:1.6s}
+.core-title::before{animation:ledBlink 1.2s ease-in-out infinite}
 </style>
 </head>
 <body>
