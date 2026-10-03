@@ -40,7 +40,7 @@ async function check() {
   const h = await sha256(pin);
   const rev = h.split('').reverse().join('');
   if (rev === HASH_REV) {
-    sessionStorage.setItem('vorix_auth', 'ok');sessionStorage.setItem('vorix_pin', pin);
+    localStorage.setItem('vorix_auth', 'ok');localStorage.setItem('vorix_pin', pin);
     window.location.href = 'vx7k2/index.html';
   } else {
     document.getElementById('err').textContent = '❌ رمز اشتباه';

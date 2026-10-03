@@ -9,7 +9,10 @@ let LIVE = { layers: [], stats: {} };
 
 // ─── VORIX DECRYPT ─────────────────────────────
 async function fetchDecrypted() {
-  const pin = sessionStorage.getItem('vorix_pin');
+  const dbg = document.getElementById('dbg');
+  const log = (m) => { if(dbg) dbg.textContent = m; console.log(m); };
+  log('1. checking pin...');
+  const pin = localStorage.getItem('vorix_pin');
   if (!pin) throw new Error('no_pin');
 
   const enc = new TextEncoder();
