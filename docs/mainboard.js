@@ -78,8 +78,23 @@ function renderSlots() {
   }).join('');
 }
 
+
+function renderIOPorts() {
+  const el = document.getElementById('ioports');
+  if (!el) return;
+  const ports = [
+    { name: 'Phone', icon: '📱' },
+    { name: 'Web',   icon: '🌐' },
+    { name: 'Bot',   icon: '🤖' },
+    { name: 'API',   icon: '📊' }
+  ];
+  el.innerHTML = ports.map(p => 
+    '<div class="ioport"><div class="ioport-led"></div><span>' + p.icon + '</span><span class="ioport-name">' + p.name + '</span></div>'
+  ).join('');
+}
+
 function renderStats() {
-  const el = document.getElementById('b-stats');
+  const el = document.getElementById('bottom');
   if (!el) return;
   
   const s = LIVE.stats || {};
@@ -112,7 +127,7 @@ function updateAlert() {
 }
 
 function updateCorePercent() {
-  const el = document.getElementById('core-pct');
+  const el = document.getElementById('core-percent');
   if (!el) return;
   const pct = Math.floor(Math.random() * 30 + 40);
   el.textContent = pct + '%';
@@ -122,10 +137,11 @@ async function load() {
   try {
     const data = await fetch('data/live.json?v=' + Date.now()).then(r => r.json());
     LIVE = data;
-    renderRow('row1', ROW1);
-    renderRow('row2', ROW2);
+    renderRow('chipset1', ROW1);
+    renderRow('chipset2', ROW2);
     renderSlots();
     renderStats();
+    renderIOPorts();
     updateAlert();
   } catch (e) {
     console.error('Load error:', e);
