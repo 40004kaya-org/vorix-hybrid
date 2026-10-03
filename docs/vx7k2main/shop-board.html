@@ -69,17 +69,6 @@ canvas{display:block;width:100%;height:auto}
 </style>
 </head>
 <body>
-<nav class="nav">
-<a href="index.html"></a>
-<a href="security.html"></a>
-<a href="shop.html"></a>
-<a href="shop-board.html"> class="on"</a>
-<a href="world.html"></a>
-<a href="cybermap.html"></a>
-<a href="discover.html"></a>
-<a href="mitre.html"></a>
-<a href="sentinel.html"></a>
-</nav>
 <div class="wrap">
 <div class="board">
 <div class="core">
@@ -138,5 +127,6 @@ setInterval(function(){var cs=heat.querySelectorAll('i');for(var k=0;k<10;k++){v
 (function(){var cv=document.getElementById('gauge'),ctx=cv.getContext('2d');var W=cv.width,H=cv.height;var cx=W/2,cy=H*0.62,R=Math.min(W,H)*0.4;var val=65;function draw(){ctx.clearRect(0,0,W,H);ctx.beginPath();ctx.arc(cx,cy,R,Math.PI*0.85,Math.PI*0.15,false);ctx.strokeStyle='rgba(255,136,0,.15)';ctx.lineWidth=10;ctx.lineCap='round';ctx.stroke();ctx.beginPath();ctx.arc(cx,cy,R,Math.PI*0.85,Math.PI*0.85+(Math.PI*0.3)*(val/100));ctx.strokeStyle='#ff8800';ctx.lineWidth=10;ctx.lineCap='round';ctx.stroke();ctx.fillStyle='#ff8800';ctx.font='bold 20px Courier New';ctx.textAlign='center';ctx.fillText(val+'%',cx,cy+2);ctx.font='8px Courier New';ctx.fillStyle='#6a9a8a';ctx.fillText('LOAD',cx,cy+16);}draw();setInterval(function(){val=55+Math.floor(Math.random()*30);draw();},2500);})();
 (function(){var cv=document.getElementById('bars'),ctx=cv.getContext('2d');var W=cv.width,H=cv.height;var n=12;var vals=[];for(var i=0;i<n;i++)vals.push(Math.random());function draw(){ctx.clearRect(0,0,W,H);var bw=W/n*0.7,gap=W/n*0.3;vals.forEach(function(v,i){var bh=v*(H-20);var x=i*(bw+gap)+gap/2;var y=H-bh-4;var g=ctx.createLinearGradient(0,y,0,H);g.addColorStop(0,'#14d4b8');g.addColorStop(1,'#0a5a4a');ctx.fillStyle=g;ctx.fillRect(x,y,bw,bh);});}draw();setInterval(function(){vals.shift();vals.push(Math.random());draw();},1800);})();
 </script>
+<script src="nav.js"></script>
 </body>
 </html>
