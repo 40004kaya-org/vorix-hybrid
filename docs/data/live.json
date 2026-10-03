@@ -1,5 +1,5 @@
 {
-  "ts": "2026-10-03T15:14:09.821388Z",
+  "ts": "2026-10-03T15:14:16.511464Z",
   "layers": [
     {
       "id": "L01",
@@ -247,20 +247,20 @@
     {
       "id": "L-Root",
       "file": "layer_rootkit",
-      "running": true,
-      "pid": "850",
-      "mode": "watch",
-      "color": "green",
-      "label": "فعال"
-    },
-    {
-      "id": "L-MC",
-      "file": "layer_multichannel",
       "running": false,
       "pid": null,
       "mode": "watch",
       "color": "red",
       "label": "قطع"
+    },
+    {
+      "id": "L-MC",
+      "file": "layer_multichannel",
+      "running": true,
+      "pid": "1276",
+      "mode": "watch",
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L-LF",
