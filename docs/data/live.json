@@ -1,5 +1,5 @@
 {
-  "ts": "2026-10-03T05:36:14.468058Z",
+  "ts": "2026-10-03T05:37:23.973010Z",
   "layers": [
     {
       "id": "L01",
@@ -347,7 +347,7 @@
       "id": "L-Bot",
       "file": "vorix_bot",
       "running": true,
-      "pid": "20508",
+      "pid": "23487",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
