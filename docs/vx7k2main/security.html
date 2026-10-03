@@ -2,100 +2,161 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VORIX Security</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>VORIX · امنیت</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Courier New',monospace;background:#08080c;color:#b8b8c8;min-height:100vh;overflow-x:hidden}
-.bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;background:radial-gradient(circle at 20% 30%,rgba(0,255,180,.08) 0,transparent 40%),radial-gradient(circle at 80% 70%,rgba(255,0,80,.06) 0,transparent 40%),#08080c}
-.bg svg{width:100%;height:100%}
-.trace{fill:none;stroke:#0d5a4a;stroke-width:.8;opacity:.7}
-.trace-glow{fill:none;stroke:#00ffb4;stroke-width:1.2;opacity:.5;filter:drop-shadow(0 0 3px #00ffb4);stroke-dasharray:8 200;animation:signal 6s linear infinite}
-@keyframes signal{to{stroke-dashoffset:-400}}
-.node{fill:#0d5a4a;opacity:.8}
-.nav{position:sticky;top:0;z-index:100;background:rgba(8,8,12,.95);backdrop-filter:blur(10px);border-bottom:1px solid #1a3a30;display:flex;overflow-x:auto;scrollbar-width:none}
+:root{
+--bg:#080c10;--bg2:#0c1319;--bg3:#111a22;
+--grn:#00ffb4;--grn2:#00c888;--cyan:#00d4ff;--blu:#00b4ff;
+--yel:#ffb800;--org:#ff8c00;--red:#ff3a5e;--pur:#a855f7;
+--teal:#14d4b8;--dim:#1a2a35;--dim2:#243646;
+--txt:#a8b8c4;--txt2:#6a8090;
+}
+html,body{background:var(--bg);color:var(--txt);font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+background:
+ radial-gradient(circle at 15% 20%,rgba(0,255,180,.06) 0,transparent 35%),
+ radial-gradient(circle at 85% 80%,rgba(168,85,247,.05) 0,transparent 35%),
+ radial-gradient(circle at 50% 50%,rgba(0,180,255,.03) 0,transparent 50%),var(--bg);}
+body::after{content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.3;
+background:repeating-linear-gradient(0deg,rgba(0,0,0,.3) 0,rgba(0,0,0,.3) 1px,transparent 1px,transparent 3px)}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(8,12,16,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--dim);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 4px}
 .nav::-webkit-scrollbar{display:none}
-.nav a{flex-shrink:0;padding:12px 16px;color:#5a7a6a;text-decoration:none;font-size:12px;font-weight:bold;letter-spacing:1px;border-bottom:2px solid transparent}
-.nav a.active{color:#00ffb4;border-bottom-color:#00ffb4;text-shadow:0 0 8px #00ffb4}
-.wrap{position:relative;z-index:1;padding:16px;max-width:900px;margin:0 auto}
-.hero{position:relative;border:1px solid #1f4a3d;background:linear-gradient(135deg,#0a0a0f,#0f1512);padding:28px 16px;margin-bottom:20px}
-.hero::before,.hero::after{content:'';position:absolute;width:12px;height:12px;border:1px solid #00ffb4;opacity:.6}
-.hero::before{top:6px;right:6px;border-left:none;border-bottom:none}
-.hero::after{bottom:6px;left:6px;border-right:none;border-top:none}
-.hero-title{text-align:center;font-size:22px;font-weight:bold;letter-spacing:6px;color:#00ffb4;text-shadow:0 0 12px #00ffb4,0 0 24px #00ffb480;margin-bottom:8px;animation:flick 5s infinite}
-@keyframes flick{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.6}94%{opacity:1}}
-.hero-sub{text-align:center;font-size:11px;letter-spacing:3px;color:#6a9a8a;margin-bottom:14px}
-.hero-status{text-align:center;font-size:11px;letter-spacing:2px;color:#ff3366;display:flex;align-items:center;justify-content:center;gap:8px}
-.led{display:inline-block;width:10px;height:10px;border-radius:50%;position:relative;flex-shrink:0}
-.led::after{content:'';position:absolute;inset:-4px;border-radius:50%;opacity:.4}
-.led-green{background:#00ff88;box-shadow:0 0 6px #00ff88,0 0 12px #00ff8880,inset 0 0 3px #ffffff80;animation:pulse 2s ease-in-out infinite}
-.led-green::after{background:#00ff88;animation:halo 2s ease-in-out infinite}
-.led-red{background:#ff2244;box-shadow:0 0 8px #ff2244,0 0 16px #ff224480,inset 0 0 3px #ffffff80;animation:blink .8s ease-in-out infinite}
-.led-red::after{background:#ff2244;animation:halo-blink .8s ease-in-out infinite}
-.led-blue{background:#00ccff;box-shadow:0 0 8px #00ccff,0 0 16px #00ccff80,inset 0 0 3px #ffffff80;animation:breathe 3s ease-in-out infinite}
-.led-blue::after{background:#00ccff;animation:halo-breathe 3s ease-in-out infinite}
-.led-cyan{background:#00ffff;box-shadow:0 0 10px #00ffff,0 0 20px #00ffff80,inset 0 0 4px #ffffff80;animation:pulse 1.6s ease-in-out infinite}
-.led-lg{width:14px;height:14px}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(.92)}}
+.nav a{flex-shrink:0;padding:11px 14px;color:var(--txt2);text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1px;border-bottom:2px solid transparent;transition:.25s}
+.nav a:hover{color:var(--grn)}
+.nav a.on{color:var(--grn);border-bottom-color:var(--grn);text-shadow:0 0 8px var(--grn)}
+
+/* WRAP */
+.wrap{position:relative;z-index:1;padding:12px;max-width:900px;margin:0 auto}
+
+/* HERO */
+.hero{position:relative;border:1px solid var(--dim);background:linear-gradient(135deg,rgba(10,20,25,.95),rgba(6,12,16,.95));border-radius:4px;padding:14px 16px;margin-bottom:12px;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--grn),transparent);opacity:.5}
+.hero-top{display:flex;justify-content:space-between;align-items:center}
+.clock{font-size:11px;color:var(--txt2);letter-spacing:2px}
+.clock .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--grn);margin-left:6px;box-shadow:0 0 8px var(--grn);animation:blink 1.6s infinite}
+.brand{display:flex;align-items:center;gap:10px;flex-direction:row-reverse}
+.brand-txt{text-align:right}
+.brand-title{font-size:18px;font-weight:bold;letter-spacing:4px;color:var(--grn);text-shadow:0 0 12px var(--grn);line-height:1}
+.brand-sub{font-size:9px;letter-spacing:3px;color:var(--txt2);margin-top:3px}
+.brand-icon{width:24px;height:24px;border:2px solid var(--grn);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px var(--grn),inset 0 0 8px rgba(0,255,180,.3)}
+.brand-icon::before{content:'';width:10px;height:10px;border:2px solid var(--grn);border-radius:50%;box-shadow:0 0 6px var(--grn)}
+
+/* BOARD */
+.board{position:relative;border:1px solid var(--dim);background:linear-gradient(180deg,rgba(8,15,20,.95),rgba(5,10,14,.98));border-radius:4px;padding:16px 12px;margin-bottom:12px;aspect-ratio:1.15;overflow:hidden}
+.board::before{content:'';position:absolute;inset:0;opacity:.35;
+background-image:
+ linear-gradient(rgba(0,255,180,.05) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(0,255,180,.05) 1px,transparent 1px);
+background-size:22px 22px}
+.board::after{content:'';position:absolute;inset:0;pointer-events:none;
+background:radial-gradient(circle at 50% 50%,rgba(0,255,180,.08) 0,transparent 50%)}
+.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wires line,.wires path{stroke:var(--grn);stroke-width:.8;fill:none;stroke-dasharray:3 4;opacity:.4}
+.wires .pulse{stroke-width:1.2;opacity:.9;stroke-dasharray:2 6;animation:flow 4s linear infinite;filter:drop-shadow(0 0 3px var(--grn))}
+@keyframes flow{to{stroke-dashoffset:-40}}
+
+.node{position:absolute;border:1px solid;border-radius:3px;padding:8px 10px;background:rgba(8,15,20,.95);min-width:88px;text-align:center;z-index:2}
+.node-label{font-size:9px;font-weight:bold;letter-spacing:2px;margin-bottom:4px}
+.node-val{font-size:14px;font-weight:bold;line-height:1;color:#fff}
+.node-sub{font-size:8px;color:var(--txt2);margin-top:4px;letter-spacing:1px}
+.node .led-top{position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%}
+.node .led-corner{position:absolute;top:4px;left:4px;width:4px;height:4px;border-radius:50%}
+
+.node.core{top:50%;left:50%;transform:translate(-50%,-50%);min-width:130px;padding:12px 14px;
+border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rgba(0,255,180,.08)}
+.node.core .node-label{color:var(--grn);text-shadow:0 0 8px var(--grn);font-size:10px;letter-spacing:3px}
+.node.core .node-val{font-size:20px;color:var(--grn);text-shadow:0 0 12px var(--grn)}
+.node.core .node-sub{color:rgba(0,255,180,.6)}
+
+.node.hmac{top:14%;left:6%;border-color:var(--yel);box-shadow:0 0 12px rgba(255,184,0,.2)}
+.node.hmac .node-label{color:var(--yel)}
+.node.hmac .led-top{background:var(--yel);box-shadow:0 0 6px var(--yel)}
+
+.node.trap{top:14%;right:6%;border-color:var(--blu);box-shadow:0 0 12px rgba(0,180,255,.2)}
+.node.trap .node-label{color:var(--blu)}
+.node.trap .led-top{background:var(--blu);box-shadow:0 0 6px var(--blu)}
+
+.node.honey{bottom:22%;left:6%;border-color:var(--red);box-shadow:0 0 12px rgba(255,58,94,.25)}
+.node.honey .node-label{color:var(--red)}
+.node.honey .led-corner{background:var(--red);box-shadow:0 0 6px var(--red);animation:blink .8s infinite}
+
+.node.vault{top:72%;right:6%;border-color:var(--pur);box-shadow:0 0 12px rgba(168,85,247,.25)}
+.node.vault .node-label{color:var(--pur)}
+.node.vault .led-top{background:var(--pur);box-shadow:0 0 6px var(--pur)}
+
+/* MATRIX STRIP */
+.matrix-strip{position:absolute;bottom:8px;left:12px;right:12px;border:1px solid var(--dim);background:rgba(0,0,0,.4);padding:6px 10px;display:flex;justify-content:space-between;align-items:center;border-radius:2px}
+.matrix-strip .ms-title{font-size:8px;letter-spacing:3px;color:var(--txt2)}
+.matrix-strip .ms-items{display:flex;gap:8px}
+.matrix-strip .ms-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+.matrix-strip .ms-item .led{width:5px;height:5px;border-radius:50%}
+.matrix-strip .ms-item .lbl{font-size:7px;color:var(--txt2);letter-spacing:1px}
+
+/* LED MATRIX */
+.matrix{position:relative;border:1px solid var(--dim);background:linear-gradient(180deg,rgba(8,15,20,.95),rgba(5,10,14,.98));border-radius:4px;padding:12px 14px;margin-bottom:12px}
+.matrix-head{display:flex;justify-content:space-between;font-size:9px;letter-spacing:3px;color:var(--txt2);margin-bottom:10px}
+.matrix-head .cnt{color:var(--grn)}
+.matrix-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.dot{aspect-ratio:1;border-radius:50%;background:var(--dim);position:relative}
+.dot.on-org{background:radial-gradient(circle at 30% 30%,#ffd070,var(--org));box-shadow:0 0 6px rgba(255,140,0,.6),inset 0 0 4px rgba(255,255,255,.3)}
+.dot.on-yel{background:radial-gradient(circle at 30% 30%,#ffe070,var(--yel));box-shadow:0 0 6px rgba(255,184,0,.6),inset 0 0 4px rgba(255,255,255,.3)}
+.dot.on-red{background:radial-gradient(circle at 30% 30%,#ff7090,var(--red));box-shadow:0 0 8px rgba(255,58,94,.7),inset 0 0 4px rgba(255,255,255,.3)}
+.dot.on-grn{background:radial-gradient(circle at 30% 30%,#70ffcc,var(--grn));box-shadow:0 0 8px rgba(0,255,180,.7),inset 0 0 4px rgba(255,255,255,.3)}
+.dot.on-tel{background:radial-gradient(circle at 30% 30%,#70e8d8,var(--teal));box-shadow:0 0 8px rgba(20,212,184,.6),inset 0 0 4px rgba(255,255,255,.3)}
+.dot.pulse{animation:dotpulse 1.5s ease-in-out infinite}
+@keyframes dotpulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.85);opacity:.6}}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.stat{background:linear-gradient(180deg,rgba(12,19,25,.9),rgba(8,12,16,.9));border:1px solid var(--dim);border-radius:3px;padding:12px 6px;text-align:center;position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--grn),transparent);opacity:.4}
+.stat .v{font-size:20px;font-weight:bold;line-height:1;margin-bottom:6px}
+.stat .l{font-size:9px;color:var(--txt2);letter-spacing:1px}
+.stat.g .v{color:var(--grn);text-shadow:0 0 10px rgba(0,255,180,.5)}
+.stat.b .v{color:var(--blu);text-shadow:0 0 10px rgba(0,180,255,.5)}
+.stat.y .v{color:var(--yel);text-shadow:0 0 10px rgba(255,184,0,.5)}
+.stat.r .v{color:var(--red);text-shadow:0 0 10px rgba(255,58,94,.5)}
+
+/* SERVICE LIST */
+.svc{background:linear-gradient(180deg,rgba(12,19,25,.9),rgba(8,12,16,.9));border:1px solid var(--dim);border-radius:3px;padding:10px 12px}
+.svc-head{display:flex;justify-content:space-between;font-size:9px;letter-spacing:3px;color:var(--txt2);margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed var(--dim)}
+.svc-head .ac{color:var(--grn)}
+.svc-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed rgba(26,42,53,.6)}
+.svc-row:last-child{border-bottom:none}
+.svc-led{width:8px;height:8px;border-radius:50%;background:var(--grn);box-shadow:0 0 8px var(--grn);flex-shrink:0;animation:blink 2s infinite}
+.svc-row:nth-child(2n) .svc-led{animation-delay:.3s}
+.svc-row:nth-child(3n) .svc-led{animation-delay:.6s}
+.svc-name{flex:1;font-size:12px;color:var(--txt)}
+.svc-badge{font-size:9px;padding:3px 8px;border:1px solid rgba(0,255,180,.4);color:var(--grn);letter-spacing:2px;background:rgba(0,255,180,.06);border-radius:2px}
+.svc-badge.warn{color:var(--yel);border-color:rgba(255,184,0,.4);background:rgba(255,184,0,.06)}
+
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-@keyframes breathe{0%,100%{opacity:.5}50%{opacity:1}}
-@keyframes halo{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.4);opacity:.15}}
-@keyframes halo-blink{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.5);opacity:.1}}
-@keyframes halo-breathe{0%,100%{transform:scale(1);opacity:.15}50%{transform:scale(1.6);opacity:.5}}
-.section-title{font-size:12px;color:#ff3366;letter-spacing:3px;text-align:right;margin:20px 4px 10px;padding-right:10px;border-right:3px solid #ff3366;text-shadow:0 0 8px #ff336660}
-.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.stat{background:linear-gradient(180deg,#0f0f16,#0a0a10);border:1px solid #1a3a30;padding:14px 6px;text-align:center}
-.stat-num{font-size:22px;font-weight:bold;line-height:1;margin-bottom:6px}
-.stat-num.green{color:#00ff88;text-shadow:0 0 8px #00ff8860}
-.stat-num.red{color:#ff2244;text-shadow:0 0 8px #ff224460}
-.stat-num.yellow{color:#ffcc00;text-shadow:0 0 8px #ffcc0060}
-.stat-num.blue{color:#00ccff;text-shadow:0 0 8px #00ccff60}
-.stat-label{font-size:9px;color:#5a7a6a;letter-spacing:1px}
-.panel{background:linear-gradient(180deg,#0c0c14,#08080e);border:1px solid #1f4a3d;padding:6px;position:relative}
-.panel::before,.panel::after{content:'';position:absolute;width:8px;height:8px;border:1px solid #00ffb4;opacity:.5}
-.panel::before{top:3px;right:3px;border-left:none;border-bottom:none}
-.panel::after{bottom:3px;left:3px;border-right:none;border-top:none}
-.row{display:flex;align-items:center;gap:12px;padding:12px 10px;border-bottom:1px dashed #152a24}
-.row:last-child{border-bottom:none}
-.row-num{font-size:10px;color:#3a6a5a;min-width:20px;letter-spacing:1px}
-.row-name{flex:1;font-size:13px;color:#a8c8b8;letter-spacing:1px;text-align:right}
-.row-status{font-size:10px;font-weight:bold;letter-spacing:2px;padding:3px 8px;border:1px solid;min-width:60px;text-align:center}
-.status-active{color:#00ff88;border-color:#00ff8860;background:#00ff8810;text-shadow:0 0 6px #00ff8860}
-.worker-panel{background:radial-gradient(circle at 100% 0,#00ffff10 0,transparent 50%),linear-gradient(180deg,#0c0c14,#08080e);border:1px solid #00ffff40;padding:18px}
-.worker-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.worker-label{font-size:11px;color:#00ffff;letter-spacing:3px;text-shadow:0 0 8px #00ffff60}
-.worker-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #00ffff20;font-size:12px}
-.worker-row:last-child{border-bottom:none}
-.worker-row .k{color:#5a8a7a;letter-spacing:1px}
-.worker-row .v{color:#00ffff;text-shadow:0 0 6px #00ffff60}
-.footer{text-align:center;padding:24px 12px 40px;font-size:10px;color:#2a4a3a;letter-spacing:3px}
-@media(max-width:400px){.stat-grid{grid-template-columns:repeat(2,1fr)}.hero-title{font-size:18px;letter-spacing:4px}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.9)}}
+
+.footer{text-align:center;padding:20px 12px 30px;font-size:9px;color:var(--txt2);letter-spacing:3px}
+.footer .g{color:var(--grn)}
+
+@media(max-width:400px){
+.stats{grid-template-columns:repeat(2,1fr)}
+.brand-title{font-size:15px;letter-spacing:3px}
+.node{padding:6px 8px;min-width:76px}
+.node-label{font-size:8px}
+.node-val{font-size:12px}
+.node.core .node-val{font-size:16px}
+.node.core{min-width:110px}
+.matrix-grid{grid-template-columns:repeat(8,1fr);gap:5px}
+}
 </style>
 </head>
 <body>
-<div class="bg">
-<svg viewBox="0 0 400 900" preserveAspectRatio="xMidYMid slice">
-<path class="trace" d="M0,80 H120 V140 H320 V200 H400"/>
-<path class="trace" d="M0,220 H80 V280 H280 V340 H400"/>
-<path class="trace" d="M0,400 H150 V460 H400"/>
-<path class="trace" d="M0,520 H200 V580 H360 V640 H400"/>
-<path class="trace" d="M0,700 H100 V760 H300 V820 H400"/>
-<path class="trace" d="M120,0 V140 H180 V400 H120 V700"/>
-<path class="trace" d="M280,0 V200 H240 V520 H280 V800"/>
-<path class="trace" d="M360,0 V80 H340 V460 H380 V900"/>
-<path class="trace-glow" d="M0,80 H120 V140 H320 V200 H400"/>
-<path class="trace-glow" d="M0,400 H150 V460 H400" style="animation-delay:-2s"/>
-<path class="trace-glow" d="M0,700 H100 V760 H300 V820 H400" style="animation-delay:-4s"/>
-<circle class="node" cx="120" cy="140" r="3"/><circle class="node" cx="320" cy="200" r="3"/>
-<circle class="node" cx="80" cy="280" r="3"/><circle class="node" cx="280" cy="340" r="3"/>
-<circle class="node" cx="150" cy="460" r="3"/><circle class="node" cx="200" cy="580" r="3"/>
-<circle class="node" cx="360" cy="640" r="3"/><circle class="node" cx="100" cy="760" r="3"/>
-<circle class="node" cx="300" cy="820" r="3"/>
-</svg>
-</div>
+
 <nav class="nav">
 <a href="index.html">مادر</a>
-<a href="security.html" class="active">امنیت</a>
+<a href="security.html" class="on">امنیت</a>
 <a href="shop.html">فروشگاه</a>
 <a href="shop-board.html">برد فروشگاه</a>
 <a href="world.html">جهانی</a>
@@ -103,70 +164,201 @@ body{font-family:'Courier New',monospace;background:#08080c;color:#b8b8c8;min-he
 <a href="mitre.html">MITRE</a>
 <a href="sentinel.html">Sentinel</a>
 </nav>
+
 <div class="wrap">
+
+<!-- HERO -->
 <div class="hero">
-<div class="hero-title">S E C U R I T Y</div>
-<div class="hero-sub">SHIELD · TRAP · HONEYPOT</div>
-<div class="hero-status">MONITORING ACTIVE <span class="led led-red led-lg"></span></div>
+<div class="hero-top">
+<div class="clock"><span id="clk">--:--:--</span><span class="dot"></span></div>
+<div class="brand">
+<div class="brand-icon"></div>
+<div class="brand-txt">
+<div class="brand-title">VORIX</div>
+<div class="brand-sub">SHIELD CONTROL</div>
 </div>
-<div class="section-title">آمار تهدیدات</div>
-<div class="stat-grid">
-<div class="stat"><div class="stat-num green">0</div><div class="stat-label">Honeypot</div></div>
-<div class="stat"><div class="stat-num blue">13</div><div class="stat-label">مجاز</div></div>
-<div class="stat"><div class="stat-num yellow">0</div><div class="stat-label">علامت‌دار</div></div>
-<div class="stat"><div class="stat-num red">0</div><div class="stat-label">بلاک شده</div></div>
 </div>
-<div class="section-title">لایه‌های Shield</div>
-<div class="panel">
-<div class="row"><span class="row-num">01</span><span class="led led-green"></span><span class="row-name">HMAC Token</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">02</span><span class="led led-green"></span><span class="row-name">HMAC Signature</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">03</span><span class="led led-green"></span><span class="row-name">IP Whitelist</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">04</span><span class="led led-green"></span><span class="row-name">Rate Limit</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">05</span><span class="led led-green"></span><span class="row-name">Anomaly Score</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">06</span><span class="led led-green"></span><span class="row-name">Honeypot</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">07</span><span class="led led-green"></span><span class="row-name">Hash Chain</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">08</span><span class="led led-green"></span><span class="row-name">AES Vault</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">09</span><span class="led led-green"></span><span class="row-name">Brute Guard</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">10</span><span class="led led-green"></span><span class="row-name">Telegram Alerts</span><span class="row-status status-active">ACTIVE</span></div>
 </div>
-<div class="section-title">تله‌های فعال</div>
-<div class="panel">
-<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">/dashboard/</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/admin/</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/.env/</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/config.php/</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/backup/</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/wp-admin/</span><span class="row-status status-active">ACTIVE</span></div>
-<div class="row"><span class="row-num">/</span><span class="led led-blue"></span><span class="row-name">api/.git/</span><span class="row-status status-active">ACTIVE</span></div>
 </div>
-<div class="section-title">Cloudflare Worker</div>
-<div class="worker-panel">
-<div class="worker-head"><span class="worker-label">◆ WORKER STATUS</span><span class="led led-cyan led-lg"></span></div>
-<div class="worker-row"><span class="k">URL</span><span class="v">gentle-paper-c03a.workers.dev</span></div>
-<div class="worker-row"><span class="k">ENDPOINT</span><span class="v">POST /trap</span></div>
-<div class="worker-row"><span class="k">STATUS</span><span class="v" style="color:#00ffff">● ONLINE</span></div>
+
+<!-- BOARD -->
+<div class="board">
+<svg class="wires" viewBox="0 0 400 350" preserveAspectRatio="none">
+<!-- HMAC to CORE -->
+<path d="M100,80 L100,130 L150,130 L150,160"/>
+<path class="pulse" d="M100,80 L100,130 L150,130 L150,160"/>
+<!-- TRAP to CORE -->
+<path d="M300,80 L300,130 L250,130 L250,160"/>
+<path class="pulse" d="M300,80 L300,130 L250,130 L250,160" style="animation-delay:-1s"/>
+<!-- HONEY to CORE -->
+<path d="M100,270 L100,220 L150,220 L150,190"/>
+<path class="pulse" d="M100,270 L100,220 L150,220 L150,190" style="animation-delay:-2s"/>
+<!-- VAULT to CORE -->
+<path d="M300,270 L300,220 L250,220 L250,190"/>
+<path class="pulse" d="M300,270 L300,220 L250,220 L250,190" style="animation-delay:-3s"/>
+<!-- CORE down to matrix -->
+<path d="M200,200 L200,300"/>
+</svg>
+
+<div class="node hmac" style="top:12%;left:5%">
+<span class="led-top"></span>
+<div class="node-label">HMAC</div>
+<div class="node-val">9/9</div>
+<div class="node-sub">signature layers</div>
 </div>
-<div class="footer">VORIX SECURITY · v3.0 · CIRCUIT EDITION</div>
+
+<div class="node trap" style="top:12%;right:5%">
+<span class="led-top"></span>
+<div class="node-label">TRAP</div>
+<div class="node-val">7</div>
+<div class="node-sub">endpoints</div>
 </div>
+
+<div class="node core">
+<span class="led-top" style="background:var(--grn);box-shadow:0 0 8px var(--grn);animation:blink 1.4s infinite"></span>
+<div class="node-label">VORIX SHIELD</div>
+<div class="node-val">10/10</div>
+<div class="node-sub">ACTIVE · 24/7</div>
+</div>
+
+<div class="node honey" style="bottom:22%;left:5%">
+<span class="led-corner"></span>
+<div class="node-label">HONEYPOT</div>
+<div class="node-val">0</div>
+<div class="node-sub">hits today</div>
+</div>
+
+<div class="node vault" style="top:70%;right:5%">
+<span class="led-top"></span>
+<div class="node-label">VAULT</div>
+<div class="node-val">4</div>
+<div class="node-sub">backups</div>
+</div>
+
+<div class="matrix-strip">
+<div class="ms-title">◆ SHIELD MATRIX</div>
+<div class="ms-items" id="msItems"></div>
+</div>
+</div>
+
+<!-- LED MATRIX -->
+<div class="matrix">
+<div class="matrix-head">
+<span>LAYER ACTIVITY</span>
+<span><span class="cnt" id="cntOn">42</span> / <span id="cntAll">60</span></span>
+</div>
+<div class="matrix-grid" id="mtx"></div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+<div class="stat g"><div class="v" id="stHoney">0</div><div class="l">Honeypot</div></div>
+<div class="stat b"><div class="v">13</div><div class="l">مجاز</div></div>
+<div class="stat y"><div class="v">0</div><div class="l">علامت‌دار</div></div>
+<div class="stat r"><div class="v">0</div><div class="l">بلاک شده</div></div>
+</div>
+
+<!-- SERVICE LIST -->
+<div class="svc">
+<div class="svc-head"><span class="ac">◆ SHIELD STATUS</span><span>10 LAYERS</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">HMAC Token</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">HMAC Signature</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">IP Whitelist</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Rate Limit</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Anomaly Score</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Honeypot</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Hash Chain</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">AES Vault</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Brute Guard</span><span class="svc-badge">ACTIVE</span></div>
+<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Telegram Alerts</span><span class="svc-badge">ACTIVE</span></div>
+</div>
+
+<div class="footer">VORIX <span class="g">◆</span> SHIELD CONTROL <span class="g">◆</span> 2026</div>
+
+</div>
+
 <script>
-document.addEventListener('DOMContentLoaded',function(){
+// Clock
+function tick(){
+  var d=new Date();
+  var h=String(d.getHours()).padStart(2,'0');
+  var m=String(d.getMinutes()).padStart(2,'0');
+  var s=String(d.getSeconds()).padStart(2,'0');
+  document.getElementById('clk').textContent=h+':'+m+':'+s;
+}
+setInterval(tick,1000);tick();
+
+// Matrix strip (mini LEDs in board)
+var msNames=['CORE','HMAC','TRAP','SHLD','HNY','VLT','AUTH','SYNC','CHN','RATE'];
+var msHTML='';
+msNames.forEach(function(n){
+  msHTML+='<div class="ms-item"><span class="led" style="background:var(--grn);box-shadow:0 0 6px var(--grn)"></span><span class="lbl">'+n+'</span></div>';
+});
+document.getElementById('msItems').innerHTML=msHTML;
+
+// Big LED matrix
+var mtx=document.getElementById('mtx');
+var colors=['on-yel','on-org','on-red','on-tel','on-grn'];
+var dots=[];
+for(var i=0;i<60;i++){
+  var d=document.createElement('div');
+  d.className='dot';
+  mtx.appendChild(d);
+  dots.push(d);
+}
+
+function randColor(){
+  var r=Math.random();
+  if(r<0.55) return colors[Math.floor(Math.random()*colors.length)];
+  return null;
+}
+
+function refreshMatrix(){
+  var on=0;
+  dots.forEach(function(d,i){
+    // 20% chance to be dim
+    if(Math.random()<0.35){
+      d.className='dot';
+      return;
+    }
+    var c=randColor()||'on-grn';
+    d.className='dot '+c;
+    if(Math.random()<0.1) d.classList.add('pulse');
+    on++;
+  });
+  document.getElementById('cntOn').textContent=on;
+}
+refreshMatrix();
+setInterval(refreshMatrix,3500);
+
+// Simulate honeypot hit occasionally
 setInterval(function(){
-var leds=document.querySelectorAll('.row .led-green');
-if(!leds.length)return;
-var r=leds[Math.floor(Math.random()*leds.length)];
-r.classList.remove('led-green');r.classList.add('led-red');
-setTimeout(function(){r.classList.remove('led-red');r.classList.add('led-green')},2000);
+  var el=document.getElementById('stHoney');
+  if(Math.random()<0.3){
+    var n=parseInt(el.textContent)||0;
+    el.textContent=n+1;
+    // flash a red dot
+    var d=dots[Math.floor(Math.random()*dots.length)];
+    d.className='dot on-red pulse';
+  }
+},9000);
+
+// Flash a node LED every 8s
+setInterval(function(){
+  var nodes=document.querySelectorAll('.node');
+  if(!nodes.length)return;
+  var n=nodes[Math.floor(Math.random()*nodes.length)];
+  var l=n.querySelector('.led-top,.led-corner');
+  if(!l)return;
+  var oldBg=l.style.background;
+  l.style.background='#ff3a5e';
+  l.style.boxShadow='0 0 10px #ff3a5e';
+  setTimeout(function(){
+    l.style.background=oldBg;
+    l.style.boxShadow='';
+  },1500);
 },8000);
-setInterval(function(){
-document.querySelectorAll('.led-green').forEach(function(led,i){
-setTimeout(function(){led.style.filter='brightness(2)';setTimeout(function(){led.style.filter=''},200)},i*60);
-});
-},15000);
-setInterval(function(){
-var el=document.querySelector('.stat-num.green');
-if(el)el.textContent=Math.floor(Math.random()*3);
-},12000);
-});
 </script>
+
 </body>
 </html>
