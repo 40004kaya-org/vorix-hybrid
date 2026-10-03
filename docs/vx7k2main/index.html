@@ -3,106 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VORIX — مادر</title>
+<title>VORIX · MASTER</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#070a12;color:#94a3b8;font-family:"SF Mono",monospace;padding:10px;font-size:12px}
-h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:14px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
-.header{background:#0a0e1a;border:1px solid #1f5f3f;border-radius:8px;padding:14px;margin-bottom:14px;text-align:center}
-.header h1{color:#10b981;font-size:16px;letter-spacing:6px;font-weight:600;margin-bottom:6px}
-.header .sub{color:#475569;font-size:10px;letter-spacing:1px}
-.header .live{color:#10b981;font-size:11px;margin-top:8px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
-.st{background:#0f1420;border:1px solid #1e293b;border-radius:6px;padding:12px;text-align:center}
-.st .v{color:#e2e8f0;font-size:20px;font-weight:600}
-.st .l{color:#475569;font-size:9px;letter-spacing:1px;margin-top:4px}
-.st.green .v{color:#10b981}
-.st.yellow .v{color:#f59e0b}
-.st.red .v{color:#ef4444}
-.st.blue .v{color:#3b82f6}
-.st.purple .v{color:#8b5cf6}
-.section{background:#0f1420;border:1px solid #1e293b;border-radius:6px;padding:12px;margin-bottom:10px}
-.section h3{color:#64748b;font-size:10px;letter-spacing:2px;margin-bottom:10px}
-.row{display:flex;justify-content:space-between;padding:7px 0;font-size:11px;border-bottom:1px solid #0a0e1a}
-.row:last-child{border:none}
-.row .k{color:#94a3b8}
-.row .v{color:#e2e8f0;font-weight:600}
-.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:600;letter-spacing:1px}
-.badge.on{background:#064e3b;color:#6ee7b7}
+body{background:#02040a;color:#94a3b8;font-family:"SF Mono",monospace;padding:8px;font-size:12px;overflow-x:hidden}
+
+/* ═══ HEADER ═══ */
+.hdr{background:linear-gradient(135deg,#0a1e2e 0%,#050a15 100%);border:1px solid #1f5f3f;border-radius:10px;padding:12px;margin-bottom:10px;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(16,185,129,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,0.03) 1px,transparent 1px);background-size:20px 20px;pointer-events:none}
+.hdr-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-hex{width:32px;height:32px;position:relative}
+.logo-hex svg{width:100%;height:100%}
+.logo-txt{color:#10b981;font-size:14px;font-weight:700;letter-spacing:4px}
+.logo-sub{color:#475569;font-size:9px;letter-spacing:2px;display:block;margin-top:2px}
+.status{display:flex;align-items:center;gap:6px;font-size:10px;color:#10b981}
+.led-pulse{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 8px #10b981,0 0 16px #10b981;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.clock{color:#3b82f6;font-size:11px;margin-top:4px;letter-spacing:1px}
+
+/* ═══ CIRCUIT BOARD ═══ */
+.circuit{background:linear-gradient(180deg,#050a15 0%,#02040a 100%);border:1px solid #1f5f3f;border-radius:10px;padding:8px;margin-bottom:10px;position:relative;overflow:hidden}
+.circuit::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(16,185,129,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,0.02) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.circuit svg{width:100%;height:auto;display:block;position:relative;z-index:1}
+
+/* SVG styles */
+.pad{fill:#0a0f1a;stroke:#1e293b;stroke-width:1}
+.pad.core{fill:#0d1f2e;stroke:#10b981;stroke-width:1.5;filter:drop-shadow(0 0 12px rgba(16,185,129,.4))}
+.pad.module{fill:#0f1420;stroke:#3b82f6;stroke-width:1}
+.pad.module.shop{stroke:#f59e0b}
+.pad.module.sec{stroke:#dc2626}
+.pad.module.vault{stroke:#8b5cf6}
+.pad.module.net{stroke:#06b6d4}
+.t-title{fill:#e2e8f0;font-size:10px;font-weight:700;letter-spacing:2px;text-anchor:middle}
+.t-label{fill:#64748b;font-size:8px;text-anchor:middle}
+.t-value{fill:#10b981;font-size:14px;font-weight:700;text-anchor:middle}
+.t-value.shop{fill:#f59e0b}
+.t-value.sec{fill:#ef4444}
+.t-value.vault{fill:#8b5cf6}
+.t-value.net{fill:#06b6d4}
+.t-core{fill:#10b981;font-size:13px;font-weight:700;letter-spacing:3px;text-anchor:middle}
+.t-core-sub{fill:#475569;font-size:8px;letter-spacing:1px;text-anchor:middle}
+.line{stroke:#1a3a5a;stroke-width:1;fill:none}
+.line.flow{stroke:#10b981;stroke-dasharray:3 6;animation:flow 2s linear infinite}
+.line.flow.shop{stroke:#f59e0b}
+.line.flow.sec{stroke:#dc2626}
+.line.flow.vault{stroke:#8b5cf6}
+.line.flow.net{stroke:#06b6d4}
+@keyframes flow{to{stroke-dashoffset:-20}}
+
+.led{transition:all .3s}
+.led.green{fill:#10b981;filter:drop-shadow(0 0 3px #10b981)}
+.led.yellow{fill:#f59e0b;filter:drop-shadow(0 0 3px #f59e0b)}
+.led.red{fill:#ef4444;filter:drop-shadow(0 0 3px #ef4444)}
+.led.dark{fill:#1e293b}
+.led.pulse{animation:pulse 1.8s infinite}
+
+/* ═══ LAYER MATRIX ═══ */
+.matrix{background:linear-gradient(180deg,#0a0f1a 0%,#050a15 100%);border:1px solid #1e293b;border-radius:8px;padding:10px;margin-bottom:10px}
+.matrix-hdr{color:#64748b;font-size:9px;letter-spacing:2px;margin-bottom:8px;display:flex;justify-content:space-between}
+.matrix-hdr .c{color:#10b981}
+.layers-grid{display:grid;grid-template-columns:repeat(16,1fr);gap:3px}
+.layer-dot{aspect-ratio:1;border-radius:50%;background:#1e293b}
+.layer-dot.green{background:#10b981;box-shadow:0 0 4px #10b981}
+.layer-dot.yellow{background:#f59e0b;box-shadow:0 0 4px #f59e0b}
+.layer-dot.red{background:#ef4444;box-shadow:0 0 4px #ef4444;animation:pulse .8s infinite}
+
+/* ═══ STATS ROW ═══ */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.stat{background:linear-gradient(135deg,#0f1420 0%,#0a0f1a 100%);border:1px solid #1e293b;border-radius:8px;padding:10px 6px;text-align:center;position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#10b981,transparent)}
+.stat.shop::before{background:linear-gradient(90deg,transparent,#f59e0b,transparent)}
+.stat.sec::before{background:linear-gradient(90deg,transparent,#ef4444,transparent)}
+.stat.vault::before{background:linear-gradient(90deg,transparent,#8b5cf6,transparent)}
+.stat .v{color:#e2e8f0;font-size:18px;font-weight:700;letter-spacing:1px}
+.stat .l{color:#475569;font-size:8px;letter-spacing:1px;margin-top:2px}
+
+/* ═══ SERVICES GRID ═══ */
+.services{background:linear-gradient(180deg,#0a0f1a 0%,#050a15 100%);border:1px solid #1e293b;border-radius:8px;padding:10px;margin-bottom:10px}
+.services-hdr{color:#64748b;font-size:9px;letter-spacing:2px;margin-bottom:8px}
+.svc{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #0a0e1a;font-size:11px}
+.svc:last-child{border:none}
+.svc .name{color:#94a3b8}
+.svc .badge{padding:2px 6px;border-radius:3px;font-size:8px;font-weight:700;letter-spacing:1px}
+.badge.on{background:#064e3b;color:#6ee7b7;box-shadow:0 0 8px rgba(16,185,129,.3)}
 .badge.off{background:#7f1d1d;color:#fca5a5}
-.badge.warn{background:#78350f;color:#fcd34d}
-.empty{color:#475569;text-align:center;padding:20px;font-size:11px}
+
+/* ═══ FOOTER ═══ */
+.footer{color:#1e293b;font-size:8px;text-align:center;padding:8px;letter-spacing:2px}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>⬢ VORIX</h1>
-  <div class="sub">MASTER CONTROL PANEL</div>
-  <div class="live">● LIVE · <span id="time">--:--:--</span></div>
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="logo">
+      <div class="logo-hex">
+        <svg viewBox="0 0 40 40">
+          <polygon points="20,4 34,12 34,28 20,36 6,28 6,12" fill="none" stroke="#10b981" stroke-width="2"/>
+          <circle cx="20" cy="20" r="4" fill="#10b981"/>
+          <circle cx="20" cy="20" r="8" fill="none" stroke="#10b981" stroke-width="0.5" stroke-dasharray="2 3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-txt">VORIX</div>
+        <span class="logo-sub">MASTER CONTROL</span>
+      </div>
+    </div>
+    <div style="text-align:left">
+      <div class="status"><span class="led-pulse"></span>LIVE</div>
+      <div class="clock" id="clock">--:--:--</div>
+    </div>
+  </div>
 </div>
 
-<h2>وضعیت سرویس‌ها · 9</h2>
-<div class="grid">
-  <div class="st green"><div class="v" id="s-alive">0</div><div class="l">فعال</div></div>
-  <div class="st red"><div class="v" id="s-dead">0</div><div class="l">خاموش</div></div>
-  <div class="st yellow"><div class="v" id="s-layers">0</div><div class="l">لایه VORIX</div></div>
-  <div class="st blue"><div class="v" id="s-shop">0</div><div class="l">رویداد فروشگاه</div></div>
+<div class="circuit">
+<svg viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet">
+
+  <!-- Connection lines from core -->
+  <path class="line" d="M 450 180 L 450 90 L 180 90 L 180 130"/>
+  <path class="line flow" d="M 450 180 L 450 90 L 180 90 L 180 130"/>
+
+  <path class="line" d="M 450 180 L 450 90 L 720 90 L 720 130"/>
+  <path class="line flow shop" d="M 450 180 L 450 90 L 720 90 L 720 130"/>
+
+  <path class="line" d="M 450 250 L 450 370 L 180 370 L 180 340"/>
+  <path class="line flow sec" d="M 450 250 L 450 370 L 180 370 L 180 340"/>
+
+  <path class="line" d="M 450 250 L 450 370 L 720 370 L 720 340"/>
+  <path class="line flow vault" d="M 450 250 L 450 370 L 720 370 L 720 340"/>
+
+  <!-- ═══ MODULES ═══ -->
+  <!-- SHOP (top-right) -->
+  <rect class="pad module shop" x="90" y="130" width="180" height="70" rx="8"/>
+  <circle class="led green pulse" cx="110" cy="150" r="4"/>
+  <text class="t-title" x="180" y="155">SHOP</text>
+  <text class="t-value shop" x="180" y="180" id="mod-shop-val">-</text>
+  <text class="t-label" x="180" y="192">transactions</text>
+
+  <!-- NETWORK (top-left) -->
+  <rect class="pad module net" x="630" y="130" width="180" height="70" rx="8"/>
+  <circle class="led green pulse" cx="650" cy="150" r="4"/>
+  <text class="t-title" x="720" y="155">NETWORK</text>
+  <text class="t-value net" x="720" y="180" id="mod-net-val">-</text>
+  <text class="t-label" x="720" y="192">events</text>
+
+  <!-- SECURITY (bottom-right) -->
+  <rect class="pad module sec" x="90" y="340" width="180" height="70" rx="8"/>
+  <circle class="led red" cx="110" cy="360" r="4"/>
+  <text class="t-title" x="180" y="365">SECURITY</text>
+  <text class="t-value sec" x="180" y="390" id="mod-sec-val">10/10</text>
+  <text class="t-label" x="180" y="402">shield layers</text>
+
+  <!-- VAULT (bottom-left) -->
+  <rect class="pad module vault" x="630" y="340" width="180" height="70" rx="8"/>
+  <circle class="led green pulse" cx="650" cy="360" r="4"/>
+  <text class="t-title" x="720" y="365">VAULT</text>
+  <text class="t-value vault" x="720" y="390" id="mod-vault-val">-</text>
+  <text class="t-label" x="720" y="402">backups</text>
+
+  <!-- ═══ CORE (center) ═══ -->
+  <rect class="pad core" x="330" y="180" width="240" height="110" rx="12"/>
+  <circle class="led green pulse" cx="355" cy="205" r="5"/>
+  <circle class="led green pulse" cx="545" cy="205" r="5" style="animation-delay:0.5s"/>
+  <text class="t-core" x="450" y="230">⬢ VORIX CORE</text>
+  <text class="t-core-sub" x="450" y="248">ACTIVE · 24/7</text>
+  <text class="t-core-sub" x="450" y="262" id="core-uptime">uptime: --</text>
+  <circle cx="450" cy="275" r="6" fill="#10b981" class="pulse-led" style="filter:drop-shadow(0 0 8px #10b981);animation:pulse 1.5s infinite"/>
+
+  <!-- ═══ BOTTOM ROW LED MATRIX ═══ -->
+  <rect class="pad module" x="90" y="430" width="720" height="70" rx="8" style="stroke:#10b981;stroke-width:1.2"/>
+
+  <g transform="translate(120, 465)">
+    <circle class="led green pulse" cx="0" cy="0" r="3"/>
+    <text class="t-label" x="0" y="14" style="font-size:7px">CORE</text>
+  </g>
+  <g transform="translate(220, 465)">
+    <circle class="led green pulse" cx="0" cy="0" r="3" style="animation-delay:0.2s"/>
+    <text class="t-label" x="0" y="14" style="font-size:7px">BRIDGE</text>
+  </g>
+  <g transform="translate(320, 465)">
+    <circle class="led green pulse" cx="0" cy="0" r="3" style="animation-delay:0.4s"/>
+    <text class="t-label" x="0" y="14" style="font-size:7px">API</text>
+  </g>
+  <g transform="translate(420, 465)">
+    <circle class="led green pulse" cx="0" cy="0" r="3" style="animation-delay:0.6s"/>
+    <text class="t-label" x="0" y="14" style="font-size:7px">SHIELD</text>
+  </g>
+  <g transform="translate(520, 465)">
+    <circle class="led green pulse" cx="0" cy="0" r="3" style="animation-delay:0.8s"/>
+    <text class="t-label" x="0" y="14" style="font-size:7px">VAULT</text>
+  </g>
+  <g transform="translate(620, 465)">
+    <circle class="led green pulse" cx="0" cy="0" r="3" style="animation-delay:1s"/>
+    <text class="t-label" x="0" y="14" style="font-size:7px">SYNC</text>
+  </g>
+  <g transform="translate(720, 465)">
+    <circle class="led green pulse" cx="0" cy="0" r="3" style="animation-delay:1.2s"/>
+    <text class="t-label" x="0" y="14" style="font-size:7px">WATCH</text>
+  </g>
+
+  <text class="t-label" x="450" y="447" style="font-size:8px;fill:#64748b">◈ SERVICE MATRIX ◈</text>
+</svg>
 </div>
 
-<h2>سرویس‌های اصلی</h2>
-<div class="section" id="services">
-  <div class="empty">در حال بارگذاری...</div>
+<div class="matrix">
+  <div class="matrix-hdr"><span>LAYERS · 57</span><span class="c" id="layers-count">--</span></div>
+  <div class="layers-grid" id="layers-grid"></div>
 </div>
 
-<h2>خلاصه فروشگاه</h2>
-<div class="grid">
-  <div class="st"><div class="v" id="shop-users">-</div><div class="l">کاربر</div></div>
-  <div class="st"><div class="v" id="shop-orders">-</div><div class="l">سفارش</div></div>
-  <div class="st yellow"><div class="v" id="shop-pay">-</div><div class="l">پرداخت</div></div>
-  <div class="st green"><div class="v" id="shop-rev">-</div><div class="l">درآمد</div></div>
+<div class="stats-row">
+  <div class="stat"><div class="v" id="s-users">-</div><div class="l">کاربر</div></div>
+  <div class="stat shop"><div class="v" id="s-orders">-</div><div class="l">سفارش</div></div>
+  <div class="stat sec"><div class="v" id="s-pay">-</div><div class="l">پرداخت</div></div>
+  <div class="stat vault"><div class="v" id="s-rev">-</div><div class="l">درآمد</div></div>
 </div>
 
-<h2>خلاصه امنیت</h2>
-<div class="section">
-  <div class="row"><span class="k">۱۰ لایه Shield</span><span class="v"><span class="badge on" id="shield-status">ACTIVE</span></span></div>
-  <div class="row"><span class="k">Trap Endpoints</span><span class="v">۷ عدد</span></div>
-  <div class="row"><span class="k">Worker URL</span><span class="v" style="color:#3b82f6;font-size:10px">gentle-paper-c03a</span></div>
-  <div class="row"><span class="k">Honeypot Hits</span><span class="v" id="honeypot">0</span></div>
+<div class="services">
+  <div class="services-hdr">◈ SERVICE STATUS</div>
+  <div id="services-list"></div>
 </div>
 
-<h2>آخرین رویدادها</h2>
-<div class="section" id="events">
-  <div class="empty">در حال بارگذاری...</div>
-</div>
+<div class="footer">VORIX SECURITY © 2026 · MASTER CONTROL PANEL</div>
 
 <script src="nav.js"></script>
 <script>
 function fmt(n){try{return Number(n||0).toLocaleString('en-US')}catch(e){return '0'}}
+function fmtShort(n){n=Number(n||0);if(n>=1000000)return (n/1000000).toFixed(1)+'M';if(n>=1000)return (n/1000).toFixed(0)+'K';return String(n)}
 
-function loadServices(){
-  fetch('../data/services_status.json?v=' + Date.now())
+function renderLayers() {
+  // 57 dots - we'll show green for running layers
+  const grid = document.getElementById('layers-grid');
+  fetch('../data/live.json?v=' + Date.now())
     .then(r=>r.json())
     .then(d=>{
-      const s = d.services || {};
-      const stats = d.stats || {};
-      document.getElementById('s-alive').textContent = stats.alive || 0;
-      document.getElementById('s-dead').textContent = (stats.total || 0) - (stats.alive || 0);
-      document.getElementById('shield-status').textContent = (s.SHIELD && s.SHIELD.running) ? 'ACTIVE' : 'OFF';
-      
-      const names = {CORE:'ربات فروشگاه', BRIDGE:'جمع‌آورنده', API:'API :8090', SHIELD:'۱۰ لایه امنیت', VAULT:'بک‌آپ', BOT:'ربات VORIX', SYNC:'Sync', ORCH:'لایه‌ها', WATCH:'نگهبان'};
-      let h = '';
-      Object.keys(s).forEach(function(k){
-        const v = s[k];
-        const badge = v.running ? '<span class="badge on">ONLINE</span>' : '<span class="badge off">OFFLINE</span>';
-        h += '<div class="row"><span class="k">' + (names[k] || k) + '</span><span class="v">' + badge + '</span></div>';
-      });
-      document.getElementById('services').innerHTML = h || '<div class="empty">داده‌ای نیست</div>';
+      const layers = d.layers || [];
+      let html = '';
+      for (let i = 0; i < 57; i++) {
+        const l = layers[i];
+        const cls = l ? (l.running ? 'green' : (l.color === 'red' ? 'red' : 'yellow')) : 'dark';
+        html += '<div class="layer-dot ' + cls + '" title="' + (l ? (l.id || '') : 'N/A') + '"></div>';
+      }
+      grid.innerHTML = html;
+      const active = layers.filter(x=>x.running).length;
+      document.getElementById('layers-count').textContent = active + ' / ' + layers.length;
+      document.getElementById('mod-net-val').textContent = active;
+      document.getElementById('core-uptime').textContent = 'update: ' + (d.ts || '').substring(11,16);
     })
     .catch(e=>console.error(e));
 }
 
-function loadShop(){
+function loadStats(){
   fetch('../data/shop_all.json?v=' + Date.now())
     .then(r=>r.json())
     .then(d=>{
@@ -110,49 +261,50 @@ function loadShop(){
       const o = (d.orders||[]).length;
       const p = (d.payments||[]).length;
       let rev = 0;
-      (d.orders||[]).forEach(x=>{rev += x.total_price || 0;});
-      document.getElementById('shop-users').textContent = u;
-      document.getElementById('shop-orders').textContent = o;
-      document.getElementById('shop-pay').textContent = p;
-      document.getElementById('shop-rev').textContent = (rev/1000000).toFixed(1) + 'M';
-      document.getElementById('s-shop').textContent = (d.activity||[]).length;
+      (d.orders||[]).forEach(x=>{rev += x.total_price||0;});
+      document.getElementById('s-users').textContent = u;
+      document.getElementById('s-orders').textContent = o;
+      document.getElementById('s-pay').textContent = p;
+      document.getElementById('s-rev').textContent = fmtShort(rev);
+      document.getElementById('mod-shop-val').textContent = fmtShort(rev);
+      document.getElementById('mod-vault-val').textContent = (d.receipts||[]).length;
     })
     .catch(e=>console.error(e));
 }
 
-function loadLayers(){
-  fetch('../data/live.json?v=' + Date.now())
+function loadServices(){
+  fetch('../data/services_status.json?v=' + Date.now())
     .then(r=>r.json())
     .then(d=>{
-      const active = (d.layers||[]).filter(l=>l.running).length;
-      document.getElementById('s-layers').textContent = active;
-      document.getElementById('time').textContent = (d.ts||'').substring(11,19);
+      const s = d.services || {};
+      const names = {CORE:'ربات فروشگاه', BRIDGE:'جمع‌آورنده', API:'API :8090', SHIELD:'۱۰ لایه امنیت', VAULT:'بک‌آپ', BOT:'ربات VORIX', SYNC:'Sync', ORCH:'لایه‌ها', WATCH:'نگهبان'};
+      let h = '';
+      Object.keys(s).forEach(k=>{
+        const v = s[k];
+        const badge = v.running ? '<span class="badge on">ONLINE</span>' : '<span class="badge off">OFFLINE</span>';
+        h += '<div class="svc"><span class="name">' + (names[k] || k) + '</span>' + badge + '</div>';
+      });
+      document.getElementById('services-list').innerHTML = h;
+      const alive = (d.stats && d.stats.alive) || 0;
+      const total = (d.stats && d.stats.total) || 9;
+      document.getElementById('mod-sec-val').textContent = alive + '/' + total;
     })
     .catch(e=>console.error(e));
 }
 
-function loadEvents(){
-  fetch('../data/attacks.json?v=' + Date.now())
-    .then(r=>r.json())
-    .then(d=>{
-      const at = (d.attacks||[]).slice(0, 5);
-      if(!at.length){document.getElementById('events').innerHTML='<div class="empty">رویدادی نیست</div>';return;}
-      document.getElementById('events').innerHTML = at.map(a=>{
-        const sev = (a.severity||'low').toLowerCase();
-        const t = (a.ts||'').substring(11,19);
-        return '<div class="row"><span class="k">' + t + ' · ' + (a.attack_type||'?') + '</span><span class="v badge ' + (sev==='critical'?'off':'warn') + '">' + sev.toUpperCase() + '</span></div>';
-      }).join('');
-    })
-    .catch(e=>console.error(e));
+function clock(){
+  const d = new Date();
+  document.getElementById('clock').textContent = d.toTimeString().substring(0,8);
 }
 
+clock();
+setInterval(clock, 1000);
+renderLayers();
+loadStats();
 loadServices();
-loadShop();
-loadLayers();
-loadEvents();
+setInterval(renderLayers, 10000);
+setInterval(loadStats, 20000);
 setInterval(loadServices, 15000);
-setInterval(loadShop, 20000);
-setInterval(loadLayers, 10000);
 </script>
 </body>
 </html>
