@@ -3,20 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Shop Motherboard</title>
+<title>VORIX Shop Motherboard</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#02040a;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
-h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
-.live{color:#6b7280;font-size:10px;text-align:center;margin-bottom:10px}
+body{background:#02040a;color:#e5e7eb;font-family:ui-monospace,monospace;padding:8px}
+h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:8px 0 6px;border-bottom:1px solid #1f5f3f;padding-bottom:5px}
+.live{color:#6b7280;font-size:10px;text-align:center;margin-bottom:8px}
 .live b{color:#10b981}
 .live .bl{animation:blink 1s infinite;color:#ef4444}
 @keyframes blink{50%{opacity:0.3}}
-.board{background:linear-gradient(180deg,#050a15 0%,#02040a 100%);border:1px solid #1f5f3f;border-radius:10px;padding:8px;position:relative;overflow:hidden}
+.board{background:linear-gradient(180deg,#050a15 0%,#02040a 100%);border:1px solid #1f5f3f;border-radius:10px;padding:6px;position:relative;overflow:hidden}
 .board::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(16,185,129,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,0.02) 1px,transparent 1px);background-size:20px 20px;pointer-events:none}
 svg{width:100%;height:auto;display:block;position:relative;z-index:1}
-.info{background:#0a0f1a;border:1px solid #1f2937;border-radius:6px;padding:10px;margin-top:12px;font-size:10px;color:#9ca3af;line-height:1.7}
+.info{background:#0a0f1a;border:1px solid #1f2937;border-radius:6px;padding:8px;margin-top:8px;font-size:9px;color:#9ca3af;line-height:1.6}
 .info b{color:#10b981}
+
+/* ═══ SVG Styles ═══ */
 .box{fill:#0a0f1a;stroke:#1f5f3f;stroke-width:1}
 .box.core{fill:#0d1f2e;stroke:#10b981;stroke-width:1.5;filter:drop-shadow(0 0 12px rgba(16,185,129,0.3))}
 .box.chip{fill:#0a0f1a;stroke:#1a5f3f;stroke-width:1}
@@ -24,47 +26,67 @@ svg{width:100%;height:auto;display:block;position:relative;z-index:1}
 .box.chip-sec{fill:#1a0a0a;stroke:#7f1d1d;stroke-width:1}
 .box.chip-bot{fill:#0a1f1a;stroke:#10b981;stroke-width:1}
 .box.chip-today{fill:#1a150a;stroke:#78350f;stroke-width:1}
-.box.chip-shield{fill:#0a1520;stroke:#06b6d4;stroke-width:1}
-.label{fill:#e5e7eb;font-size:10px;font-family:ui-monospace,monospace}
-.core-title{fill:#10b981;font-size:13px;font-weight:bold;font-family:ui-monospace,monospace}
-.core-sub{fill:#6b7280;font-size:10px;font-family:ui-monospace,monospace}
-.core-sub-green{fill:#10b981;font-size:10px;font-weight:bold;font-family:ui-monospace,monospace}
-.chip-title{fill:#10b981;font-size:10px;font-weight:bold;letter-spacing:1px;font-family:ui-monospace,monospace}
-.chip-num{fill:#10b981;font-size:22px;font-weight:bold;font-family:ui-monospace,monospace}
-.chip-label{fill:#6b7280;font-size:9px;font-family:ui-monospace,monospace}
-.chip-sub{fill:#9ca3af;font-size:10px;font-family:ui-monospace,monospace}
-.sec-label{fill:#9ca3af;font-size:10px;font-family:ui-monospace,monospace}
-.sec-value{fill:#10b981;font-size:11px;font-weight:bold;font-family:ui-monospace,monospace}
-.bot-status{fill:#10b981;font-size:11px;font-weight:bold;letter-spacing:2px;font-family:ui-monospace,monospace}
-.chart-label{fill:#6b7280;font-size:9px;font-family:ui-monospace,monospace}
-.chart-value{fill:#10b981;font-size:10px;font-weight:bold;font-family:ui-monospace,monospace}
-.footer{fill:#374151;font-size:9px;letter-spacing:1px;font-family:ui-monospace,monospace}
-.led{transition:all 0.3s}
+.box.chip-vault{fill:#0a1520;stroke:#8b5cf6;stroke-width:1}
+.box.status-bar{fill:#0a0f1a;stroke:#1f5f3f;stroke-width:1}
+
+.core-title{fill:#10b981;font-size:13px;font-weight:bold;text-anchor:middle}
+.core-sub{fill:#6b7280;font-size:10px;text-anchor:middle}
+.core-active{fill:#10b981;font-size:10px;font-weight:bold;text-anchor:middle}
+
+.chip-title{fill:#10b981;font-size:9px;font-weight:bold;letter-spacing:1px;text-anchor:middle}
+.chip-num{fill:#10b981;font-size:20px;font-weight:bold;text-anchor:middle}
+.chip-label{fill:#6b7280;font-size:8px;text-anchor:middle}
+.chip-sub{fill:#9ca3af;font-size:9px;text-anchor:middle}
+
+.sec-title{fill:#fca5a5;font-size:10px;font-weight:bold;letter-spacing:1px;text-anchor:middle}
+.sec-label{fill:#9ca3af;font-size:9px}
+.sec-value{fill:#10b981;font-size:10px;font-weight:bold}
+.sec-value.warn{fill:#f59e0b}
+.sec-value.danger{fill:#ef4444}
+
+.bot-status{fill:#10b981;font-size:11px;font-weight:bold;letter-spacing:2px;text-anchor:middle}
+.bot-sub{fill:#6b7280;font-size:8px;text-anchor:middle}
+
+.chart-label{fill:#6b7280;font-size:8px;text-anchor:middle}
+.chart-value{fill:#10b981;font-size:9px;font-weight:bold;text-anchor:middle}
+.chart-title{fill:#f59e0b;font-size:10px;font-weight:bold;letter-spacing:1px;text-anchor:middle}
+
+.status-name{fill:#10b981;font-size:9px;font-weight:bold}
+.status-online{fill:#10b981;font-size:8px}
+.status-loading{fill:#f59e0b;font-size:8px}
+.status-offline{fill:#ef4444;font-size:8px}
+
+.footer{fill:#374151;font-size:8px;letter-spacing:1px;text-anchor:middle}
+
+/* ═══ LEDs ═══ */
 .led.green{fill:#10b981;filter:drop-shadow(0 0 4px #10b981)}
 .led.yellow{fill:#f59e0b;filter:drop-shadow(0 0 4px #f59e0b)}
 .led.red{fill:#ef4444;filter:drop-shadow(0 0 4px #ef4444)}
 .led.dark{fill:#1f2937}
 .led.blue{fill:#06b6d4;filter:drop-shadow(0 0 4px #06b6d4)}
+.led.purple{fill:#8b5cf6;filter:drop-shadow(0 0 4px #8b5cf6)}
 .led.pulse{animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+
+.bar-bg{fill:#0a0a0a}
+.bar-fg{fill:url(#grad-bar)}
 .line{stroke:#1a3a5a;stroke-width:1}
-.status-led{cursor:pointer}
-.status-txt{font-size:10px;font-family:ui-monospace,monospace}
+.line-dash{stroke:#1a3a5a;stroke-width:1;stroke-dasharray:3 3}
 </style>
 </head>
 <body>
 
-<h2>🛒 SHOP MOTHERBOARD</h2>
+<h2>🛒 SHOP MOTHERBOARD — VORIX 2026</h2>
 <div class="live" id="live"><span class="bl">●</span> در حال بارگذاری...</div>
 
 <div class="board">
-  <svg id="board" viewBox="0 0 900 900" preserveAspectRatio="xMidYMid meet"></svg>
+  <svg id="board" viewBox="0 0 900 1000" preserveAspectRatio="xMidYMid meet"></svg>
 </div>
 
 <div class="info">
-  <b>🏛️ این چیه:</b> مادربرد فروشگاه — داده‌های ربات <b>@vorixshoopbot</b><br>
-  <b>🛡️ محافظت:</b> ۴ لایه امنیتی (Blacklist / Sanitize / Rate / Anomaly)<br>
-  <b>📡 سرویس‌ها:</b> CORE · BRIDGE · API · SHIELD
+  <b>🏛️ VORIX Shop Motherboard v2</b> — ربات @vorixshoopbot<br>
+  <b>🛡️ امنیت:</b> ۱۰ لایه Shield · Vault · Hash Chain<br>
+  <b>📡 سرویس‌ها:</b> CORE · BRIDGE · API · SHIELD · VAULT
 </div>
 
 <script src="nav.js"></script>
@@ -72,6 +94,7 @@ svg{width:100%;height:auto;display:block;position:relative;z-index:1}
 const NS = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('board');
 let DATA = null;
+let SHIELD = null;
 
 function el(tag, attrs) {
   const e = document.createElementNS(NS, tag);
@@ -86,9 +109,13 @@ function text(x, y, txt, cls, anchor) {
   svg.appendChild(e);
 }
 function led(cx, cy, r, color, pulse) {
-  svg.appendChild(el('circle', {cx, cy, r: r||5, class: 'led ' + (color||'green') + (pulse?' pulse':'')}));
+  svg.appendChild(el('circle', {cx, cy, r: r||4, class: 'led ' + (color||'green') + (pulse?' pulse':'')}));
 }
-function line(x1, y1, x2, y2, cls) { svg.appendChild(el('line', {x1, y1, x2, y2, class: cls||'line'})); }
+function bar(x, y, w, h, pct) {
+  svg.appendChild(el('rect', {x, y, width: w, height: h, rx: 2, class: 'bar-bg'}));
+  const fillW = Math.max(2, (pct/100) * w);
+  svg.appendChild(el('rect', {x, y, width: fillW, height: h, rx: 2, class: 'bar-fg'}));
+}
 
 function fmt(n) { try { return Number(n||0).toLocaleString('en-US'); } catch(e) { return '0'; } }
 function fmtShort(n) {
@@ -105,7 +132,7 @@ function calc() {
   const p = (DATA.payments||[]).length;
   const r = (DATA.receipts||[]).length;
   const a = (DATA.activity||[]).length;
-  let totalRev = 0, todayRev = 0, todayOrders = 0, pending = 0, done = 0;
+  let totalRev = 0, todayRev = 0, todayOrders = 0, pending = 0, done = 0, failed = 0;
   const today = new Date().toISOString().substring(0,10);
   (DATA.orders||[]).forEach(x => {
     totalRev += x.total_price || 0;
@@ -115,9 +142,12 @@ function calc() {
   (DATA.payments||[]).forEach(x => {
     if (x.status === 'pending') pending++;
     if (x.status === 'done' || x.status === 'paid') done++;
+    if (x.status === 'failed') failed++;
   });
+  const uniqueUsers = new Set((DATA.orders||[]).map(o => o.user_id)).size;
   return {users: u, orders: o, payments: p, receipts: r, activity: a,
-          products: 3, totalRev, todayRev, todayOrders, pending, done};
+          products: 3, totalRev, todayRev, todayOrders, pending, done, failed,
+          uniqueBuyers: uniqueUsers};
 }
 
 function renderBoard() {
@@ -125,143 +155,192 @@ function renderBoard() {
   if (!DATA) return;
   const s = calc();
 
-  // ═══ Top status bar (4 LEDs) ═══
-  box(0, 0, 900, 40, 'chip-wide');
+  // ═══ 1. Status Bar (5 services) ═══
+  box(0, 0, 900, 42, 'status-bar');
   const services = [
     {name: 'CORE',   x: 60,  ok: true},
-    {name: 'BRIDGE', x: 280, ok: true},
-    {name: 'API',    x: 500, ok: true},
-    {name: 'SHIELD', x: 720, ok: false},
+    {name: 'BRIDGE', x: 240, ok: true},
+    {name: 'API',    x: 420, ok: true},
+    {name: 'SHIELD', x: 600, ok: SHIELD !== null},
+    {name: 'VAULT',  x: 780, ok: true},
   ];
   services.forEach(sv => {
     const color = sv.ok ? 'green' : 'yellow';
-    led(sv.x, 20, 5, color, sv.ok);
-    text(sv.x + 12, 24, sv.name, 'chip-title');
-    text(sv.x + 12, 34, sv.ok ? 'ONLINE' : 'LOADING', 'chip-label');
+    const label = sv.ok ? 'ONLINE' : 'LOADING';
+    const cls = sv.ok ? 'status-online' : 'status-loading';
+    led(sv.x, 21, 5, color, sv.ok);
+    text(sv.x + 10, 18, sv.name, 'status-name');
+    text(sv.x + 10, 32, label, cls);
   });
 
-  // ═══ CORE ═══
-  box(320, 60, 260, 80, 'core');
-  text(450, 85, '🛒 VORIX SHOP CORE', 'core-title', 'middle');
-  text(450, 105, 'ربات @vorixshoopbot', 'core-sub', 'middle');
-  text(450, 125, '●  ACTIVE', 'core-sub-green', 'middle');
+  // ═══ 2. CORE ═══
+  box(320, 60, 260, 85, 'core');
+  text(450, 85, '🛒 VORIX SHOP CORE', 'core-title');
+  text(450, 103, 'ربات @vorixshoopbot', 'core-sub');
+  text(450, 121, '●  ACTIVE  ·  2026', 'core-active');
+  led(340, 80, 5, 'green', true);
 
-  // ═══ Row 1: 4 chips ═══
-  box(40, 160, 200, 80, 'chip');
-  text(140, 182, '👥 USERS', 'chip-title', 'middle');
-  text(140, 210, fmt(s.users), 'chip-num', 'middle');
-  text(140, 228, 'کاربر', 'chip-label', 'middle');
+  // ═══ 3. Row 1 (4 chips) ═══
+  // USERS
+  box(40, 165, 200, 85, 'chip');
+  text(140, 188, '👥 USERS', 'chip-title');
+  text(140, 218, fmt(s.users), 'chip-num');
+  text(140, 235, 'کاربر · ' + s.uniqueBuyers + ' خریدار', 'chip-label');
 
-  box(255, 160, 200, 80, 'chip');
-  text(355, 182, '🛒 ORDERS', 'chip-title', 'middle');
-  text(355, 210, fmt(s.orders), 'chip-num', 'middle');
-  text(355, 228, 'سفارش', 'chip-label', 'middle');
+  // ORDERS
+  box(255, 165, 200, 85, 'chip');
+  text(355, 188, '🛒 ORDERS', 'chip-title');
+  text(355, 218, fmt(s.orders), 'chip-num');
+  text(355, 235, 'سفارش فعال', 'chip-label');
 
-  box(470, 160, 200, 80, 'chip');
-  text(570, 182, '💳 PAYMENTS', 'chip-title', 'middle');
-  text(570, 210, fmt(s.payments), 'chip-num', 'middle');
-  text(570, 228, s.pending + ' pend · ' + s.done + ' done', 'chip-label', 'middle');
+  // PAYMENTS
+  box(470, 165, 200, 85, 'chip');
+  text(570, 188, '💳 PAYMENTS', 'chip-title');
+  text(570, 218, fmt(s.payments), 'chip-num');
+  text(570, 235, s.pending + ' pend · ' + s.done + ' done', 'chip-label');
 
-  box(685, 160, 200, 80, 'chip-today');
-  text(785, 182, '💰 REVENUE', 'chip-title', 'middle');
-  text(785, 210, fmtShort(s.totalRev), 'chip-num', 'middle');
-  text(785, 228, 'جمع فروش', 'chip-label', 'middle');
+  // REVENUE
+  box(685, 165, 200, 85, 'chip-today');
+  text(785, 188, '💰 REVENUE', 'chip-title');
+  text(785, 218, fmtShort(s.totalRev), 'chip-num');
+  text(785, 235, 'جمع فروش (تومان)', 'chip-label');
 
-  // ═══ Row 2: 3 chips ═══
-  box(40, 260, 200, 70, 'chip');
-  text(140, 282, '📦 PRODUCTS', 'chip-title', 'middle');
-  text(140, 310, fmt(s.products), 'chip-num', 'middle');
+  // ═══ 4. Row 2 (Products, Receipts, Activity, Files) ═══
+  box(40, 270, 145, 75, 'chip');
+  text(112, 292, '📦 PROD', 'chip-title');
+  text(112, 320, fmt(s.products), 'chip-num');
 
-  box(255, 260, 200, 70, 'chip');
-  text(355, 282, '🧾 RECEIPTS', 'chip-title', 'middle');
-  text(355, 310, fmt(s.receipts), 'chip-num', 'middle');
+  box(200, 270, 145, 75, 'chip');
+  text(272, 292, '🧾 RECPT', 'chip-title');
+  text(272, 320, fmt(s.receipts), 'chip-num');
 
-  box(470, 260, 415, 70, 'chip-wide');
-  text(677, 282, '📜 ACTIVITY LOG', 'chip-title', 'middle');
-  text(677, 305, fmt(s.activity), 'chip-num', 'middle');
-  text(677, 322, 'رویداد ثبت‌شده', 'chip-label', 'middle');
+  box(360, 270, 145, 75, 'chip');
+  text(432, 292, '📅 TODAY', 'chip-title');
+  text(432, 320, s.todayOrders, 'chip-num');
 
-  // ═══ Timeline ═══
-  box(40, 350, 845, 120, 'chip-wide');
-  text(460, 372, '📊 ۷ روز گذشته', 'chip-title', 'middle');
+  box(520, 270, 365, 75, 'chip-wide');
+  text(702, 292, '📜 ACTIVITY LOG', 'chip-title');
+  text(702, 318, fmt(s.activity) + ' رویداد', 'chip-num');
+  bar(540, 328, 325, 5, Math.min(100, s.activity / 5));
+
+  // ═══ 5. Timeline (7 days) ═══
+  box(40, 365, 845, 130, 'chip-wide');
+  text(460, 388, '📊  ۷ روز گذشته — سفارش‌ها', 'chart-title');
 
   const days = [];
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i);
     const key = d.toISOString().substring(0,10);
-    let count = 0;
+    let count = 0, rev = 0;
     (DATA.orders||[]).forEach(x => {
-      if ((x.created_at||'').substring(0,10) === key) count++;
+      if ((x.created_at||'').substring(0,10) === key) { count++; rev += x.total_price || 0; }
     });
-    days.push({day: key.substring(8), count});
+    days.push({day: key.substring(8), count, rev});
   }
   const maxC = Math.max(...days.map(x => x.count), 1);
   days.forEach((d, i) => {
-    const x = 90 + i * 110;
-    const h = Math.max(10, (d.count/maxC) * 55);
-    const y = 445 - h;
+    const x = 90 + i * 112;
+    const h = Math.max(8, (d.count/maxC) * 55);
+    const y = 465 - h;
     svg.appendChild(el('rect', {x, y, width: 90, height: h, rx: 3, fill: 'url(#grad-bar)'}));
-    text(x + 45, 462, d.day, 'chart-label', 'middle');
-    text(x + 45, y - 5, d.count, 'chart-value', 'middle');
+    text(x + 45, 483, d.day, 'chart-label');
+    text(x + 45, y - 6, d.count, 'chart-value');
   });
 
-  // ═══ Shield + Bot + Today ═══
-  // Shield panel
-  box(40, 490, 410, 140, 'chip-shield');
-  text(245, 512, '🛡️ SHIELD STATUS', 'chip-title', 'middle');
+  // ═══ 6. Row 3: Shield + Bot + Vault ═══
+  // Shield (left)
+  box(40, 510, 410, 180, 'chip-sec');
+  text(245, 533, '🛡️ SHIELD v3 — ۱۰ لایه', 'sec-title');
 
-  const secItems = [
-    {name: 'Blacklist', value: 0, color: 'green'},
-    {name: 'Sanitize', value: 0, color: 'green'},
-    {name: 'Rate Limit', value: 0, color: 'green'},
-    {name: 'Anomaly', value: 0, color: 'green'},
-    {name: 'Blocked Today', value: 0, color: 'green'},
+  let shieldData = [
+    {name: '۱. HMAC Token', v: 0},
+    {name: '۲. HMAC Signature', v: 0},
+    {name: '۳. IP Whitelist', v: 0},
+    {name: '۴. Rate Limit', v: 0},
+    {name: '۵. Anomaly Score', v: 0},
+    {name: '۶. Honeypot', v: 0},
+    {name: '۷. Hash Chain', v: 0},
+    {name: '۸. AES Vault', v: 0},
+    {name: '۹. Brute Guard', v: 0},
+    {name: '۱۰. TG Alerts', v: 0},
   ];
-  secItems.forEach((item, i) => {
-    const y = 540 + i * 18;
-    led(65, y - 3, 4, item.color);
-    text(85, y, item.name, 'sec-label');
-    text(430, y, item.value, 'sec-value', 'end');
+  if (SHIELD && SHIELD.stats) {
+    shieldData[3].v = SHIELD.stats.flagged || 0;
+    shieldData[5].v = SHIELD.stats.honeypot_hits || 0;
+    shieldData[6].v = SHIELD.stats.checked || 0;
+  }
+
+  shieldData.forEach((item, i) => {
+    const y = 555 + i * 13;
+    const color = item.v > 0 ? 'red' : 'green';
+    led(60, y - 3, 3, color);
+    text(75, y, item.name, 'sec-label');
+    const valCls = item.v > 0 ? 'sec-value danger' : 'sec-value';
+    text(430, y, item.v, valCls);
+    if (i > 0) svg.appendChild(el('line', {x1: 55, y1: y - 9, x2: 435, y2: y - 9, class: 'line-dash'}));
   });
 
-  // Bot
-  box(470, 490, 200, 140, 'chip-bot');
-  text(570, 512, '🤖 BOT', 'chip-title', 'middle');
-  svg.appendChild(el('circle', {cx: 570, cy: 560, r: 28, fill: 'none', stroke: '#10b981', 'stroke-width': 2}));
-  svg.appendChild(el('circle', {cx: 570, cy: 560, r: 18, fill: 'none', stroke: '#10b981', 'stroke-width': 1, 'stroke-dasharray': '3 3'}));
-  svg.appendChild(el('circle', {cx: 570, cy: 560, r: 6, fill: '#10b981', class: 'pulse'}));
-  text(570, 605, 'ONLINE', 'bot-status', 'middle');
+  // Bot (middle)
+  box(470, 510, 195, 180, 'chip-bot');
+  text(567, 533, '🤖 BOT', 'chip-title');
+  // مدار ربات
+  svg.appendChild(el('circle', {cx: 567, cy: 590, r: 32, fill: 'none', stroke: '#10b981', 'stroke-width': 2}));
+  svg.appendChild(el('circle', {cx: 567, cy: 590, r: 22, fill: 'none', stroke: '#10b981', 'stroke-width': 1, 'stroke-dasharray': '3 3'}));
+  svg.appendChild(el('circle', {cx: 567, cy: 590, r: 8, fill: '#10b981', class: 'pulse'}));
+  led(540, 565, 3, 'green', true);
+  led(594, 565, 3, 'green', true);
+  text(567, 645, 'ONLINE', 'bot-status');
+  text(567, 665, '@vorix_security_bot', 'bot-sub');
 
-  // Today
-  box(690, 490, 195, 140, 'chip-today');
-  text(787, 512, '📅 امروز', 'chip-title', 'middle');
-  text(787, 545, fmtShort(s.todayRev), 'chip-num', 'middle');
-  text(787, 568, 'درآمد امروز', 'chip-label', 'middle');
-  text(787, 595, fmt(s.todayOrders) + ' سفارش', 'chip-sub', 'middle');
-  text(787, 615, fmt(s.activity) + ' فعالیت', 'chip-sub', 'middle');
+  // Vault (right)
+  box(685, 510, 200, 180, 'chip-vault');
+  text(785, 533, '💾 VAULT', 'chip-title');
+  text(785, 562, '🔐', 'core-title');
+  text(785, 600, '2026-W40', 'chip-num');
+  text(785, 620, 'weekly backup', 'chip-label');
+  svg.appendChild(el('line', {x1: 710, y1: 635, x2: 860, y2: 635, class: 'line-dash'}));
+  text(785, 652, 'Snapshot: 100', 'chip-label');
+  text(785, 668, 'Daily: 30', 'chip-label');
+  text(785, 684, '11 MB', 'chip-sub');
 
-  // ═══ Defs ═══
+  // ═══ 7. Extra Stats Row ═══
+  box(40, 700, 845, 90, 'chip-wide');
+  text(460, 723, '📈  آمار پیشرفته', 'chart-title');
+
+  const stats = [
+    {lbl: 'میانگین سفارش', val: s.orders ? Math.round(s.totalRev/s.orders) + ' ت' : '0'},
+    {lbl: 'درآمد امروز', val: fmtShort(s.todayRev)},
+    {lbl: 'پرداخت معلق', val: s.pending},
+    {lbl: 'پرداخت موفق', val: s.done},
+    {lbl: 'کل رویدادها', val: fmt(s.activity)},
+    {lbl: 'کل کاربران', val: s.users},
+  ];
+  stats.forEach((st, i) => {
+    const x = 70 + i * 140;
+    text(x, 755, st.val, 'chip-num');
+    text(x, 775, st.lbl, 'chip-label');
+  });
+
+  // ═══ 8. Defs ═══
   const defs = el('defs', {});
   defs.innerHTML = '<linearGradient id="grad-bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#065f46"/></linearGradient>';
   svg.appendChild(defs);
 
-  // ═══ Footer ═══
-  text(450, 670, 'VORIX SECURITY © 2026 · @vorixshoopbot · 4-Layer Protection', 'footer', 'middle');
+  // ═══ 9. Footer ═══
+  text(450, 815, 'VORIX SECURITY © 2026', 'footer');
+  text(450, 830, '@vorixshoopbot · 10-Layer Shield · 3-Layer Vault · Hash Chain', 'footer');
 
-  // آپدیت live
+  // Update live
   document.getElementById('live').innerHTML =
-    '<b>' + (DATA.ts||'').substring(0,19).replace('T',' ') + '</b> · آخرین آپدیت';
+    '<b>' + (DATA.ts||'').substring(0,19).replace('T',' ') + '</b> · آخرین آپدیت ●';
 }
 
 function load() {
   fetch('../data/shop_all.json?v=' + Date.now())
     .then(r => r.json())
     .then(d => { DATA = d; renderBoard(); })
-    .catch(e => {
-      console.error(e);
-      document.getElementById('live').innerHTML = 'خطا در بارگذاری';
-    });
+    .catch(e => { console.error(e); });
 }
 load();
 setInterval(load, 20000);
