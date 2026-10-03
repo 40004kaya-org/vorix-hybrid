@@ -1,5 +1,5 @@
 {
-  "ts": "2026-10-03T06:35:59.380103Z",
+  "ts": "2026-10-03T07:01:03.972192Z",
   "layers": [
     {
       "id": "L01",
@@ -238,29 +238,29 @@
     {
       "id": "L-FIM",
       "file": "layer_fim",
-      "running": true,
-      "pid": "30772",
+      "running": false,
+      "pid": null,
       "mode": "watch",
-      "color": "green",
-      "label": "فعال"
+      "color": "red",
+      "label": "قطع"
     },
     {
       "id": "L-Root",
       "file": "layer_rootkit",
-      "running": true,
-      "pid": "30776",
+      "running": false,
+      "pid": null,
       "mode": "watch",
-      "color": "green",
-      "label": "فعال"
+      "color": "red",
+      "label": "قطع"
     },
     {
       "id": "L-MC",
       "file": "layer_multichannel",
-      "running": true,
-      "pid": "30781",
+      "running": false,
+      "pid": null,
       "mode": "watch",
-      "color": "green",
-      "label": "فعال"
+      "color": "red",
+      "label": "قطع"
     },
     {
       "id": "L-LF",
@@ -346,17 +346,17 @@
     {
       "id": "L-Bot",
       "file": "vorix_bot",
-      "running": true,
-      "pid": "23487",
+      "running": false,
+      "pid": null,
       "mode": "watch",
-      "color": "green",
-      "label": "فعال"
+      "color": "red",
+      "label": "قطع"
     },
     {
       "id": "L-Sync",
       "file": "sync_loop",
       "running": true,
-      "pid": "9435",
+      "pid": "13362",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
@@ -381,10 +381,10 @@
     }
   ],
   "stats": {
-    "green": 18,
+    "green": 14,
     "yellow": 22,
     "orange": 0,
-    "red": 2,
+    "red": 6,
     "total": 42
   }
 }

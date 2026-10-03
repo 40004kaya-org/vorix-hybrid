@@ -1,25 +1,7 @@
 {
- "ts": "2026-10-03T06:35:59.578110Z",
+ "ts": "2026-10-03T07:01:04.178811Z",
  "total": 100,
  "entries": [
-  {
-   "src": "layer_resurrect",
-   "ts": "07:01:28",
-   "sev": "ok",
-   "msg": "♻️ Restarted: layer17_watchdog.py"
-  },
-  {
-   "src": "layer_resurrect",
-   "ts": "07:01:28",
-   "sev": "ok",
-   "msg": "♻️ Restarted: layer19_password_leak.py"
-  },
-  {
-   "src": "layer_resurrect",
-   "ts": "07:01:28",
-   "sev": "ok",
-   "msg": "♻️ Restarted: layer21_ml_anomaly.py"
-  },
   {
    "src": "layer_resurrect",
    "ts": "07:01:28",
@@ -88,42 +70,6 @@
   },
   {
    "src": "layer_seal",
-   "ts": "05:34:38",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "05:48:20",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "05:56:05",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "06:08:17",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "06:14:15",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "06:16:53",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
    "ts": "06:24:05",
    "sev": "ok",
    "msg": "🔒 Seal started"
@@ -177,94 +123,130 @@
    "msg": "⚠ SEAL BROKEN: vorix_shop_api.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:02:43",
+   "src": "layer_seal",
+   "ts": "10:07:05",
    "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+   "msg": "➖ missing: vorix_bot_v2.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:07:05",
+   "sev": "info",
+   "msg": "➖ missing: vorix_shop_api.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:31:03",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:31:03",
+   "sev": "info",
+   "msg": "➕ new file: vorix_shop_shield.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:31:03",
+   "sev": "info",
+   "msg": "➕ new file: vorix_bot_v2.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:31:03",
+   "sev": "info",
+   "msg": "➕ new file: vorix_shop_api.py"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:02:58",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:03:13",
+   "ts": "10:06:53",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:03:28",
+   "ts": "10:07:08",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:03:38",
+   "ts": "10:07:18",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:03:53",
+   "ts": "10:07:33",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:04:08",
+   "ts": "10:07:48",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:04:23",
+   "ts": "10:08:03",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:04:33",
+   "ts": "10:08:13",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:04:48",
+   "ts": "10:08:28",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:05:03",
+   "ts": "10:08:43",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:05:18",
+   "ts": "10:08:58",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:05:28",
+   "ts": "10:09:08",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:05:43",
+   "ts": "10:09:23",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:05:58",
+   "ts": "10:09:38",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:09:53",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:10:03",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
@@ -373,6 +355,24 @@
    "ts": "07:01:28",
    "sev": "ok",
    "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "10:06:52",
+   "sev": "info",
+   "msg": "🗼 Ingested 12"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "10:08:52",
+   "sev": "info",
+   "msg": "🗼 Ingested 12"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "10:09:42",
+   "sev": "info",
+   "msg": "🗼 Ingested 12"
   },
   {
    "src": "layer_whitelist",
