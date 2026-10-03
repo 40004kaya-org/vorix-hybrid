@@ -3,45 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VORIX Datacenter</title>
-<link rel="stylesheet" href="vorix.css">
-<link rel="stylesheet" href="racks-2026.css">
-<link rel="stylesheet" href="charts-live.css">
+<title>VORIX Motherboard</title>
+<link rel="stylesheet" href="motherboard.css">
 </head>
 <body>
 
-<div class="ceiling-alert" id="ceiling-alert"></div>
-<div class="alert-banner" id="alert-banner"></div>
+<div class="alert-line" id="alert"></div>
 
-<div class="container">
+<div class="board">
 
-  <!-- Header -->
-  <div class="header">
-    <div class="header-dot"></div>
-    <h1>🏢 VORIX DATACENTER</h1>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="dot"></div>
+    <h1>🛡️ VORIX</h1>
     <div class="spacer"></div>
-    <div class="header-time" id="clock">—</div>
+    <div class="stat-pill" id="status-pill">ONLINE</div>
+    <div class="time" id="clock">—</div>
   </div>
 
-  <!-- Circuit Board -->
-  <div class="circuit-panel">
-    <div class="circuit-title">DATA FLOW</div>
-    <div class="circuit-row" id="circuit"></div>
+  <!-- CORE (CPU) -->
+  <div class="core-wrap">
+    <div class="core">
+      <div class="core-title">◉ VORIX CORE</div>
+      <div class="core-leds">
+        <div class="core-led"></div>
+        <div class="core-led"></div>
+        <div class="core-led"></div>
+        <div class="core-led"></div>
+        <div class="core-led"></div>
+      </div>
+      <div class="core-metrics">
+        <div class="metric">
+          <div class="metric-label">CPU</div>
+          <div class="metric-bar"><div class="metric-fill" id="cpu-bar" style="width:0%"></div></div>
+          <div class="metric-value" id="cpu-val">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">RAM</div>
+          <div class="metric-bar"><div class="metric-fill" id="ram-bar" style="width:0%"></div></div>
+          <div class="metric-value" id="ram-val">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">NET</div>
+          <div class="metric-bar"><div class="metric-fill" id="net-bar" style="width:0%"></div></div>
+          <div class="metric-value" id="net-val">—</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Server Room -->
-  <div class="server-room">
-    <div class="room-title">SERVER ROOM</div>
-    <div class="racks-row" id="racks"></div>
-    <div class="room-floor"></div>
+  <!-- TRACE -->
+  <div class="trace-zone"><div class="trace-line"></div></div>
+
+  <!-- CHIPSET 1 (4 اصلی) -->
+  <div class="chipset chipset-4" id="chipset1"></div>
+
+  <!-- TRACE -->
+  <div class="trace-zone"><div class="trace-line"></div></div>
+
+  <!-- CHIPSET 2 (3 جانبی) -->
+  <div class="chipset chipset-3" id="chipset2"></div>
+
+  <!-- TRACE -->
+  <div class="trace-zone"><div class="trace-line"></div></div>
+
+  <!-- SLOTS -->
+  <div class="slots-wrap">
+    <div class="slots-grid" id="slots"></div>
   </div>
 
-  <!-- Stats -->
-  <div class="stats-bar" id="stats"></div>
+  <!-- I/O PORTS -->
+  <div class="ioports" id="ioports"></div>
+
+  <!-- BOTTOM METRICS -->
+  <div class="bottom-metrics" id="bottom"></div>
 
 </div>
 
-<script src="vorix.js"></script>
-<script src="drawer.js"></script>
+<script src="motherboard.js"></script>
 </body>
 </html>
