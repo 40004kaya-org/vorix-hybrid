@@ -1,57 +1,9 @@
 {
- "ts": "2026-10-03T07:28:19.736955Z",
+ "ts": "2026-10-03T07:29:28.822962Z",
  "total": 100,
  "entries": [
   {
    "src": "layer_seal",
-   "ts": "10:51:08",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_shield.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:51:08",
-   "sev": "info",
-   "msg": "➕ new file: vorix_bot_v2.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:51:08",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_api.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:51:14",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:51:14",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_shield.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:51:14",
-   "sev": "info",
-   "msg": "➕ new file: vorix_bot_v2.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:51:14",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_api.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "10:53:23",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
    "ts": "10:53:23",
    "sev": "info",
    "msg": "➕ new file: vorix_shop_shield.py"
@@ -93,22 +45,52 @@
    "msg": "➕ new file: vorix_shop_api.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:55:16",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+   "src": "layer_seal",
+   "ts": "10:58:19",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:55:32",
+   "src": "layer_seal",
+   "ts": "10:58:19",
    "sev": "info",
-   "msg": "🕸️ Tarpit listening on 9999"
+   "msg": "➕ new file: vorix_shop_shield.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "10:55:33",
+   "src": "layer_seal",
+   "ts": "10:58:19",
    "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+   "msg": "➕ new file: vorix_bot_v2.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:58:19",
+   "sev": "info",
+   "msg": "➕ new file: vorix_shop_api.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:58:52",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:58:52",
+   "sev": "info",
+   "msg": "➕ new file: vorix_shop_shield.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:58:52",
+   "sev": "info",
+   "msg": "➕ new file: vorix_bot_v2.py"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "10:58:52",
+   "sev": "info",
+   "msg": "➕ new file: vorix_shop_api.py"
   },
   {
    "src": "layer_tarpit",
@@ -179,6 +161,24 @@
   {
    "src": "layer_tarpit",
    "ts": "10:58:18",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:58:20",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:58:52",
+   "sev": "info",
+   "msg": "🕸️ Tarpit listening on 9999"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:59:20",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
@@ -286,18 +286,6 @@
   },
   {
    "src": "layer_watchtower",
-   "ts": "06:28:34",
-   "sev": "ok",
-   "msg": "🗼 Watchtower started"
-  },
-  {
-   "src": "layer_watchtower",
-   "ts": "06:31:45",
-   "sev": "ok",
-   "msg": "🗼 Watchtower started"
-  },
-  {
-   "src": "layer_watchtower",
    "ts": "07:01:28",
    "sev": "ok",
    "msg": "🗼 Watchtower started"
@@ -375,28 +363,16 @@
    "msg": "🗼 Watchtower started"
   },
   {
-   "src": "layer_whitelist",
-   "ts": "10:31:04",
-   "sev": "info",
-   "msg": "Loaded 2 IPs"
-  },
-  {
-   "src": "layer_whitelist",
-   "ts": "10:31:09",
+   "src": "layer_watchtower",
+   "ts": "10:58:20",
    "sev": "ok",
-   "msg": "✅ Whitelist started"
+   "msg": "🗼 Watchtower started"
   },
   {
-   "src": "layer_whitelist",
-   "ts": "10:31:09",
-   "sev": "info",
-   "msg": "Loaded 2 IPs"
-  },
-  {
-   "src": "layer_whitelist",
-   "ts": "10:34:56",
+   "src": "layer_watchtower",
+   "ts": "10:58:52",
    "sev": "ok",
-   "msg": "✅ Whitelist started"
+   "msg": "🗼 Watchtower started"
   },
   {
    "src": "layer_whitelist",
@@ -461,6 +437,30 @@
   {
    "src": "layer_whitelist",
    "ts": "10:53:28",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "10:58:20",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "10:58:20",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "10:58:52",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "10:58:52",
    "sev": "info",
    "msg": "Loaded 2 IPs"
   },
