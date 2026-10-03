@@ -148,3 +148,675 @@ To github.com:40004kaya-org/vorix-hybrid.git
  1 file changed, 1 insertion(+), 1 deletion(-)
 To github.com:40004kaya-org/vorix-hybrid.git
    70f0999..73d3681  main -> main
+<stdin>:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+✓ 12 events, 2 critical
+[main bfe4215] sync: 05:52
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   b914448..bfe4215  main -> main
+[sync] generating live.json...
+  "ts": datetime.utcnow().isoformat() + "Z",
+✅ live.json: 20 active, 22 standby, 0 down
+✓ 12 events, 2 critical
+[main ddce09a] sync: 06:07
+ 2 files changed, 26 insertions(+), 26 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   3c026a4..ddce09a  main -> main
+[sync] generating live.json...
+  "ts": datetime.utcnow().isoformat() + "Z",
+✅ live.json: 3 active, 22 standby, 17 down
+✓ 12 events, 2 critical
+[main 47f0934] sync: 06:12
+ 2 files changed, 73 insertions(+), 73 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   7848c9f..47f0934  main -> main
+[sync] generating live.json...
+  "ts": datetime.utcnow().isoformat() + "Z",
+✅ live.json: 5 active, 22 standby, 15 down
+✓ 12 events, 2 critical
+[main 17fb656] sync: 06:14
+ 2 files changed, 21 insertions(+), 21 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   47f0934..17fb656  main -> main
+[sync] generating live.json...
+  "ts": datetime.utcnow().isoformat() + "Z",
+✅ live.json: 3 active, 22 standby, 17 down
+✓ 12 events, 2 critical
+[main bbddce7] sync: 06:16
+ 2 files changed, 15 insertions(+), 15 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   17fb656..bbddce7  main -> main
+[sync] generating live.json...
+  "ts": datetime.utcnow().isoformat() + "Z",
+✅ live.json: 4 active, 22 standby, 16 down
+✓ 12 events, 2 critical
+[main a74447e] sync: 06:24
+ 2 files changed, 11 insertions(+), 11 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   bbddce7..a74447e  main -> main
+[sync] generating live.json...
+  "ts": datetime.utcnow().isoformat() + "Z",
+✅ live.json: 1 active, 22 standby, 19 down
+✓ 12 events, 2 critical
+[main 0cf8446] sync: 06:27
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   820ad58..0cf8446  main -> main
+[sync] generating live.json...
+  "ts": datetime.utcnow().isoformat() + "Z",
+✅ live.json: 17 active, 22 standby, 3 down
+✓ 12 events, 2 critical
+[main aaa577e] sync: 06:31
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   568051c..aaa577e  main -> main
+[sync] generating live.json...
+  "ts": datetime.utcnow().isoformat() + "Z",
+✅ live.json: 17 active, 22 standby, 3 down
+[sync] encrypting...
+✅ encrypted: 8051 → 10772 bytes
+   output: /data/data/com.termux/files/home/vorix-hybrid/docs/data/live.enc.json
+✓ 12 events, 2 critical
+[main dea4a00] sync: 08:48
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+To github.com:40004kaya-org/vorix-hybrid.git
+   cd3137f..dea4a00  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+[main 0e8c45a] sync: 08:49
+ 3 files changed, 21 insertions(+), 21 deletions(-)
+   ba1a078..0e8c45a  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+[main d47ebba] sync: 08:50
+ 3 files changed, 23 insertions(+), 23 deletions(-)
+   b7ba90b..d47ebba  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+[main 5e12c5c] sync: 08:51
+ 3 files changed, 23 insertions(+), 23 deletions(-)
+   d47ebba..5e12c5c  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+[main 22acfb5] sync: 08:52
+ 3 files changed, 18 insertions(+), 18 deletions(-)
+   5e12c5c..22acfb5  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+[main 2264024] sync: 08:53
+ 3 files changed, 23 insertions(+), 23 deletions(-)
+   22acfb5..2264024  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+[main 8b4bbe0] sync: 08:54
+ 3 files changed, 23 insertions(+), 23 deletions(-)
+   2264024..8b4bbe0  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+[main 8bee8a5] sync: 08:56
+ 3 files changed, 23 insertions(+), 23 deletions(-)
+   8b4bbe0..8bee8a5  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+[main cb8a6bb] sync: 08:57
+ 3 files changed, 18 insertions(+), 18 deletions(-)
+   8bee8a5..cb8a6bb  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main bb7125e] sync: 08:58
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   e6d62a1..bb7125e  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 00943f8] sync: 08:59
+ 4 files changed, 33 insertions(+), 33 deletions(-)
+   bb7125e..00943f8  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 62e8624] sync: 09:00
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   00943f8..62e8624  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 26284e1] sync: 09:01
+ 4 files changed, 25 insertions(+), 25 deletions(-)
+   62e8624..26284e1  main -> main
+✅ live.json: 17 active, 22 standby, 3 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 06fe693] sync: 09:02
+ 4 files changed, 30 insertions(+), 30 deletions(-)
+   26284e1..06fe693  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main c7f0e8c] sync: 09:03
+ 4 files changed, 30 insertions(+), 30 deletions(-)
+   06fe693..c7f0e8c  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 84a39d0] sync: 09:05
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   c7f0e8c..84a39d0  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 4475741] sync: 09:06
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   84a39d0..4475741  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 7b9e9ee] sync: 09:07
+ 4 files changed, 25 insertions(+), 25 deletions(-)
+   4475741..7b9e9ee  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 72dd21b] sync: 09:08
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   7b9e9ee..72dd21b  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 88628ef] sync: 09:09
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   18a0832..88628ef  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main da7498f] sync: 09:10
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   88628ef..da7498f  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 82bc96e] sync: 09:12
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   da7498f..82bc96e  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 5a101c1] sync: 09:13
+ 4 files changed, 29 insertions(+), 29 deletions(-)
+   82bc96e..5a101c1  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main ea944bf] sync: 09:14
+ 4 files changed, 19 insertions(+), 19 deletions(-)
+   a4730d8..ea944bf  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 744ff2f] sync: 09:15
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   512fce9..744ff2f  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 5722eb0] sync: 09:16
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   75175cf..5722eb0  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main b1b8647] sync: 09:17
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   eea402c..b1b8647  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 1fad1df] sync: 09:18
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   b1b8647..1fad1df  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main e10ce59] sync: 09:20
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   1fad1df..e10ce59  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 33c1604] sync: 09:21
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   e10ce59..33c1604  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main b620d6f] sync: 09:22
+ 4 files changed, 29 insertions(+), 29 deletions(-)
+   33c1604..b620d6f  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 22e190d] sync: 09:23
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   b620d6f..22e190d  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main bc953dd] sync: 09:24
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   22e190d..bc953dd  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main ac713f1] sync: 09:25
+ 4 files changed, 19 insertions(+), 19 deletions(-)
+   bc953dd..ac713f1  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main febbbb1] sync: 09:27
+ 4 files changed, 29 insertions(+), 29 deletions(-)
+   190bb25..febbbb1  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 6a51963] sync: 09:28
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+   febbbb1..6a51963  main -> main
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs/data/attacks.json
+	modified:   docs/data/live.json
+	modified:   docs/data/live_global.json
+	modified:   docs/data/logs.json
+	modified:   phone/fim_state.json
+	modified:   phone/layer01_state.json
+	modified:   phone/layer03_state.json
+	modified:   phone/layer08_state.json
+	modified:   phone/layer21_state.json
+	modified:   phone/layer25_state.json
+	modified:   phone/layer_heartbeat_state.json
+	modified:   phone/layer_multichannel_state.json
+	modified:   phone/layer_rootkit_state.json
+	modified:   phone/sync_loop.sh
+	modified:   phone/tor_exits.json
+	modified:   phone/watchdog.log
+	modified:   phone/watchdog_state.json
+	modified:   sync.log
+	modified:   sync_to_github.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	phone/honey_tokens/
+	phone/layer_watchtower_state.json
+	phone/mirror/
+	phone/threat_feed.json
+	phone/vorix_bot_v2.py
+	phone/watchtower.jsonl
+	phone/whitelist.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs/data/attacks.json
+	modified:   docs/data/live.json
+	modified:   docs/data/live_global.json
+	modified:   docs/data/logs.json
+	modified:   docs/vx7k2main/cybermap.html
+	modified:   phone/fim_state.json
+	modified:   phone/layer01_state.json
+	modified:   phone/layer03_state.json
+	modified:   phone/layer08_state.json
+	modified:   phone/layer21_state.json
+	modified:   phone/layer25_state.json
+	modified:   phone/layer_heartbeat_state.json
+	modified:   phone/layer_multichannel_state.json
+	modified:   phone/layer_rootkit_state.json
+	modified:   phone/sync_loop.sh
+	modified:   phone/tor_exits.json
+	modified:   phone/watchdog.log
+	modified:   phone/watchdog_state.json
+	modified:   sync.log
+	modified:   sync_to_github.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	phone/honey_tokens/
+	phone/layer_watchtower_state.json
+	phone/mirror/
+	phone/threat_feed.json
+	phone/vorix_bot_v2.py
+	phone/watchtower.jsonl
+	phone/whitelist.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs/data/attacks.json
+	modified:   docs/data/live.json
+	modified:   docs/data/live_global.json
+	modified:   docs/data/logs.json
+	modified:   phone/fim_state.json
+	modified:   phone/layer01_state.json
+	modified:   phone/layer03_state.json
+	modified:   phone/layer08_state.json
+	modified:   phone/layer21_state.json
+	modified:   phone/layer25_state.json
+	modified:   phone/layer_heartbeat_state.json
+	modified:   phone/layer_multichannel_state.json
+	modified:   phone/layer_rootkit_state.json
+	modified:   phone/sync_loop.sh
+	modified:   phone/tor_exits.json
+	modified:   phone/watchdog.log
+	modified:   phone/watchdog_state.json
+	modified:   sync.log
+	modified:   sync_to_github.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	phone/honey_tokens/
+	phone/layer_watchtower_state.json
+	phone/mirror/
+	phone/threat_feed.json
+	phone/vorix_bot_v2.py
+	phone/watchtower.jsonl
+	phone/whitelist.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs/data/attacks.json
+	modified:   docs/data/live.json
+	modified:   docs/data/live_global.json
+	modified:   docs/data/logs.json
+	modified:   docs/vx7k2main/cybermap.html
+	modified:   phone/fim_state.json
+	modified:   phone/layer01_state.json
+	modified:   phone/layer03_state.json
+	modified:   phone/layer08_state.json
+	modified:   phone/layer21_state.json
+	modified:   phone/layer25_state.json
+	modified:   phone/layer_heartbeat_state.json
+	modified:   phone/layer_multichannel_state.json
+	modified:   phone/layer_rootkit_state.json
+	modified:   phone/sync_loop.sh
+	modified:   phone/tor_exits.json
+	modified:   phone/watchdog.log
+	modified:   phone/watchdog_state.json
+	modified:   sync.log
+	modified:   sync_to_github.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	phone/honey_tokens/
+	phone/layer_watchtower_state.json
+	phone/mirror/
+	phone/threat_feed.json
+	phone/vorix_bot_v2.py
+	phone/watchtower.jsonl
+	phone/whitelist.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 5225915] sync: 09:35
+ 4 files changed, 29 insertions(+), 29 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 84b1d3a] sync: 09:36
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main c2ff277] sync: 09:37
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 5fb7b37] sync: 09:38
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 429745a] sync: 09:39
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 6cb50b6] sync: 09:40
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main c418413] sync: 09:42
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main fcd3913] sync: 09:43
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main a608490] sync: 09:44
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 332ccc1] sync: 09:45
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 2645d51] sync: 09:46
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 7247c77] sync: 09:47
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main a278760] sync: 09:48
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 5406b98] sync: 09:50
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main bbea189] sync: 09:51
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 3ccb8bd] sync: 09:52
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 0b31a37] sync: 09:53
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 072c097] sync: 09:54
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 2790695] sync: 09:55
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 980b9e7] sync: 09:56
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main d9f0b61] sync: 09:58
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 839249e] sync: 09:59
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main aa5e27f] sync: 10:00
+ 4 files changed, 27 insertions(+), 27 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 9a4cd56] sync: 10:01
+ 4 files changed, 28 insertions(+), 28 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 5130d8e] sync: 10:02
+ 4 files changed, 25 insertions(+), 25 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 42fb765] sync: 10:03
+ 4 files changed, 29 insertions(+), 29 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 6b6e077] sync: 10:04
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind
+✅ live.json: 18 active, 22 standby, 2 down
+✅ attacks.json: 13 attacks, 0 blocked
+✅ logs.json: 100 entries
+✅ /data/data/com.termux/files/home/vorix-hybrid/docs/data/live_global.json
+[main 09c61f4] sync: 10:06
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+hint: Updates were rejected because the tip of your current branch is behind

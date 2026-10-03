@@ -1,0 +1,125 @@
+{
+  "5.6.7.11": {
+    "blocked_at": "2026-10-02T11:56:43.507855",
+    "reason": "distributed_bruteforce_5_ips",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T11:56:43.507921"
+  },
+  "5.6.7.13": {
+    "blocked_at": "2026-10-02T11:56:44.395523",
+    "reason": "distributed_bruteforce_5_ips",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T11:56:44.395548"
+  },
+  "5.6.7.12": {
+    "blocked_at": "2026-10-02T11:56:45.226405",
+    "reason": "distributed_bruteforce_5_ips",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T11:56:45.226470"
+  },
+  "5.6.7.14": {
+    "blocked_at": "2026-10-02T11:56:46.023185",
+    "reason": "distributed_bruteforce_5_ips",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T11:56:46.023276"
+  },
+  "5.6.7.10": {
+    "blocked_at": "2026-10-02T11:56:46.832950",
+    "reason": "distributed_bruteforce_5_ips",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T11:56:46.833019"
+  },
+  "9.10.11.12": {
+    "blocked_at": "2026-10-02T11:56:48.845005",
+    "reason": "bot_timing_51ms",
+    "score": 75,
+    "type": "temp",
+    "expires": "2026-10-03T11:56:48.845065"
+  },
+  "9.9.9.9": {
+    "blocked_at": "2026-10-02T12:11:05.808977",
+    "reason": "attack_chain_3_types",
+    "score": 90,
+    "type": "perm"
+  },
+  "1.2.3.4": {
+    "blocked_at": "2026-10-02T12:21:32.302463",
+    "reason": "high_conn_150",
+    "score": 70,
+    "type": "temp",
+    "expires": "2026-10-03T12:21:32.302481"
+  },
+  "5.6.7.8": {
+    "blocked_at": "2026-10-02T12:21:34.742897",
+    "reason": "port_scan_25",
+    "score": 85,
+    "type": "perm"
+  },
+  "1.2.3.5": {
+    "blocked_at": "2026-10-02T12:31:12.869645",
+    "reason": "header_sql_injection",
+    "score": 90,
+    "type": "perm"
+  },
+  "1.2.3.6": {
+    "blocked_at": "2026-10-02T12:31:17.170149",
+    "reason": "cookie_sqli",
+    "score": 85,
+    "type": "temp",
+    "expires": "2026-10-03T12:31:17.170186"
+  },
+  "1.2.3.7": {
+    "blocked_at": "2026-10-02T12:31:20.055262",
+    "reason": "cookie_path_traversal",
+    "score": 85,
+    "type": "temp",
+    "expires": "2026-10-03T12:31:20.055507"
+  },
+  "5.6.7.0": {
+    "blocked_at": "2026-10-02T12:32:09.573316",
+    "reason": "session_hijack_session-",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T12:32:09.573340"
+  },
+  "5.6.7.4": {
+    "blocked_at": "2026-10-02T12:32:10.650582",
+    "reason": "session_hijack_session-",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T12:32:10.650669"
+  },
+  "5.6.7.1": {
+    "blocked_at": "2026-10-02T12:32:11.404902",
+    "reason": "session_hijack_session-",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T12:32:11.404970"
+  },
+  "5.6.7.3": {
+    "blocked_at": "2026-10-02T12:32:12.200254",
+    "reason": "session_hijack_session-",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T12:32:12.200316"
+  },
+  "5.6.7.2": {
+    "blocked_at": "2026-10-02T12:32:12.994894",
+    "reason": "session_hijack_session-",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T12:32:12.994953"
+  },
+  "5.6.7.5": {
+    "blocked_at": "2026-10-02T12:32:13.735917",
+    "reason": "session_hijack_session-",
+    "score": 80,
+    "type": "temp",
+    "expires": "2026-10-03T12:32:13.735975"
+  }
+}

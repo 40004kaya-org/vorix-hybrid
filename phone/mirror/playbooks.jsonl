@@ -1,0 +1,2 @@
+{"ts": "2026-10-02T12:42:53.444262", "attack": "SQL_INJECTION", "ip": "1.2.3.4", "results": [{"action": "block_ip", "result": false}, {"action": "alert_critical", "result": true}, {"action": "log_forensics", "result": true}]}
+{"ts": "2026-10-02T12:42:59.020424", "attack": "BEACONING", "ip": "5.6.7.8", "results": [{"action": "block_ip", "result": false}, {"action": "alert_critical", "result": true}, {"action": "kill_switch_ready", "result": true}, {"action": "forensics", "result": true}]}

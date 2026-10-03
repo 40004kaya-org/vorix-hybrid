@@ -1,39 +1,21 @@
 #!/data/data/com.termux/files/usr/bin/bash
+# VORIX Sync v4 — همه داده‌ها
 
 cd ~/vorix-hybrid/phone
 
-# ساخت stats.json
-python - << 'PYEOF'
-import json, os
-from datetime import datetime
+# ۱. وضعیت لایه‌ها
+python3 ~/vorix-hybrid/scripts/gen-live-status.py 2>&1 | grep -E "✅|❌" | head -1
 
-events = []
-for f in ["hash_chain.jsonl", "playbooks.jsonl", "layer10_events.jsonl"]:
-    if os.path.exists(f):
-        with open(f) as fh:
-            for line in fh.readlines()[-100:]:
-                try: events.append(json.loads(line))
-                except: pass
+# ۲. حملات
+python3 ~/vorix-hybrid/scripts/gen-attacks.py 2>&1 | grep "✅" | head -1
 
-stats = {
-    "total": len(events),
-    "critical": sum(1 for e in events if str(e.get("severity","")).upper() in ("CRITICAL","ERROR")),
-    "blocked": len(json.load(open("blocklist.json"))) if os.path.exists("blocklist.json") else 0,
-    "last_update": datetime.utcnow().isoformat() + "Z",
-}
+# ۳. لاگ‌ها
+python3 ~/vorix-hybrid/scripts/gen-logs.py 2>&1 | grep "✅" | head -1
+python3 ~/vorix-hybrid/scripts/gen-live-global.py 2>&1 | grep "✅" | head -1
+python3 ~/vorix-hybrid/scripts/gen-country-matrix.py 2>&1 | grep "✅" | head -1
 
-os.makedirs("../docs", exist_ok=True)
-with open("../docs/stats.json", "w") as f:
-    json.dump(stats, f, indent=2, ensure_ascii=False)
-
-with open("../docs/events.json", "w") as f:
-    json.dump(events[-50:], f, indent=2, ensure_ascii=False)
-
-print(f"✓ {len(events)} events, {stats['critical']} critical")
-PYEOF
-
-# push به GitHub
+# ۴. push
 cd ~/vorix-hybrid
-git add docs/stats.json docs/events.json
+git add -f docs/data/live.json docs/data/attacks.json docs/data/logs.json docs/data/live_global.json docs/data/country_matrix.json 2>/dev/null
 git commit -m "sync: $(date +%H:%M)" 2>/dev/null
-git push 2>&1 | tail -2
+git push 2>&1 | grep -E "main|rejected" | tail -1

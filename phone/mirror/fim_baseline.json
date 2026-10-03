@@ -1,0 +1,127 @@
+{
+  "layer01_selfdefense.py": {
+    "hash": "bca80cb8012668b8d5185fd5c73f98d30afed315fd51ee5a29ce9ad1c59a172b",
+    "size": 5173,
+    "ts": 1790974433.216978
+  },
+  "layer02_threat_intel.py": {
+    "hash": "d095e958243e292ee6746577d1fab831d956a9b558da020747772847f51cfef2",
+    "size": 6989,
+    "ts": 1790974433.2207773
+  },
+  "layer03_behavioral.py": {
+    "hash": "045e52242b39d374908a4962d43ef21408a0787423d826d585e7cd43751ac089",
+    "size": 12095,
+    "ts": 1790974433.2212787
+  },
+  "layer04_auto_block.py": {
+    "hash": "fa1f4c315d4685478bb6c45a1a3e4cb199187b9b1bffdae31198ad81cc56e8dc",
+    "size": 7717,
+    "ts": 1790974433.221604
+  },
+  "layer05_data_quarantine.py": {
+    "hash": "6e47c775fbf7ce9a9605d6ad554788ce71117238b24373434ba615c5d403c09d",
+    "size": 18185,
+    "ts": 1790974433.2219272
+  },
+  "layer06_geoip_block.py": {
+    "hash": "abc469992a4dd488a9a2a6fa46b9bce5e7fbe36ffae1a172d5e5638b14dffab4",
+    "size": 9631,
+    "ts": 1790974433.2222602
+  },
+  "layer08_network_monitor.py": {
+    "hash": "538736f7627a42f259f79877e1b297550fa920efaf0c1908fcb7f700d126c0d4",
+    "size": 21181,
+    "ts": 1790974433.2226126
+  },
+  "layer09_rate_limiter.py": {
+    "hash": "992b47e6632e6cdd25556794b27f677cb727a5dba4d20bc697710467c78c061f",
+    "size": 9010,
+    "ts": 1790974433.2229285
+  },
+  "layer10_red_alert.py": {
+    "hash": "2a6e137fb3858b8df185f3fbc19483b13f8934563ea028cf7acf08547e912a28",
+    "size": 12062,
+    "ts": 1790974433.2233233
+  },
+  "layer11_dns_sinkhole.py": {
+    "hash": "e7479d9200adf9939674d11b333a03e487ab8e770ec1c409e2d66cf5151d8afe",
+    "size": 6008,
+    "ts": 1790974433.2236354
+  },
+  "layer12_reverse_dns.py": {
+    "hash": "49f23a992da0668bd048e286c1d861fa4be35994f2b60ff5c248cbcba4eb38ef",
+    "size": 5344,
+    "ts": 1790974433.2239034
+  },
+  "layer15_fingerprint.py": {
+    "hash": "3ea9e11ef21068f10b7cc35b374a9b74df358971672e0f2a44c6076ab41dcf53",
+    "size": 7216,
+    "ts": 1790974433.2241757
+  },
+  "layer16_killswitch.py": {
+    "hash": "454349daf15e1a889561eb1e39fef8b126c5fe86fdf72356d99e1fa329bfb81f",
+    "size": 18664,
+    "ts": 1790974433.224458
+  },
+  "layer17_watchdog.py": {
+    "hash": "f034fbdea4f8ca0e9442c4fe5e46c799a5bf37b6fb04e655369492fe73fb287b",
+    "size": 6475,
+    "ts": 1790974433.224731
+  },
+  "layer18_backup_verifier.py": {
+    "hash": "f296000dc9d7293c5866ebd04c6ad8c536f05dba5d560115b520231d3525672d",
+    "size": 6958,
+    "ts": 1790974433.2249956
+  },
+  "layer21_ml_anomaly.py": {
+    "hash": "17bf928d5bb580bb88e64db15a4fc8b6abb299a14e180873f5f077ec363a4566",
+    "size": 11301,
+    "ts": 1790974433.2252655
+  },
+  "layer22_header_analysis.py": {
+    "hash": "81662bc3a989a161bb01e241c077aa79540babe076897e788c906a6c34f53b5f",
+    "size": 6953,
+    "ts": 1790974433.2255375
+  },
+  "layer23_cookie_anomaly.py": {
+    "hash": "7e2e2cdb4e454b4723e4b0b352843264f751e09cac66c4bc710c8355856acf30",
+    "size": 5865,
+    "ts": 1790974433.2258039
+  },
+  "layer24_session_hijack.py": {
+    "hash": "8f3e1be1ff0562e7cab4d7d0aed1bf0e004391ee7b844dae765db0f82b93496e",
+    "size": 5935,
+    "ts": 1790974433.2260628
+  },
+  "layer25_ssl_monitor.py": {
+    "hash": "3c3255e5a61ceceef117a12cd50ecad2ce525416ca8577864bb43d04b8136601",
+    "size": 7745,
+    "ts": 1790974433.2263272
+  },
+  "layer26_hsts.py": {
+    "hash": "7c7ff87af85b6853b461bd4903022887b971fa53e01783f94ea6a31b3ed874f4",
+    "size": 5327,
+    "ts": 1790974433.2265892
+  },
+  "layer29_30_identity.py": {
+    "hash": "52bf165e409de0d9b847a2c3894dd9d16fd00f3d7fbfe379390741c7caa16223",
+    "size": 14660,
+    "ts": 1790974433.226866
+  },
+  "layer31_log_encryption.py": {
+    "hash": "dd6ff4364c14c37dfc18cb2c533cd312e4cc217fdc5e022b69aadb285ad480bb",
+    "size": 9551,
+    "ts": 1790974433.2272182
+  },
+  "layer_rootkit.py": {
+    "hash": "43874d3053631282f64efba9c8d9a0b0e84b52a4119312e41bdc905ad7c6edb8",
+    "size": 8150,
+    "ts": 1790974433.2275245
+  },
+  "vorix-all": {
+    "hash": "63bb428bad9f943bebb8630cbaa752ccefc1485b95d522d76621273656e90703",
+    "size": 4840,
+    "ts": 1790974433.2277942
+  }
+}

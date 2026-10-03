@@ -1,0 +1,2 @@
+BTC: bc1qHoneypotAddressxxxxx
+ETH: 0xHoneypotAddressxxxxx
