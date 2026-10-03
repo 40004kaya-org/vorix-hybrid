@@ -1,5 +1,5 @@
 {
- "ts": "2026-10-03T07:22:15.352955Z",
+ "ts": "2026-10-03T07:23:21.605034Z",
  "total": 100,
  "entries": [
   {
@@ -27,12 +27,6 @@
    "msg": "Usage: layer_scoring.py {test|status|get <ip>|add <ip> <layer> <score>}"
   },
   {
-   "src": "layer_scoring",
-   "ts": "",
-   "sev": "info",
-   "msg": "Usage: layer_scoring.py {test|status|get <ip>|add <ip> <layer> <score>}"
-  },
-  {
    "src": "layer_seal",
    "ts": "10:34:55",
    "sev": "info",
@@ -121,42 +115,6 @@
    "ts": "10:51:14",
    "sev": "info",
    "msg": "➕ new file: vorix_shop_api.py"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:31:43",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:31:58",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:32:08",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:32:11",
-   "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:34:56",
-   "sev": "info",
-   "msg": "🕸️ Tarpit listening on 9999"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:35:02",
-   "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
   },
   {
    "src": "layer_tarpit",
@@ -214,6 +172,42 @@
   },
   {
    "src": "layer_tarpit",
+   "ts": "10:52:16",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:52:23",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:52:48",
+   "sev": "info",
+   "msg": "🕸️ Tarpit listening on 9999"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:52:49",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:53:04",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:53:19",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
    "ts": "06:31:44",
    "sev": "info",
    "msg": "ERR: [Errno 98] Address already in use"
@@ -251,6 +245,12 @@
   {
    "src": "layer_tarpit",
    "ts": "10:51:45",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:52:16",
    "sev": "info",
    "msg": "ERR: [Errno 98] Address already in use"
   },
