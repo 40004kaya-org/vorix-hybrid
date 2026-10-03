@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Global Attacks</title>
+<title>Live Attacks</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#02040a;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
@@ -10,6 +10,8 @@ h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;
    border-bottom:1px solid #1f5f3f;padding-bottom:6px;text-transform:uppercase}
 .live{color:#6b7280;font-size:10px;text-align:center;margin-bottom:10px}
 .live b{color:#10b981}
+.live .blink{animation:bl 1s infinite;color:#ef4444}
+@keyframes bl{50%{opacity:0.3}}
 
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px}
 .st{background:linear-gradient(180deg,#0a0f1a 0%,#060a12 100%);
@@ -20,38 +22,54 @@ h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;
 
 .mw{background:radial-gradient(ellipse at center,#06122a 0%,#02040a 100%);
     border:1px solid #1a3a5a;border-radius:8px;padding:6px;position:relative;
-    overflow:hidden;box-shadow:inset 0 0 60px rgba(16,185,129,0.05)}
-.mw::before{content:'';position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(16,185,129,0.02) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(16,185,129,0.02) 1px,transparent 1px);
-  background-size:27.78px 27.78px;pointer-events:none;z-index:0}
+    overflow:hidden;box-shadow:inset 0 0 80px rgba(239,68,68,0.08)}
 #map{width:100%;height:auto;display:block;position:relative;z-index:1}
-.land{fill:#0f1e2e;stroke:#2a4a6a;stroke-width:0.4;
-      transition:fill 0.3s}
-.land:hover{fill:#152a3e}
-.graticule{fill:none;stroke:rgba(16,185,129,0.06);stroke-width:0.3}
+.land{fill:#0f1e2e;stroke:#2a4a6a;stroke-width:0.4}
+.graticule{fill:none;stroke:rgba(16,185,129,0.05);stroke-width:0.3}
 .sphere{fill:#06122a;stroke:#1a3a5a;stroke-width:0.5}
 
-.atk{fill:#ef4444;filter:drop-shadow(0 0 4px #ef4444) drop-shadow(0 0 8px #ef4444);
-     pointer-events:none}
+/* Attack dots */
+.atk{fill:#ef4444;filter:drop-shadow(0 0 4px #ef4444);pointer-events:none}
 .atk.mid{fill:#f59e0b;filter:drop-shadow(0 0 4px #f59e0b)}
 .atk.small{fill:#06b6d4;filter:drop-shadow(0 0 3px #06b6d4)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.atk-anim{animation:pulse 1.5s ease-in-out infinite}
 
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.atk-anim{animation:pulse 2s ease-in-out infinite}
-@keyframes ripple{0%{r:3;opacity:0.8;stroke-width:2}100%{r:22;opacity:0;stroke-width:0.3}}
-.ripple{fill:none;stroke:#ef4444;animation:ripple 2s ease-out infinite;pointer-events:none}
-@keyframes rippley{0%{r:3;opacity:0.8;stroke-width:2}100%{r:18;opacity:0;stroke-width:0.3}}
-.ripple-y{fill:none;stroke:#f59e0b;animation:rippley 2s ease-out infinite;pointer-events:none}
+/* Target base */
+.target{fill:#10b981;filter:drop-shadow(0 0 8px #10b981);pointer-events:none}
+@keyframes tping{0%{r:6;opacity:1;stroke-width:2}100%{r:35;opacity:0;stroke-width:0.5}}
+.tping{fill:none;stroke:#10b981;animation:tping 2s ease-out infinite;pointer-events:none}
 
-.target{fill:#10b981;filter:drop-shadow(0 0 6px #10b981);pointer-events:none}
-@keyframes tping{0%{r:5;opacity:1;stroke-width:2}100%{r:30;opacity:0;stroke-width:0.3}}
-.tping{fill:none;stroke:#10b981;animation:tping 2.5s ease-out infinite;pointer-events:none}
+/* Attack projectile animation */
+.trail{
+  fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  filter:drop-shadow(0 0 6px currentColor);
+  opacity:0;
+  animation:fly 2.5s ease-in infinite;
+}
+@keyframes fly{
+  0%   {opacity:0;stroke-dasharray:0 300;stroke-dashoffset:0}
+  10%  {opacity:1;stroke-dasharray:20 300}
+  80%  {opacity:1;stroke-dasharray:300 0;stroke-dashoffset:-280}
+  100% {opacity:0;stroke-dasharray:300 0;stroke-dashoffset:-300}
+}
 
-.arc{fill:none;stroke-width:1;stroke-linecap:round;
-     stroke-dasharray:4 4;animation:dash 3s linear infinite;pointer-events:none}
-@keyframes dash{to{stroke-dashoffset:-100}}
+/* Impact explosion */
+@keyframes boom{
+  0%  {r:2;opacity:1;stroke-width:3}
+  60% {r:20;opacity:0.6;stroke-width:2}
+  100%{r:35;opacity:0;stroke-width:0.3}
+}
+.boom{fill:none;animation:boom 1.5s ease-out infinite}
+
+/* Source flash */
+@keyframes srcflash{
+  0%,70%,100%{opacity:0}
+  50%{opacity:1;r:8}
+}
+.srcflash{fill:#fff;filter:drop-shadow(0 0 10px #fff);animation:srcflash 2.5s infinite}
 
 .lg{display:flex;gap:12px;justify-content:center;font-size:9px;
     color:#4b5563;margin-top:8px;flex-wrap:wrap}
@@ -65,13 +83,14 @@ h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;
        border:1px solid #1a2a3a}
 .br .f{height:100%;background:linear-gradient(90deg,#ef4444 0%,#f59e0b 60%,#06b6d4 100%);
        border-radius:2px;transition:width 0.5s}
-.br .v{width:58px;color:#10b981;font-size:9px;text-align:left;
-       direction:ltr;font-family:monospace}
+.br .v{width:58px;color:#10b981;font-size:9px;text-align:left;direction:ltr;font-family:monospace}
 
-.lst{display:flex;flex-direction:column;gap:2px}
+.lst{display:flex;flex-direction:column;gap:2px;max-height:400px;overflow-y:auto}
 .it{background:linear-gradient(90deg,#0a0f1a 0%,#060a12 100%);
     border-right:3px solid #1a2a3a;border-radius:3px;
-    padding:6px 8px;font-size:10px;display:flex;gap:6px;align-items:center}
+    padding:6px 8px;font-size:10px;display:flex;gap:6px;align-items:center;
+    animation:rowin 0.5s ease-out}
+@keyframes rowin{from{background:#2a0a0a;transform:translateX(-10px)}to{transform:translateX(0)}}
 .it.top{border-right-color:#ef4444;background:linear-gradient(90deg,#1a0a0a 0%,#060a12 100%)}
 .it .rk{color:#4b5563;font-size:9px;min-width:20px;font-weight:bold}
 .it .ip{color:#10b981;font-family:monospace;flex:1;font-size:10px;direction:ltr;text-align:left}
@@ -85,12 +104,21 @@ h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;
 .c2 .ip{color:#fca5a5;font-family:monospace;flex:1;direction:ltr}
 .c2 .mw{color:#fbbf24;font-weight:bold;font-size:9px}
 .c2 .pt{color:#6b7280;font-size:9px}
+
+/* Fire button */
+.fire{position:fixed;bottom:20px;right:20px;background:#ef4444;color:#fff;
+      border:none;border-radius:50%;width:56px;height:56px;font-size:24px;
+      cursor:pointer;box-shadow:0 4px 20px rgba(239,68,68,0.5);z-index:100;
+      animation:pulse 2s infinite}
+.fire:active{transform:scale(0.9)}
 </style>
 </head>
 <body>
 
-<h2>GLOBAL ATTACK MAP — REAL EARTH</h2>
-<div class="live" id="live">در حال بارگذاری داده جغرافیایی... <b>●</b></div>
+<h2>LIVE ATTACK MAP</h2>
+<div class="live" id="live">
+  <span class="blink">●</span> LIVE — هر حمله لحظه‌ای پرتاب می‌شه
+</div>
 
 <div class="stats">
   <div class="st r"><div class="n" id="s-att">0</div><div class="l">کل حمله</div></div>
@@ -102,229 +130,271 @@ h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;
 <div class="mw">
   <svg id="map" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid meet"></svg>
   <div class="lg">
-    <span><span class="d" style="background:#ef4444;color:#ef4444"></span>خیلی زیاد (&gt;100K)</span>
-    <span><span class="d" style="background:#f59e0b;color:#f59e0b"></span>زیاد (10-100K)</span>
-    <span><span class="d" style="background:#06b6d4;color:#06b6d4"></span>متوسط (&lt;10K)</span>
+    <span><span class="d" style="background:#ef4444;color:#ef4444"></span>Critical</span>
+    <span><span class="d" style="background:#f59e0b;color:#f59e0b"></span>High</span>
+    <span><span class="d" style="background:#06b6d4;color:#06b6d4"></span>Medium</span>
   </div>
 </div>
 
-<h2>حملات بر اساس کشور</h2>
-<div class="bars" id="cc"></div>
-
-<h2>Top 20 IP مهاجم</h2>
+<h2>IPهای در حال حمله</h2>
 <div class="lst" id="ips"></div>
 
-<h2>سرورهای C2 فعال</h2>
+<h2>سرورهای C2</h2>
 <div id="c2wrap"></div>
 
 <script src="nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 <script>
-// ─── Country centroids (lat/lon) — override from topojson if available ───
+// کشورها: lat/lon
 var GEO = {
   'US':[39.8,-98.6],'CA':[56.1,-106.3],'MX':[23.6,-102.5],
   'BR':[-10.8,-52.9],'AR':[-38.4,-63.6],'CL':[-35.7,-71.5],
-  'CO':[4.6,-74.3],'PE':[-9.2,-75.0],'VE':[6.4,-66.6],
-  'GB':[54.0,-2.0],'IE':[53.4,-8.2],'FR':[46.2,2.2],
-  'DE':[51.2,10.4],'NL':[52.1,5.3],'BE':[50.5,4.5],
-  'ES':[40.5,-3.7],'PT':[39.4,-8.2],'IT':[41.9,12.6],
-  'PL':[51.9,19.1],'CZ':[49.8,15.5],'AT':[47.5,14.6],
-  'CH':[46.8,8.2],'SE':[60.1,18.6],'NO':[60.5,8.5],
-  'FI':[61.9,25.7],'DK':[56.3,9.5],'GR':[39.1,21.8],
-  'RO':[45.9,25.0],'BG':[42.7,25.5],'HU':[47.2,19.5],
-  'UA':[48.4,31.2],'RU':[61.5,105.3],'BY':[53.7,27.9],
-  'LT':[55.2,23.9],'LV':[56.9,24.6],'EE':[58.6,25.0],
-  'TR':[38.9,35.2],'IR':[32.4,53.7],'SA':[23.9,45.1],
-  'AE':[23.4,53.8],'IL':[31.0,34.8],'EG':[26.8,30.8],
-  'MA':[31.8,-7.1],'DZ':[28.0,1.7],'LY':[26.3,17.2],
-  'ZA':[-30.6,22.9],'NG':[9.1,8.7],'KE':[-0.0,37.9],
-  'ET':[9.1,40.5],'TZ':[-6.4,34.9],'SD':[12.9,30.2],
-  'CN':[35.9,104.2],'JP':[36.2,138.3],'KR':[35.9,127.8],
-  'TW':[23.7,121.0],'HK':[22.3,114.2],'VN':[14.1,108.3],
-  'TH':[15.9,101.0],'MY':[4.2,102.0],'SG':[1.4,103.8],
-  'ID':[-0.8,113.9],'PH':[12.9,121.8],'IN':[20.6,79.0],
-  'PK':[30.4,69.3],'BD':[23.7,90.4],'LK':[7.9,80.8],
-  'NP':[28.4,84.1],'AF':[33.9,67.7],'UZ':[41.4,64.6],
-  'KZ':[48.0,66.9],'MN':[46.9,103.8],
-  'AU':[-25.3,133.8],'NZ':[-40.9,174.9],
-  'SC':[-4.7,55.5],'MD':[47.4,28.4],'AL':[41.2,20.2],
-  'RS':[44.0,21.0],'HR':[45.1,15.2],'SI':[46.1,14.8],
-  'SK':[48.7,19.7],'GE':[42.3,43.4],'AM':[40.1,45.0],
-  'AZ':[40.1,47.6],'CY':[35.1,33.4],'LB':[33.9,35.9],
-  'JO':[30.6,36.2],'KW':[29.3,47.5],'QA':[25.4,51.2],
-  'OM':[21.5,55.9],'YE':[15.6,48.5],'SY':[34.8,39.0],
-  'IQ':[33.2,43.7],'PY':[-23.4,-58.4],'UY':[-32.5,-55.8],
-  'BO':[-16.3,-63.6],'EC':[-1.8,-78.2],'GT':[15.8,-90.2],
-  'CU':[21.5,-77.8],'DO':[18.7,-70.2],'JM':[18.1,-77.3],
-  'HT':[18.9,-72.3],'CR':[9.7,-83.8],'PA':[8.5,-80.8],
-  'HN':[15.2,-86.2],'NI':[12.9,-85.2],'SV':[13.8,-88.9],
-  'BZ':[17.2,-88.5],'TT':[10.7,-61.2],'BB':[13.2,-59.5]
+  'CO':[4.6,-74.3],'GB':[54.0,-2.0],'IE':[53.4,-8.2],
+  'FR':[46.2,2.2],'DE':[51.2,10.4],'NL':[52.1,5.3],
+  'ES':[40.5,-3.7],'IT':[41.9,12.6],'PL':[51.9,19.1],
+  'SE':[60.1,18.6],'NO':[60.5,8.5],'FI':[61.9,25.7],
+  'DK':[56.3,9.5],'GR':[39.1,21.8],'RO':[45.9,25.0],
+  'UA':[48.4,31.2],'RU':[61.5,105.3],'TR':[38.9,35.2],
+  'IR':[32.4,53.7],'SA':[23.9,45.1],'AE':[23.4,53.8],
+  'IL':[31.0,34.8],'EG':[26.8,30.8],'ZA':[-30.6,22.9],
+  'NG':[9.1,8.7],'KE':[-0.0,37.9],'CN':[35.9,104.2],
+  'JP':[36.2,138.3],'KR':[35.9,127.8],'TW':[23.7,121.0],
+  'HK':[22.3,114.2],'VN':[14.1,108.3],'TH':[15.9,101.0],
+  'MY':[4.2,102.0],'SG':[1.4,103.8],'ID':[-0.8,113.9],
+  'PH':[12.9,121.8],'IN':[20.6,79.0],'PK':[30.4,69.3],
+  'BD':[23.7,90.4],'AU':[-25.3,133.8],'NZ':[-40.9,174.9],
+  'SC':[-4.7,55.5],'MD':[47.4,28.4],'EE':[58.6,25.0]
 };
 
 function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
 function fmtNum(n){try{return Number(n).toLocaleString('en-US')}catch(e){return '0'}}
-function clsForCount(c){if(c>100000)return 'atk';if(c>10000)return 'atk mid';return 'atk small'}
 
-// ─── Projection ───
 var W = 1000, H = 520;
-var projection = d3.geoNaturalEarth1()
-  .scale(160)
-  .translate([W/2, H/2 + 20]);
+var projection = d3.geoNaturalEarth1().scale(160).translate([W/2, H/2 + 20]);
 var path = d3.geoPath().projection(projection);
 
 var svg = d3.select('#map');
 var gMap = svg.append('g');
-var gArc = svg.append('g').attr('id', 'arcs');
-var gHit = svg.append('g').attr('id', 'hits');
+var gArc = svg.append('g');
+var gHit = svg.append('g');
 
-// ─── Load world map ───
-var worldLoaded = false;
+var ATTACKS = [];  // داده فعلی
+var animIdx = 0;
+
+// ─── Load map ───
 d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
   .then(function(world) {
     var countries = topojson.feature(world, world.objects.countries).features;
-
-    // Graticule (خطوط طول/عرض)
     var graticule = d3.geoGraticule10();
-    gMap.append('path')
-      .datum(graticule)
-      .attr('class', 'graticule')
-      .attr('d', path);
 
-    // Ocean sphere
-    gMap.append('path')
-      .datum({type: 'Sphere'})
-      .attr('class', 'sphere')
-      .attr('d', path);
+    gMap.append('path').datum(graticule).attr('class', 'graticule').attr('d', path);
+    gMap.append('path').datum({type:'Sphere'}).attr('class', 'sphere').attr('d', path);
+    gMap.selectAll('path.land').data(countries).enter().append('path')
+        .attr('class', 'land').attr('d', path);
 
-    // Countries
-    gMap.selectAll('path.land')
-      .data(countries)
-      .enter()
-      .append('path')
-      .attr('class', 'land')
-      .attr('d', path);
+    // Target marker (Iran)
+    var t = projection([51.4, 35.7]);
+    gHit.append('circle').attr('class', 'target').attr('cx', t[0]).attr('cy', t[1]).attr('r', 6);
+    gHit.append('circle').attr('class', 'tping').attr('cx', t[0]).attr('cy', t[1]).attr('r', 6);
 
-    worldLoaded = true;
-    document.getElementById('live').innerHTML = 'نقشه واقعی لود شد — داده‌ها در حال بارگذاری <b>●</b>';
-    load();
+    loadData();
+    startAnimation();
   })
-  .catch(function(e) {
-    console.error('Failed to load map:', e);
-    document.getElementById('live').innerHTML = '⚠️ نقشه لود نشد — از لوکال <b>●</b>';
-    worldLoaded = true;  // تا load() اجرا شه
-    load();
+  .catch(function(e){
+    console.error('Map load failed:', e);
+    document.getElementById('live').innerHTML = '⚠️ نقشه لود نشد — CDN مشکل داره';
   });
 
-// ─── Render attacks ───
-function render(data) {
-  if (!data) return;
-  var attacks = data.attacks || [];
-  var countries = data.countries || {};
-  var feodo = data.feodo || [];
-  var stats = data.stats || {};
+// ─── Fetch data ───
+function loadData() {
+  fetch('../data/live_global.json?v=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      ATTACKS = data.attacks || [];
+      var stats = data.stats || {};
+      document.getElementById('s-att').textContent = fmtNum(stats.total_attacks || 0);
+      document.getElementById('s-ip').textContent  = stats.unique_ips || 0;
+      document.getElementById('s-cc').textContent  = stats.unique_countries || 0;
+      document.getElementById('s-c2').textContent  = stats.c2_count || 0;
+      renderIPs(ATTACKS);
+      renderC2(data.feodo || []);
+    })
+    .catch(console.error);
+}
 
-  document.getElementById('live').innerHTML =
-    'آخرین آپدیت: <b>' + String(data.ts||'').replace('T',' ').substring(0,19) + '</b> ●';
-  document.getElementById('s-att').textContent = fmtNum(stats.total_attacks || 0);
-  document.getElementById('s-ip').textContent  = stats.unique_ips || 0;
-  document.getElementById('s-cc').textContent  = stats.unique_countries || 0;
-  document.getElementById('s-c2').textContent  = stats.c2_count || 0;
-
-  // Clear old markers (keep land paths)
-  gArc.selectAll('*').remove();
-  gHit.selectAll('*').remove();
-
-  // Target = Iran
-  var txy = projection([51.4, 35.7]);
-
-  var hitsNodes = '';
-  var arcsNodes = '';
-
-  attacks.forEach(function(a, i) {
-    var g = GEO[a.country];
-    if (!g) return;
-    var xy = projection([g[1], g[0]]); // [lon, lat]
-    if (!xy) return;
-    var cls = clsForCount(a.count);
-    var r = a.count > 100000 ? 4.5 : a.count > 10000 ? 3.5 : 2.5;
-
-    // Attack dot
-    hitsNodes += '<circle class="' + cls + ' atk-anim" cx="' + xy[0].toFixed(1) +
-                 '" cy="' + xy[1].toFixed(1) + '" r="' + r +
-                 '" style="animation-delay:' + (i * 0.15) + 's"/>';
-
-    // Ripple
-    if (i < 8) {
-      var rippleCls = a.count > 100000 ? 'ripple' : 'ripple-y';
-      hitsNodes += '<circle class="' + rippleCls + '" cx="' + xy[0].toFixed(1) +
-                   '" cy="' + xy[1].toFixed(1) + '" r="3" ' +
-                   'style="animation-delay:' + (i * 0.3) + 's"/>';
-    }
-
-    // Arc to target (top 12)
-    if (i < 12) {
-      var x1 = xy[0], y1 = xy[1];
-      var x2 = txy[0], y2 = txy[1];
-      var mx = (x1 + x2) / 2;
-      var my = (y1 + y2) / 2 - Math.abs(x2 - x1) * 0.18;
-      var arcD = 'M ' + x1.toFixed(1) + ',' + y1.toFixed(1) + ' Q ' + mx.toFixed(1) + ',' + my.toFixed(1) + ' ' + x2.toFixed(1) + ',' + y2.toFixed(1);
-      var opacity = a.count > 100000 ? 0.9 : a.count > 10000 ? 0.6 : 0.35;
-      var color = a.count > 100000 ? '#ef4444' : a.count > 10000 ? '#f59e0b' : '#06b6d4';
-      arcsNodes += '<path class="arc" d="' + arcD + '" stroke="' + color +
-                   '" style="animation-delay:' + (i * 0.2) + 's;opacity:' + opacity + '"/>';
-    }
-  });
-
-  // Target marker
-  hitsNodes += '<circle class="target" cx="' + txy[0].toFixed(1) + '" cy="' + txy[1].toFixed(1) + '" r="5"/>';
-  hitsNodes += '<circle class="tping" cx="' + txy[0].toFixed(1) + '" cy="' + txy[1].toFixed(1) + '" r="5"/>';
-
-  gArc.node().innerHTML = arcsNodes;
-  gHit.node().innerHTML = hitsNodes;
-
-  // Countries bars
-  var cc = document.getElementById('cc');
-  var keys = Object.keys(countries).slice(0, 12);
-  var max = keys.length ? Math.max.apply(null, keys.map(function(k){return countries[k]})) : 1;
-  cc.innerHTML = keys.map(function(k) {
-    var pct = (countries[k] / max * 100).toFixed(0);
-    return '<div class="br"><div class="n">' + k + '</div>' +
-      '<div class="b"><div class="f" style="width:' + pct + '%"></div></div>' +
-      '<div class="v">' + fmtNum(countries[k]) + '</div></div>';
-  }).join('');
-
-  // Top IPs
+// ─── Render IP list ───
+function renderIPs(attacks) {
   var ips = document.getElementById('ips');
   ips.innerHTML = attacks.slice(0, 20).map(function(a, i) {
     return '<div class="it ' + (i < 5 ? 'top' : '') + '">' +
-      '<span class="rk">#' + (i + 1) + '</span>' +
+      '<span class="rk">#' + (i+1) + '</span>' +
       '<span class="ip">' + esc(a.ip) + '</span>' +
       '<span class="cc">' + esc(a.country) + '</span>' +
       '<span class="cnt">' + fmtNum(a.count) + '</span>' +
       '<span class="isp">' + esc(a.isp || '') + '</span></div>';
   }).join('');
+}
 
-  // C2
+function renderC2(feodo) {
   var c2 = document.getElementById('c2wrap');
   if (!feodo.length) {
     c2.innerHTML = '<div style="color:#4b5563;text-align:center;padding:14px;font-size:10px">C2 فعالی نیست</div>';
-  } else {
-    c2.innerHTML = feodo.slice(0, 15).map(function(x) {
-      return '<div class="c2">' +
-        '<span class="ip">' + esc(x.ip) + ':' + (x.port || '?') + '</span>' +
-        '<span class="mw">' + esc(x.malware) + '</span>' +
-        '<span class="pt">' + esc(x.country) + '</span></div>';
-    }).join('');
+    return;
   }
+  c2.innerHTML = feodo.slice(0, 15).map(function(x) {
+    return '<div class="c2">' +
+      '<span class="ip">' + esc(x.ip) + ':' + (x.port || '?') + '</span>' +
+      '<span class="mw">' + esc(x.malware) + '</span>' +
+      '<span class="pt">' + esc(x.country) + '</span></div>';
+  }).join('');
 }
 
-function load() {
-  fetch('../data/live_global.json?v=' + Date.now())
-    .then(function(r){ return r.json(); })
-    .then(render)
-    .catch(function(e){ console.error(e); });
+// ─── Animate one attack ───
+function fireAttack(attack, delay) {
+  var g = GEO[attack.country];
+  if (!g) return;
+  var src = projection([g[1], g[0]]);
+  if (!src) return;
+  var tgt = projection([51.4, 35.7]);
+
+  var cnt = attack.count || 0;
+  var color = cnt > 100000 ? '#ef4444' : cnt > 10000 ? '#f59e0b' : '#06b6d4';
+
+  // Bezier path (arc)
+  var x1 = src[0], y1 = src[1], x2 = tgt[0], y2 = tgt[1];
+  var mx = (x1 + x2) / 2;
+  var my = (y1 + y2) / 2 - Math.abs(x2 - x1) * 0.25;
+  var d = 'M ' + x1.toFixed(1) + ',' + y1.toFixed(1) +
+          ' Q ' + mx.toFixed(1) + ',' + my.toFixed(1) +
+          ' ' + x2.toFixed(1) + ',' + y2.toFixed(1);
+
+  var dur = 2500;
+
+  // 1. Source flash
+  var flash = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  flash.setAttribute('cx', x1);
+  flash.setAttribute('cy', y1);
+  flash.setAttribute('r', '0');
+  flash.setAttribute('fill', '#fff');
+  flash.setAttribute('filter', 'drop-shadow(0 0 12px ' + color + ')');
+  gArc.node().appendChild(flash);
+  var fAnim = flash.animate([
+    { r: 0, opacity: 0, offset: 0 },
+    { r: 8, opacity: 1, offset: 0.1 },
+    { r: 8, opacity: 1, offset: 0.2 },
+    { r: 0, opacity: 0, offset: 0.5 }
+  ], { duration: dur, fill: 'forwards', delay: delay });
+  setTimeout(() => flash.remove(), dur + delay);
+
+  // 2. Trail arc (growing)
+  var trail = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  trail.setAttribute('d', d);
+  trail.setAttribute('fill', 'none');
+  trail.setAttribute('stroke', color);
+  trail.setAttribute('stroke-width', '2');
+  trail.setAttribute('stroke-linecap', 'round');
+  trail.setAttribute('filter', 'drop-shadow(0 0 6px ' + color + ')');
+  gArc.node().appendChild(trail);
+
+  var len = trail.getTotalLength ? trail.getTotalLength() : 500;
+  trail.setAttribute('stroke-dasharray', len);
+  trail.setAttribute('stroke-dashoffset', len);
+
+  trail.animate([
+    { strokeDashoffset: len, opacity: 0 },
+    { strokeDashoffset: 0, opacity: 1, offset: 0.85 },
+    { strokeDashoffset: 0, opacity: 0.8 }
+  ], { duration: dur, fill: 'forwards', delay: delay });
+
+  // 3. Projectile dot (moving along path)
+  var proj_dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  proj_dot.setAttribute('r', '4');
+  proj_dot.setAttribute('fill', '#fff');
+  proj_dot.setAttribute('filter', 'drop-shadow(0 0 8px ' + color + ') drop-shadow(0 0 16px ' + color + ')');
+  gArc.node().appendChild(proj_dot);
+
+  // Use path's getPointAtLength
+  var pathEl = trail;
+  setTimeout(() => {
+    var start = performance.now();
+    function step(now) {
+      var t = Math.min((now - start) / dur, 1);
+      // ease-in-out
+      var e = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+      var pt = pathEl.getPointAtLength(e * len);
+      proj_dot.setAttribute('cx', pt.x);
+      proj_dot.setAttribute('cy', pt.y);
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        proj_dot.remove();
+        // 4. Explosion at target
+        boom(tgt[0], tgt[1], color);
+      }
+    }
+    requestAnimationFrame(step);
+  }, delay);
+
+  // 5. Cleanup trail
+  setTimeout(() => trail.remove(), dur + delay + 1500);
 }
-setInterval(load, 30000);
+
+// ─── Explosion effect ───
+function boom(x, y, color) {
+  var r1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  r1.setAttribute('cx', x);
+  r1.setAttribute('cy', y);
+  r1.setAttribute('r', '3');
+  r1.setAttribute('fill', 'none');
+  r1.setAttribute('stroke', color);
+  r1.setAttribute('stroke-width', '2');
+  gArc.node().appendChild(r1);
+
+  r1.animate([
+    { r: 3, opacity: 1, strokeWidth: 3 },
+    { r: 30, opacity: 0.5, strokeWidth: 1.5, offset: 0.6 },
+    { r: 50, opacity: 0, strokeWidth: 0.5 }
+  ], { duration: 1500, fill: 'forwards' });
+
+  // Center flash
+  var f = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  f.setAttribute('cx', x);
+  f.setAttribute('cy', y);
+  f.setAttribute('r', '5');
+  f.setAttribute('fill', '#fff');
+  f.setAttribute('filter', 'drop-shadow(0 0 15px ' + color + ')');
+  gArc.node().appendChild(f);
+  f.animate([
+    { r: 5, opacity: 1 },
+    { r: 15, opacity: 0 }
+  ], { duration: 600, fill: 'forwards' });
+
+  setTimeout(() => { r1.remove(); f.remove(); }, 1600);
+}
+
+// ─── Animation loop ───
+function startAnimation() {
+  function step() {
+    if (ATTACKS.length === 0) {
+      setTimeout(step, 1000);
+      return;
+    }
+    // یه حمله پرتاب کن (رندوم از بین ۲۰ تای اول)
+    var n = Math.min(20, ATTACKS.length);
+    var pick = Math.floor(Math.random() * n);
+    var attack = ATTACKS[pick];
+    fireAttack(attack, 0);
+
+    // بعدی رو با تأخیر تصادفی پرتاب کن
+    var next = 300 + Math.random() * 500;
+    setTimeout(step, next);
+  }
+  step();
+}
+
+// ─── Initial load + refresh ───
+loadData();
+setInterval(loadData, 60000);
 </script>
 </body></html>
