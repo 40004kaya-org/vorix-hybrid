@@ -150,3 +150,50 @@
 [07:01:30] 🚀 Restarting: sentinel
 [07:01:33] ✅ dashboard started
 [07:01:33] ✅ sentinel started
+[10:34:54] ⚠️ phone-agent is DOWN
+[10:34:54] 🚀 Restarting: phone-agent
+[10:34:57] ✅ phone-agent started
+[10:34:58] ⚠️ dashboard is DOWN
+[10:34:58] 🚀 Restarting: dashboard
+[10:34:58] ⚠️ sentinel is DOWN
+[10:34:58] 🚀 Restarting: sentinel
+[10:35:01] ✅ dashboard started
+[10:35:02] ✅ sentinel started
+[10:35:35] ⚠️ phone-agent is DOWN
+[10:35:35] 🚀 Restarting: phone-agent
+[10:51:07] ⚠️ phone-agent is DOWN
+[10:51:07] 🚀 Restarting: phone-agent
+[10:51:10] ✅ phone-agent started
+[10:51:10] ⚠️ dashboard is DOWN
+[10:51:10] 🚀 Restarting: dashboard
+[10:51:11] ⚠️ sentinel is DOWN
+[10:51:11] 🚀 Restarting: sentinel
+[10:51:13] ✅ dashboard started
+[10:51:14] ✅ sentinel started
+[10:52:48] ⚠️ phone-agent is DOWN
+[10:52:48] 🚀 Restarting: phone-agent
+[10:52:51] ✅ phone-agent started
+[10:52:51] ⚠️ dashboard is DOWN
+[10:52:51] 🚀 Restarting: dashboard
+[10:52:54] ✅ dashboard started
+[10:52:54] ⚠️ sentinel is DOWN
+[10:52:54] 🚀 Restarting: sentinel
+[10:52:57] ✅ sentinel started
+[10:53:24] ⚠️ phone-agent is DOWN
+[10:53:24] 🚀 Restarting: phone-agent
+[10:53:28] ✅ phone-agent started
+[10:53:28] ⚠️ dashboard is DOWN
+[10:53:28] 🚀 Restarting: dashboard
+[10:53:31] ✅ dashboard started
+[10:53:31] ⚠️ sentinel is DOWN
+[10:53:31] 🚀 Restarting: sentinel
+[10:53:34] ✅ sentinel started
+[10:55:31] ⚠️ phone-agent is DOWN
+[10:55:31] 🚀 Restarting: phone-agent
+[10:55:34] ✅ phone-agent started
+[10:55:34] ⚠️ dashboard is DOWN
+[10:55:34] 🚀 Restarting: dashboard
+[10:55:37] ✅ dashboard started
+[10:55:37] ⚠️ sentinel is DOWN
+[10:55:37] 🚀 Restarting: sentinel
+[10:55:40] ✅ sentinel started
