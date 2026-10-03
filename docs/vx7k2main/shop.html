@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shop Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#02040a;color:#e5e7eb;font-family:ui-monospace,monospace;padding:10px}
+h2{color:#10b981;font-size:11px;letter-spacing:3px;margin:12px 0 8px;border-bottom:1px solid #1f5f3f;padding-bottom:6px}
+h3{color:#f59e0b;font-size:10px;letter-spacing:2px;margin:12px 0 6px}
+.live{color:#6b7280;font-size:10px;text-align:center;margin-bottom:10px}
+.live b{color:#10b981}
+
+/* Tabs */
+.tabs{display:flex;gap:3px;margin-bottom:12px;background:#0a0f1a;border:1px solid #1f2937;border-radius:8px;padding:3px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex-shrink:0;background:transparent;color:#6b7280;border:none;padding:8px 12px;cursor:pointer;font-family:inherit;font-size:11px;border-radius:6px;white-space:nowrap}
+.tabs button.active{color:#0fb;background:#0f1420;box-shadow:0 0 0 1px #10b981 inset}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px}
+.st{background:#0a0f1a;border:1px solid #1a2a3a;border-radius:6px;padding:10px 4px;text-align:center}
+.st .n{font-size:16px;font-weight:bold;color:#10b981}
+.st .l{font-size:8px;color:#4b5563;margin-top:2px}
+.st.y .n{color:#f59e0b}
+.st.r .n{color:#ef4444}
+.st.c .n{color:#06b6d4}
+.st.p .n{color:#8b5cf6}
+
+/* Table */
+.tbl{width:100%;border-collapse:collapse;font-size:10px;background:#0a0f1a;border-radius:6px;overflow:hidden}
+.tbl th{background:#0f1420;color:#10b981;padding:8px 6px;text-align:right;font-size:9px;font-weight:bold;border-bottom:1px solid #1f2937}
+.tbl td{padding:6px;border-bottom:1px solid #0f1420;color:#d1d5db}
+.tbl tr:hover td{background:#0f1420}
+.tbl .id{color:#6b7280;font-size:9px}
+.tbl .user{color:#10b981}
+.tbl .amt{color:#f59e0b;font-weight:bold}
+
+/* Status badges */
+.status{padding:2px 6px;border-radius:3px;font-size:9px;font-weight:bold}
+.status.done{background:#064e3b;color:#6ee7b7}
+.status.pending{background:#78350f;color:#fcd34d}
+.status.failed{background:#7f1d1d;color:#fca5a5}
+.status.paid{background:#064e3b;color:#6ee7b7}
+
+/* Timeline */
+.timeline{display:flex;flex-direction:column;gap:3px;max-height:500px;overflow-y:auto}
+.ev{background:#0a0f1a;border-right:3px solid #333;border-radius:3px;padding:7px 10px;font-size:10px;display:flex;gap:8px;align-items:center}
+.ev.user_new{border-right-color:#10b981}
+.ev.order_new{border-right-color:#f59e0b}
+.ev.payment{border-right-color:#06b6d4}
+.ev.activity{border-right-color:#4b5563}
+.ev.receipt{border-right-color:#8b5cf6}
+.ev .t{color:#4b5563;min-width:50px;font-size:9px}
+.ev .txt{flex:1}
+.ev .amt{color:#f59e0b;font-weight:bold;font-size:10px}
+
+/* Security box */
+.sec-box{background:#1a0505;border:1px solid #7f1d1d;border-radius:6px;padding:10px;margin-bottom:12px}
+.sec-box .h{color:#fca5a5;font-weight:bold;font-size:12px;margin-bottom:6px}
+.sec-box .r{color:#9ca3af;font-size:10px;padding:4px 0;border-bottom:1px solid #2a1010}
+.sec-box .r:last-child{border:none}
+
+.empty{color:#4b5563;text-align:center;padding:20px;font-size:11px}
+.loading{color:#10b981;text-align:center;padding:15px;font-size:11px}
+</style>
+</head>
+<body>
+
+<h2>SHOP DASHBOARD</h2>
+<div class="live" id="live">در حال بارگذاری <b>●</b></div>
+
+<div class="tabs">
+<button class="active" onclick="tab('overview',this)">📊 کلی</button>
+<button onclick="tab('users',this)">👥 کاربران</button>
+<button onclick="tab('orders',this)">🛒 سفارش‌ها</button>
+<button onclick="tab('payments',this)">💳 پرداخت</button>
+<button onclick="tab('activity',this)">📜 فعالیت</button>
+<button onclick="tab('security',this)">🛡️ امنیت</button>
+</div>
+
+<div id="c-overview" class="content">...</div>
+<div id="c-users" class="content" style="display:none">...</div>
+<div id="c-orders" class="content" style="display:none">...</div>
+<div id="c-payments" class="content" style="display:none">...</div>
+<div id="c-activity" class="content" style="display:none">...</div>
+<div id="c-security" class="content" style="display:none">...</div>
+
+<script src="nav.js"></script>
+<script>
+var DATA = null;
+var SEC = null;
+
+// ─── Helper Functions ───
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>]/g, function(c) {
+    return { '&':'&amp;', '<':'&lt;', '>':'&gt;' }[c];
+  });
+}
+function fmt(n) {
+  try { return Number(n || 0).toLocaleString('en-US'); }
+  catch(e) { return '0'; }
+}
+function money(n) { return fmt(n) + ' ت'; }
+
+// ─── Tab Switch ───
+function tab(name, btn) {
+  document.querySelectorAll('.tabs button').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  document.querySelectorAll('.content').forEach(function(c) {
+    c.style.display = 'none';
+  });
+  document.getElementById('c-' + name).style.display = 'block';
+  if (name === 'security' && !SEC) loadSecurity();
+  if (name === 'security' && SEC) renderSecurity();
+}
+
+// ─── Overview ───
+function renderOverview() {
+  var u = (DATA.users || []).length;
+  var o = (DATA.orders || []).length;
+  var p = (DATA.payments || []).length;
+  var r = (DATA.receipts || []).length;
+  var total = 0;
+  (DATA.orders || []).forEach(function(x) { total += x.total_price || 0; });
+
+  var h = '<div class="stats">';
+  h += '<div class="st"><div class="n">' + u + '</div><div class="l">کاربر</div></div>';
+  h += '<div class="st y"><div class="n">' + o + '</div><div class="l">سفارش</div></div>';
+  h += '<div class="st c"><div class="n">' + p + '</div><div class="l">پرداخت</div></div>';
+  h += '<div class="st p"><div class="n">' + r + '</div><div class="l">رسید</div></div>';
+  h += '</div>';
+
+  h += '<div class="stats">';
+  h += '<div class="st"><div class="n" style="font-size:13px">' + fmt(total) + '</div><div class="l">جمع فروش (تومان)</div></div>';
+  h += '<div class="st y"><div class="n" style="font-size:13px">' + (total ? (total/o).toFixed(0) : 0) + '</div><div class="l">میانگین سفارش</div></div>';
+  h += '</div>';
+
+  h += '<h3>🛒 آخرین سفارش‌ها</h3>';
+  h += '<table class="tbl"><thead><tr><th>#</th><th>مشتری</th><th>مبلغ</th><th>وضعیت</th></tr></thead><tbody>';
+  (DATA.orders || []).slice(0, 10).forEach(function(o) {
+    h += '<tr><td class="id">#' + o.id + '</td>';
+    h += '<td class="user">' + esc(o.customer_username || o.customer_name || '-') + '</td>';
+    h += '<td class="amt">' + money(o.total_price) + '</td>';
+    h += '<td><span class="status ' + (o.status || 'pending') + '">' + esc(o.status || '?') + '</span></td></tr>';
+  });
+  h += '</tbody></table>';
+
+  document.getElementById('c-overview').innerHTML = h;
+}
+
+// ─── Users ───
+function renderUsers() {
+  var users = DATA.users || [];
+  var h = '<h3>👥 همه کاربران (' + users.length + ')</h3>';
+  h += '<table class="tbl"><thead><tr><th>ID</th><th>یوزرنیم</th><th>نام</th><th>شهر</th><th>کد مشتری</th></tr></thead><tbody>';
+  users.forEach(function(u) {
+    h += '<tr>';
+    h += '<td class="id">' + esc(u.user_id) + '</td>';
+    h += '<td class="user">@' + esc(u.username || '-') + '</td>';
+    h += '<td>' + esc(u.first_name || '-') + '</td>';
+    h += '<td>' + esc(u.city || '-') + '</td>';
+    h += '<td class="id">' + esc(u.customer_code || '-') + '</td>';
+    h += '</tr>';
+  });
+  h += '</tbody></table>';
+  document.getElementById('c-users').innerHTML = h;
+}
+
+// ─── Orders ───
+function renderOrders() {
+  var orders = DATA.orders || [];
+  var h = '<h3>🛒 همه سفارش‌ها (' + orders.length + ')</h3>';
+  h += '<table class="tbl"><thead><tr><th>#</th><th>مشتری</th><th>مبلغ</th><th>وضعیت</th><th>تاریخ</th></tr></thead><tbody>';
+  orders.forEach(function(o) {
+    var d = (o.created_at || '').substring(0, 10);
+    h += '<tr><td class="id">#' + o.id + '</td>';
+    h += '<td class="user">' + esc(o.customer_username || o.customer_name || '-') + '</td>';
+    h += '<td class="amt">' + money(o.total_price) + '</td>';
+    h += '<td><span class="status ' + (o.status || 'pending') + '">' + esc(o.status || '?') + '</span></td>';
+    h += '<td class="id">' + esc(d) + '</td></tr>';
+  });
+  h += '</tbody></table>';
+  document.getElementById('c-orders').innerHTML = h;
+}
+
+// ─── Payments ───
+function renderPayments() {
+  var ps = DATA.payments || [];
+  var h = '<h3>💳 پرداخت‌ها (' + ps.length + ')</h3>';
+  h += '<table class="tbl"><thead><tr><th>#</th><th>مبلغ</th><th>پلن</th><th>وضعیت</th><th>تاریخ</th></tr></thead><tbody>';
+  ps.forEach(function(p) {
+    var d = (p.created_at || '').substring(0, 10);
+    h += '<tr><td class="id">#' + p.id + '</td>';
+    h += '<td class="amt">' + money(p.amount_toman) + '</td>';
+    h += '<td>' + esc(p.plan_key || '-') + '</td>';
+    h += '<td><span class="status ' + (p.status || 'pending') + '">' + esc(p.status || '?') + '</span></td>';
+    h += '<td class="id">' + esc(d) + '</td></tr>';
+  });
+  h += '</tbody></table>';
+  document.getElementById('c-payments').innerHTML = h;
+}
+
+// ─── Activity ───
+function renderActivity() {
+  var acts = DATA.activity || [];
+  var h = '<h3>📜 آخرین فعالیت‌ها (' + acts.length + ')</h3>';
+  h += '<div class="timeline">';
+  acts.slice(0, 100).forEach(function(a) {
+    var t = (a.created_at || '').substring(11, 19);
+    h += '<div class="ev activity"><span class="t">' + esc(t) + '</span>';
+    h += '<span class="txt">' + esc(a.action || '-');
+    if (a.details) h += ' <span style="color:#6b7280">— ' + esc(a.details.substring(0, 50)) + '</span>';
+    h += '</span></div>';
+  });
+  h += '</div>';
+  document.getElementById('c-activity').innerHTML = h;
+}
+
+// ─── Security ───
+function renderSecurity() {
+  var h = '<h3>🛡️ تحلیل امنیتی</h3>';
+  if (!SEC) {
+    h += '<div class="loading">در حال بارگذاری...</div>';
+    document.getElementById('c-security').innerHTML = h;
+    return;
+  }
+  var sc = SEC.suspicious_count || 0;
+  if (sc > 0) {
+    h += '<div class="sec-box"><div class="h">⚠️ ' + sc + ' رویداد مشکوک</div>';
+    (SEC.suspicious_recent || []).slice(-10).reverse().forEach(function(e) {
+      h += '<div class="r">' + esc(e.type || '?') + ' — ' + esc(e.received_at || '').substring(11, 19) + '</div>';
+    });
+    h += '</div>';
+  } else {
+    h += '<div class="sec-box" style="background:#052e16;border-color:#10b981"><div class="h" style="color:#6ee7b7">✅ هیچ تهدیدی شناسایی نشد</div></div>';
+  }
+
+  var attackers = SEC.attackers || {};
+  var keys = Object.keys(attackers);
+  if (keys.length) {
+    h += '<h3>🎯 IPهای مشکوک</h3>';
+    h += '<table class="tbl"><thead><tr><th>IP</th><th>تعداد</th></tr></thead><tbody>';
+    keys.forEach(function(ip) {
+      h += '<tr><td class="id">' + esc(ip) + '</td><td class="amt">' + attackers[ip] + '</td></tr>';
+    });
+    h += '</tbody></table>';
+  }
+  document.getElementById('c-security').innerHTML = h;
+}
+
+function loadSecurity() {
+  fetch('http://127.0.0.1:8090/shop/security')
+    .then(function(r) { return r.json(); })
+    .then(function(d) { SEC = d; renderSecurity(); })
+    .catch(function(e) {
+      console.error(e);
+      document.getElementById('c-security').innerHTML =
+        '<div class="sec-box"><div class="h">⚠️ اتصال به API ممکن نیست</div>' +
+        '<div class="r">این تب فقط لوکال کار می‌کنه</div></div>';
+    });
+}
+
+// ─── Load Data ───
+function load() {
+  fetch('../data/shop_all.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      DATA = d;
+      document.getElementById('live').innerHTML =
+        'آخرین آپدیت: <b>' + (d.ts || '').substring(0, 19).replace('T', ' ') + '</b> ●';
+      renderOverview();
+      renderUsers();
+      renderOrders();
+      renderPayments();
+      renderActivity();
+    })
+    .catch(function(e) {
+      console.error(e);
+      document.getElementById('live').innerHTML = 'خطا در بارگذاری';
+    });
+}
+
+load();
+setInterval(load, 20000);
+</script>
+</body>
+</html>
