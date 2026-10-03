@@ -7,141 +7,101 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
---bg:#080c10;--grn:#00ffb4;--cyan:#00d4ff;--blu:#00b4ff;
---yel:#ffb800;--org:#ff8c00;--red:#ff3a5e;--pur:#a855f7;--teal:#14d4b8;
---dim:#1a2a35;--txt:#a8b8c4;--txt2:#6a8090;
+--bg:#050a0e;--bg2:#081016;--bd:#0f2a2a;--bd2:#1a5a5a;
+--grn:#00ffb4;--teal:#14d4b8;--yel:#ffaa00;--org:#ff8800;
+--red:#ff3a5e;--pur:#a855f7;--blu:#00b4ff;
+--txt:#6a9a8a;--txt2:#3a5a5a;--txt3:#a8c8b8;
 }
-html,body{background:var(--bg);color:var(--txt);font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
+html,body{background:var(--bg);color:var(--txt3);font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden;font-size:12px}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-background:
- radial-gradient(circle at 15% 20%,rgba(0,255,180,.06) 0,transparent 35%),
- radial-gradient(circle at 85% 80%,rgba(168,85,247,.05) 0,transparent 35%),
- radial-gradient(circle at 50% 50%,rgba(0,180,255,.03) 0,transparent 50%),var(--bg);}
-body::after{content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.3;
+background:radial-gradient(circle at 20% 10%,rgba(20,212,184,.05) 0,transparent 40%),
+radial-gradient(circle at 80% 90%,rgba(168,85,247,.04) 0,transparent 40%),var(--bg)}
+body::after{content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.25;
 background:repeating-linear-gradient(0deg,rgba(0,0,0,.3) 0,rgba(0,0,0,.3) 1px,transparent 1px,transparent 3px)}
 
-/* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(8,12,16,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--dim);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 4px}
+.nav{position:sticky;top:0;z-index:100;background:rgba(5,9,12,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 4px}
 .nav::-webkit-scrollbar{display:none}
 .nav a{flex-shrink:0;padding:11px 14px;color:var(--txt2);text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1px;border-bottom:2px solid transparent;transition:.25s}
 .nav a:hover{color:var(--grn)}
 .nav a.on{color:var(--grn);border-bottom-color:var(--grn);text-shadow:0 0 8px var(--grn)}
 
-.wrap{position:relative;z-index:1;padding:12px;max-width:900px;margin:0 auto}
+.wrap{position:relative;z-index:1;padding:10px;max-width:900px;margin:0 auto}
 
-/* HERO */
-.hero{position:relative;border:1px solid var(--dim);background:linear-gradient(135deg,rgba(10,20,25,.95),rgba(6,12,16,.95));border-radius:4px;padding:14px 16px;margin-bottom:12px;overflow:hidden}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--grn),transparent);opacity:.5}
-.hero-top{display:flex;justify-content:space-between;align-items:center}
-.clock{font-size:11px;color:var(--txt2);letter-spacing:2px}
-.clock .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--grn);margin-left:6px;box-shadow:0 0 8px var(--grn);animation:blink 1.6s infinite}
-.brand{display:flex;align-items:center;gap:10px;flex-direction:row-reverse}
-.brand-txt{text-align:right}
-.brand-title{font-size:18px;font-weight:bold;letter-spacing:4px;color:var(--grn);text-shadow:0 0 12px var(--grn);line-height:1}
-.brand-sub{font-size:9px;letter-spacing:3px;color:var(--txt2);margin-top:3px}
-.brand-icon{width:24px;height:24px;border:2px solid var(--grn);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px var(--grn),inset 0 0 8px rgba(0,255,180,.3)}
-.brand-icon::before{content:'';width:10px;height:10px;border:2px solid var(--grn);border-radius:50%;box-shadow:0 0 6px var(--grn)}
+.board{position:relative;border:1px solid var(--bd);background:var(--bg2);padding:14px 10px 12px;margin-bottom:10px;overflow:hidden;border-radius:2px}
+.board::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.4;
+background-image:linear-gradient(rgba(20,212,184,.04) 1px,transparent 1px),
+linear-gradient(90deg,rgba(20,212,184,.04) 1px,transparent 1px);background-size:20px 20px}
 
-/* BOARD */
-.board{position:relative;border:1px solid var(--dim);background:linear-gradient(180deg,rgba(8,15,20,.95),rgba(5,10,14,.98));border-radius:4px;padding:16px 12px;margin-bottom:12px;aspect-ratio:1.15;overflow:hidden}
-.board::before{content:'';position:absolute;inset:0;opacity:.35;
-background-image:
- linear-gradient(rgba(0,255,180,.05) 1px,transparent 1px),
- linear-gradient(90deg,rgba(0,255,180,.05) 1px,transparent 1px);
-background-size:22px 22px}
-.board::after{content:'';position:absolute;inset:0;pointer-events:none;
-background:radial-gradient(circle at 50% 50%,rgba(0,255,180,.08) 0,transparent 50%)}
-.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.wires line,.wires path{stroke:var(--grn);stroke-width:.8;fill:none;stroke-dasharray:3 4;opacity:.4}
-.wires .pulse{stroke-width:1.2;opacity:.9;stroke-dasharray:2 6;animation:flow 4s linear infinite;filter:drop-shadow(0 0 3px var(--grn))}
-@keyframes flow{to{stroke-dashoffset:-40}}
+.core{position:relative;margin:0 auto 14px;width:180px;border:1px solid var(--teal);background:rgba(8,20,20,.95);padding:8px 10px;text-align:center;border-radius:2px;
+box-shadow:0 0 14px rgba(20,212,184,.25),inset 0 0 12px rgba(20,212,184,.08)}
+.core::before{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--grn);box-shadow:0 0 8px var(--grn);animation:bl 1.4s infinite}
+.core-title{font-size:10px;font-weight:bold;letter-spacing:2px;color:var(--teal);text-shadow:0 0 6px var(--teal);margin-bottom:5px;display:flex;justify-content:center;align-items:center;gap:4px}
+.core-title::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grn);box-shadow:0 0 5px var(--grn)}
+.core-stats{display:flex;justify-content:center;gap:10px;font-size:9px;color:var(--txt)}
+.core-stats span{display:flex;align-items:center;gap:3px}
+.core-stats b{color:var(--grn);font-weight:bold}
 
-.node{position:absolute;border:1px solid;border-radius:3px;padding:8px 10px;background:rgba(8,15,20,.95);min-width:88px;text-align:center;z-index:2}
-.node-label{font-size:9px;font-weight:bold;letter-spacing:2px;margin-bottom:4px}
-.node-val{font-size:14px;font-weight:bold;line-height:1;color:#fff}
-.node-sub{font-size:8px;color:var(--txt2);margin-top:4px;letter-spacing:1px}
-.node .led-top{position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%}
-.node .led-corner{position:absolute;top:4px;left:4px;width:4px;height:4px;border-radius:50%}
+.mods{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px}
+.mods2{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;max-width:55%;margin:0 auto 8px}
+.mod{border:1px solid var(--bd2);background:rgba(6,15,15,.9);padding:6px 4px;text-align:center;border-radius:2px;position:relative}
+.mod.act{border-color:var(--teal);box-shadow:0 0 8px rgba(20,212,184,.15)}
+.mod.warn{border-color:var(--org);box-shadow:0 0 8px rgba(255,136,0,.15)}
+.mod.warn .mod-name{color:var(--org)}
+.mod-name{font-size:9px;font-weight:bold;letter-spacing:2px;color:var(--teal);margin-bottom:5px}
+.mod-leds{display:flex;justify-content:center;gap:3px;flex-wrap:wrap}
+.mod-leds .led{width:5px;height:5px;border-radius:50%;background:var(--bd2);transition:.3s}
+.mod-leds .led.on-g{background:var(--grn);box-shadow:0 0 5px var(--grn)}
+.mod-leds .led.on-y{background:var(--org);box-shadow:0 0 5px var(--org)}
+.mod-leds .led.on-t{background:var(--teal);box-shadow:0 0 5px var(--teal)}
+.mod-leds .led.on-r{background:var(--red);box-shadow:0 0 5px var(--red)}
 
-.node.core{top:50%;left:50%;transform:translate(-50%,-50%);min-width:130px;padding:12px 14px;
-border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rgba(0,255,180,.08)}
-.node.core .node-label{color:var(--grn);text-shadow:0 0 8px var(--grn);font-size:10px;letter-spacing:3px}
-.node.core .node-val{font-size:20px;color:var(--grn);text-shadow:0 0 12px var(--grn)}
-.node.core .node-sub{color:rgba(0,255,180,.6)}
+.slots{position:relative;border:1px solid var(--bd);background:rgba(4,10,12,.7);padding:8px 6px;border-radius:2px;margin-top:8px}
+.slots-title{font-size:9px;letter-spacing:3px;color:var(--txt);text-align:center;margin-bottom:6px}
+.slots-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:3px}
+.slot{border:1px solid var(--bd2);background:rgba(5,12,14,.9);padding:3px 1px 6px;text-align:center;border-radius:1px;position:relative;overflow:hidden}
+.slot .num{font-size:7px;color:var(--txt2);line-height:1}
+.slot .nm{font-size:6px;color:var(--txt);letter-spacing:.5px;margin-top:1px;line-height:1}
+.slot .dot{width:3px;height:3px;border-radius:50%;background:var(--grn);position:absolute;bottom:2px;left:50%;transform:translateX(-50%);box-shadow:0 0 3px var(--grn)}
+.slot.off .dot{background:var(--org);box-shadow:0 0 3px var(--org)}
+.slot.crit{border-color:rgba(255,58,94,.5)}
+.slot.crit .dot{background:var(--red);box-shadow:0 0 3px var(--red);animation:bl 1s infinite}
 
-.node.hmac{top:12%;left:5%;border-color:var(--yel);box-shadow:0 0 12px rgba(255,184,0,.2)}
-.node.hmac .node-label{color:var(--yel)}
-.node.hmac .led-top{background:var(--yel);box-shadow:0 0 6px var(--yel)}
+.ana-title{text-align:center;font-size:9px;letter-spacing:3px;color:var(--txt);margin:14px 0 8px;position:relative}
+.ana-title::before,.ana-title::after{content:'';position:absolute;top:50%;width:35%;height:1px;background:linear-gradient(90deg,transparent,var(--bd2),transparent)}
+.ana-title::before{left:0}
+.ana-title::after{right:0}
 
-.node.trap{top:12%;right:5%;border-color:var(--blu);box-shadow:0 0 12px rgba(0,180,255,.2)}
-.node.trap .node-label{color:var(--blu)}
-.node.trap .led-top{background:var(--blu);box-shadow:0 0 6px var(--blu)}
+.ana-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
+.ana-grid2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.card{border:1px solid var(--bd);background:var(--bg2);padding:8px;border-radius:2px;position:relative;overflow:hidden}
+.card-title{font-size:8px;letter-spacing:2px;color:var(--txt);margin-bottom:6px;display:flex;align-items:center;gap:4px}
+.card-title::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--grn);box-shadow:0 0 4px var(--grn)}
+.card.warn .card-title::before{background:var(--org);box-shadow:0 0 4px var(--org)}
+canvas{display:block;width:100%;height:auto}
 
-.node.honey{bottom:22%;left:5%;border-color:var(--red);box-shadow:0 0 12px rgba(255,58,94,.25)}
-.node.honey .node-label{color:var(--red)}
-.node.honey .led-corner{background:var(--red);box-shadow:0 0 6px var(--red);animation:blink .8s infinite}
+.heat{display:grid;grid-template-columns:repeat(24,1fr);gap:1px;height:60px}
+.heat i{display:block;border-radius:1px;background:var(--bd)}
 
-.node.vault{top:70%;right:5%;border-color:var(--pur);box-shadow:0 0 12px rgba(168,85,247,.25)}
-.node.vault .node-label{color:var(--pur)}
-.node.vault .led-top{background:var(--pur);box-shadow:0 0 6px var(--pur)}
+.bstats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;padding:10px 4px;border-top:1px solid var(--bd)}
+.bstat{display:flex;align-items:center;justify-content:center;gap:6px;font-size:10px}
+.bstat .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.bstat .num{font-weight:bold;font-size:12px}
+.bstat.g .dot{background:var(--grn);box-shadow:0 0 6px var(--grn)}
+.bstat.g .num{color:var(--grn)}
+.bstat.y .dot{background:var(--org);box-shadow:0 0 6px var(--org)}
+.bstat.y .num{color:var(--org)}
+.bstat.r .dot{background:var(--red);box-shadow:0 0 6px var(--red)}
+.bstat.r .num{color:var(--red)}
+.bstat.t .dot{background:var(--teal);box-shadow:0 0 6px var(--teal)}
+.bstat.t .num{color:var(--teal)}
+.bstat .lbl{color:var(--txt);font-size:9px;letter-spacing:1px}
 
-/* ═════ CHIP GRID (new) ═════ */
-.chip-grid{position:absolute;bottom:8px;left:12px;right:12px;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;z-index:3}
-.chip-mini{border:1px solid var(--dim);background:rgba(0,0,0,.55);padding:4px 3px;border-radius:2px;text-align:center;position:relative}
-.chip-mini .chip-name{font-size:7px;font-weight:bold;letter-spacing:1px;color:var(--txt2);margin-bottom:3px}
-.chip-mini .chip-leds{display:flex;justify-content:center;gap:2px}
-.chip-mini .mini{width:4px;height:4px;border-radius:50%;background:var(--dim);transition:.3s}
-.chip-mini .mini.on{box-shadow:0 0 4px currentColor}
-.chip-mini.on-grn{border-color:rgba(0,255,180,.4)}
-.chip-mini.on-grn .chip-name{color:var(--grn)}
-.chip-mini.on-yel{border-color:rgba(255,184,0,.4)}
-.chip-mini.on-yel .chip-name{color:var(--yel)}
-.chip-mini.on-blu{border-color:rgba(0,180,255,.4)}
-.chip-mini.on-blu .chip-name{color:var(--blu)}
-.chip-mini.on-red{border-color:rgba(255,58,94,.5)}
-.chip-mini.on-red .chip-name{color:var(--red)}
-.chip-mini.on-pur{border-color:rgba(168,85,247,.4)}
-.chip-mini.on-pur .chip-name{color:var(--pur)}
-
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
-.stat{background:linear-gradient(180deg,rgba(12,19,25,.9),rgba(8,12,16,.9));border:1px solid var(--dim);border-radius:3px;padding:12px 6px;text-align:center;position:relative;overflow:hidden}
-.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--grn),transparent);opacity:.4}
-.stat .v{font-size:20px;font-weight:bold;line-height:1;margin-bottom:6px}
-.stat .l{font-size:9px;color:var(--txt2);letter-spacing:1px}
-.stat.g .v{color:var(--grn);text-shadow:0 0 10px rgba(0,255,180,.5)}
-.stat.b .v{color:var(--blu);text-shadow:0 0 10px rgba(0,180,255,.5)}
-.stat.y .v{color:var(--yel);text-shadow:0 0 10px rgba(255,184,0,.5)}
-.stat.r .v{color:var(--red);text-shadow:0 0 10px rgba(255,58,94,.5)}
-
-/* SERVICE LIST */
-.svc{background:linear-gradient(180deg,rgba(12,19,25,.9),rgba(8,12,16,.9));border:1px solid var(--dim);border-radius:3px;padding:10px 12px}
-.svc-head{display:flex;justify-content:space-between;font-size:9px;letter-spacing:3px;color:var(--txt2);margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed var(--dim)}
-.svc-head .ac{color:var(--grn)}
-.svc-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed rgba(26,42,53,.6)}
-.svc-row:last-child{border-bottom:none}
-.svc-led{width:8px;height:8px;border-radius:50%;background:var(--grn);box-shadow:0 0 8px var(--grn);flex-shrink:0;animation:blink 2s infinite}
-.svc-row:nth-child(2n) .svc-led{animation-delay:.3s}
-.svc-row:nth-child(3n) .svc-led{animation-delay:.6s}
-.svc-name{flex:1;font-size:12px;color:var(--txt)}
-.svc-tag{font-size:8px;color:var(--txt2);letter-spacing:1px;margin-right:auto;padding-right:8px}
-.svc-badge{font-size:9px;padding:3px 8px;border:1px solid rgba(0,255,180,.4);color:var(--grn);letter-spacing:2px;background:rgba(0,255,180,.06);border-radius:2px}
-
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.9)}}
-
-.footer{text-align:center;padding:20px 12px 30px;font-size:9px;color:var(--txt2);letter-spacing:3px}
-.footer .g{color:var(--grn)}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.3}}
 
 @media(max-width:400px){
-.stats{grid-template-columns:repeat(2,1fr)}
-.brand-title{font-size:15px;letter-spacing:3px}
-.node{padding:6px 8px;min-width:76px}
-.node-label{font-size:8px}
-.node-val{font-size:12px}
-.node.core .node-val{font-size:16px}
-.node.core{min-width:110px}
-.chip-mini .chip-name{font-size:6px}
+.slots-grid{grid-template-columns:repeat(8,1fr)}
+.slot .nm{display:none}
+.core{width:160px}
 }
 </style>
 </head>
@@ -151,184 +111,280 @@ border-color:var(--grn);box-shadow:0 0 20px rgba(0,255,180,.3),inset 0 0 16px rg
 <a href="index.html">مادر</a>
 <a href="security.html" class="on">امنیت</a>
 <a href="shop.html">فروشگاه</a>
-<a href="shop-board.html">برد فروشگاه</a>
+<a href="shop-board.html">آمار</a>
 <a href="world.html">جهانی</a>
-<a href="discover.html">کشف</a>
-<a href="mitre.html">MITRE</a>
-<a href="sentinel.html">Sentinel</a>
+<a href="cybermap.html">زنده</a>
+<a href="discover.html">Discover</a>
 </nav>
 
 <div class="wrap">
 
-<div class="hero">
-<div class="hero-top">
-<div class="clock"><span id="clk">--:--:--</span><span class="dot"></span></div>
-<div class="brand">
-<div class="brand-icon"></div>
-<div class="brand-txt">
-<div class="brand-title">VORIX</div>
-<div class="brand-sub">SHIELD CONTROL</div>
-</div>
-</div>
-</div>
-</div>
-
 <div class="board">
-<svg class="wires" viewBox="0 0 400 350" preserveAspectRatio="none">
-<path d="M100,80 L100,130 L150,130 L150,160"/>
-<path class="pulse" d="M100,80 L100,130 L150,130 L150,160"/>
-<path d="M300,80 L300,130 L250,130 L250,160"/>
-<path class="pulse" d="M300,80 L300,130 L250,130 L250,160" style="animation-delay:-1s"/>
-<path d="M100,270 L100,220 L150,220 L150,190"/>
-<path class="pulse" d="M100,270 L100,220 L150,220 L150,190" style="animation-delay:-2s"/>
-<path d="M300,270 L300,220 L250,220 L250,190"/>
-<path class="pulse" d="M300,270 L300,220 L250,220 L250,190" style="animation-delay:-3s"/>
-</svg>
-
-<div class="node hmac">
-<span class="led-top"></span>
-<div class="node-label">HMAC</div>
-<div class="node-val">9/9</div>
-<div class="node-sub">signature</div>
+<div class="core">
+<div class="core-title">VORIX SHIELD</div>
+<div class="core-stats">
+<span>CPU <b id="cpuV">48%</b></span>
+<span>RAM <b id="ramV">67%</b></span>
+<span>NET <b id="netV">12%</b></span>
+</div>
 </div>
 
-<div class="node trap">
-<span class="led-top"></span>
-<div class="node-label">TRAP</div>
-<div class="node-val">7</div>
-<div class="node-sub">endpoints</div>
+<div class="mods">
+<div class="mod act" data-mod="ING"><div class="mod-name">ING</div><div class="mod-leds"></div></div>
+<div class="mod act" data-mod="FLT"><div class="mod-name">FLT</div><div class="mod-leds"></div></div>
+<div class="mod act" data-mod="RSP"><div class="mod-name">RSP</div><div class="mod-leds"></div></div>
+<div class="mod warn" data-mod="DATA"><div class="mod-name">DATA</div><div class="mod-leds"></div></div>
+</div>
+<div class="mods2">
+<div class="mod act" data-mod="EGR"><div class="mod-name">EGR</div><div class="mod-leds"></div></div>
+<div class="mod act" data-mod="SLF"><div class="mod-name">SLF</div><div class="mod-leds"></div></div>
 </div>
 
-<div class="node core">
-<span class="led-top" style="background:var(--grn);box-shadow:0 0 8px var(--grn);animation:blink 1.4s infinite"></span>
-<div class="node-label">VORIX SHIELD</div>
-<div class="node-val">10/10</div>
-<div class="node-sub">ACTIVE · 24/7</div>
+<div class="slots">
+<div class="slots-title">SLOTS · 44 LAYERS</div>
+<div class="slots-grid" id="slotsGrid"></div>
+</div>
 </div>
 
-<div class="node honey">
-<span class="led-corner"></span>
-<div class="node-label">HONEYPOT</div>
-<div class="node-val">0</div>
-<div class="node-sub">hits today</div>
+<div class="ana-title">◆ LIVE ANALYTICS ◆</div>
+
+<div class="ana-grid">
+<div class="card">
+<div class="card-title">HEATMAP 7×24</div>
+<div class="heat" id="heat"></div>
+</div>
+<div class="card">
+<div class="card-title">24H TREND</div>
+<canvas id="trend" width="400" height="120"></canvas>
+</div>
 </div>
 
-<div class="node vault">
-<span class="led-top"></span>
-<div class="node-label">VAULT</div>
-<div class="node-val">4</div>
-<div class="node-sub">backups</div>
+<div class="ana-grid2">
+<div class="card">
+<div class="card-title">TYPES</div>
+<canvas id="donut" width="200" height="140"></canvas>
+</div>
+<div class="card warn">
+<div class="card-title">CPU</div>
+<canvas id="gauge" width="200" height="140"></canvas>
+</div>
+<div class="card">
+<div class="card-title">HOURLY</div>
+<canvas id="bars" width="200" height="140"></canvas>
+</div>
 </div>
 
-<!-- CHIP GRID with NAMES -->
-<div class="chip-grid" id="chipGrid"></div>
-
+<div class="bstats">
+<div class="bstat g"><span class="dot"></span><span class="num" id="bAct">20</span><span class="lbl">Active</span></div>
+<div class="bstat y"><span class="dot"></span><span class="num" id="bStd">22</span><span class="lbl">Standby</span></div>
+<div class="bstat r"><span class="dot"></span><span class="num" id="bDown">0</span><span class="lbl">Down</span></div>
+<div class="bstat t"><span class="dot"></span><span class="num" id="bTot">42</span><span class="lbl">Total</span></div>
 </div>
-
-<div class="stats">
-<div class="stat g"><div class="v" id="stHoney">0</div><div class="l">Honeypot</div></div>
-<div class="stat b"><div class="v">13</div><div class="l">مجاز</div></div>
-<div class="stat y"><div class="v">0</div><div class="l">علامت‌دار</div></div>
-<div class="stat r"><div class="v">0</div><div class="l">بلاک شده</div></div>
-</div>
-
-<div class="svc">
-<div class="svc-head"><span class="ac">◆ SHIELD STATUS</span><span>10 LAYERS</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">HMAC Token</span><span class="svc-tag">L1</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">HMAC Signature</span><span class="svc-tag">L2</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">IP Whitelist</span><span class="svc-tag">L3</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Rate Limit</span><span class="svc-tag">L4</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Anomaly Score</span><span class="svc-tag">L5</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Honeypot</span><span class="svc-tag">L6</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Hash Chain</span><span class="svc-tag">L7</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">AES Vault</span><span class="svc-tag">L8</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Brute Guard</span><span class="svc-tag">L9</span><span class="svc-badge">ACTIVE</span></div>
-<div class="svc-row"><span class="svc-led"></span><span class="svc-name">Telegram Alerts</span><span class="svc-tag">L10</span><span class="svc-badge">ACTIVE</span></div>
-</div>
-
-<div class="footer">VORIX <span class="g">◆</span> SHIELD CONTROL <span class="g">◆</span> 2026</div>
 
 </div>
 
 <script>
-// Clock
-function tick(){
-  var d=new Date();
-  document.getElementById('clk').textContent=
-    String(d.getHours()).padStart(2,'0')+':'+
-    String(d.getMinutes()).padStart(2,'0')+':'+
-    String(d.getSeconds()).padStart(2,'0');
-}
-setInterval(tick,1000);tick();
+// CORE stats
+setInterval(function(){
+  document.getElementById('cpuV').textContent=(45+Math.floor(Math.random()*15))+'%';
+  document.getElementById('ramV').textContent=(60+Math.floor(Math.random()*15))+'%';
+  document.getElementById('netV').textContent=(8+Math.floor(Math.random()*10))+'%';
+},3000);
 
-// CHIP GRID - 10 named chips, each 3 mini LEDs
-var chips=[
-  {n:'HMAC',  c:'grn', s:'token'},
-  {n:'SIG',   c:'grn', s:'sign'},
-  {n:'IP',    c:'blu', s:'white'},
-  {n:'RATE',  c:'blu', s:'limit'},
-  {n:'ANOM',  c:'yel', s:'score'},
-  {n:'HONEY', c:'red', s:'trap'},
-  {n:'HASH',  c:'yel', s:'chain'},
-  {n:'AES',   c:'pur', s:'vault'},
-  {n:'BRUTE', c:'org', s:'guard'},
-  {n:'TEL',   c:'grn', s:'alert'}
-];
-var cg=document.getElementById('chipGrid');
-var allMinis=[];
-chips.forEach(function(ch){
-  var el=document.createElement('div');
-  el.className='chip-mini on-'+ch.c;
-  var leds='';
-  for(var i=0;i<3;i++){
-    leds+='<span class="mini" data-c="'+ch.c+'"></span>';
+// Module LEDs
+document.querySelectorAll('.mod').forEach(function(m){
+  var box=m.querySelector('.mod-leds');
+  for(var i=0;i<5;i++){
+    var l=document.createElement('span');
+    l.className='led';
+    box.appendChild(l);
   }
-  el.innerHTML='<div class="chip-name">'+ch.n+'</div><div class="chip-leds">'+leds+'</div>';
-  cg.appendChild(el);
 });
-
-function colorToVar(c){
-  return {grn:'#00ffb4',yel:'#ffb800',blu:'#00b4ff',red:'#ff3a5e',pur:'#a855f7',org:'#ff8c00'}[c];
-}
-
-function refreshChips(){
-  document.querySelectorAll('.chip-mini .mini').forEach(function(m){
-    var c=m.getAttribute('data-c');
-    if(Math.random()<0.6){
-      m.style.background=colorToVar(c);
-      m.style.color=colorToVar(c);
-      m.classList.add('on');
-    } else {
-      m.style.background='#1a2a35';
-      m.style.color='transparent';
-      m.classList.remove('on');
-    }
+function refreshMods(){
+  document.querySelectorAll('.mod').forEach(function(m){
+    m.querySelectorAll('.led').forEach(function(l){
+      l.className='led';
+      var r=Math.random();
+      if(r<0.6){
+        var cls=m.classList.contains('warn')?'on-y':(Math.random()<0.8?'on-g':'on-t');
+        l.className='led '+cls;
+      } else if(r<0.7){
+        l.className='led on-r';
+      }
+    });
   });
 }
-refreshChips();
-setInterval(refreshChips,2500);
+refreshMods();setInterval(refreshMods,2800);
 
-// Honeypot counter increment
+// Slots
+var slotNames=['HMAC','SIG','IP','RATE','ANOM','HONEY','HASH','AES','BRUTE','TEL','EGR','SLF',
+'KEY','TOK','SIG','FIL','RT','LIM','SCORE','TRAP','CHAIN','VAULT','GRD','ALRT',
+'LOG','CHK','FIM','ROOT','MITRE','RSP','CORE','HASH','LOCK','VOICE','BOT','SYNC',
+'KEEP','AGNT','SCRB','ARCH','PROXY','AUDIT','SCAN','WATCH'];
+var sg=document.getElementById('slotsGrid');
+slotNames.forEach(function(nm,i){
+  var d=document.createElement('div');
+  d.className='slot';
+  if(Math.random()<0.05) d.classList.add('crit');
+  else if(Math.random()<0.3) d.classList.add('off');
+  d.innerHTML='<div class="num">'+String(i+1).padStart(2,'0')+'</div><div class="nm">'+nm+'</div><div class="dot"></div>';
+  sg.appendChild(d);
+});
 setInterval(function(){
-  if(Math.random()<0.25){
-    var el=document.getElementById('stHoney');
-    var n=parseInt(el.textContent)||0;
-    el.textContent=n+1;
+  var ss=document.querySelectorAll('.slot');
+  for(var k=0;k<3;k++){
+    var s=ss[Math.floor(Math.random()*ss.length)];
+    s.classList.remove('off','crit');
+    if(Math.random()<0.1) s.classList.add('crit');
+    else if(Math.random()<0.3) s.classList.add('off');
   }
-},9000);
+},2500);
 
-// Flash a node every 8s
+// Heatmap
+var heat=document.getElementById('heat');
+for(var i=0;i<7*24;i++){
+  var c=document.createElement('i');
+  var r=Math.random();
+  if(r<0.15) c.style.background='#14d4b8';
+  else if(r<0.35) c.style.background='#0f8a7a';
+  else if(r<0.6) c.style.background='#0a5a4a';
+  else c.style.background='#0a1a1a';
+  heat.appendChild(c);
+}
 setInterval(function(){
-  var nodes=document.querySelectorAll('.node');
-  if(!nodes.length)return;
-  var n=nodes[Math.floor(Math.random()*nodes.length)];
-  var l=n.querySelector('.led-top,.led-corner');
-  if(!l)return;
-  var ob=l.style.background, os=l.style.boxShadow;
-  l.style.background='#ff3a5e';
-  l.style.boxShadow='0 0 10px #ff3a5e';
-  setTimeout(function(){l.style.background=ob;l.style.boxShadow=os;},1500);
-},8000);
+  var cells=heat.querySelectorAll('i');
+  for(var k=0;k<10;k++){
+    var c=cells[Math.floor(Math.random()*cells.length)];
+    var r=Math.random();
+    if(r<0.15) c.style.background='#14d4b8';
+    else if(r<0.35) c.style.background='#0f8a7a';
+    else if(r<0.6) c.style.background='#0a5a4a';
+    else c.style.background='#0a1a1a';
+  }
+},1500);
+
+// Trend chart
+(function(){
+  var cv=document.getElementById('trend'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height;
+  var pts=[];
+  for(var i=0;i<40;i++) pts.push(Math.random()*0.6+0.2);
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // grid
+    ctx.strokeStyle='rgba(20,212,184,.08)';ctx.lineWidth=1;
+    for(var y=0;y<H;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    // area
+    ctx.beginPath();
+    ctx.moveTo(0,H);
+    pts.forEach(function(v,i){ctx.lineTo((i/(pts.length-1))*W,H-v*(H-10)-5);});
+    ctx.lineTo(W,H);ctx.closePath();
+    var g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'rgba(20,212,184,.4)');
+    g.addColorStop(1,'rgba(20,212,184,0)');
+    ctx.fillStyle=g;ctx.fill();
+    // line
+    ctx.beginPath();
+    pts.forEach(function(v,i){
+      var x=(i/(pts.length-1))*W,y=H-v*(H-10)-5;
+      if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    });
+    ctx.strokeStyle='#14d4b8';ctx.lineWidth=1.5;ctx.stroke();
+    // end dot
+    var last=pts[pts.length-1];
+    ctx.beginPath();ctx.arc(W-2,H-last*(H-10)-5,2.5,0,Math.PI*2);
+    ctx.fillStyle='#14d4b8';ctx.fill();
+  }
+  draw();
+  setInterval(function(){
+    pts.shift();pts.push(Math.random()*0.6+0.2);
+    draw();
+  },1400);
+})();
+
+// Donut
+(function(){
+  var cv=document.getElementById('donut'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height;
+  var cx=W/2,cy=H/2,R=Math.min(W,H)/2-10,r=R*0.62;
+  var data=[0.55,0.25,0.12,0.08];
+  var colors=['#14d4b8','#ffaa00','#ff3a5e','#a855f7'];
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var start=-Math.PI/2;
+    data.forEach(function(v,i){
+      var end=start+v*Math.PI*2;
+      ctx.beginPath();
+      ctx.arc(cx,cy,R,start,end);
+      ctx.arc(cx,cy,r,end,start,true);
+      ctx.closePath();
+      ctx.fillStyle=colors[i];ctx.fill();
+      start=end;
+    });
+    ctx.fillStyle='#a8c8b8';ctx.font='bold 14px Courier New';ctx.textAlign='center';
+    ctx.fillText('42',cx,cy+2);
+    ctx.font='8px Courier New';ctx.fillStyle='#6a9a8a';
+    ctx.fillText('LAYERS',cx,cy+14);
+  }
+  draw();
+})();
+
+// Gauge
+(function(){
+  var cv=document.getElementById('gauge'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height;
+  var cx=W/2,cy=H*0.62,R=Math.min(W,H)*0.4;
+  var val=82;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // bg arc
+    ctx.beginPath();
+    ctx.arc(cx,cy,R,Math.PI*0.85,Math.PI*0.15,false);
+    ctx.strokeStyle='rgba(255,136,0,.15)';ctx.lineWidth=10;ctx.lineCap='round';ctx.stroke();
+    // value arc
+    var ang=Math.PI*0.85+(Math.PI*(1-0.7))*Math.PI/180*(val/100);
+    ctx.beginPath();
+    ctx.arc(cx,cy,R,Math.PI*0.85,Math.PI*0.85+(Math.PI*0.3)*(val/100));
+    ctx.strokeStyle='#ff8800';ctx.lineWidth=10;ctx.lineCap='round';ctx.stroke();
+    ctx.fillStyle='#ff8800';ctx.font='bold 20px Courier New';ctx.textAlign='center';
+    ctx.fillText(val+'%',cx,cy+2);
+    ctx.font='8px Courier New';ctx.fillStyle='#6a9a8a';
+    ctx.fillText('CPU',cx,cy+16);
+  }
+  draw();
+  setInterval(function(){
+    val=70+Math.floor(Math.random()*25);
+    draw();
+  },2500);
+})();
+
+// Bars
+(function(){
+  var cv=document.getElementById('bars'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height;
+  var n=12;
+  var vals=[];
+  for(var i=0;i<n;i++) vals.push(Math.random());
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var bw=W/n*0.7,gap=W/n*0.3;
+    vals.forEach(function(v,i){
+      var bh=v*(H-20);
+      var x=i*(bw+gap)+gap/2;
+      var y=H-bh-4;
+      var g=ctx.createLinearGradient(0,y,0,H);
+      g.addColorStop(0,'#14d4b8');
+      g.addColorStop(1,'#0a5a4a');
+      ctx.fillStyle=g;
+      ctx.fillRect(x,y,bw,bh);
+    });
+  }
+  draw();
+  setInterval(function(){
+    vals.shift();vals.push(Math.random());
+    draw();
+  },1800);
+})();
 </script>
 
 </body>
