@@ -1,5 +1,5 @@
 {
-  "ts": "2026-10-03T02:57:32.810413Z",
+  "ts": "2026-10-03T02:57:52.389691Z",
   "layers": [
     {
       "id": "L01",
@@ -355,11 +355,11 @@
     {
       "id": "L-Sync",
       "file": "sync_loop",
-      "running": false,
-      "pid": null,
+      "running": true,
+      "pid": "17317",
       "mode": "watch",
-      "color": "red",
-      "label": "قطع"
+      "color": "green",
+      "label": "فعال"
     },
     {
       "id": "L-Keep",
@@ -381,10 +381,10 @@
     }
   ],
   "stats": {
-    "green": 0,
+    "green": 1,
     "yellow": 22,
     "orange": 0,
-    "red": 20,
+    "red": 19,
     "total": 42
   }
 }
