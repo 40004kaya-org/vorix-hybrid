@@ -13,8 +13,9 @@
   input:focus{outline:none;border-color:#0fb}
   button{margin-top:16px;width:100%;padding:12px;background:#0fb;color:#000;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer}
   button:active{transform:scale(0.98)}
-  #err{color:#f44;margin-top:12px;font-size:14px;min-height:20px}
+  #err{color:#f44;margin-top:12px;font-size:12px;min-height:20px;word-break:break-all;font-family:monospace;direction:ltr;text-align:left}
   .logo{font-size:48px;margin-bottom:16px}
+  .show{font-size:12px;color:#888;margin-top:8px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -22,11 +23,17 @@
     <div class="logo">🛡️</div>
     <h1>VORIX SECURITY</h1>
     <input type="password" id="pin" placeholder="رمز عبور" autocomplete="off">
+    <p class="show" onclick="toggleShow()">👁️ نمایش رمز</p>
     <button onclick="check()">ورود</button>
     <p id="err"></p>
   </div>
 <script>
 const HASH_REV = "fe3b03f0ea1eeaa2568e796bc94cceb20ff0a87a1576c335dad7f10573b4e932";
+
+function toggleShow() {
+  const el = document.getElementById('pin');
+  el.type = el.type === 'password' ? 'text' : 'password';
+}
 
 async function sha256(msg) {
   const buf = new TextEncoder().encode(msg);
@@ -39,12 +46,20 @@ async function check() {
   const pin = document.getElementById('pin').value;
   const h = await sha256(pin);
   const rev = h.split('').reverse().join('');
+  const err = document.getElementById('err');
+  
   if (rev === HASH_REV) {
-    localStorage.setItem('vorix_auth', 'ok');localStorage.setItem('vorix_pin', pin);
+    err.style.color = '#0fb';
+    err.textContent = '✅ OK, entering...';
+    localStorage.setItem('vorix_auth', 'ok');
+    localStorage.setItem('vorix_pin', pin);
     window.location.href = 'vx7k2/index.html';
   } else {
-    document.getElementById('err').textContent = '❌ رمز اشتباه';
-    document.getElementById('pin').value = '';
+    err.style.color = '#f44';
+    err.textContent = '❌ WRONG\n' +
+      'len: ' + pin.length + '\n' +
+      'hash_rev: ' + rev.substring(0, 40) + '...\n' +
+      'expected: ' + HASH_REV.substring(0, 40) + '...';
   }
 }
 
