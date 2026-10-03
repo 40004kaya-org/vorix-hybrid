@@ -1,0 +1,46 @@
+{
+  "ts": "2026-10-03T07:24:24.507014+00:00",
+  "services": {
+    "CORE": {
+      "running": true,
+      "label": "ربات فروشگاه"
+    },
+    "BRIDGE": {
+      "running": true,
+      "label": "جمع‌آورنده"
+    },
+    "API": {
+      "running": true,
+      "label": "API :8090"
+    },
+    "SHIELD": {
+      "running": true,
+      "label": "۱۰ لایه"
+    },
+    "VAULT": {
+      "running": true,
+      "label": "بک‌آپ"
+    },
+    "BOT": {
+      "running": true,
+      "label": "ربات VORIX"
+    },
+    "SYNC": {
+      "running": true,
+      "label": "Sync"
+    },
+    "ORCH": {
+      "running": true,
+      "label": "لایه‌ها"
+    },
+    "WATCH": {
+      "running": true,
+      "label": "نگهبان"
+    }
+  },
+  "stats": {
+    "alive": 9,
+    "total": 9,
+    "health": 100
+  }
+}
