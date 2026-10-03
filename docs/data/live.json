@@ -1,5 +1,5 @@
 {
-  "ts": "2026-10-03T05:31:37.362611Z",
+  "ts": "2026-10-03T05:32:45.602503Z",
   "layers": [
     {
       "id": "L01",
@@ -346,11 +346,11 @@
     {
       "id": "L-Bot",
       "file": "vorix_bot",
-      "running": true,
-      "pid": "18492",
+      "running": false,
+      "pid": null,
       "mode": "watch",
-      "color": "green",
-      "label": "فعال"
+      "color": "red",
+      "label": "قطع"
     },
     {
       "id": "L-Sync",
@@ -381,10 +381,10 @@
     }
   ],
   "stats": {
-    "green": 18,
+    "green": 17,
     "yellow": 22,
     "orange": 0,
-    "red": 2,
+    "red": 3,
     "total": 42
   }
 }
