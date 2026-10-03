@@ -1,0 +1,606 @@
+{
+ "ts": "2026-10-03T05:18:43.055061Z",
+ "total": 100,
+ "entries": [
+  {
+   "src": "layer_resurrect",
+   "ts": "07:01:28",
+   "sev": "ok",
+   "msg": "♻️ Restarted: layer17_watchdog.py"
+  },
+  {
+   "src": "layer_resurrect",
+   "ts": "07:01:28",
+   "sev": "ok",
+   "msg": "♻️ Restarted: layer19_password_leak.py"
+  },
+  {
+   "src": "layer_resurrect",
+   "ts": "07:01:28",
+   "sev": "ok",
+   "msg": "♻️ Restarted: layer21_ml_anomaly.py"
+  },
+  {
+   "src": "layer_resurrect",
+   "ts": "07:01:28",
+   "sev": "ok",
+   "msg": "♻️ Restarted: layer25_ssl_monitor.py"
+  },
+  {
+   "src": "layer_resurrect",
+   "ts": "07:01:28",
+   "sev": "ok",
+   "msg": "♻️ Restarted: layer29_30_identity.py"
+  },
+  {
+   "src": "layer_resurrect",
+   "ts": "07:01:28",
+   "sev": "ok",
+   "msg": "♻️ Restarted: layer_fim.py"
+  },
+  {
+   "src": "layer_resurrect",
+   "ts": "07:01:29",
+   "sev": "ok",
+   "msg": "♻️ Restarted: layer_rootkit.py"
+  },
+  {
+   "src": "layer_resurrect",
+   "ts": "07:01:29",
+   "sev": "ok",
+   "msg": "♻️ Restarted: layer_multichannel.py"
+  },
+  {
+   "src": "layer_rootkit",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_rootkit.py {watch|status|test|scan}"
+  },
+  {
+   "src": "layer_scoring",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_scoring.py {test|status|get <ip>|add <ip> <layer> <score>}"
+  },
+  {
+   "src": "layer_scoring",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_scoring.py {test|status|get <ip>|add <ip> <layer> <score>}"
+  },
+  {
+   "src": "layer_scoring",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_scoring.py {test|status|get <ip>|add <ip> <layer> <score>}"
+  },
+  {
+   "src": "layer_scoring",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_scoring.py {test|status|get <ip>|add <ip> <layer> <score>}"
+  },
+  {
+   "src": "layer_scoring",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_scoring.py {test|status|get <ip>|add <ip> <layer> <score>}"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "{ts}",
+   "sev": "info",
+   "msg": "{msg}"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "05:06:05",
+   "sev": "info",
+   "msg": "🔒 Sealed 63 files"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "05:06:48",
+   "sev": "info",
+   "msg": "🔒 Sealed 63 files"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "05:11:43",
+   "sev": "info",
+   "msg": "🔒 Sealed 63 files"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "05:34:38",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "05:48:20",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "05:56:05",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "06:08:17",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "06:14:15",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "06:16:53",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "06:24:05",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "06:26:27",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "06:28:33",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "06:31:44",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_seal",
+   "ts": "07:01:27",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:45:29",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:45:39",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:45:54",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:46:09",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:46:24",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:46:34",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:46:49",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:47:04",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:47:19",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:47:29",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:47:44",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:47:59",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:48:14",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:48:24",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "08:48:39",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "06:31:44",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_voice",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_voice.py {test|status|speak <text>}"
+  },
+  {
+   "src": "layer_voice",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_voice.py {test|status|speak <text>}"
+  },
+  {
+   "src": "layer_voice",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_voice.py {test|status|speak <text>}"
+  },
+  {
+   "src": "layer_voice",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_voice.py {test|status|speak <text>}"
+  },
+  {
+   "src": "layer_voice",
+   "ts": "",
+   "sev": "info",
+   "msg": "Usage: layer_voice.py {test|status|speak <text>}"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "05:34:39",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "05:34:39",
+   "sev": "info",
+   "msg": "🗼 Ingested 12"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "05:48:21",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "05:56:06",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "06:08:24",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "06:14:16",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "06:16:54",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "06:24:06",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "06:26:29",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "06:28:34",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "06:31:45",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_watchtower",
+   "ts": "07:01:28",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:08:17",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:14:15",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:14:15",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:16:53",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:16:53",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:24:05",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:24:05",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:26:28",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:26:28",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:28:33",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:28:33",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:31:44",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "06:31:44",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "07:01:28",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "07:01:28",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "livefeed",
+   "ts": "",
+   "sev": "info",
+   "msg": "nohup: ignoring input"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "",
+   "sev": "info",
+   "msg": "nohup: ignoring input"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "",
+   "sev": "info",
+   "msg": "nohup: ignoring input"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "",
+   "sev": "info",
+   "msg": "  File \"/data/data/com.termux/files/home/vorix-hybrid/phone/vorix_bot.py\", line 308"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "",
+   "sev": "info",
+   "msg": "    await handle_deep_link(update, context, args[0])"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "",
+   "sev": "info",
+   "msg": "    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "",
+   "sev": "error",
+   "msg": "SyntaxError: 'await' outside async function"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "",
+   "sev": "info",
+   "msg": "nohup: ignoring input"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  },
+  {
+   "src": "vorix_bot",
+   "ts": "TG ERROR",
+   "sev": "error",
+   "msg": "HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8465913616:AAEuYEuLwFU6vjf4l-tepqizE0Ju9pY4jW8/getUpdates (Caused by NewConnectionError(\"HTTPSConnection(host"
+  }
+ ]
+}
