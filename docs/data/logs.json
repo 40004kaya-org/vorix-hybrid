@@ -1,14 +1,8 @@
 {
- "ts": "2026-10-03T07:24:30.392645Z",
+ "ts": "2026-10-03T07:28:19.736955Z",
  "total": 100,
  "entries": [
   {
-   "src": "layer_scoring",
-   "ts": "",
-   "sev": "info",
-   "msg": "Usage: layer_scoring.py {test|status|get <ip>|add <ip> <layer> <score>}"
-  },
-  {
    "src": "layer_seal",
    "ts": "10:51:08",
    "sev": "info",
@@ -100,93 +94,93 @@
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:52:16",
+   "ts": "10:55:16",
    "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:52:23",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:52:48",
+   "ts": "10:55:32",
    "sev": "info",
    "msg": "🕸️ Tarpit listening on 9999"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:52:49",
+   "ts": "10:55:33",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:53:04",
+   "ts": "10:55:48",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:53:19",
+   "ts": "10:56:03",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:53:23",
-   "sev": "info",
-   "msg": "🕸️ Tarpit listening on 9999"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:53:26",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:53:28",
-   "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:53:41",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:53:56",
+   "ts": "10:56:18",
    "sev": "info",
    "msg": "🕸️ Tarpit: released 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:53:59",
-   "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:54:11",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "10:54:21",
+   "ts": "10:56:28",
    "sev": "info",
    "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:54:30",
+   "ts": "10:56:43",
    "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:56:58",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:57:13",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:57:23",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:57:38",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:57:53",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:58:08",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:58:18",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
@@ -251,6 +245,12 @@
   {
    "src": "layer_tarpit",
    "ts": "10:54:30",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "10:55:01",
    "sev": "info",
    "msg": "ERR: [Errno 98] Address already in use"
   },
