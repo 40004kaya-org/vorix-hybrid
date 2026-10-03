@@ -1,0 +1,471 @@
+:root {
+  --bg: #05070d;
+  --board: #0a0e1a;
+  --box: #0d1320;
+  --edge: #2a3548;
+  --edge2: #1a2233;
+  --text: #e5e7eb;
+  --muted: #6b7280;
+  --green: #10b981;
+  --yellow: #f59e0b;
+  --orange: #f97316;
+  --red: #ef4444;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: ui-monospace, monospace;
+  background: #05070d;
+  color: var(--text);
+  min-height: 100vh;
+  padding: 12px;
+}
+
+/* ═══ MAIN BOARD (قاب بزرگ) ═══ */
+.board {
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 2px solid var(--edge);
+  border-radius: 6px;
+  padding: 14px;
+  background: 
+    radial-gradient(circle at 50% 0%, rgba(16,185,129,0.04), transparent 60%),
+    #0a0e1a;
+  position: relative;
+  box-shadow: 
+    0 0 60px rgba(16,185,129,0.06),
+    inset 0 0 80px rgba(0,0,0,0.4);
+}
+
+/* Grid پس‌زمینه برد */
+.board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+/* ═══ HEADER ═══ */
+.b-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--edge2);
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.b-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--text);
+}
+
+.b-rev {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+}
+
+/* ═══ CORE BOX ═══ */
+.core-wrap {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.core {
+  width: 320px;
+  max-width: 100%;
+  border: 2px solid var(--edge);
+  border-radius: 4px;
+  padding: 10px 14px;
+  background: linear-gradient(180deg, #0d1320, #05070d);
+  position: relative;
+  box-shadow: 
+    0 0 30px rgba(16,185,129,0.08),
+    inset 0 0 30px rgba(16,185,129,0.03);
+}
+
+.core-label {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1px 8px;
+  background: #0a0e1a;
+  border: 1px solid var(--edge2);
+  border-radius: 3px;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 2px;
+}
+
+.core-diamonds {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 8px 0 6px;
+}
+
+.diamond {
+  color: var(--green);
+  font-size: 11px;
+  text-shadow: 0 0 8px var(--green);
+  animation: dPulse 2s infinite;
+}
+
+.diamond:nth-child(2) { animation-delay: 0.2s; }
+.diamond:nth-child(3) { animation-delay: 0.4s; }
+.diamond:nth-child(4) { animation-delay: 0.6s; }
+.diamond:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes dPulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.core-name {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--green);
+  text-shadow: 0 0 12px rgba(16,185,129,0.6);
+  margin-bottom: 8px;
+}
+
+.core-percent {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  font-family: ui-monospace, monospace;
+  text-shadow: 0 0 10px rgba(16,185,129,0.5);
+}
+
+/* ═══ خطوط اتصال عمودی ═══ */
+.v-line {
+  width: 2px;
+  height: 22px;
+  background: linear-gradient(180deg, var(--green), transparent);
+  margin: 0 auto;
+  position: relative;
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.v-line::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid var(--green);
+  border-bottom: 2px solid var(--green);
+  transform: translateX(-50%) rotate(45deg);
+  opacity: 0.8;
+}
+
+/* ═══ ردیف چیپ‌ها ═══ */
+.chip-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px 0;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+
+/* چیپ */
+.chip {
+  border: 2px solid var(--edge);
+  border-radius: 4px;
+  padding: 8px 6px;
+  background: linear-gradient(180deg, #0d1320, #05070d);
+  min-width: 100px;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+}
+
+.chip:hover {
+  border-color: var(--green);
+  box-shadow: 0 0 20px rgba(16,185,129,0.2);
+  transform: translateY(-2px);
+}
+
+.chip.green { border-color: rgba(16,185,129,0.5); }
+.chip.yellow { border-color: rgba(245,158,11,0.5); }
+.chip.orange { border-color: rgba(249,115,22,0.5); }
+.chip.red { 
+  border-color: rgba(239,68,68,0.6);
+  background: linear-gradient(180deg, rgba(239,68,68,0.08), rgba(0,0,0,0.4));
+}
+
+.chip-head {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--text);
+  margin-bottom: 6px;
+  font-family: ui-monospace, monospace;
+}
+
+/* ═══ LEDها (ریز و لایو) ═══ */
+.leds-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-bottom: 6px;
+  min-height: 12px;
+}
+
+.led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.led.green {
+  background: radial-gradient(circle at 35% 30%, #6ee7b7, #10b981);
+  box-shadow: 0 0 5px var(--green);
+  animation: ledPulse 2s ease-in-out infinite;
+}
+
+.led.yellow {
+  background: radial-gradient(circle at 35% 30%, #fde68a, #f59e0b);
+  box-shadow: 0 0 4px var(--yellow);
+  animation: ledPulse 3s ease-in-out infinite;
+}
+
+.led.orange {
+  background: radial-gradient(circle at 35% 30%, #fdba74, #f97316);
+  box-shadow: 0 0 5px var(--orange);
+  animation: ledPulse 1.5s ease-in-out infinite;
+}
+
+.led.red {
+  background: radial-gradient(circle at 35% 30%, #fca5a5, #ef4444);
+  box-shadow: 0 0 6px var(--red);
+  animation: ledPulse-fast 0.7s ease-in-out infinite;
+}
+
+.led.dark {
+  background: radial-gradient(circle at 35% 30%, #4b5563, #1f2937);
+  opacity: 0.4;
+}
+
+@keyframes ledPulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+@keyframes ledPulse-fast {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+.chip-stats {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: ui-monospace, monospace;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+/* ═══ SLOTS BOX ═══ */
+.slots-box {
+  border: 2px solid var(--edge);
+  border-radius: 4px;
+  padding: 12px 10px 10px;
+  background: linear-gradient(180deg, #0d1320, #05070d);
+  position: relative;
+  z-index: 2;
+  margin-top: 8px;
+}
+
+.slots-label {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1px 10px;
+  background: #0a0e1a;
+  border: 1px solid var(--edge2);
+  border-radius: 3px;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  gap: 6px;
+}
+
+.slot {
+  border: 1px solid var(--edge2);
+  border-radius: 3px;
+  padding: 5px 3px;
+  text-align: center;
+  background: #0d1320;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.slot:hover {
+  border-color: var(--green);
+  background: #141b2a;
+}
+
+.slot.green { border-color: rgba(16,185,129,0.4); }
+.slot.yellow { border-color: rgba(245,158,11,0.4); }
+.slot.orange { border-color: rgba(249,115,22,0.4); }
+.slot.red { border-color: rgba(239,68,68,0.5); background: rgba(239,68,68,0.05); }
+.slot.dark { border-color: #4b5563; opacity: 0.5; }
+
+.slot-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: 0 auto 3px;
+}
+
+.slot-dot.green {
+  background: var(--green);
+  box-shadow: 0 0 5px var(--green);
+  animation: ledPulse 2.5s infinite;
+}
+
+.slot-dot.yellow {
+  background: var(--yellow);
+  box-shadow: 0 0 4px var(--yellow);
+  animation: ledPulse 3.5s infinite;
+}
+
+.slot-dot.orange {
+  background: var(--orange);
+  box-shadow: 0 0 5px var(--orange);
+  animation: ledPulse 1.5s infinite;
+}
+
+.slot-dot.red {
+  background: var(--red);
+  box-shadow: 0 0 6px var(--red);
+  animation: ledPulse-fast 0.7s infinite;
+}
+
+.slot-dot.dark {
+  background: #4b5563;
+  opacity: 0.4;
+}
+
+.slot-code {
+  font-size: 9px;
+  font-family: ui-monospace, monospace;
+  color: #9ca3af;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slot.green .slot-code { color: #6ee7b7; }
+.slot.yellow .slot-code { color: #fde68a; }
+.slot.orange .slot-code { color: #fdba74; }
+.slot.red .slot-code { color: #fca5a5; }
+
+/* ═══ BOTTOM STATS ═══ */
+.b-stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 16px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--edge2);
+  position: relative;
+  z-index: 2;
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  flex-wrap: wrap;
+}
+
+.b-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+}
+
+.b-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.b-dot.green { background: var(--green); box-shadow: 0 0 8px var(--green); }
+.b-dot.yellow { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+.b-dot.red { background: var(--red); box-shadow: 0 0 8px var(--red); }
+.b-dot.blue { background: #3b82f6; box-shadow: 0 0 6px #3b82f6; }
+
+/* ═══ ALERT LINE ═══ */
+.alert {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--green);
+  box-shadow: 0 0 15px var(--green);
+  z-index: 999;
+  transition: all 0.3s;
+}
+
+.alert.red {
+  background: var(--red);
+  box-shadow: 0 0 25px var(--red);
+  animation: alertPulse 0.8s infinite;
+}
+
+@keyframes alertPulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 700px) {
+  body { padding: 6px; }
+  .board { padding: 10px; }
+  .core { width: 100%; }
+  .core-name { font-size: 11px; }
+  .core-percent { font-size: 15px; }
+  .chip { min-width: 70px; padding: 6px 4px; }
+  .chip-head { font-size: 9px; }
+  .chip-stats { font-size: 9px; }
+  .led { width: 7px; height: 7px; }
+  .slots-grid { grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); gap: 4px; }
+  .slot { padding: 4px 2px; }
+  .slot-code { font-size: 8px; }
+  .b-stats { font-size: 10px; gap: 14px; }
+  .v-line { height: 16px; }
+}
