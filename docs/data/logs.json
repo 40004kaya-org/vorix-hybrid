@@ -1,33 +1,9 @@
 {
- "ts": "2026-10-03T15:14:16.703510Z",
+ "ts": "2026-10-03T15:33:22.949060Z",
  "total": 100,
  "entries": [
   {
    "src": "layer_seal",
-   "ts": "18:44:09",
-   "sev": "ok",
-   "msg": "🔒 Seal started"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "18:44:09",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_shield.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "18:44:09",
-   "sev": "info",
-   "msg": "➕ new file: vorix_bot_v2.py"
-  },
-  {
-   "src": "layer_seal",
-   "ts": "18:44:09",
-   "sev": "info",
-   "msg": "➕ new file: vorix_shop_api.py"
-  },
-  {
-   "src": "layer_seal",
    "ts": "18:44:10",
    "sev": "ok",
    "msg": "🔒 Seal started"
@@ -75,76 +51,28 @@
    "msg": "➕ new file: vorix_shop_api.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "11:07:35",
-   "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
+   "src": "layer_seal",
+   "ts": "18:45:19",
+   "sev": "ok",
+   "msg": "🔒 Seal started"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "11:07:42",
+   "src": "layer_seal",
+   "ts": "18:45:19",
    "sev": "info",
-   "msg": "🕸️ Tarpit listening on 9999"
+   "msg": "➕ new file: vorix_shop_shield.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "11:08:11",
+   "src": "layer_seal",
+   "ts": "18:45:19",
    "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+   "msg": "➕ new file: vorix_bot_v2.py"
   },
   {
-   "src": "layer_tarpit",
-   "ts": "11:08:26",
+   "src": "layer_seal",
+   "ts": "18:45:19",
    "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "11:08:36",
-   "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "11:08:41",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "11:08:56",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: released 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "11:09:07",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "11:09:07",
-   "sev": "info",
-   "msg": "ERR: [Errno 98] Address already in use"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "11:09:22",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "11:09:39",
-   "sev": "info",
-   "msg": "🕸️ Tarpit listening on 9999"
-  },
-  {
-   "src": "layer_tarpit",
-   "ts": "11:09:41",
-   "sev": "info",
-   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+   "msg": "➕ new file: vorix_shop_api.py"
   },
   {
    "src": "layer_tarpit",
@@ -166,9 +94,75 @@
   },
   {
    "src": "layer_tarpit",
-   "ts": "10:31:41",
+   "ts": "18:44:16",
    "sev": "info",
    "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:44:25",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:44:40",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:44:41",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:44:55",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:45:05",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:45:21",
+   "sev": "info",
+   "msg": "🕸️ Tarpit listening on 9999"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:45:55",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:46:11",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:46:25",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:46:41",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: released 127.0.0.1"
+  },
+  {
+   "src": "layer_tarpit",
+   "ts": "18:46:51",
+   "sev": "info",
+   "msg": "🕸️ Tarpit: connection from 127.0.0.1"
   },
   {
    "src": "layer_tarpit",
@@ -255,6 +249,12 @@
    "msg": "ERR: [Errno 98] Address already in use"
   },
   {
+   "src": "layer_tarpit",
+   "ts": "18:44:41",
+   "sev": "info",
+   "msg": "ERR: [Errno 98] Address already in use"
+  },
+  {
    "src": "layer_voice",
    "ts": "",
    "sev": "info",
@@ -283,18 +283,6 @@
    "ts": "",
    "sev": "info",
    "msg": "Usage: layer_voice.py {test|status|speak <text>}"
-  },
-  {
-   "src": "layer_watchtower",
-   "ts": "10:51:09",
-   "sev": "ok",
-   "msg": "🗼 Watchtower started"
-  },
-  {
-   "src": "layer_watchtower",
-   "ts": "10:51:14",
-   "sev": "ok",
-   "msg": "🗼 Watchtower started"
   },
   {
    "src": "layer_watchtower",
@@ -375,16 +363,16 @@
    "msg": "🗼 Watchtower started"
   },
   {
-   "src": "layer_whitelist",
-   "ts": "11:07:00",
-   "sev": "info",
-   "msg": "Loaded 2 IPs"
+   "src": "layer_watchtower",
+   "ts": "18:44:17",
+   "sev": "ok",
+   "msg": "🗼 Watchtower started"
   },
   {
-   "src": "layer_whitelist",
-   "ts": "11:07:02",
+   "src": "layer_watchtower",
+   "ts": "18:45:21",
    "sev": "ok",
-   "msg": "✅ Whitelist started"
+   "msg": "🗼 Watchtower started"
   },
   {
    "src": "layer_whitelist",
@@ -461,6 +449,18 @@
   {
    "src": "layer_whitelist",
    "ts": "18:44:16",
+   "sev": "info",
+   "msg": "Loaded 2 IPs"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "18:45:20",
+   "sev": "ok",
+   "msg": "✅ Whitelist started"
+  },
+  {
+   "src": "layer_whitelist",
+   "ts": "18:45:20",
    "sev": "info",
    "msg": "Loaded 2 IPs"
   },
