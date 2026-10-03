@@ -1,5 +1,5 @@
 {
- "ts": "2026-10-03T07:38:52.575492Z",
+ "ts": "2026-10-03T15:14:15.673322Z",
  "source": "SANS DShield + ip-api + Feodo",
  "attacks": [
   {
@@ -100,7 +100,7 @@
    "country": "RU",
    "country_name": "Russia",
    "isp": "Nubes LLC",
-   "asn": ""
+   "asn": "AS212136"
   },
   {
    "ip": "176.113.115.104",
@@ -117,8 +117,8 @@
    "rank": 12,
    "count": 41148,
    "targets": 476,
-   "country": "GB",
-   "country_name": "United Kingdom",
+   "country": "HK",
+   "country_name": "Hong Kong",
    "isp": "UFO TECHNOLOGIES LIMITED",
    "asn": "AS201738"
   },
@@ -127,9 +127,9 @@
    "rank": 13,
    "count": 41094,
    "targets": 477,
-   "country": "RU",
-   "country_name": "Russia",
-   "isp": "Chang Way Technologies Co. Limited",
+   "country": "GB",
+   "country_name": "United Kingdom",
+   "isp": "UFO TECHNOLOGIES LIMITED",
    "asn": "AS201738"
   },
   {
@@ -157,8 +157,8 @@
    "rank": 16,
    "count": 40860,
    "targets": 481,
-   "country": "RU",
-   "country_name": "Russia",
+   "country": "GB",
+   "country_name": "United Kingdom",
    "isp": "UFO TECHNOLOGIES LIMITED",
    "asn": "AS201738"
   },
@@ -505,15 +505,16 @@
  ],
  "countries": {
   "NL": 580949,
-  "RU": 493934,
+  "RU": 411980,
   "US": 400688,
   "ES": 309508,
   "PL": 130299,
-  "GB": 82017,
+  "GB": 122823,
   "JP": 67738,
   "CN": 52358,
   "UA": 42554,
   "DE": 41164,
+  "HK": 41148,
   "SC": 25152,
   "EE": 24988,
   "BG": 19162
@@ -553,7 +554,7 @@
  "stats": {
   "total_attacks": 2270511,
   "unique_ips": 50,
-  "unique_countries": 13,
+  "unique_countries": 14,
   "c2_count": 5
  }
 }
