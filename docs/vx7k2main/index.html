@@ -67,9 +67,16 @@ body{background:#02040a;color:#94a3b8;font-family:"SF Mono",monospace;padding:8p
 .layer-dot{width:6px;height:6px;border-radius:50%;background:#1e293b;margin:0 auto}
 .layer-chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 2px;border:1px solid #1e293b;border-radius:2px;background:rgba(10,15,26,.6)}
 .layer-chip .nm{font-size:6px;color:#64748b;letter-spacing:.3px;line-height:1;text-align:center;overflow:hidden;white-space:nowrap;max-width:100%}
-.layer-dot.green{background:#10b981;box-shadow:0 0 4px #10b981}
-.layer-dot.yellow{background:#f59e0b;box-shadow:0 0 4px #f59e0b}
-.layer-dot.red{background:#ef4444;box-shadow:0 0 4px #ef4444;animation:pulse .8s infinite}
+.layer-dot.green{background:#10b981;box-shadow:0 0 4px #10b981;animation:ledPulse 2s ease-in-out infinite}
+.layer-dot.yellow{background:#f59e0b;box-shadow:0 0 4px #f59e0b;animation:ledBlink 1.4s ease-in-out infinite}
+.layer-dot.red{background:#ef4444;box-shadow:0 0 4px #ef4444;animation:ledBlink .6s ease-in-out infinite}
+.layer-dot:not(.green):not(.yellow):not(.red){animation:ledFade 3s ease-in-out infinite}
+@keyframes ledPulse{0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 4px #10b981}50%{opacity:.55;transform:scale(.82);box-shadow:0 0 8px #10b981}}
+@keyframes ledBlink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes ledFade{0%,100%{opacity:.5}50%{opacity:.15}}
+.layer-chip:nth-child(3n) .layer-dot{animation-delay:.4s}
+.layer-chip:nth-child(5n) .layer-dot{animation-delay:.8s}
+.layer-chip:nth-child(7n) .layer-dot{animation-delay:1.2s}
 
 /* ═══ STATS ROW ═══ */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
