@@ -1,5 +1,5 @@
 {
-  "ts": "2026-10-03T07:04:54.080915Z",
+  "ts": "2026-10-03T07:21:06.247908Z",
   "layers": [
     {
       "id": "L01",
@@ -356,7 +356,7 @@
       "id": "L-Sync",
       "file": "sync_loop",
       "running": true,
-      "pid": "16343",
+      "pid": "21003",
       "mode": "watch",
       "color": "green",
       "label": "فعال"
